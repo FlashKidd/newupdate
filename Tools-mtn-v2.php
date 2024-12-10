@@ -342,47 +342,87 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
  $min = 72;
- $max = 279;
+ $max = 300;
     
-  $random_subtract = rand($min,$max);
+   $data = [];
+    // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
 
-        if (($number - $random_subtract) > 0) {
-            $resultFirst = $number - $random_subtract;
-            // echo "Original Number: " . $number . "\n";
-            // echo "First Number: " . $resultFirst;
-             $data[] = [[0],[$resultFirst]];
-                $arrayData = [
-                "c2array" => true,
-                "size" => [2, 1, 1],
-                "data" => $data
-            ];
-         $flash = json_encode($arrayData);
-        } else {
-           $flash = 'scoreArray":"'.$number.'"';
-         }
+    // Check if the number can be reduced to zero in one step
+    if ($number <= $randomValue) {
+       // return "0";
+    }
 
-    
+    // Start with 0 as the first element
+    $data[] = [[0]];
 
+    $currentValue = $number;
+    $decide = 0;
+    // Continue subtracting until the number is zero
+    while ($currentValue > 0) {
+        // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+         
+        
+        // Decrease the number by the random value, but don't go below 0
+        $currentValue -= $randomValue;
+        //echo "\n<br> $randomValue $currentValue";
+        // Ensure the number does not drop below 0
+        if ($currentValue < 0) {
+            $currentValue = 0;
+        }
 
+        // Add the current value to the data array only if it’s greater than zero
+        if ($currentValue > 0) {
+            $data[] = [[$currentValue]];
             
+        }
+    }
+
+    // Ensure that the last value is not zero if it was added already
+    if (end($data)[0][0] == 0) {
+        array_pop($data);
+    }
+
+    // Format the result into the JSON structure
+    $result = [
+        "c2array" => true,
+        "size" => [count($data), 1, 1],
+        "data" => $data
+    ];
+    $data = array_filter($data, function($value) {
+    return $value[0][0] != 0;
+});
+
+// Sort the data in ascending order
+usort($data, function($a, $b) {
+    return $a[0][0] - $b[0][0];
+});
+
+
+foreach ($data as $value) {
             
+            $skore =  $value[0][0];
+            //echo "\nSent $skore"; 
             $powerBefore = $power;
-            $memory = validate_request($power,$resultFirst);
+            $memory = validate_request($power,$skore);
             $increment = 1;
         
-           $power = Attack($url,$resultFirst,$power,$memory,$increment,$uA);
+           $power = Attack($url,$skore,$power,$memory,$increment,$uA);
            
-
+}
+    $flash = json_encode($result);
     $query_str = parse_url($url, PHP_URL_QUERY);
     parse_str($query_str, $query_params);
     $unique_id = isset($query_params['unique_id']) ? $query_params['unique_id'] : '';
     $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
 
-    $xavi = GetXavi($unique_id,$game_id,$number,$arrayData);
+    $xavi = GetXavi($unique_id,$game_id,$number,$result);
     $cleanXavi = trim($xavi, '"');
     echo "\n Xavi Generated => $cleanXavi";
     $memory = validate_request($power,$number);
     AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
+    return json_encode($result);
 }
 
 
