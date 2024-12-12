@@ -37,7 +37,8 @@ $urls_ar = array();
 foreach ($c_values as $c) {
 
     
-  $url = 'http://fbnstyletech.com/war/xavi.php?c=' . urlencode($c);
+    $url = 'http://flashkidd.westus.cloudapp.azure.com/war/xavi-mtn.php?c=' . urlencode($c);
+
 
 
 array_push($urls_ar, $url);
