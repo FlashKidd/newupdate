@@ -1,7 +1,7 @@
 <?php
 //Business of the day
 require_once('Tools.php');
-system('cls');
+//system('cls');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(2);
 
