@@ -1,7 +1,7 @@
 <?php
 function GetTargetScore($position_){
  $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://www.gameplay.mzansigames.club/');
+        curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/');
         //curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
@@ -60,7 +60,7 @@ return $scores[$position_];
 }
 function GetPosition ($cookie){
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://www.gameplay.mzansigames.club/');
+        curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/');
         //curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
