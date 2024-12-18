@@ -3,7 +3,7 @@
 require_once('Tools-mtn-v2.php');
 system('cls');
 $scoreTarget = TargetScore();
-$number3 = GetTargetScore(2);
+$number3 = GetTargetScore(1);
 
 
 echo "\nOur target score is: $number3";
@@ -96,14 +96,14 @@ $pos = GetPosition ($cookie);
 
        
 
-         if(($pos >= 2 && $pos <= 6 )|| $pos == 0){
+         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
                 $score = rand(240,1000);
         }else{
             $score = rand($number3,($number3+rand(100,500)));
             
             
-             if ($number3 >= 30000){
-                $score = rand(10000,20000);
+             if ($number3 >= 6000){
+                $score = rand(5000,6000);
             }
             
             
@@ -113,24 +113,25 @@ $pos = GetPosition ($cookie);
             date_default_timezone_set('Africa/Johannesburg');
             $current_time = new DateTime();
             
-            if (in_array($current_time->format('i'), ['57', '58', '59'])) {
+            if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
                // if ($pos>=6 || $pos ==0){
-             $score +=  rand(20000,40000);
+             $score =  rand(500,1000)+$number3;
                /// }
                
-            if($score <40000){
-                $score+= rand(10000,20000);
-            }
+            //if($score <40000){
+              //  $score+= rand(10000,20000);
+           // }
             // sleep(5);
         }
- while($score>100000){
+$score += rand(100,500);
+ while($score>10000){
         
         $score = $score - rand(10000,20000);
     }
    // $score = rand(20000,30000);
 
-        $score = round($score, -1);
+//        $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
