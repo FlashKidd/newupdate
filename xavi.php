@@ -97,7 +97,7 @@ echo "\nOur target at num3 is: $number3";
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
         
-        if(($pos >= 1 && $pos <= 9 )|| $pos == 0){
+        if(($pos >= 1 && $pos <= 7 )|| $pos == 0){
                 $score = rand(700,1000);
         }else{
             $score = rand($number3,($number3+rand(100,500)));
@@ -112,7 +112,7 @@ echo "\nOur target at num3 is: $number3";
             date_default_timezone_set('Africa/Johannesburg');
             $current_time = new DateTime();
             
-           if (in_array($current_time->format('i'), ['55','56','57','58', '59'])) {
+           if (in_array($current_time->format('i'), ['50','55','56','57','58', '59'])) {
       // $score = rand($number3,($number3+rand(1000,5000)));
     //   $score =+ rand(1000,5000);
             // $score += ($number3+239500*2+763520+108469000)*3+1000040000;
@@ -129,9 +129,9 @@ echo "\nOur target at num3 is: $number3";
         $increment = 1;
         
 
- while($score>60000){
+ while($score>10000){
         
-      $score = $score - rand(10000,20000);
+      $score = $score - rand(1000,2000);
     }
 //$score = round($score, -1);
         
