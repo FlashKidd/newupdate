@@ -3,7 +3,7 @@
 require_once('Tools.php');
 //system('cls');
 $scoreTarget = TargetScore();
-$number3 = GetTargetScore(2);
+$number3 = GetTargetScore(1);
 
 
 echo "\nOur target at num3 is: $number3";
@@ -121,7 +121,7 @@ echo "\nOur target at num3 is: $number3";
                  //$score =+ rand(2000000,239500)+(188809000);//*1+2125840000;
             //   }
              // +188809000)*5+188809000
-     $score += rand($number3,($number3+rand(100,500)));
+     $score = rand($number3,($number3+rand(100,500)));
      //$score +=  rand(20000,40000);
      //$score = 2146960000;
           //$score = 2147480000;
