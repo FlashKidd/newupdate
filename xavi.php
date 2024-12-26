@@ -125,6 +125,7 @@ echo "\nOur target at num3 is: $number3";
      //$score +=  rand(20000,40000);
      //$score = 2146960000;
           //$score = 2147480000;
+$score =+ rand(500,1000);
          }
         $increment = 1;
         
