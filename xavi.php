@@ -117,7 +117,7 @@ echo "\nOur target at num3 is: $number3";
             if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
                // if ($pos>=6 || $pos ==0){
-             $score =  rand(500,1000)+$number3;
+             $score =  rand(1000,2000)+$number3;
                /// }
                
             //if($score <40000){
