@@ -97,51 +97,54 @@ echo "\nOur target at num3 is: $number3";
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
         
-        if(($pos >= 1 && $pos <= 7 )|| $pos == 0){
-                $score = rand(700,1000);
+       if(($pos >= 1 && $pos <=2 )|| $pos == 0){
+                $score = rand(240,1000);
         }else{
             $score = rand($number3,($number3+rand(100,500)));
             
             
-             if ($number3 >= 30000){
-                $score = rand(1000,5000);
+             if ($number3 >= 6000){
+                $score = rand(5000,6000);
             }
             
             
         }
+        $increment = 1;
+        
             date_default_timezone_set('Africa/Johannesburg');
             $current_time = new DateTime();
             
-           if (in_array($current_time->format('i'), ['50','55','56','57','58', '59'])) {
-      // $score = rand($number3,($number3+rand(1000,5000)));
-    //   $score =+ rand(1000,5000);
-            // $score += ($number3+239500*2+763520+108469000)*3+1000040000;
-             
-            // if ($number3>20000){
-                 //$score =+ rand(2000000,239500)+(188809000);//*1+2125840000;
-            //   }
-             // +188809000)*5+188809000
-     $score = rand($number3,($number3+rand(300,600)));
-     //$score +=  rand(20000,40000);
-     //$score = 2146960000;
-          //$score = 2147480000;
-$score += rand(500,1000);
-         }
-        $increment = 1;
-        
-
+            if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
+                
+               // if ($pos>=6 || $pos ==0){
+             $score =  rand(500,1000)+$number3;
+               /// }
+               
+            //if($score <40000){
+              //  $score+= rand(10000,20000);
+           // }
+            // sleep(5);
+        }
+$score += rand(100,500);
  while($score>10000){
         
-      $score = $score - rand(1000,2000);
+        $score = $score - rand(10000,20000);
     }
-//$score = round($score, -1);
-        
-        //$score += 5280000;
+   // $score = rand(20000,30000);
+
+//        $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
+        
         //echo "\n<br>UA used => $uA\n";
         $memory = validate_request($x_power,$score);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
+
+
+        
+
+
+//}
 
 
 
