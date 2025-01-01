@@ -40,7 +40,7 @@ $urls_ar = array();
 foreach ($c_values as $c) {
 
     
-    $url = 'http://flashkidd.westus.cloudapp.azure.com/newupdate/xavi.php?c=' . urlencode($c);
+    $url = 'http://167.71.187.98/newupdate/xavi.php?c=' . urlencode($c);
 
 
 
