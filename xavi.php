@@ -104,7 +104,7 @@ echo "\nOur target at num3 is: $number3";
             
             
              if ($number3 >= 6000){
-                $score = rand(5000,6000);
+                $score = rand(10000,20000);
             }
             
             
