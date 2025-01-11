@@ -102,8 +102,8 @@ $pos = GetPosition ($cookie);
             $score = rand($number3,($number3+rand(100,500)));
             
             
-             if ($number3 >= 6000){
-                $score = rand(5000,6000);
+             if ($number3 >= 40000){
+                $score = rand(20000,30000);
             }
             
             
@@ -125,13 +125,13 @@ $pos = GetPosition ($cookie);
             // sleep(5);
         }
 $score += rand(100,500);
- while($score>10000){
+ while($score>40000){
         
         $score = $score - rand(10000,20000);
     }
    // $score = rand(20000,30000);
 
-//        $score = round($score, -1);
+     $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
