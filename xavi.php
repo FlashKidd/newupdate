@@ -98,7 +98,7 @@ echo "\nOur target at num3 is: $number3";
         echo "\n<br> X-Powered-Version: $x_power\n";
         
        if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(240,1000);
+                $score = rand(9000,1000);
         }else{
             $score = rand($number3,($number3+rand(100,500)));
             
@@ -119,19 +119,19 @@ echo "\nOur target at num3 is: $number3";
               
              $score =  rand(500,1000)+$number3;
             
-             if($number3<5000){
-             $score = rand(5500,7000);
-             }  
+             // if($number3<5000){
+             // $score = rand(5500,7000);
+             // }  
             
         }
 $score += rand(100,500);
- while($score>10000){
+ while($score>40000){
         
         $score = $score - rand(10000,20000);
     }
    // $score = rand(20000,30000);
 
-//        $score = round($score, -1);
+     $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
