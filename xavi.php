@@ -98,13 +98,13 @@ echo "\nOur target at num3 is: $number3";
         echo "\n<br> X-Powered-Version: $x_power\n";
         
        if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(9000,1000);
+                $score = rand(1000,9000);
         }else{
             $score = rand($number3,($number3+rand(100,500)));
             
             
-             if ($number3 >= 6000){
-                $score = rand(10000,20000);
+             if ($number3 >= 40000){
+                $score = rand(50000,$number3);
             }
             
             
@@ -116,18 +116,29 @@ echo "\nOur target at num3 is: $number3";
             
             if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
-              
+               // if ($pos>=6 || $pos ==0){
              $score =  rand(500,1000)+$number3;
-            
-             // if($number3<5000){
-             // $score = rand(5500,7000);
-             // }  
-            
+            if ($number3 >= 45000){
+                $score = rand($number3,50000);
+            }
+             if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
+
+             if ($number3 >= 45000){
+            return;
+             }
+
+            }
+               /// }
+               
+            //if($score <40000){
+              //  $score+= rand(10000,20000);
+           // }
+            // sleep(5);
         }
 $score += rand(100,500);
- while($score>40000){
+ while($score>50000){
         
-        $score = $score - rand(10000,20000);
+        $score = $score - rand(1000,500);
     }
    // $score = rand(20000,30000);
 
@@ -138,6 +149,7 @@ $score += rand(100,500);
         //echo "\n<br>UA used => $uA\n";
         $memory = validate_request($x_power,$score);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
+
 
 
         
