@@ -135,7 +135,7 @@ $pos = GetPosition ($cookie);
             // sleep(5);
         }
 $score += rand(100,500);
- while($score>45000){
+ while($score>60000){
         
         $score = $score - rand(1000,500);
     }
