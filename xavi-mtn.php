@@ -118,7 +118,7 @@ $pos = GetPosition ($cookie);
                // if ($pos>=6 || $pos ==0){
              $score =  rand(500,1000)+$number3;
             if ($number3 >= 45000){
-                $score = rand($number3,50000);
+                $score = rand($number3,($number3+rand(100,500)));
             }
              if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
