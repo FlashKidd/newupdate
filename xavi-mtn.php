@@ -139,6 +139,9 @@ $pos = GetPosition ($cookie);
         
         $score = $score - rand(50,100);
     }
+if ($number3>=100){
+    $score = 100;
+}
    // $score = rand(20000,30000);
 
     // $score = round($score, -1);
