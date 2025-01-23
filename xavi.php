@@ -97,7 +97,8 @@ echo "\nOur target at num3 is: $number3";
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
         
-        if(($pos >= 1 && $pos <=2 )|| $pos == 0){
+        
+         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
                 $score = rand(5,20);
         }else{
             $score = rand($number3,($number3+rand(10,5)));
@@ -134,7 +135,7 @@ echo "\nOur target at num3 is: $number3";
               //  $score+= rand(10000,20000);
            // }
             // sleep(5);
-        }
+       // }
 // $score += rand(100,500);
  while($score>100){
         
@@ -142,7 +143,7 @@ echo "\nOur target at num3 is: $number3";
     }
    // $score = rand(20000,30000);
 
-     $score = round($score, -1);
+    // $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
@@ -155,13 +156,5 @@ echo "\nOur target at num3 is: $number3";
 
 
 //}
-
-
-
-
-
-//}
-
-
 
 
