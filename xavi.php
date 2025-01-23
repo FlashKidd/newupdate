@@ -136,7 +136,7 @@ echo "\nOur target at num3 is: $number3";
             // sleep(5);
         }
 $score += rand(100,500);
- while($score>50000){
+ while($score>65000){
         
         $score = $score - rand(1000,500);
     }
