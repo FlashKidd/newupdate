@@ -97,14 +97,14 @@ echo "\nOur target at num3 is: $number3";
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
         
-       if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(1000,9000);
+        if(($pos >= 1 && $pos <=2 )|| $pos == 0){
+                $score = rand(5,20);
         }else{
-            $score = rand($number3,($number3+rand(100,500)));
+            $score = rand($number3,($number3+rand(10,5)));
             
             
              if ($number3 >= 40000){
-                $score = rand(50000,$number3);
+                $score = rand($number3,($number3+rand(10,5)));
             }
             
             
@@ -117,15 +117,15 @@ echo "\nOur target at num3 is: $number3";
             if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
                // if ($pos>=6 || $pos ==0){
-             $score =  rand(500,1000)+$number3;
-            if ($number3 >= 45000){
-                $score = rand($number3,50000);
-            }
-             if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
+             // $score =  rand(500,1000)+$number3;
+           
+                $score = rand($number3,($number3+rand(10,5)));
+           
+            //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
-             if ($number3 >= 45000){
-            return;
-             }
+            //  if ($number3 >= 45000){
+            // return;
+            //  }
 
             }
                /// }
@@ -135,10 +135,10 @@ echo "\nOur target at num3 is: $number3";
            // }
             // sleep(5);
         }
-$score += rand(100,500);
- while($score>65000){
+// $score += rand(100,500);
+ while($score>100){
         
-        $score = $score - rand(1000,500);
+        $score = $score - rand(50,100);
     }
    // $score = rand(20000,30000);
 
@@ -151,8 +151,13 @@ $score += rand(100,500);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
 
-
         
+
+
+//}
+
+
+
 
 
 //}
