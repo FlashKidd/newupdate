@@ -133,7 +133,7 @@ $pos = GetPosition ($cookie);
               //  $score+= rand(10000,20000);
            // }
             // sleep(5);
-        }
+       // }
 // $score += rand(100,500);
  while($score>100){
         
@@ -141,7 +141,7 @@ $pos = GetPosition ($cookie);
     }
    // $score = rand(20000,30000);
 
-     $score = round($score, -1);
+    // $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
