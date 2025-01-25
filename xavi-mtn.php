@@ -99,12 +99,20 @@ $pos = GetPosition ($cookie);
          if(($pos >= 1 && $pos <=2 )|| $pos == 0){
                 $score = rand(5,20);
         }else{
-            $score = rand($number3,($number3+rand(10,5)));
-            
-            
-             if ($number3 >= 40000){
+            if($number3>220){
+                if (in_array($current_time->format('i'), ['15','30','45'])) {
                 $score = rand($number3,($number3+rand(10,5)));
+                    
+                }else{
+                    return;
+                }
             }
+            
+            
+            
+            //  if ($number3 >= 40000){
+            $score = rand($number3,($number3+rand(10,5)));
+            // }
             
             
         }
