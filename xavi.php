@@ -101,6 +101,10 @@ echo "\nOur target at num3 is: $number3";
           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
                 $score = rand(5,20);
         }else{
+            
+            //  if ($number3 >= 40000){
+            $score = rand($number3,($number3+rand(10,5)));
+            // }
             if($number3>220){
                 if (in_array($current_time->format('i'), ['15','30','45'])) {
                 $score = rand($number3,($number3+rand(5,10)));
@@ -109,13 +113,6 @@ echo "\nOur target at num3 is: $number3";
                     return;
                 }
             }
-            
-            
-            
-            //  if ($number3 >= 40000){
-            $score = rand($number3,($number3+rand(10,5)));
-            // }
-            
             
         }
         $increment = 1;
