@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Africa/Johannesburg');
+            $current_time = new DateTime();
 //Business of the day
 require_once('Tools-mtn-v2.php');
 system('cls');
@@ -120,8 +122,7 @@ $pos = GetPosition ($cookie);
         }
         $increment = 1;
         
-            date_default_timezone_set('Africa/Johannesburg');
-            $current_time = new DateTime();
+            
             
             if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
