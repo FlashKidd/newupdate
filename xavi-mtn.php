@@ -102,42 +102,42 @@ $pos = GetPosition ($cookie);
                 $score = rand(5,20);
         }else{
             
-            //  if ($number3 >= 40000){
+            
             $score = rand($number3,($number3+rand(10,5)));
-            if (in_array($current_time->format('i'), ['15','20','25','30','45'])) {
-                 if($number3<220){
-                     $number3 = rand(300,350);
-                 }
-            }
+            // if (in_array($current_time->format('i'), ['15','20','25','30','45'])) {
+            //      if($number3<220){
+            //          $number3 = rand(300,350);
+            //      }
             // }
-            if($number3>220){
-                if (in_array($current_time->format('i'), ['15','30','45'])) {
-                $score = rand($number3,($number3+rand(5,10)));
+            
+            // if($number3>220){
+            //     if (in_array($current_time->format('i'), ['15','30','45'])) {
+            //     $score = rand($number3,($number3+rand(5,10)));
                     
-                }else{
-                    return;
-                }
-            }
+            //     }else{
+            //         return;
+            //     }
+            // }
             
         }
         $increment = 1;
         
             
             
-            if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
+            // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
-               // if ($pos>=6 || $pos ==0){
-             // $score =  rand(500,1000)+$number3;
+            //    // if ($pos>=6 || $pos ==0){
+            //  // $score =  rand(500,1000)+$number3;
            
-                $score = rand($number3,($number3+rand(10,5)));
+            //     $score = rand($number3,($number3+rand(10,5)));
            
-            //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
+            // //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
-            //  if ($number3 >= 45000){
-            // return;
-            //  }
+            // //  if ($number3 >= 45000){
+            // // return;
+            // //  }
 
-            }
+            // }
                /// }
                
             //if($score <40000){
