@@ -252,7 +252,7 @@ $content = curl_exec($ch);
 if (curl_errno($ch)) {
     echo 'Error: ' . curl_error($ch);
 } else {
-    echo $content; // Display or process the content as needed
+    //echo $content; // Display or process the content as needed
 }
 
 curl_close($ch);
