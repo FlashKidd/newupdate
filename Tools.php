@@ -252,7 +252,7 @@ $content = curl_exec($ch);
 if (curl_errno($ch)) {
     echo 'Error: ' . curl_error($ch);
 } else {
-    echo $content; // Display or process the content as needed
+    //echo $content; // Display or process the content as needed
 }
 
 curl_close($ch);
@@ -342,7 +342,7 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
  $min = 1;
- $max = 8;
+ $max = 10;
     
    $data = [];
     // Generate a random number between 200 and 600
@@ -419,7 +419,7 @@ foreach ($data as $value) {
 
     $xavi = GetXavi($unique_id,$game_id,$number,$result);
     $cleanXavi = trim($xavi, '"');
-    echo "\n Xavi Generated => $cleanXavi";
+   // echo "\n Xavi Generated => $cleanXavi";
     $memory = validate_request($power,$number);
     AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
     return json_encode($result);
