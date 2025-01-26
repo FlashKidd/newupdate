@@ -104,20 +104,20 @@ $pos = GetPosition ($cookie);
             
             
             $score = rand($number3,($number3+rand(10,5)));
-            // if (in_array($current_time->format('i'), ['15','20','25','30','45'])) {
-            //      if($number3<220){
-            //          $number3 = rand(300,350);
-            //      }
-            // }
+             if (in_array($current_time->format('i'), ['15','20','25','30','40','45'])) {
+                  if($number3<220){
+                      $number3 = rand(300,350);
+                }
             
-            // if($number3>220){
-            //     if (in_array($current_time->format('i'), ['15','30','45'])) {
-            //     $score = rand($number3,($number3+rand(5,10)));
+            
+             if($number3>220){
+                 if (in_array($current_time->format('i'), ['15','30','45'])) {
+               $score = rand($number3,($number3+rand(5,10)));
                     
-            //     }else{
-            //         return;
-            //     }
-            // }
+                 }else{
+                   return;
+                }
+            }
             
         }
         $increment = 1;
