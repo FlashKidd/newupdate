@@ -104,7 +104,7 @@ $pos = GetPosition ($cookie);
             
             
             $score = rand($number3,($number3+rand(10,5)));
-             if (in_array($current_time->format('i'), ['15','20','25','30','40','45'])) {
+             if (in_array($current_time->format('i'), ['15','20','25','30','40','45','50'])) {
                   if($number3<220){
                       $number3 = rand(300,350);
                 }
