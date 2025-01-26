@@ -108,6 +108,7 @@ $pos = GetPosition ($cookie);
                   if($number3<220){
                       $number3 = rand(300,350);
                 }
+             }
             
             
              if($number3>220){
@@ -120,6 +121,7 @@ $pos = GetPosition ($cookie);
             }
             
         }
+        
         $increment = 1;
         
             
