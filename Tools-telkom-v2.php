@@ -316,7 +316,7 @@ curl_close($ch);
 
                 $x_power = X_Power($header);
                 $X_timeout = X_timeout($header);
-                
+                $X_timeout = (int) $X_timeout;
                 echo "<br><hr>Timeout: $X_timeout";
  echo "<br><hr>Timeout: $x_power";
                 sleep($X_timeout);
