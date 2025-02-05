@@ -307,7 +307,7 @@ curl_close($ch);
                 $header = substr($curl, 0, $header_size);
                 $body = substr($curl, $header_size);
                 curl_close($ch);
-                //echo "<br><hr>ResultS: $curl";
+                echo "<br><hr>ResultS: $curl";
                 if (strpos($curl, "Score info is stored successfully.")){
                     //echo "\nRequests was successful!";
                 }else{
