@@ -18,6 +18,8 @@ $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 //   foreach ($cookiez as $cookie){ 
 $pos = GetPosition ($cookie);
 
+echo "\nYour position is: $pos";
+
 
         
         $ch = curl_init();
