@@ -108,7 +108,7 @@ echo "\nYour position is: $pos";
              
             
         }
-        
+        echo "Score". $score;
         $increment = 1;
         
             
@@ -135,11 +135,11 @@ echo "\nYour position is: $pos";
             // sleep(5);
        // }
 // $score += rand(100,500);
- while($score>=10000){
+ while($score>10000){
         
         $score = $score - rand(500,100);
     }
-echo "Score". $score;
+
    // $score = rand(20000,30000);
 
     // $score = round($score, -1);
