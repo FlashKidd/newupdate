@@ -58,7 +58,7 @@ echo "\nYour position is: $pos";
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
        echo "<br>Uniquie_id: $unique_id<hr>";
-        echo "<br>Game_id: $game_id<hr>";
+        echo "<br>Game_id: $redirectedUrl<hr>";
 
         ###################
         $ch = curl_init();
