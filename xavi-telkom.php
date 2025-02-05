@@ -23,7 +23,7 @@ echo "\nYour position is: $pos";
 
         
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://wozagames.com/play-now');
+        curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/play-now');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -32,7 +32,7 @@ echo "\nYour position is: $pos";
             'Connection: keep-alive',
             'Cookie: '.$cookie,
             'Pragma: no-cache',
-            'Referer: https://wozagames.com/',
+            'Referer: https://www.wozagames.com/',
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
             'Sec-CH-UA-Platform: \"iOS\"',
@@ -62,7 +62,7 @@ echo "\nYour position is: $pos";
 
         ###################
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://wozagames.com/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
+        curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Referer:'.$redirectedUrl,
