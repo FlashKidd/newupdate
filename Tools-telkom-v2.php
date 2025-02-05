@@ -162,14 +162,14 @@ function AttackLast($url,$xavi,$score,$power,$memory,$increment,$uA,$array){
             echo "\nArray Data: $jsonData";
 
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://wozagames.com/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
+                curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
                 curl_setopt($ch, CURLOPT_POST, 1);
                 $headers = array(
                     'Accept: */*',
                     'Connection: keep-alive',
                     'Host: wozagames.com',
                     'Content-Type: application/json;charset=UTF-8;'.$memory.'',
-                    'Origin: https://wozagames.com',
+                    'Origin: https://www.wozagames.com',
                     'Referer: ' . $url,
                     'X-Chavi: ' . $xavi,
                     'X-Sign: ' . $sigv1,
@@ -269,14 +269,14 @@ curl_close($ch);
             //echo "<br><hr>Xavi: $content\nArray: ".json_encode($array2)." b4 $jsonData";
 
                 $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://wozagames.com/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
+                curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
                 curl_setopt($ch, CURLOPT_POST, 1);
                 $headers = array(
                     'Accept: */*',
                     'Connection: keep-alive',
                     'Host: wozagames.com',
                     'Content-Type: application/json;charset=UTF-8;'.$memory.'',
-                    'Origin: https://wozagames.com',
+                    'Origin: https://www.wozagames.com',
                     'Referer: ' . $url,
                     'X-Chavi: ' . $content,
                     'X-Sign: ' . $sigv1,
@@ -446,7 +446,7 @@ function validate_request($fetchKey2, $LOP) {
 function TargetScore(){
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://wozagames.com/');
+curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 $headers = array();
 $headers[] = 'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36';
