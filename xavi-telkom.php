@@ -2,7 +2,7 @@
 date_default_timezone_set('Africa/Johannesburg');
             $current_time = new DateTime();
 //Business of the day
-require_once('Tools-mtn-v2.php');
+require_once('Tools-telkom-v2.php');
 system('cls');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
