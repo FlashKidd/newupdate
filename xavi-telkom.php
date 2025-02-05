@@ -139,7 +139,7 @@ echo "\nYour position is: $pos";
         
         $score = $score - rand(500,100);
     }
-
+echo "Score". $score;
    // $score = rand(20000,30000);
 
     // $score = round($score, -1);
