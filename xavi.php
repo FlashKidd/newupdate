@@ -142,7 +142,7 @@ echo "\nOur target at num3 is: $number3";
     }
    // $score = rand(20000,30000);
 
-    // $score = round($score, -1);
+     $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
