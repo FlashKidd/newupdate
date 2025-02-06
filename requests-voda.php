@@ -1,5 +1,6 @@
 <?php
 //echo "cool down";return;
+system("rm -rf cache");
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
 $curl = new Zebra_cURL();
 $curl->cache('/var/www/html/newupdate/cache', 59);
