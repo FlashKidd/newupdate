@@ -101,11 +101,11 @@ echo "\nOur target at num3 is: $number3";
         
         
           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(30,60);
+                $score = rand(100,1000);
         }else{
             
             //  if ($number3 >= 40000){
-            $score = rand($number3,($number3+rand(30,15)));
+            $score = rand($number3,($number3+rand(100,500)));
             // }
             
             
@@ -119,7 +119,7 @@ echo "\nOur target at num3 is: $number3";
                // if ($pos>=6 || $pos ==0){
              // $score =  rand(500,1000)+$number3;
            
-                $score = rand($number3,($number3+rand(10,5)));
+                $score = rand($number3,($number3+rand(100,500)));
            
             //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
@@ -136,9 +136,9 @@ echo "\nOur target at num3 is: $number3";
             // sleep(5);
        // }
 // $score += rand(100,500);
- while($score>500){
+ while($score>10000){
         
-        $score = $score - rand(50,100);
+        $score = $score - rand(500,1000);
     }
    // $score = rand(20000,30000);
 
