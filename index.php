@@ -175,16 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['tiktok_url'])) {
     </style>
 </head>
 <body>
-    // <div id="mySidebar" class="sidebar">
-    //     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    //     <a href="#.php" target="content-frame"><span class="material-icons">home</span>Dashboard</a>
-    //     <a href="#.php" target="content-frame"><span class="material-icons">payment</span>Comi</a>
-    //     <a href="#" target="content-frame"><span class="material-icons">account_balance</span>Braintree</a>
-    //     <a href="#" target="content-frame"><span class="material-icons">shopping_cart</span>Shopify</a>
-    //     <a href="tiktok.php" target="content-frame"><span class="material-icons">movie</span>TikTok Video Downloader</a>
-    // </div>
-
-    // <button class="openbtn" onclick="openNav()">☰ Menu</button>  
+     
 
     <div class="main-content">
         <div class="container">
