@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['tiktok_url'])) {
                         <?php if ($error): ?>
                             <div class="alert alert-danger"><?php echo $error; ?></div>
                         <?php endif; ?>
-                        <form method="post" action="tiktok.php">
+                        <form method="post" action="index.php">
                             <div class="form-group">
                                 <label for="tiktok_url">TikTok Video URL</label>
                                 <input type="text" class="form-control" id="tiktok_url" name="tiktok_url" placeholder="Enter TikTok video URL" required>
