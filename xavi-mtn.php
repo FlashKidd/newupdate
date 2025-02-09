@@ -2,6 +2,9 @@
 date_default_timezone_set('Africa/Johannesburg');
             $current_time = new DateTime();
 //Business of the day
+if (in_array($current_time->format('i'), ['51'])) {
+   return;         
+}
 require_once('Tools-mtn-v2.php');
 system('cls');
 $scoreTarget = TargetScore();
@@ -127,6 +130,7 @@ $pos = GetPosition ($cookie);
 $score = rand(300,350);
             }
  }    
+
             // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
             //    // if ($pos>=6 || $pos ==0){
