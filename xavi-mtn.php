@@ -100,13 +100,13 @@ $pos = GetPosition ($cookie);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(300,350);
+                $score = rand(200,250);
         }else{
             
             
             
              $score = rand($number3,($number3+rand(35,10)));
- $score = rand(300,350);
+ $score = rand(200,250);
             
             
              
