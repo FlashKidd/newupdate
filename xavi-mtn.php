@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Africa/Johannesburg');
-            $current_time = new DateTime();
+$current_time = new DateTime();
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
@@ -100,7 +100,7 @@ $pos = GetPosition ($cookie);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(90,150);
+                $score = rand(50,100);
         }else{
             
             
