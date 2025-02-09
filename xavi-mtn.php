@@ -113,7 +113,7 @@ $pos = GetPosition ($cookie);
         
         $increment = 1;
         
-             if (in_array($current_time->format('i'), ['15','30','45'])) {
+             if (in_array($current_time->format('i'), ['17','34','45'])) {
             
             if($score<$number3){
                         
