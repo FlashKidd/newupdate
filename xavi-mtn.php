@@ -122,7 +122,11 @@ $pos = GetPosition ($cookie);
             }
 
             }
-            
+ if (in_array($current_time->format('i'), ['34','45'])) {
+            if($score<300){
+$score = rand(300,350);
+            }
+ }    
             // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
             //    // if ($pos>=6 || $pos ==0){
