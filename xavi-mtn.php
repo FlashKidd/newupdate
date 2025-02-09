@@ -103,7 +103,7 @@ $pos = GetPosition ($cookie);
         }else{
             
             
-            $score = rand($number3,($number3+rand(35,10)));
+            
              
             
             
@@ -113,7 +113,15 @@ $pos = GetPosition ($cookie);
         
         $increment = 1;
         
+             if (in_array($current_time->format('i'), ['15','30','45'])) {
             
+            if(($pos >= 1 && $pos <=2 )|| $pos == 0){
+                        
+            $score = rand($number3,($number3+rand(35,10)));
+                        
+            }
+
+            }
             
             // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
