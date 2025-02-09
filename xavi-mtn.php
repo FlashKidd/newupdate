@@ -2,9 +2,7 @@
 date_default_timezone_set('Africa/Johannesburg');
             $current_time = new DateTime();
 //Business of the day
-if (in_array($current_time->format('i'), ['51'])) {
-   return;         
-}
+
 require_once('Tools-mtn-v2.php');
 system('cls');
 $scoreTarget = TargetScore();
@@ -102,7 +100,7 @@ $pos = GetPosition ($cookie);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(30,50);
+                $score = rand(300,350);
         }else{
             
             
@@ -116,20 +114,20 @@ $pos = GetPosition ($cookie);
         
         $increment = 1;
         
-             if (in_array($current_time->format('i'), ['17','34','45'])) {
+//              if (in_array($current_time->format('i'), ['17','34','45'])) {
             
-            if($score<$number3){
+//             if($score<$number3){
                         
-            $score = rand($number3,($number3+rand(35,10)));
+//             $score = rand($number3,($number3+rand(35,10)));
                         
-            }
+//             }
 
-            }
- if (in_array($current_time->format('i'), ['34','45'])) {
-            if($score<300){
-$score = rand(300,350);
-            }
- }    
+//             }
+//  if (in_array($current_time->format('i'), ['34','45'])) {
+//             if($score<300){
+// $score = rand(300,350);
+//             }
+//  }    
 
             // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
