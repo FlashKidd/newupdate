@@ -106,6 +106,7 @@ $pos = GetPosition ($cookie);
             
             
              $score = rand($number3,($number3+rand(35,10)));
+ $score = rand(300,350);
             
             
              
