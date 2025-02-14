@@ -68,7 +68,7 @@ $urls_ar = array();
 foreach ($c_values as $c) {
 
     
-  $url = 'http://167.71.187.98/newupdate/xavi-mtn.php?c=' . urlencode($c);
+  $url = 'http://102.210.146.144/newupdate/xavi-mtn.php?c=' . urlencode($c);
 
 
 array_push($urls_ar, $url);
