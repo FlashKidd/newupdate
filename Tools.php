@@ -341,8 +341,8 @@ curl_close($ch);
 
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
- $min = 300;
- $max = 1000;
+ $min = 1;
+ $max = 4;
     
    $data = [];
     // Generate a random number between 200 and 600
