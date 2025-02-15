@@ -101,7 +101,7 @@ echo "\nOur target at num3 is: $number3";
         
         
           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(10,30);
+                $score = rand(40,70);
         }else{
             
             //  if ($number3 >= 40000){
