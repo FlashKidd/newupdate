@@ -174,7 +174,7 @@ function AttackLast($url,$xavi,$score,$power,$memory,$increment,$uA,$array){
                     'X-Chavi: ' . $xavi,
                     'X-Sign: ' . $sigv1,
                     'X-Data-Str: '.$jsonData,
-                    'Device-Memory: '.$memory,
+                    // 'Device-Memory: '.$memory,
                     'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
                     'Sec-CH-UA-Mobile: ?1',
                     'Sec-CH-UA-Platform: \"iOS\"',
@@ -234,7 +234,7 @@ function X_timeout($header){
         return $trimmed_value;
 }
 
-function Attack($url,$score,$power,$memory,$increment,$uA,$memory1){
+function Attack($url,$score,$power,$memory,$increment,$uA){
             
             $query_str = parse_url($url, PHP_URL_QUERY);
             parse_str($query_str, $query_params);
@@ -281,7 +281,7 @@ curl_close($ch);
                     'X-Chavi: ' . $content,
                     'X-Sign: ' . $sigv1,
                     'X-Data-Str: '.$jsonData,
-                    'Device-Memory: '.$memory1,
+                    // 'Device-Memory: '.$memory,
                     'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
                     'Sec-CH-UA-Mobile: ?1',
                     'Sec-CH-UA-Platform: \"iOS\"',
@@ -407,8 +407,8 @@ foreach ($data as $value) {
             $powerBefore = $power;
             $memory = validate_request($power,$skore);
             $increment = 1;
-           $memory1 = 2;
-           $power = Attack($url,$skore,$power,$memory,$increment,$uA,$memory1);
+          
+           $power = Attack($url,$skore,$power,$memory,$increment,$uA);
            
 }
     $flash = json_encode($result);
