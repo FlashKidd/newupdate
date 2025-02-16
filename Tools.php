@@ -309,15 +309,15 @@ curl_close($ch);
                 curl_close($ch);
                 //echo "<br><hr>ResultS: $curl";
                 if (strpos($curl, "Score info is stored successfully.")){
-                    //echo "\nRequests was successful!";
+                    echo "\nRequests was successful!";
                 }else{
-                    //echo "\nServer error, or some shi!";
+                    echo "\nServer error, or some shi!";
                 }
 
                 $x_power = X_Power($header);
                 $X_timeout = X_timeout($header);
                 
-                //echo "<br><hr>Timeout: $X_timeout";
+                echo "<br><hr>Timeout: $X_timeout";
                 sleep($X_timeout);
                 // sleep(10);
                 return $x_power;
@@ -342,7 +342,7 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
  $min = 1;
- $max = 10;
+ $max = 8;
     
    $data = [];
     // Generate a random number between 200 and 600
