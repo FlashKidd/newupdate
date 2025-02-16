@@ -101,7 +101,7 @@ echo "\nOur target at num3 is: $number3";
         
         
           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(5,15);
+                $score = rand(1,15);
         }else{
             
             //  if ($number3 >= 40000){
@@ -136,6 +136,9 @@ echo "\nOur target at num3 is: $number3";
             // sleep(5);
        // }
 // $score += rand(100,500);
+if($score<=0){
+        $score = 10;
+}
  while($score>200){
         
         $score = $score - rand(50,100);
