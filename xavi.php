@@ -107,6 +107,7 @@ echo "\nOur target at num3 is: $number3";
             
             
              $score = rand($number3,($number3+rand(5,10)));
+          }
  // $score = rand(200,250);
             
             
