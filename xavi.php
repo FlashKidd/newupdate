@@ -5,7 +5,7 @@ $current_time = new DateTime();
 require_once('Tools.php');
 //system('cls');
 $scoreTarget = TargetScore();
-$number3 = GetTargetScore(2);
+$number3 = GetTargetScore(1);
 
 
 echo "\nOur target at num3 is: $number3";
