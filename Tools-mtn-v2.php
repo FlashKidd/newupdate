@@ -341,78 +341,55 @@ curl_close($ch);
 
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
- $min = 1;
-$max = 8;
-$data = [];
-$data[] = [[0]];
-$currentValue = $number;
-
-// --- NEW: Track numbers in 10-unit ranges ---
-$rangeCounts = []; // Format: [40 => 2, 30 => 1, ...]
-// -------------------------------------------
-
-while ($currentValue > 0) {
+$min = 1;
+ $max = 8;
+    
+   $data = [];
+    // Generate a random number between 200 and 600
     $randomValue = rand($min, $max);
-    $nextValue = $currentValue - $randomValue;
 
-    // --- NEW: Ensure two numbers per 10-unit range ---
-    $currentRange = floor($currentValue / 10) * 10;
-    $nextRange = floor($nextValue / 10) * 10;
+    // Check if the number can be reduced to zero in one step
+    if ($number <= $randomValue) {
+       // return "0";
+    }
 
-    // If moving to a lower range, check if current range has enough numbers
-    if ($nextRange < $currentRange && $currentRange > 0) {
-        $currentRangeCount = $rangeCounts[$currentRange] ?? 0;
+    // Start with 0 as the first element
+    $data[] = [[0]];
+
+    $currentValue = $number;
+    $decide = 0;
+    // Continue subtracting until the number is zero
+    while ($currentValue > 0) {
+        // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+         
         
-        // Force an extra number in this range if needed
-        if ($currentRangeCount < 2) {
-            $requiredStep = $currentValue - ($currentRange + 1); // Stay in current range
-            if ($requiredStep >= $min && $requiredStep <= $max) {
-                $randomValue = $requiredStep;
-                $nextValue = $currentValue - $randomValue;
-            }
+        // Decrease the number by the random value, but don't go below 0
+        $currentValue -= $randomValue;
+        //echo "\n<br> $randomValue $currentValue";
+        // Ensure the number does not drop below 0
+        if ($currentValue < 0) {
+            $currentValue = 0;
+        }
+
+        // Add the current value to the data array only if it’s greater than zero
+        if ($currentValue > 0) {
+            $data[] = [[$currentValue]];
+            
         }
     }
-    // --- END OF NEW LOGIC ---
 
-    $currentValue = $nextValue;
-
-    // --- NEW: Update range tracking ---
-    if ($currentValue > 0) {
-        $currentValueRange = floor($currentValue / 10) * 10;
-        $rangeCounts[$currentValueRange] = ($rangeCounts[$currentValueRange] ?? 0) + 1;
+    // Ensure that the last value is not zero if it was added already
+    if (end($data)[0][0] == 0) {
+        array_pop($data);
     }
-    // ----------------------------------
 
-    if ($currentValue < 0) $currentValue = 0;
-    if ($currentValue > 0) $data[] = [[$currentValue]];
-}
-
-// --- NEW: Final validation for ranges ---
-foreach ($rangeCounts as $range => $count) {
-    if ($count < 2 && $range >= 10) { // Skip 0-9 range
-        // Find position to insert an extra number
-        foreach ($data as $i => $entry) {
-            $val = $entry[0][0];
-            if ($val > $range + 10 && $val <= $range + 20) {
-                $newVal = $range + rand(1, 9); // Add number in the weak range
-                array_splice($data, $i, 0, [[$newVal]]);
-                break;
-            }
-        }
-    }
-}
-// ----------------------------------------
-
-// Your existing code below (unchanged)
-if (end($data)[0][0] == 0) {
-    array_pop($data);
-}
-
-$result = [
-    "c2array" => true,
-    "size" => [count($data), 1, 1],
-    "data" => $data
-];
+    // Format the result into the JSON structure
+    $result = [
+        "c2array" => true,
+        "size" => [count($data), 1, 1],
+        "data" => $data
+    ];
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
