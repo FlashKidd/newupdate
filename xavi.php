@@ -100,19 +100,20 @@ echo "\nOur target at num3 is: $number3";
         echo "\n<br> X-Powered-Version: $x_power\n";
         
         
-          if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(3,rand(5,12));
+           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
+                $score = rand(15,rand(21,30));
         }else{
-            $number3 = GetTargetScore($pos);
+            // $number3 = GetTargetScore($pos);
             
             
-             $score = rand($number3,($number3+rand(10,12)));
+             $score = $number3+10;
  // $score = rand(200,250);
             
             
              
             
         }
+        
  // $score = rand(200,250);
             
             
