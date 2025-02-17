@@ -341,57 +341,58 @@ curl_close($ch);
 
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
-$min = 1;
-$max = 8;
-$data = [];
-$data[] = [[0]];
-$currentValue = $number;
-$checkpointAdded = false; // NEW: Track if 34/35 is included
-
-while ($currentValue > 0) {
+ $min = 1;
+ $max = 8;
+    
+   $data = [];
+    // Generate a random number between 200 and 600
     $randomValue = rand($min, $max);
-    $nextValue = $currentValue - $randomValue;
 
-    // NEW: Force include 34 or 35 when crossing below 36
-    if (!$checkpointAdded && $currentValue > 35 && $nextValue <= 35) {
-        $target = (rand(0, 1) == 0) ? 35 : 34; // Randomly pick 34 or 35
-        $stepNeeded = $currentValue - $target;
-        if ($stepNeeded >= $min && $stepNeeded <= $max) {
-            $randomValue = $stepNeeded; // Override the random step
-            $nextValue = $target;
-            $checkpointAdded = true;
+    // Check if the number can be reduced to zero in one step
+    if ($number <= $randomValue) {
+       // return "0";
+    }
+
+    // Start with 0 as the first element
+    $data[] = [[0]];
+
+    $currentValue = $number;
+    $decide = 0;
+    // Continue subtracting until the number is zero
+    while ($currentValue > 0) {
+        // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+         
+        
+        // Decrease the number by the random value, but don't go below 0
+        $currentValue -= $randomValue;
+        //echo "\n<br> $randomValue $currentValue";
+        // Ensure the number does not drop below 0
+        if ($currentValue < 0) {
+            $currentValue = 0;
+        }
+
+        // Add the current value to the data array only if it’s greater than zero
+        if ($currentValue > 0) {
+            $data[] = [[$currentValue]];
+            
         }
     }
 
-    $currentValue = $nextValue;
-
-    if ($currentValue < 0) $currentValue = 0;
-    if ($currentValue > 0) $data[] = [[$currentValue]];
-}
-
-// NEW: Post-check to add 34/35 if still missing (e.g., large gaps)
-$flatData = array_column(array_column($data, 0), 0);
-if (!in_array(34, $flatData) && !in_array(35, $flatData)) {
-    foreach ($data as $i => $entry) {
-        $val = $entry[0][0];
-        if ($val > 35 && ($i == count($data)-1 || $data[$i+1][0][0] < 35)) {
-            array_splice($data, $i+1, 0, [[34]]); // Insert 34
-            break;
-        }
+    // Ensure that the last value is not zero if it was added already
+    if (end($data)[0][0] == 0) {
+        array_pop($data);
     }
-}
 
-// Rest of your existing code...
-$data = array_filter($data, function($value) {
+    // Format the result into the JSON structure
+    $result = [
+        "c2array" => true,
+        "size" => [count($data), 1, 1],
+        "data" => $data
+    ];
+    $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
-
-$result = [
-    "c2array" => true,
-    "size" => [count($data), 1, 1],
-    "data" => $data
-];
-
 // Sort the data in ascending order
 usort($data, function($a, $b) {
     return $a[0][0] - $b[0][0];
