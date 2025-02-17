@@ -105,7 +105,7 @@ $pos = GetPosition ($cookie);
             $number3 = GetTargetScore($pos);
             
             
-             $score = rand($number3,($number3+rand(10,12)));
+             $score = rand($number3,($number3+rand(10,20)));
  // $score = rand(200,250);
             
             
