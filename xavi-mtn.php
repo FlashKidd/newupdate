@@ -157,7 +157,7 @@ $pos = GetPosition ($cookie);
         $score = $score - rand(50,100);
     }
 
-  $score = rand(100,130);
+  //$score = rand(100,130);
 
     // $score = round($score, -1);
         ///////////////////////////
