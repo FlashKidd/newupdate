@@ -101,7 +101,7 @@ echo "\nOur target at num3 is: $number3";
         
         
           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(5,rand(10,25));
+                $score = rand(5,rand(5,40));
         }else{
             
             
@@ -122,7 +122,7 @@ echo "\nOur target at num3 is: $number3";
                // if ($pos>=6 || $pos ==0){
              // $score =  rand(500,1000)+$number3;
            
-                $score = rand($number3,($number3+rand(10,20)));
+                $score = rand($number3,($number3+rand(5,10)));
            
             //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
