@@ -389,8 +389,8 @@ $data1[] = [[0],[[50]],[[42]],[[39]],[[34]],[[26]],[[21]],[[13]],[[5]],[[4]],[[1
 
     $result = [
         "c2array" => true,
-        "size" => [11, 1, 1],
-        "data" => $data1
+        "size" => [count($data), 1, 1],
+        "data" => $data
     ];
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
