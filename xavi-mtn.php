@@ -105,7 +105,7 @@ $pos = GetPosition ($cookie);
             // $number3 = GetTargetScore($pos);
             
             
-             $score = $number3+10;
+             $score = rand($number3,($number3+rand(35,10)));
  // $score = rand(200,250);
             
             
@@ -158,7 +158,7 @@ $pos = GetPosition ($cookie);
     }
 
   //$score = rand(100,130);
-$score =57;
+//$score =57;
     // $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
