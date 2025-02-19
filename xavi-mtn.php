@@ -1,4 +1,6 @@
 <?php
+
+$retries = 0;
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -22,9 +24,10 @@ $cookiez = ['XSRF-TOKEN=eyJpdiI6IkFrMS9sVCtsc1B1dzFZVUpXWWR5ZFE9PSIsInZhbHVlIjoi
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 //   foreach ($cookiez as $cookie){ 
 $pos = GetPosition ($cookie);
+$scoreBefore = GetTargetScore($pos);
 
-
-        
+        while($scoreBefore == $scoreAfter){
+        $scoreAfter = GetTargetScore($pos);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
@@ -100,7 +103,7 @@ $pos = GetPosition ($cookie);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(15,rand(21,30));
+                $score = rand(15,rand(30,50));
         }else{
             // $number3 = GetTargetScore($pos);
             
@@ -166,8 +169,12 @@ $pos = GetPosition ($cookie);
         //echo "\n<br>UA used => $uA\n";
         $memory = validate_request($x_power,$score);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
-
-
+        $retries++;
+if ($retries >=10){
+    return;
+}
+            sleep(30);
+        }
         
 
 
