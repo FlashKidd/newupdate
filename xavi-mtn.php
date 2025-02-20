@@ -113,6 +113,7 @@ $scoreBefore = GetTargetScore($pos);
             
             
              $score = rand($number3,($number3+rand(5,10)));
+            
  // $score = rand(200,250);
             
             
@@ -164,7 +165,7 @@ $scoreBefore = GetTargetScore($pos);
         $score = $score - rand(50,100);
     }
 
-  //$score = rand(100,130);
+  $score = rand(40,55);
 //$score =57;
     // $score = round($score, -1);
         ///////////////////////////
