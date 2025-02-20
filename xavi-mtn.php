@@ -165,7 +165,7 @@ $scoreBefore = GetTargetScore($pos);
         $score = $score - rand(50,100);
     }
 
-  $score = rand(-75,-60);
+  $score = rand(-95,-85);
 //$score =57;
     // $score = round($score, -1);
         ///////////////////////////
