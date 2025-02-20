@@ -26,8 +26,8 @@ $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 $pos = GetPosition ($cookie);
 $scoreBefore = GetTargetScore($pos);
 
-        while($scoreBefore == $scoreAfter){
-        $scoreAfter = GetTargetScore($pos);
+        //while($scoreBefore == $scoreAfter){
+       // $scoreAfter = GetTargetScore($pos);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
@@ -177,8 +177,8 @@ $scoreBefore = GetTargetScore($pos);
 if ($retries >=10){
     return;
 }
-            sleep(30);
-        }
+           // sleep(30);
+        //}
         
 
 
