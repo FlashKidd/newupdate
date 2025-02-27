@@ -107,7 +107,7 @@ $scoreBefore = GetTargetScore($pos);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(5,rand(7,15));
+                $score = rand(5,rand(10,50));
         }else{
            // $number3 = GetTargetScore($pos);
             
@@ -160,7 +160,7 @@ $scoreBefore = GetTargetScore($pos);
             // sleep(5);
        // }
 // $score += rand(100,500);
-$score = rand($number3,($number3+rand(10,50)));
+//$score = rand($number3,($number3+rand(10,50)));
  while($score>=400){
         
         $score = $score - rand(10,30);
