@@ -109,12 +109,14 @@ $scoreBefore = GetTargetScore($pos);
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
                 $score = rand(500,rand(800,1000));
         }else{
-           // $number3 = GetTargetScore($pos);
+           $testSom = GetTargetScore($pos);
             
             
              $score = rand($number3,($number3+rand(5,10)));
             
- // $score = rand(200,250);
+             if($number3-$testSom>3000){
+                $score = rand($testSom,rand(1000,3000));
+            }
             
             
              
