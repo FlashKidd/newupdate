@@ -6,7 +6,7 @@ $current_time = new DateTime();
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
-system('cls');
+system('clear');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
@@ -15,11 +15,7 @@ echo "\nOur target score is: $number3";
     
 
 
-$cookiez = ['XSRF-TOKEN=eyJpdiI6IkFrMS9sVCtsc1B1dzFZVUpXWWR5ZFE9PSIsInZhbHVlIjoiSWwrakhVc1o5b3Q4ZTRlL0JGTkhqYkxaWnp6bzZ0aVMzODM0ck54MjRaNU9ZRklqeEhxZTMxcnVOZ0t5dXljWE9Gd1pZNjZ5Q1VTOXV1MGpjTi9pOUxTRzlLK0Y2bTQ3K2paU0Y1VmFzN2JHai9EdmgzVzEyMzNsQ2g2UjhSbFIiLCJtYWMiOiJiMDQyZGZlYTZhOTZmNzEyNjdkODg3OGJiZGM3NDhlZGVjZjYxZTQxZTY1OTZhY2UwOTI0YThkYTA3ZDY3MDdmIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6InEzR2kvN2c1eDA4aDljbzdqSEt4a0E9PSIsInZhbHVlIjoiZThlc21uOVliU09NNWZWckpqblZSdDBTWjJEUkUyYUVzY2czbjZPVnAzdk1JZ3lYcjRmd2p5TnVFYmhJZ1ZWUXZaOXMzcjdwdFpIQnlpM3RhNFlCSkFvT3VhMllzeTFYUk1aWjZSZmJLbjMxUGpCdFpGdTF4a2xTdDh6RTJSNDEiLCJtYWMiOiI2NjkyYjYxNjlhYjJhNzc1OWQ4MTFmZGQ0YWRmMGFmZGU2NzM3ZDhkMGM4Yzk2OTJjNjNjNzZlYWRmNmU2OGViIiwidGFnIjoiIn0%3D',
 
-'XSRF-TOKEN=eyJpdiI6IlFQcHYwdW00ZkNmSzhTb2t6aEtZR3c9PSIsInZhbHVlIjoiN3B6NEtLVmdVd3dKTmxGSU1MZkRpV3UzcmY3dXhiL2FVN1RKdzA5c0E1dFVyeGhmdldvTWo4MjlhWVZmVUQ2cnZqNy9KSG9Lb281dlFmTDZaWm5TMUw3a3Bkb2V1cmQ2Rks5SStRQ0FzVTlJdlRKYXhPbVVFT0p5RVp0UWkvWUYiLCJtYWMiOiIyOTM4MzhlNGNkYjc1YzhkNDY3Njk2NTA1Zjk5ODA0NzM4M2E2YzJkZTU3M2YxODg5ZDFmNGE3OTU2NzRmOGJiIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlpCdnRXQ0JKcmRKbE05cEVRYU9MUHc9PSIsInZhbHVlIjoieXFMUk4zZTFPVHltRnI5OEZnMGNTcWVORGRBT3c1VDgvY1NNbnIzOGZOd01nS1VtbmIzMDlMMDlsajNzTzBMQWVHYnN4b1Q5TFNhNitIUGFrb3VYTVpKRUxLWlFVYklLZ3BUUTJHditMYkJDNVZMcUNTeUpPWlg2SC9pNCtEdGUiLCJtYWMiOiJhYmQxOTNiOWU4MzcwMGY4NjE1YTg0MWI5NGZhYjc3MTA3ZTk5OGZiMDAzYTAzMjhjMzFhMzdmM2UwMDdmOWJjIiwidGFnIjoiIn0%3D'
-
-];
 
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 //   foreach ($cookiez as $cookie){ 
@@ -63,9 +59,9 @@ $scoreBefore = GetTargetScore($pos);
         $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
-            if (empty($unique_id)){
-                return;
-            }
+            // if (empty($unique_id)){
+            //     // return;
+            // }
 
        // echo "<br>Uniquie_id: $unique_id<hr>";
         //echo "<br>Game_id: $game_id<hr>";
