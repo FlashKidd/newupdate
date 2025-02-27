@@ -1,4 +1,5 @@
 <?php
+while(true){
 //echo "cool down";return;
 system('sudo rm -rf cache');
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
@@ -100,3 +101,5 @@ $curl->get($urls_ar, function($result) {
 $endtime = microtime(true);
 $duration = $endtime - $starttime;
 echo "Execution time: " . $duration . " seconds";
+    sleep(40);
+}
