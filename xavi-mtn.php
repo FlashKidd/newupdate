@@ -1,6 +1,6 @@
 <?php
 
-$retries = 0;
+while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -177,12 +177,9 @@ $scoreBefore = GetTargetScore($pos);
         //echo "\n<br>UA used => $uA\n";
         $memory = validate_request($x_power,$score);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
-        $retries++;
-if ($retries >=10){
-    return;
+
+       sleep(40);
 }
-           // sleep(30);
-        //}
         
 
 
