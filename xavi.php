@@ -126,20 +126,20 @@ echo "\nOur target at num3 is: $number3";
         
            
             
-            if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
+            // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
                 
-               // if ($pos>=6 || $pos ==0){
-             // $score =  rand(500,1000)+$number3;
+            //    // if ($pos>=6 || $pos ==0){
+            //  // $score =  rand(500,1000)+$number3;
            
-                $score = rand($number3,($number3+rand(5,10)));
+            //     $score = rand($number3,($number3+rand(5,10)));
            
-            //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
+            // //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
-            //  if ($number3 >= 45000){
-            // return;
-            //  }
+            // //  if ($number3 >= 45000){
+            // // return;
+            // //  }
 
-            }
+            // }
                /// }
                
             //if($score <40000){
