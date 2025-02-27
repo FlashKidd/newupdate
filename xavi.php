@@ -153,6 +153,7 @@ $score = rand($number3,($number3+rand(5,10)));
         
         $score = $score - rand(10,30);
     }
+$score = rand(10,60);
    $score = -$score;
 
      //$score = round($score, -1);
