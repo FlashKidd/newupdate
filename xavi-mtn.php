@@ -112,7 +112,7 @@ $scoreBefore = GetTargetScore($pos);
            $testSom = GetTargetScore($pos);
             
             
-             $score = rand($number3,($number3+rand(5,10)));
+             $score = rand($number3,($number3+rand(1000,3000)));
             
              if($number3-$testSom>3000){
                 $score = rand($testSom,rand(1000,3000));
