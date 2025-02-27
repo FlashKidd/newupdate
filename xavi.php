@@ -101,12 +101,12 @@ echo "\nOur target at num3 is: $number3";
         
         
            if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(5,rand(7,10));
+                $score = rand(5,rand(7,17));
         }else{
             // $number3 = GetTargetScore($pos);
             
             
-             $score = rand(-$number3,(-$number3-rand(-10,-5)));
+             $score = rand($number3,($number3+rand(10,5)));
  // $score = rand(200,250);
             
             
@@ -153,8 +153,8 @@ $score = rand($number3,($number3+rand(5,10)));
         
         $score = $score - rand(10,30);
     }
-$score = rand(10,60);
-   $score = -$score;
+//$score = rand(10,60);
+  // $score = -$score;
 
      //$score = round($score, -1);
         ///////////////////////////
