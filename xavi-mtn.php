@@ -166,9 +166,9 @@ $scoreBefore = GetTargetScore($pos);
         $score = $score - rand(10,30);
     }
 
-  //$score = -$score;
+ // $score = -$score;
 //$score =57;
-    //$score = round($score, -1);
+    $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
