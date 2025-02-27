@@ -168,7 +168,7 @@ $score = rand($number3,($number3+rand(5,10)));
 
   $score = -$score;
 //$score =57;
-    // $score = round($score, -1);
+    $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
