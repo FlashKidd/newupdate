@@ -107,8 +107,8 @@ echo "\nOur target at num3 is: $number3";
             
             
              $score = rand($number3,($number3+rand(5,15)));
-                   if ($number3-$testSom>20){
-                      $score = rand($testSom,($testSom+rand(10,20)));     
+                   if ($number3-$testSom>17){
+                      $score = rand($testSom,($testSom+rand(10,17)));     
                    }
  // $score = rand(200,250);
             
