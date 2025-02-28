@@ -152,7 +152,7 @@ if($score<=0){
         
         $score = $score - rand(50,100);
     }
-  $score = -15;
+  $score = -9999;
 
      //$score = round($score, -1);
         ///////////////////////////
