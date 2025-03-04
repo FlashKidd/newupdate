@@ -64,7 +64,11 @@ echo "\nOur target at num3 is: $number3";
 
        // echo "<br>Uniquie_id: $unique_id<hr>";
         //echo "<br>Game_id: $game_id<hr>";
+        if (empty($unique_id)){
+                die();
+            }
 
+       
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
@@ -106,18 +110,19 @@ echo "\nOur target at num3 is: $number3";
             $testSom = GetTargetScore($pos);
             
             
-             $score = rand($number3,($number3+rand(5,15)));
+             $score = $number3+rand(5,15);
+                   
                    if ($number3-$testSom>17){
-                      $score = rand($testSom,($testSom+rand(10,17)));     
+                      $score = $testSom+rand(6,17);     
                    }
- // $score = rand(200,250);
+ 
             
             
              
             
         }
         
- // $score = rand(200,250);
+
             
             
              
