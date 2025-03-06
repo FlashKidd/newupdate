@@ -162,7 +162,7 @@ echo "\nOur target at num3 is: $number3";
         $score = $score - rand(10,30);
     }
 //$score = rand(10,60);
- // $score = -$score;
+ $score = -$score;
 
      //$score = round($score, -1);
         ///////////////////////////
