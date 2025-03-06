@@ -103,14 +103,14 @@ $scoreBefore = GetTargetScore($pos);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(1500,rand(2000,3000));
+                $score = rand(15,rand(20,30));
         }else{
            $testSom = GetTargetScore($pos);
             
             
-             $score = $number3+rand(2000,3000);
+             $score = $number3+rand(20,30);
             
-             if($number3-$testSom>3000){
+             if($number3-$testSom>10){
                 $score = $testSom+rand(2000,3000);
             }
             
@@ -159,14 +159,14 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=20000){
+ while($score>=200){
         
-        $score = $score - rand(100,300);
+        $score = $score - rand(10,30);
     }
 
  // $score = -$score;
 //$score =57;
-    $score = round($score, -1);
+   // $score = round($score, -1);
         ///////////////////////////
         $uA = RandomUa();
         
