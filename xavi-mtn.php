@@ -159,14 +159,15 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=200){
+ while($score>=1000){
         
         $score = $score - rand(10,30);
     }
+$score = round($score, -1);
 
-  $score = -10;
+  $score = -$score;
 //$score =57;
-   // $score = round($score, -1);
+   
         ///////////////////////////
         $uA = RandomUa();
         
