@@ -1,4 +1,5 @@
 <?php
+while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -110,9 +111,9 @@ echo "\nOur target at num3 is: $number3";
             $testSom = GetTargetScore($pos);
             
             
-             $score = $number3+rand(5,15);
+             $score = $number3+rand(1,15);
                    
-                   if ($number3-$testSom>15){
+                   if ($number3-$testSom>13){
                       $score = $testSom+rand(6,10);     
                    }
  
@@ -162,7 +163,7 @@ echo "\nOur target at num3 is: $number3";
         $score = $score - rand(10,30);
     }
 //$score = rand(10,60);
- $score = -$score;
+ $score = $score;
 
      //$score = round($score, -1);
         ///////////////////////////
@@ -173,8 +174,8 @@ echo "\nOur target at num3 is: $number3";
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
 
-        
-
+   sleep(40);     
+}
 
 //}
 
