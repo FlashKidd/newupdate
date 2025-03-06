@@ -1,6 +1,6 @@
 <?php
 
- while(true){
+ //while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -103,15 +103,15 @@ $scoreBefore = GetTargetScore($pos);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(70,rand(100,110));
+                $score = rand(1700,rand(2000,3000));
         }else{
            $testSom = GetTargetScore($pos);
             
             
-             $score = $number3+rand(20,30);
+             $score = $number3+rand(2000,3000);
             
-             if($number3-$testSom>90){
-                $score = $testSom+rand(20,30);
+             if($number3-$testSom>3000){
+                $score = $testSom+rand(2000,3000);
             }
             
            
@@ -159,7 +159,7 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=1000){
+ while($score>=20000){
         
         $score = $score - rand(10,30);
     }
