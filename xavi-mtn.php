@@ -1,6 +1,6 @@
 <?php
 
-// while(true){
+ while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -165,7 +165,7 @@ $scoreBefore = GetTargetScore($pos);
     }
 $score = round($score, -1);
 
-  $score = -$score;
+ // $score = -$score;
 //$score =57;
    
         ///////////////////////////
@@ -180,6 +180,6 @@ $score = round($score, -1);
         
 
 
-//}
+}
 
 
