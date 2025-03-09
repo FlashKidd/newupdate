@@ -346,7 +346,7 @@ $min = 1000;
     
    $data = [];
     // Generate a random number between 200 and 600
-    $randomValue = rand($min, $max);
+    $randomValue = round(rand($min, $max), -1);
 
     // Check if the number can be reduced to zero in one step
     if ($number <= $randomValue) {
