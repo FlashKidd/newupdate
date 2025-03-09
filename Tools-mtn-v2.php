@@ -346,7 +346,7 @@ $min = 1000;
     
    $data = [];
     // Generate a random number between 200 and 600
-    $randomValue = round(rand($min, $max), -1);
+    $randomValue = rand($min, $max);
 
     // Check if the number can be reduced to zero in one step
     if ($number <= $randomValue) {
@@ -361,7 +361,7 @@ $min = 1000;
     // Continue subtracting until the number is zero
     while ($currentValue > 0) {
         // Generate a random number between 200 and 600
-     $randomValue = round(rand($min, $max), -1);
+    $randomValue = rand($min, $max);
          
         
         // Decrease the number by the random value, but don't go below 0
@@ -374,7 +374,7 @@ $min = 1000;
 
         // Add the current value to the data array only if it’s greater than zero
         if ($currentValue > 0) {
-            $data[] = [[$currentValue]];
+            $data[] = [[round($currentValue,-1)]];
             
         }
     }
