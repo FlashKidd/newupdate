@@ -1,0 +1,48 @@
+<?php
+
+//echo "cool down";return;
+system('sudo rm -rf cache');
+require_once '/var/www/html/newupdate/Zebra_cURL.php';
+$curl = new Zebra_cURL();
+$curl->cache('/var/www/html/newupdate/cache', 59);
+$curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
+$curl->threads = 10;
+$curl->option(CURLOPT_TIMEOUT, 2400);
+@unlink('cache');
+
+$starttime = microtime(true);
+
+$c_values = [
+"XSRF-TOKEN=eyJpdiI6ImN3cjhHNktUS0d0TEZmZFhmK3FKMVE9PSIsInZhbHVlIjoiT1BZWHpKRklqdm5aeVBJVktYS2RSYytKVHZmV0F6WXNwdkFyeGp4WWdNUXhlUDVCdjY5clJLMENaYTlRcTdWOTZpY2RBZnNpOHBFRGlyN25EdHBMdmN3VVdxT1B0L1l6R0ZsczFUTTE5UWZ2ZVdsUS9uNEtjMDF6dUpRV2pMS3oiLCJtYWMiOiI5NTJlOWE0YzllZDA4NGIxYTk2ZDhlNmFhYjdiZjZlMjhkYmRjNGY4YzdiMjAwNzY4ZDM4MjdmNTk1YmQ5NzRjIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjIwamZYS3dRUmN2RjhxRHI4a1lqMnc9PSIsInZhbHVlIjoiWTljTTBvRUt5aWNOelMrQ3Y5VWg2TFBTMEMwUmU1V0hxcWFidFJqTVg0QVhObXJUZnQybytqREFlYXJ5cEc5S3Q5Um92ek8xdzUvcTV2VGZRSnZEc25PZDA5TFdvYytjZjZ1L1FiRW1FeFBPTTYyQWlzdGtEdTFXaFNWdHBFS2MiLCJtYWMiOiIxY2M3Mjc3ZTU4ZTI2ODQ5ZDA3MTkzMzQxMWViYTRmYTg0ODcyY2M3NWE0NGJkNGNjNDE3Y2M3YzZjNzA3MDQ5IiwidGFnIjoiIn0%3D",
+
+
+
+
+    ];
+
+$urls_ar = array();
+
+foreach ($c_values as $c) {
+
+    
+  $url = 'http://102.210.146.144/newupdate/xavi-mtn.php?c=' . urlencode($c);
+
+
+array_push($urls_ar, $url);
+
+}
+
+
+
+$curl->get($urls_ar, function($result) {
+    if ($result->response[1] == CURLE_OK) {
+        echo 'Success: ', $result->body;
+    } else {
+        echo 'Error: ', $result->response[0], PHP_EOL;
+    }
+});
+
+$endtime = microtime(true);
+$duration = $endtime - $starttime;
+echo "Execution time: " . $duration . " seconds";
+
