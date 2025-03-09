@@ -361,7 +361,7 @@ $min = 1000;
     // Continue subtracting until the number is zero
     while ($currentValue > 0) {
         // Generate a random number between 200 and 600
-    $randomValue = rand($min, $max);
+     $randomValue = round(rand($min, $max), -1);
          
         
         // Decrease the number by the random value, but don't go below 0
