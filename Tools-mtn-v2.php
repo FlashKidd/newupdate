@@ -342,61 +342,63 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
 $min = 1000;
-$max = 3000;
-
-$data = [];
-$randomValue = rand($min, $max);
-
-if ($number <= $randomValue) {
-   // return "0";
-}
-
-// Start with 0 as the first element
-$data[] = [[0]];
-
-$currentValue = $number;
-
-// Continue subtracting until the number is zero
-while ($currentValue > 0) {
+ $max = 3000;
+    
+   $data = [];
+    // Generate a random number between 200 and 600
     $randomValue = rand($min, $max);
-    $currentValue -= $randomValue;
 
-    // Ensure the number does not drop below 0
-    if ($currentValue < 0) {
-        $currentValue = 0;
+    // Check if the number can be reduced to zero in one step
+    if ($number <= $randomValue) {
+       // return "0";
     }
 
-    // Round while ensuring it stays in range
-    $roundedValue = max($min, min($max, round($currentValue, -1)));
+    // Start with 0 as the first element
+    $data[] = [[0]];
 
-    // Only add values that are within the valid range
-    if ($roundedValue >= $min && $roundedValue <= $max) {
-        $data[] = [[$roundedValue]];
+    $currentValue = $number;
+    $decide = 0;
+    // Continue subtracting until the number is zero
+    while ($currentValue > 0) {
+        // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+         
+        
+        // Decrease the number by the random value, but don't go below 0
+        $currentValue -= $randomValue;
+        //echo "\n<br> $randomValue $currentValue";
+        // Ensure the number does not drop below 0
+        if ($currentValue < 0) {
+            $currentValue = 0;
+        }
+
+        // Add the current value to the data array only if it’s greater than zero
+        if ($currentValue > 0) {
+            $data[] = [[round($currentValue,-1)]];
+            
+        }
     }
-}
 
-// Ensure that the last value is not zero if it was added already
-if (end($data)[0][0] == 0) {
-    array_pop($data);
-}
+    // Ensure that the last value is not zero if it was added already
+    if (end($data)[0][0] == 0) {
+        array_pop($data);
+    }
 
-// Format the result into the JSON structure
-$result = [
-    "c2array" => true,
-    "size" => [count($data), 1, 1],
-    "data" => $data
-];
+    // Format the result into the JSON structure
 
-// Filter out zero values
+
+    $result = [
+        "c2array" => true,
+        "size" => [count($data), 1, 1],
+        "data" => $data
+    ];
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
-
 // Sort the data in ascending order
 usort($data, function($a, $b) {
     return $a[0][0] - $b[0][0];
 });
-
 
 
 foreach ($data as $value) {
