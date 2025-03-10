@@ -111,7 +111,7 @@ echo "\nOur target at num3 is: $number3";
             $testSom = GetTargetScore($pos);
             
             
-             $score = $number3+rand(1,15);
+             $score = $number3+rand(1,10);
                    
                    if ($number3-$testSom>9){
                       $score = $testSom+rand(1,9);     
