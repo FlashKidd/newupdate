@@ -106,7 +106,7 @@ echo "\nOur target at num3 is: $number3";
         
         
            if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(5,rand(7,18));
+                $score = rand(5,rand(7,30));
         }else{
             $testSom = GetTargetScore($pos);
             
@@ -163,7 +163,7 @@ echo "\nOur target at num3 is: $number3";
         $score = $score - rand(10,30);
     }
 //$score = rand(10,60);
- $score = $score;
+ $score = -$score;
 
      //$score = round($score, -1);
         ///////////////////////////
