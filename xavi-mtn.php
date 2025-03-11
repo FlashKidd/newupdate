@@ -165,7 +165,7 @@ $scoreBefore = GetTargetScore($pos);
     }
 $score = round($score, -1);
 
- $score = $score;
+ // $score = $score;
 //$score =57;
    
         ///////////////////////////
@@ -175,7 +175,7 @@ $score = round($score, -1);
         $memory = validate_request($x_power,$score);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
-     sleep(40);
+     sleep(rand(40,80));
 }
         
 
