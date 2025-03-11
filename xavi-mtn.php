@@ -110,8 +110,8 @@ $scoreBefore = GetTargetScore($pos);
             
              $score = $number3+rand(1800,2000);
             
-             if($number3-$testSom>3000){
-                $score = $testSom+rand(1500,3000);
+             if($number3-$testSom>2600){
+                $score = $testSom+rand(1500,2600);
             }
             
            
