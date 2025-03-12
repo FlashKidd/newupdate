@@ -175,7 +175,7 @@ echo "\nOur target at num3 is: $number3";
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
 
-  sleep(40);     
+  sleep(rand(40,80));     
  }
 
 //}
