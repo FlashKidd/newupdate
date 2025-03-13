@@ -347,38 +347,33 @@ $min = 10;
    $data = [];
 $data[] = [[0]]; // Always start with 0
 
-$sizeValue = ($number <= 100) ? 1 : (intdiv($number, 100) + 1);
+// Determine sizeValue based on the number
+$sizeValue = ($number <= 100) ? 1 : (intdiv($number - 1, 100) + 1); // Fix to correctly calculate the steps
 
 $currentValue = $number;
-$stepCount = 1; // Tracks steps to ensure we don't exceed size
+$stepCount = 1; // Start with the first step
 
-while ($currentValue > 0 && $stepCount < $sizeValue) {
+while ($currentValue > 0 && $stepCount <= $sizeValue) {
     $randomValue = rand($min, $max);
 
-    // Ensure we don't overshoot the expected steps
-    if ($stepCount == $sizeValue - 1) {
-        $randomValue = $currentValue; // Force last step to reach 0
+    // To ensure the last step reaches 0
+    if ($stepCount == $sizeValue) {
+        $randomValue = $currentValue; // Force the last step to reach 0
     }
 
     $currentValue -= $randomValue;
-    
+
+    // Ensure it doesn't go below 0
     if ($currentValue < 0) {
         $currentValue = 0;
     }
 
-    if ($currentValue > 0) {
-        $data[] = [[$currentValue]];
-    }
-    
+    $data[] = [[$currentValue]]; // Always add value, even if zero
+
     $stepCount++;
 }
 
-// Ensure last value is not zero if it was already added
-if (end($data)[0][0] == 0) {
-    array_pop($data);
-}
-
-// Final JSON structure
+// Final structure with data
 $result = [
     "c2array" => true,
     "size" => [$sizeValue, 1, 1],
