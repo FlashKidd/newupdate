@@ -344,47 +344,32 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 $min = 10;
  $max = 100;
     
-//   $min = 10;
-// $max = 100;
-
-// $number = 255; // Example input
-
-$data = [];
-$data[] = [[0]]; // Always start with 0
-
-// Determine sizeValue based on the number
-$sizeValue = ($number <= 100) ? 1 : (intdiv($number - 1, 100) + 1); // Fix to correctly calculate the steps
-
-$currentValue = $number;
-$stepCount = 1; // Start with the first step
-
-while ($currentValue > 0 && $stepCount <= $sizeValue) {
-    $randomValue = rand($min, $max);
-
-    // To ensure the last step reaches 0
-    if ($stepCount == $sizeValue) {
-        $randomValue = $currentValue; // Force the last step to reach 0
+if ($number <= 100) {
+    $data = [[[0]]];
+    $sizeValue = 1;
+} else {
+    // Calculate sizeValue:
+    // 101-200 -> 2, 201-300 -> 3, etc.
+    $sizeValue = intdiv($number - 1, 100) + 1;
+    $data = [];
+    // First element is always 0
+    $data[] = [[0]];
+    // For each additional step, generate a difference:
+    // For the first difference (i == 1), allowed maximum is 100;
+    // For i == 2, allowed maximum is 200, etc.
+    for ($i = 1; $i < $sizeValue; $i++) {
+        $allowedMax = $i * 100;
+        // Generate a random difference between 10 and the allowed max.
+        $difference = rand(10, $allowedMax);
+        $data[] = [[$difference]];
     }
-
-    $currentValue -= $randomValue;
-
-    // Ensure it doesn't go below 0
-    if ($currentValue < 0) {
-        $currentValue = 0;
-    }
-
-    $data[] = [[$currentValue]]; // Always add value, even if zero
-
-    $stepCount++;
 }
 
-// Final structure with data
 $result = [
     "c2array" => true,
-    "size" => [$sizeValue, 1, 1],
+    "size" => [count($data), 1, 1],
     "data" => $data
 ];
-
 
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
