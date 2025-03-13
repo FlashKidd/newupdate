@@ -345,30 +345,65 @@ $min = 10;
  $max = 100;
     
 if ($number <= 100) {
+    // For numbers 0-100, just output the initial 0.
     $data = [[[0]]];
-    $sizeValue = 1;
+    $size = 1;
 } else {
-    // Calculate sizeValue:
-    // 101-200 -> 2, 201-300 -> 3, etc.
-    $sizeValue = intdiv($number - 1, 100) + 1;
+    // Determine the size:
+    // For numbers 101–200, size will be 2; 201–300 → 3; etc.
+    $size = intdiv($number - 1, 100) + 1;
     $data = [];
-    // First element is always 0
-    $data[] = [[0]];
-    // For each additional step, generate a difference:
-    // For the first difference (i == 1), allowed maximum is 100;
-    // For i == 2, allowed maximum is 200, etc.
-    for ($i = 1; $i < $sizeValue; $i++) {
-        $allowedMax = $i * 100;
-        // Generate a random difference between 10 and the allowed max.
-        $difference = rand(10, $allowedMax);
-        $data[] = [[$difference]];
+    $data[] = [[0]];  // The first element is always 0.
+
+    // We'll build an array of difference(s) (the ones we choose).
+    // For size==2 (i.e. number in 101–200) we need one difference d such that:
+    //     number - d < 100   <=>   d > number - 100.
+    if ($size == 2) {
+        $LB = max(10, $number - 100 + 1); // e.g. for 175, LB = max(10, 175-100+1)=76.
+        $UB = 100;                       // The per‑step max for the first difference is 100.
+        $d = rand($LB, $UB);
+        $data[] = [[$d]];
+    } else {
+        // For size >= 3, we need to choose (size-1) differences.
+        // We'll generate them sequentially.
+        $differences = [];
+        $S = 0; // Cumulative sum of differences so far.
+        for ($i = 1; $i < $size; $i++) {
+            $remaining = $size - $i; // Number of differences still to choose after this one.
+            // For the final forced remainder to be below the bracket’s range,
+            // if the total bracket for the final remainder is (size-1)*100,
+            // we require:
+            //    S + (current difference) > number - ((size-1)*100)
+            // For the last chosen difference (when $remaining==1) we enforce:
+            //    d > number - ((size-1)*100) - S.
+            if ($remaining == 1) {
+                $LB = max(10, $number - (($size - 1) * 100) - $S + 1);
+            } else {
+                // For intermediate differences, we simply use 10 as the lower bound.
+                $LB = 10;
+            }
+            // The allowed per‑step maximum is $i*100.
+            // Also, we must not choose more than what leaves a positive remainder.
+            $UB = min($i * 100, $number - $S - ($remaining * 10));
+            if ($LB > $UB) {
+                $LB = $UB;
+            }
+            $d = rand($LB, $UB);
+            $S += $d;
+            $differences[] = $d;
+        }
+        foreach ($differences as $d) {
+            $data[] = [[$d]];
+        }
     }
+    // Update size to match the number of data entries.
+    $size = count($data);
 }
 
 $result = [
     "c2array" => true,
-    "size" => [count($data), 1, 1],
-    "data" => $data
+    "size"     => [$size, 1, 1],
+    "data"     => $data
 ];
 
 $data = array_filter($data, function($value) {
