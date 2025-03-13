@@ -104,6 +104,7 @@ $scoreBefore = GetTargetScore($pos);
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
                 $score = rand(17,rand(40,100));
+            $score =-100;
         }else{
            $testSom = GetTargetScore($pos);
             
@@ -166,7 +167,7 @@ $scoreBefore = GetTargetScore($pos);
 //$score = round($score, -1);
 
 // $score = rand(1,50);
-$score =-$score;
+//$score =-$score;
    
         ///////////////////////////
         $uA = RandomUa();
