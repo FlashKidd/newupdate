@@ -166,9 +166,7 @@ echo "\nOur target at num3 is: $number3";
         $score = $score - rand(10,30);
     }
 //$score = rand(10,60);
-if ($score>0){
-  $score = round($score, -1);      
-}
+$score = round($score, -1); 
 
 
 
