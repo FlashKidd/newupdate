@@ -344,7 +344,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 $min = 10;
  $max = 100;
     
-   $data = [];
+  $data = [];
 $data[] = [[0]]; // Always start with 0
 
 // Determine sizeValue based on the number
@@ -368,10 +368,7 @@ while ($currentValue > 0 && $stepCount <= $sizeValue) {
         $currentValue = 0;
     }
 
-    // Only add the current value if it's greater than 0 (except for the first one)
-    if ($currentValue > 0 || $stepCount == 1) {
-        $data[] = [[$currentValue]];
-    }
+    $data[] = [[$currentValue]]; // Always add value, even if zero
 
     $stepCount++;
 }
