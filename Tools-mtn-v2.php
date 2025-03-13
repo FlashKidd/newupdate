@@ -374,7 +374,7 @@ $min = 10;
 
         // Add the current value to the data array only if it’s greater than zero
         if ($currentValue > 0) {
-            $data[] = [[round($currentValue,-1)]];
+            $data[] = [[$currentValue]];
             
         }
     }
