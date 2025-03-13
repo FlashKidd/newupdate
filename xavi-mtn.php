@@ -103,7 +103,7 @@ $scoreBefore = GetTargetScore($pos);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(17,rand(20,30));
+                $score = rand(17,rand(40,100));
         }else{
            $testSom = GetTargetScore($pos);
             
@@ -159,7 +159,7 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=100){
+ while($score>=200){
         
         $score = $score - rand(10,30);
     }
