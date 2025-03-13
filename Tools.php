@@ -374,7 +374,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 
         // Add the current value to the data array only if it’s greater than zero
         if ($currentValue > 0) {
-            $data[] = [[$currentValue]];
+            $data[] = [[round($currentValue, -1)]];
             
         }
     }
