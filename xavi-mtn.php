@@ -162,7 +162,7 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=200){
+ while($score>=400){
         
         $score = $score - rand(10,30);
     }
