@@ -345,40 +345,39 @@ $min = 10;
  $max = 100;
     
   $data = [];
-$data[] = [[0]]; // Always start with 0
+$data[] = [[0]]; // The only zero you want at the start
 
-// Determine sizeValue based on the number
-$sizeValue = ($number <= 100) ? 1 : (intdiv($number - 1, 100) + 1); // Fix to correctly calculate the steps
-
-$currentValue = $number;
-$stepCount = 1; // Start with the first step
-
-while ($currentValue > 0 && $stepCount <= $sizeValue) {
-    $randomValue = rand($min, $max);
-
-    // To ensure the last step reaches 0
-    if ($stepCount == $sizeValue) {
-        $randomValue = $currentValue; // Force the last step to reach 0
-    }
-
-    $currentValue -= $randomValue;
-
-    // Ensure it doesn't go below 0
-    if ($currentValue < 0) {
-        $currentValue = 0;
-    }
-
-    $data[] = [[$currentValue]]; // Always add value, even if zero
-
-    $stepCount++;
+// Calculate sizeValue:
+// For numbers 0-100, size is 1 (only the initial zero)
+// For numbers above 100, size is (intdiv(number-1,100)+1)
+if ($number <= 100) {
+    $sizeValue = 1;
+} else {
+    $sizeValue = intdiv($number - 1, 100) + 1;
 }
 
-// Final structure with data
+// Determine the allowed maximum difference based on the range:
+// For 101-200, allowed max = 100; for 201-300, allowed max = 200; etc.
+if ($number <= 100) {
+    $maxAllowed = $min; // (won't really be used since there’s no step)
+} else {
+    $rangeIndex = intdiv($number - 1, 100); // For 155, this is 1; for 255, 2; etc.
+    $maxAllowed = $rangeIndex * 100;
+}
+
+// Generate (sizeValue - 1) random difference values
+for ($i = 1; $i < $sizeValue; $i++) {
+    // Pick a random difference between $min and $maxAllowed
+    $difference = rand($min, $maxAllowed);
+    $data[] = [[$difference]];
+}
+
 $result = [
     "c2array" => true,
     "size" => [$sizeValue, 1, 1],
     "data" => $data
 ];
+
 
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
