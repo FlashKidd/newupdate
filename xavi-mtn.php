@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 //while(true){
 date_default_timezone_set('Africa/Johannesburg');
@@ -111,9 +111,9 @@ $scoreBefore = GetTargetScore($pos);
             
              $score = $number3+rand(1,10);
             
-             ///if($number3-$testSom>2600){
-              //  $score = $testSom+rand(1500,3000);
-         //   }
+             if($number3-$testSom>10){
+                $score = $testSom+rand(1,20);
+         }
             
            
              
