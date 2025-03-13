@@ -345,53 +345,46 @@ $min = 10;
  $max = 100;
     
    $data = [];
-    // Generate a random number between 200 and 600
+$data[] = [[0]]; // Always start with 0
+
+$sizeValue = ($number <= 100) ? 1 : (intdiv($number, 100) + 1);
+
+$currentValue = $number;
+$stepCount = 1; // Tracks steps to ensure we don't exceed size
+
+while ($currentValue > 0 && $stepCount < $sizeValue) {
     $randomValue = rand($min, $max);
 
-    // Check if the number can be reduced to zero in one step
-    if ($number <= $randomValue) {
-       // return "0";
+    // Ensure we don't overshoot the expected steps
+    if ($stepCount == $sizeValue - 1) {
+        $randomValue = $currentValue; // Force last step to reach 0
     }
 
-    // Start with 0 as the first element
-    $data[] = [[0]];
-
-    $currentValue = $number;
-    $decide = 0;
-    // Continue subtracting until the number is zero
-    while ($currentValue > 0) {
-        // Generate a random number between 200 and 600
-    $randomValue = rand($min, $max);
-         
-        
-        // Decrease the number by the random value, but don't go below 0
-        $currentValue -= $randomValue;
-        //echo "\n<br> $randomValue $currentValue";
-        // Ensure the number does not drop below 0
-        if ($currentValue < 0) {
-            $currentValue = 0;
-        }
-
-        // Add the current value to the data array only if it’s greater than zero
-        if ($currentValue > 0) {
-            $data[] = [[$currentValue]];
-            
-        }
+    $currentValue -= $randomValue;
+    
+    if ($currentValue < 0) {
+        $currentValue = 0;
     }
 
-    // Ensure that the last value is not zero if it was added already
-    if (end($data)[0][0] == 0) {
-        array_pop($data);
+    if ($currentValue > 0) {
+        $data[] = [[$currentValue]];
     }
+    
+    $stepCount++;
+}
 
-    // Format the result into the JSON structure
+// Ensure last value is not zero if it was already added
+if (end($data)[0][0] == 0) {
+    array_pop($data);
+}
 
+// Final JSON structure
+$result = [
+    "c2array" => true,
+    "size" => [$sizeValue, 1, 1],
+    "data" => $data
+];
 
-    $result = [
-        "c2array" => true,
-        "size" => [count($data), 1, 1],
-        "data" => $data
-    ];
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
