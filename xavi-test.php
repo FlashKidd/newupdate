@@ -1,6 +1,6 @@
 <?php
 
-while(true){
+//while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -179,8 +179,8 @@ $score =-$score;
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
 
-    sleep(50);    
-}
+   // sleep(50);    
+//}
 
 //}
 
