@@ -368,7 +368,10 @@ while ($currentValue > 0 && $stepCount <= $sizeValue) {
         $currentValue = 0;
     }
 
-    $data[] = [[$currentValue]]; // Always add value, even if zero
+    // Only add the current value if it's greater than 0 (except for the first one)
+    if ($currentValue > 0 || $stepCount == 1) {
+        $data[] = [[$currentValue]];
+    }
 
     $stepCount++;
 }
