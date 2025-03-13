@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 //while(true){
 date_default_timezone_set('Africa/Johannesburg');
@@ -103,16 +103,17 @@ $scoreBefore = GetTargetScore($pos);
        
 
         if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(10,rand(50,100));
+                $score = rand(17,rand(40,100));
+            $score =-100;
         }else{
            $testSom = GetTargetScore($pos);
             
             
-             $score = $number3+rand(18,30);
+             $score = $number3+rand(1,10);
             
-             //if($number3-$testSom>2400){
-   //             $score = $testSom+rand(1500,3000);
-           // }
+             if($number3-$testSom>10){
+                $score = $testSom+rand(1,20);
+         }
             
            
              
@@ -165,11 +166,8 @@ $scoreBefore = GetTargetScore($pos);
     }
 //$score = round($score, -1);
 
- $score = -$score;
-//$score =57;
-    $score = rand(1,100);
-$score =-$score;
-   
+// $score = rand(1,50);
+//$score =-$score;
    
         ///////////////////////////
         $uA = RandomUa();
@@ -178,9 +176,10 @@ $score =-$score;
         $memory = validate_request($x_power,$score);
         $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
-
-   // sleep(50);    
+    // sleep(rand(40,80));
 //}
+        
+
 
 //}
 
