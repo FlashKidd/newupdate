@@ -392,7 +392,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
             $LB = $UB;
         }
         // Pick a random value within the allowed range.
-        $d = rand($LB, $UB);
+         $d = round(rand($LB, $UB),-1);
         $differences[] = $d;
         $prev = $d;
     }
