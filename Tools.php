@@ -349,7 +349,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
     $data = [];
     
 
-    $sizeValue = 1;
+    $sizeValue = 0;
 } else {
     // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
     $sizeValue = intdiv($number - 1, 100) + 1;
