@@ -102,37 +102,34 @@ echo "\nOur target at num3 is: $number3";
         
         
         $x_power = X_Power($header);
-        echo "\n<br> X-Powered-Version: $x_power\n";
-        
-        
-           if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(60,rand(70,100));
-                   $score=-100;
-        }else{
-            $testSom = GetTargetScore($pos);
-            
-            
-             $score = $number3+rand(10,90);
-                   
-                   if ($number3-$testSom>100){
-                      $score = $testSom+rand(10,90);
-                   }     
-         //            }else if($testSom<100){
-         //      $score =-100;
-         // }
+          echo "\n<br> X-Powered-Version: $x_power\n";
+
+       
+
+        if($pos == 0){
+            $score = rand(17,rand(40,100));
+            $score =-100;
+     }
+        else{
+           $testSom = GetTargetScore($pos);
+
+            $score = $number3+rand(1,100);
+         
+    while(($score-$testSom)>100){
+    $score-=rand(1,10);
  
+   }
+             if($number3-$testSom>100){
+                $score = $testSom+rand(1,100);
+         }
             
-            
+           
              
             
         }
         
-
-            
-            
-             
-            
         $increment = 1;
+        
         
            
             
