@@ -348,9 +348,11 @@ $min = 10;
  $max = 100;
     
 
-   if ($number <= 100) {
+  if ($number <= 100) {
     // For 0–100, just output [ [0] ]
-    $data = [ [0] ];
+    $data = [];
+    $data[] = [[0]];
+
     $sizeValue = 1;
 } else {
     // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
@@ -383,14 +385,14 @@ $min = 10;
     }
 
     // Build data array: [ [0], [d1], [d2], ... ]
-    $data = [ [0] ];
+    $data[] = [[0]];
     foreach ($differences as $d) {
-        $data[] = [$d];
+        $data[] = [[$d]];
     }
     $sizeValue = count($data);
 }
 
-$result = [
+print$result = [
     "c2array" => true,
     "size"    => [$sizeValue, 1, 1],
     "data"    => $data
