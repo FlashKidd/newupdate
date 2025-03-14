@@ -350,8 +350,10 @@ $min = 10;
 
 if ($number <= 100) {
     // For 0–100, just output [ [0] ]
-    $data = [ [0] ];
-    $sizeValue = 1;
+    $data = [];
+    
+
+    $sizeValue = 0;
 } else {
     // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
     $sizeValue = intdiv($number - 1, 100) + 1;
@@ -359,13 +361,17 @@ if ($number <= 100) {
 
     // Generate differences
     for ($i = $sizeValue - 1; $i >= 1; $i--) {
-        if ($sizeValue == 2 && $i == 1) {
-            // For 101–200, ensure the difference brings the result below 100
-            $LB = max(1, $number - 100); // e.g., 155 - 100 = 55
-            $UB = min(100, $number);     // e.g., min(100, 155) = 100
+        if ($i == 1) {
+            // For the last difference, ensure ($number - ($sizeValue - 2)*100) - d1 < 100
+            $LB = max(1, $number - ($sizeValue - 2) * 100 - 99);
+            $UB = min(100, $number);
+        } else if ($sizeValue == 2 && $i == 1) {
+            // This case is now redundant but kept for clarity; handled above
+            $LB = max(1, $number - 100);
+            $UB = min(100, $number);
         } else {
-            $LB = ($i - 1) * 100 + 1;    // 1, 101, 201, etc.
-            $UB = min($i * 100, $number); // 100, 200, 300, etc.
+            $LB = ($i - 1) * 100 + 1;    // 101, 201, etc.
+            $UB = min($i * 100, $number); // 200, 300, etc.
         }
 
         if ($i < $sizeValue - 1) {
@@ -375,13 +381,13 @@ if ($number <= 100) {
             if ($LB > $UB) $LB = $UB;
         }
         $d = rand($LB, $UB);
-        $differences[] = $d;
+        $differences[] = round($d,-1);
     }
 
     // Build data array: [ [0], [d1], [d2], ... ]
-    $data = [ [0] ];
+    $data[] = [[0]];
     foreach ($differences as $d) {
-        $data[] = [$d];
+        $data[] = [[$d]];
     }
     $sizeValue = count($data);
 }
