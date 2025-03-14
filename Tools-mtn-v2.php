@@ -349,65 +349,47 @@ $min = 10;
     
 
 if ($number <= 100) {
-    // For numbers 0–100, output only the starting 0.
-    $data = [[[0]]];
+    // For 0–100, just output [ [0] ]
+    $data = [ [0] ];
     $sizeValue = 1;
 } else {
-    // Calculate sizeValue:
-    // e.g. 101–200 → 2, 201–300 → 3, 301–400 → 4, etc.
+    // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
     $sizeValue = intdiv($number - 1, 100) + 1;
-    
-    // This constant lower bound ensures the final forced remainder is less than the bracket.
-    // It enforces: difference > number - ((sizeValue - 1)*100)
-    $LB_const = $number - (($sizeValue - 1) * 100) + 1;
-    if ($LB_const < 10) {
-        $LB_const = 10;
-    }
-    
     $differences = [];
-    // We need (sizeValue - 1) differences.
-    for ($i = 1; $i < $sizeValue; $i++) {
-        if ($i == 1) {
-            // Step 1: allowed range is [max(10, LB_const), 100].
-            $LB = max(10, $LB_const);
-            $UB = 100;
+
+    // Generate differences
+    for ($i = $sizeValue - 1; $i >= 1; $i--) {
+        if ($sizeValue == 2 && $i == 1) {
+            // For 101–200, ensure the difference brings the result below 100
+            $LB = max(1, $number - 100); // e.g., 155 - 100 = 55
+            $UB = min(100, $number);     // e.g., min(100, 155) = 100
         } else {
-            // For subsequent steps:
-            // Allowed maximum is i*100.
-            // The lower bound is the greater of:
-            //   - (previous difference + 1) to ensure ascending order,
-            //   - LB_const to enforce the final remainder constraint.
-            $LB = max($differences[$i - 2] + 1, $LB_const);
-            $UB = $i * 100;
+            $LB = ($i - 1) * 100 + 1;    // 1, 101, 201, etc.
+            $UB = min($i * 100, $number); // 100, 200, 300, etc.
         }
-        // Safety check: if LB > UB, set LB = UB.
-        if ($LB > $UB) {
-            $LB = $UB;
+
+        if ($i < $sizeValue - 1) {
+            // Ensure subsequent differences are smaller than the previous
+            $prevDiff = $differences[count($differences) - 1];
+            $UB = min($UB, $prevDiff - 1);
+            if ($LB > $UB) $LB = $UB;
         }
         $d = rand($LB, $UB);
         $differences[] = $d;
     }
-    
-    // Now, we want to output the differences so that, ignoring the initial 0,
-    // reading from right to left yields ascending order.
-    // That means we reverse the differences array (so the smallest difference is last).
-    $differencesReversed = array_reverse($differences);
-    
-    // Build the final data array: first element is always 0, then the reversed differences.
-    $data = [];
-    $data[] = [[0]];
-    foreach ($differencesReversed as $d) {
-        $data[] = [[$d]];
+
+    // Build data array: [ [0], [d1], [d2], ... ]
+    $data = [ [0] ];
+    foreach ($differences as $d) {
+        $data[] = [$d];
     }
-    
-    // Update sizeValue to match the number of data entries.
     $sizeValue = count($data);
 }
 
 $result = [
     "c2array" => true,
-    "size"     => [$sizeValue, 1, 1],
-    "data"     => $data
+    "size"    => [$sizeValue, 1, 1],
+    "data"    => $data
 ];
 
 $data = array_filter($data, function($value) {
