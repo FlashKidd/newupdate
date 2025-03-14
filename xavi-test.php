@@ -11,7 +11,7 @@ $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
 
-echo "\nOur target score is: $number3";
+
     
 
 
@@ -20,6 +20,7 @@ echo "\nOur target score is: $number3";
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 //   foreach ($cookiez as $cookie){ 
 $pos = GetPosition ($cookie);
+echo "\nOur target score is: $number3 at pos $pos";
 $scoreBefore = GetTargetScore($pos);
 
         //while($scoreBefore == $scoreAfter){
@@ -102,14 +103,14 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-        if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(17,rand(40,100));
+        if($pos == 0){
+             $score = rand(17,rand(40,100));
             $score =-100;
+     if ($pos >= 1 && $pos <=2 ){
+      $score = $number3+rand(1,50);
+     }
         }else{
            $testSom = GetTargetScore($pos);
-            
-            
-             $score = $number3+rand(1,100);
             
              if($number3-$testSom>100){
                 $score = $testSom+rand(1,100);
