@@ -388,7 +388,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
     $sizeValue = count($data);
 }
 
-print$result = [
+$result = [
     "c2array" => true,
     "size"    => [$sizeValue, 1, 1],
     "data"    => $data
