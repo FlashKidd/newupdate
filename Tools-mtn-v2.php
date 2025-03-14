@@ -392,7 +392,7 @@ $min = 10;
     $sizeValue = count($data);
 }
 
-print$result = [
+$result = [
     "c2array" => true,
     "size"    => [$sizeValue, 1, 1],
     "data"    => $data
