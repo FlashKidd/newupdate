@@ -106,8 +106,6 @@ $scoreBefore = GetTargetScore($pos);
         if($pos == 0){
              $score = rand(17,rand(40,100));
             $score =-100;
-     if ($pos >= 1 && $pos <=2 ){
-      $score = $number3+rand(1,50);
      }
         }else{
            $testSom = GetTargetScore($pos);
