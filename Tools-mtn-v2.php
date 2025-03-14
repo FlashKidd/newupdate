@@ -411,7 +411,6 @@ $result = [
 ];
 
 
-
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
