@@ -351,37 +351,43 @@ $min = 10;
 if ($number <= 100) {
     // For 0–100, just output [ [0] ]
     $data = [];
-    
-
     $sizeValue = 0;
 } else {
     // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
     $sizeValue = intdiv($number - 1, 100) + 1;
     $differences = [];
 
-    // Generate differences
+    // Generate differences in reverse order
     for ($i = $sizeValue - 1; $i >= 1; $i--) {
-        if ($i == 1) {
-            // For the last difference, ensure ($number - ($sizeValue - 2)*100) - d1 < 100
+        // For the highest iteration (when there are more than 2 parts),
+        // ensure that number - first_difference is below 100.
+        if ($i == $sizeValue - 1 && $sizeValue > 2) {
+            $LB = max(($i - 1) * 100 + 1, $number - 100 + 1);
+            $UB = min($i * 100, $number);
+        } else if ($i == 1) {
+            // For the last difference, keep as before.
             $LB = max(1, $number - ($sizeValue - 2) * 100 - 99);
             $UB = min(100, $number);
         } else if ($sizeValue == 2 && $i == 1) {
-            // This case is now redundant but kept for clarity; handled above
+            // This branch handles the case of 2 parts (redundant but kept for clarity)
             $LB = max(1, $number - 100);
             $UB = min(100, $number);
         } else {
-            $LB = ($i - 1) * 100 + 1;    // 101, 201, etc.
-            $UB = min($i * 100, $number); // 200, 300, etc.
+            $LB = ($i - 1) * 100 + 1;
+            $UB = min($i * 100, $number);
         }
 
-        if ($i < $sizeValue - 1) {
-            // Ensure subsequent differences are smaller than the previous
+        // Ensure subsequent differences are smaller than the previous difference
+        if ($i < $sizeValue - 1 && count($differences) > 0) {
             $prevDiff = $differences[count($differences) - 1];
             $UB = min($UB, $prevDiff - 1);
-            if ($LB > $UB) $LB = $UB;
+            if ($LB > $UB) {
+                $LB = $UB;
+            }
         }
+
         $d = rand($LB, $UB);
-        $differences[] = round($d,-1);
+        $differences[] = $d;
     }
 
     // Build data array: [ [0], [d1], [d2], ... ]
