@@ -348,66 +348,47 @@ $min = 10;
  $max = 100;
     
 
-  if ($number <= 100) {
-    // For numbers 0–100, output only the starting 0.
-    $data = [[[0]]];
-    $sizeValue = 1;
-} else {
-    // Calculate sizeValue:
-    // e.g. 101–200 → 2, 201–300 → 3, 301–400 → 4, etc.
-    $sizeValue = intdiv($number - 1, 100) + 1;
+$data = [];
+$data[] = [[0]]; // Always start with 0
+
+// Determine sizeValue based on the number
+$sizeValue = ($number <= 100) ? 1 : (intdiv($number - 1, 100) + 1); // Fix to correctly calculate the steps
+
+$currentValue = $number;
+$stepCount = 1; // Start with the first step
+
+while ($currentValue > 0 && $stepCount <= $sizeValue) {
+    // Determine the range's upper limit for each step
+    $rangeLimit = 100 * $stepCount;  // For step 1, 100; step 2, 200; step 3, 300, etc.
     
-    // This constant lower bound ensures the final forced remainder is less than the bracket.
-    // It enforces: difference > number - ((sizeValue - 1)*100)
-    $LB_const = $number - (($sizeValue - 1) * 100) + 1;
-    if ($LB_const < 10) {
-        $LB_const = 10;
+    // Ensure the random value does not exceed the range limit
+    $randomValue = rand($min, min($max, $rangeLimit - ($number % 100)));
+
+    // To ensure the last step reaches 0
+    if ($stepCount == $sizeValue) {
+        $randomValue = $currentValue; // Force the last step to reach 0
     }
-    
-    $differences = [];
-    // We need (sizeValue - 1) differences.
-    for ($i = 1; $i < $sizeValue; $i++) {
-        if ($i == 1) {
-            // Step 1: allowed range is [max(10, LB_const), 100].
-            $LB = max(10, $LB_const);
-            $UB = 100;
-        } else {
-            // For subsequent steps:
-            // Allowed maximum is i*100.
-            // The lower bound is the greater of:
-            //   - (previous difference + 1) to ensure ascending order,
-            //   - LB_const to enforce the final remainder constraint.
-            $LB = max($differences[$i - 2] + 1, $LB_const);
-            $UB = $i * 100;
-        }
-        // Safety check: if LB > UB, set LB = UB.
-        if ($LB > $UB) {
-            $LB = $UB;
-        }
-        $d = rand($LB, $UB);
-        $differences[] = $d;
+
+    $currentValue -= $randomValue;
+
+    // Ensure it doesn't go below 0
+    if ($currentValue < 0) {
+        $currentValue = 0;
     }
-    
-    // Now, we want to output the differences so that, ignoring the initial 0,
-    // reading from right to left yields ascending order.
-    // That means we reverse the differences array (so the smallest difference is last).
-    $differencesReversed = array_reverse($differences);
-    
-    // Build the final data array: first element is always 0, then the reversed differences.
-    $data = [];
-    $data[] = [[0]];
-    foreach ($differencesReversed as $d) {
-        $data[] = [[$d]];
+
+    // Only add the current value if it's greater than 0 (except for the first one)
+    if ($currentValue > 0 || $stepCount == 1) {
+        $data[] = [[$currentValue]];
     }
-    
-    // Update sizeValue to match the number of data entries.
-    $sizeValue = count($data);
+
+    $stepCount++;
 }
 
+// Final structure with data
 $result = [
     "c2array" => true,
-    "size"     => [$sizeValue, 1, 1],
-    "data"     => $data
+    "size" => [$sizeValue, 1, 1],
+    "data" => $data
 ];
 
 
