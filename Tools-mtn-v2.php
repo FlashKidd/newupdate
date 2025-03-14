@@ -351,9 +351,9 @@ $min = 10;
   if ($number <= 100) {
     // For 0–100, just output [ [0] ]
     $data = [];
-    $data[] = [[0]];
+    
 
-    $sizeValue = 1;
+    $sizeValue = 0;
 } else {
     // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
     $sizeValue = intdiv($number - 1, 100) + 1;
