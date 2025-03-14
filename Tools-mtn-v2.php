@@ -365,11 +365,11 @@ if ($number <= 100) {
             $LB = max(($i - 1) * 100 + 1, $number - 100 + 1);
             $UB = min($i * 100, $number);
         } else if ($i == 1) {
-            // For the last difference, keep as before.
+            // For the last difference, as before.
             $LB = max(1, $number - ($sizeValue - 2) * 100 - 99);
             $UB = min(100, $number);
         } else if ($sizeValue == 2 && $i == 1) {
-            // This branch handles the case of 2 parts (redundant but kept for clarity)
+            // This branch handles the case of 2 parts.
             $LB = max(1, $number - 100);
             $UB = min(100, $number);
         } else {
@@ -403,7 +403,6 @@ $result = [
     "size"    => [$sizeValue, 1, 1],
     "data"    => $data
 ];
-
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
