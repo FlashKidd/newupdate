@@ -346,8 +346,8 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
     
   if ($number <= 100) {
     // If number is 100 or less, output only 0.
-    $data = [[[0]]];
-    $sizeValue = 1;
+    $data = [];
+    $sizeValue = 0;
 } else {
     // Determine how many segments we need.
     // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
