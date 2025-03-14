@@ -344,53 +344,57 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 // $min = 10;
 //  $max = 100;
     
-if ($number <= 100) {
-    // For 0–100, just output [ [0] ]
-    $data = [ [0] ];
-    $sizeValue = 1;
-} else {
-    // Calculate sizeValue (e.g., 101–200 → 2, 201–300 → 3)
-    $sizeValue = intdiv($number - 1, 100) + 1;
-    $differences = [];
+$min = 10;
+ $max = 100;
+    
+   $data = [];
+    // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
 
-    // Generate differences
-    for ($i = $sizeValue - 1; $i >= 1; $i--) {
-        if ($i == 1) {
-            // For the last difference, ensure ($number - ($sizeValue - 2)*100) - d1 < 100
-            $LB = max(1, $number - ($sizeValue - 2) * 100 - 99);
-            $UB = min(100, $number);
-        } else if ($sizeValue == 2 && $i == 1) {
-            // This case is now redundant but kept for clarity; handled above
-            $LB = max(1, $number - 100);
-            $UB = min(100, $number);
-        } else {
-            $LB = ($i - 1) * 100 + 1;    // 101, 201, etc.
-            $UB = min($i * 100, $number); // 200, 300, etc.
-        }
-
-        if ($i < $sizeValue - 1) {
-            // Ensure subsequent differences are smaller than the previous
-            $prevDiff = $differences[count($differences) - 1];
-            $UB = min($UB, $prevDiff - 1);
-            if ($LB > $UB) $LB = $UB;
-        }
-        $d = rand($LB, $UB);
-        $differences[] = $d;
+    // Check if the number can be reduced to zero in one step
+    if ($number <= $randomValue) {
+       // return "0";
     }
 
-    // Build data array: [ [0], [d1], [d2], ... ]
-    $data = [ [0] ];
-    foreach ($differences as $d) {
-        $data[] = [$d];
-    }
-    $sizeValue = count($data);
-}
+    // Start with 0 as the first element
+    $data[] = [[0]];
 
-$result = [
-    "c2array" => true,
-    "size"    => [$sizeValue, 1, 1],
-    "data"    => $data
-];
+    $currentValue = $number;
+    $decide = 0;
+    // Continue subtracting until the number is zero
+    while ($currentValue > 0) {
+        // Generate a random number between 200 and 600
+    $randomValue = rand($min, $max);
+         
+        
+        // Decrease the number by the random value, but don't go below 0
+        $currentValue -= $randomValue;
+        //echo "\n<br> $randomValue $currentValue";
+        // Ensure the number does not drop below 0
+        if ($currentValue < 0) {
+            $currentValue = 0;
+        }
+
+        // Add the current value to the data array only if it’s greater than zero
+        if ($currentValue > 0) {
+            $data[] = [[$currentValue]];
+            
+        }
+    }
+
+    // Ensure that the last value is not zero if it was added already
+    if (end($data)[0][0] == 0) {
+        array_pop($data);
+    }
+
+    // Format the result into the JSON structure
+
+
+    $result = [
+        "c2array" => true,
+        "size" => [count($data), 1, 1],
+        "data" => $data
+    ];
 
 
 $data = array_filter($data, function($value) {
