@@ -349,63 +349,45 @@ $min = 10;
     
 
 if ($number <= 100) {
-    // If number is 100 or less, output only 0.
+    // For numbers 100 or less, simply output 0.
     $data = [[[0]]];
     $sizeValue = 1;
 } else {
-    // Determine how many segments we need.
-    // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
-    // 4 segments for a number in the 300s, etc.
-    $sizeValue = intdiv($number - 1, 100) + 1;
-    $differences = [];
-    $prev = $number; // start from the full number
-
-    // Loop from the highest segment down to the lowest.
-    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ 100.
-    // The lowest segment (i == 1) is forced into the 0–100 band.
-    for ($i = $sizeValue - 1; $i >= 1; $i--) {
-        if ($i == $sizeValue - 1) {
-            // Highest segment: it must lie in the band for this segment.
-            // Its hundred band is from (($i - 1)*100 + 1) to ($i*100).
-            // Also enforce that gap: number - d ≤ 100  → d ≥ number - 100.
-            $bandLB = ($i - 1) * 100 + 1;
-            $bandUB = $i * 100;
-            $minForGap = $number - 100;
-            $LB = max($bandLB, $minForGap);
-            $UB = min($bandUB, $prev - 1);
-        } elseif ($i == 1) {
-            // Lowest segment: force it into 0–100.
-            $bandLB = 1;
-            $bandUB = 100;
-            // Also ensure the gap from the previous segment is at most 100.
-            $minForGap = $prev - 100;
-            $LB = max($bandLB, $minForGap);
-            $UB = $bandUB;
-        } else {
-            // Intermediate segments: they must fall in their hundred band.
-            // For i-th segment, the band is from (($i - 1)*100 + 1) to ($i*100).
-            $bandLB = ($i - 1) * 100 + 1;
-            $bandUB = $i * 100;
-            // Also enforce that the gap from the previous segment is ≤ 100.
-            $minForGap = $prev - 100;
-            $LB = max($bandLB, $minForGap);
-            $UB = min($bandUB, $prev - 1);
-        }
-        // If LB > UB (which might happen if constraints tighten), force LB = UB.
-        if ($LB > $UB) {
-            $LB = $UB;
-        }
-        // Pick a random value within the allowed range.
-        $d = rand($LB, $UB);
-        $differences[] = $d;
-        $prev = $d;
+    // Determine the number of segments.
+    // We want one segment per hundred.
+    // For example, for number 328:
+    //   n = intdiv(328 - 1, 100) + 1 = intdiv(327, 100) + 1 = 3 + 1 = 4.
+    // The final output will have 4 values: the initial 0, then d1, d2, and d3.
+    $n = intdiv($number - 1, 100) + 1;
+    $segments = []; // We will fill segments[1] ... segments[n-1]
+    
+    // For the first segment (d₁):
+    // Its proper hundred band is from ((n-2)*100+1) to ((n-1)*100).
+    // And we must have: number - d₁ ≤ 100  →  d₁ ≥ number - 100.
+    $d1LB = max((($n - 2) * 100) + 1, $number - 100);
+    $d1UB = ($n - 1) * 100;
+    $segments[1] = rand($d1LB, $d1UB);
+    
+    // For each subsequent segment (dᵢ for i = 2 to n-1):
+    // Its proper hundred band is from ((n-1-i)*100 + 1) to ((n-i)*100).
+    // And we enforce that the gap is at most 100: dᵢ must be at least (dᵢ₋₁ - 100).
+    for ($i = 2; $i < $n; $i++) {
+        $bandLB = (($n - 1 - $i) * 100) + 1;
+        $bandUB = ($n - $i) * 100;
+        $gapLB = $segments[$i - 1] - 100;
+        $segments[$i] = rand(max($bandLB, $gapLB), $bandUB);
     }
-
-    // Build the data array with 0 as the first element.
+    
+    // Build the final output array.
+    // The output always starts with 0, followed by the segments in order.
+    $outputSegments = [0];
+    for ($i = 1; $i < $n; $i++) {
+        $outputSegments[] = $segments[$i];
+    }
+    
     $data = [];
-    $data[] = [[0]];
-    foreach ($differences as $d) {
-        $data[] = [[$d]];
+    foreach ($outputSegments as $val) {
+        $data[] = [[$val]];
     }
     $sizeValue = count($data);
 }
