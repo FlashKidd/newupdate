@@ -344,53 +344,74 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
   $min = 10;
  $max = 100;
     
-   $data = [];
-    // Generate a random number between 200 and 600
-    $randomValue = rand($min, $max);
+   if ($number <= 100) {
+    // If number is 100 or less, output only 0.
+    $data = [];
+    $sizeValue = 0;
+} else {
+    // Determine how many segments we need.
+    // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
+    // 4 segments for a number in the 300s, etc.
+    $sizeValue = intdiv($number - 1, 100) + 1;
+    $differences = [];
+    $prev = $number; // start from the full number
 
-    // Check if the number can be reduced to zero in one step
-    if ($number <= $randomValue) {
-       // return "0";
+    // Loop from the highest segment down to the lowest.
+    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ 100.
+    // The lowest segment (i == 1) is forced into the 0–100 band.
+    for ($i = $sizeValue - 1; $i >= 1; $i--) {
+        if ($i == $sizeValue - 1) {
+            // Highest segment: it must lie in the band for this segment.
+            // Its hundred band is from (($i - 1)*100 + 1) to ($i*100).
+            // Also enforce that gap: number - d ≤ 100  → d ≥ number - 100.
+            $bandLB = ($i - 1) * 100 + 1;
+            $bandUB = $i * 100;
+            $minForGap = $number - 100;
+            $LB = max($bandLB, $minForGap);
+            $UB = min($bandUB, $prev - 1);
+        } elseif ($i == 1) {
+            // Lowest segment: force it into 0–100.
+            $bandLB = 1;
+            $bandUB = 100;
+            // Also ensure the gap from the previous segment is at most 100.
+            $minForGap = $prev - 100;
+            $LB = max($bandLB, $minForGap);
+            $UB = $bandUB;
+        } else {
+            // Intermediate segments: they must fall in their hundred band.
+            // For i-th segment, the band is from (($i - 1)*100 + 1) to ($i*100).
+            $bandLB = ($i - 1) * 100 + 1;
+            $bandUB = $i * 100;
+            // Also enforce that the gap from the previous segment is ≤ 100.
+            $minForGap = $prev - 100;
+            $LB = max($bandLB, $minForGap);
+            $UB = min($bandUB, $prev - 1);
+        }
+        // If LB > UB (which might happen if constraints tighten), force LB = UB.
+        if ($LB > $UB) {
+            $LB = $UB;
+        }
+        // Pick a random value within the allowed range.
+        $d = round(rand($LB, $UB),-1);
+        $differences[] = $d;
+        $prev = $d;
     }
 
-    // Start with 0 as the first element
+    // Build the data array with 0 as the first element.
+    $data = [];
     $data[] = [[0]];
-
-    $currentValue = $number;
-    $decide = 0;
-    // Continue subtracting until the number is zero
-    while ($currentValue > 0) {
-        // Generate a random number between 200 and 600
-    $randomValue = rand($min, $max);
-         
-        
-        // Decrease the number by the random value, but don't go below 0
-        $currentValue -= $randomValue;
-        //echo "\n<br> $randomValue $currentValue";
-        // Ensure the number does not drop below 0
-        if ($currentValue < 0) {
-            $currentValue = 0;
-        }
-
-        // Add the current value to the data array only if it’s greater than zero
-        if ($currentValue > 0) {
-         $currentValue = round($currentValue, -1);
-            $data[] = [[$currentValue]];
-            
-        }
+    foreach ($differences as $d) {
+        $data[] = [[$d]];
     }
+    $sizeValue = count($data);
+}
 
-    // Ensure that the last value is not zero if it was added already
-    if (end($data)[0][0] == 0) {
-        array_pop($data);
-    }
+$result = [
+    "c2array" => true,
+    "size"    => [$sizeValue, 1, 1],
+    "data"    => $data
+];
 
-    // Format the result into the JSON structure
-    $result = [
-        "c2array" => true,
-        "size" => [count($data), 1, 1],
-        "data" => $data
-    ];
 // Sort the data in ascending order
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
