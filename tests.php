@@ -36,8 +36,9 @@ $c_values = [
     ];
 
 $urls_ar = array();
-$c_values = array_rand($c_values, 4);
-foreach ($c_values as $c) {
+shuffle($c_values); 
+$randomItems = array_slice($c_values, 0, 4); 
+foreach ($randomItems as $c) {
 
     
   $url = 'http://102.210.146.144/newupdate/xavi-test.php?c=' . urlencode($c);
