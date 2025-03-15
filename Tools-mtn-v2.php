@@ -348,13 +348,13 @@ $min = 10;
  $max = 100;
     
 
-if ($score <= 100) {
+if ($number <= 100) {
     $data = [[[0]]];
     $sizeValue = 1;
 } else {
     // Calculate how many segments we need.
-    // For score 328: intdiv(327,100) + 1 = 3 + 1 = 4 segments (including the 0).
-    $n = intdiv($score - 1, 100) + 1;
+    // For number 328: intdiv(327,100) + 1 = 3 + 1 = 4 segments (including the 0).
+    $n = intdiv($number - 1, 100) + 1;
     $segments = [];
     $segments[] = 0; // starting segment
 
@@ -369,8 +369,8 @@ if ($score <= 100) {
         $constraintUB = $prev + 100;      // at most previous + 100
         
         // Back-propagate the constraint for future gaps:
-        // The segment must be high enough so that the final segment (after adding 100 each time) can be at least (score - 100).
-        $requiredLB = $score - 100 * ($n - $i);
+        // The segment must be high enough so that the final segment (after adding 100 each time) can be at least (number - 100).
+        $requiredLB = $number - 100 * ($n - $i);
         
         // The allowed range for this segment is the intersection of:
         //   its hundred band,
@@ -387,7 +387,7 @@ if ($score <= 100) {
 
     // The $segments array is in ascending order (from 0 up).
     // We want the output to be 0 followed by segments in descending order so that:
-    // - The first nonzero element (from the highest hundred band) meets score - first <= 100.
+    // - The first nonzero element (from the highest hundred band) meets number - first <= 100.
     $outputSegments = [ $segments[0] ]; // keep 0 at the front
     $rest = array_slice($segments, 1);
     $rest = array_reverse($rest);
