@@ -1,5 +1,5 @@
  <?php
-
+// sleep(rand(30,150));
 // while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
@@ -27,6 +27,8 @@ $scoreBefore = GetTargetScore($pos);
        // $scoreAfter = GetTargetScore($pos);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
+        curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -60,9 +62,9 @@ $scoreBefore = GetTargetScore($pos);
         $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
-            if (empty($unique_id)){
-                 return;
-            }
+            // if (empty($unique_id)){
+            //     // return;
+            // }
 
        // echo "<br>Uniquie_id: $unique_id<hr>";
         //echo "<br>Game_id: $game_id<hr>";
@@ -70,6 +72,8 @@ $scoreBefore = GetTargetScore($pos);
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
+        curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Referer:'.$redirectedUrl,
@@ -110,14 +114,14 @@ $scoreBefore = GetTargetScore($pos);
         else{
            $testSom = GetTargetScore($pos);
 
-            $score = $number3+rand(1,100);
+            $score = $number3+rand(50,100);
          
     while(($score-$testSom)>100){
     $score-=rand(1,10);
  
    }
              if($number3-$testSom>100){
-                $score = $testSom+rand(1,100);
+                $score = $testSom+rand(50,100);
          }
             
            
@@ -165,7 +169,10 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=400){
+if($score>=400){
+$score = rand(398,399);
+}
+ while($score>400){
         
         $score = $score - rand(10,30);
     }
