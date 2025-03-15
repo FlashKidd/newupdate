@@ -116,12 +116,9 @@ echo "\nOur target at num3 is: $number3";
 
             $score = $number3+rand(1,100);
          
-    while(($score-$testSom)>100){
-    $score-=rand(1,10);
- 
-   }
-             if($number3-$testSom>50){
-                $score = $testSom+rand(1,50);
+    
+             if($number3-$testSom>100){
+                $score = $testSom+rand(1,100);
          }
             
            
@@ -130,7 +127,10 @@ echo "\nOur target at num3 is: $number3";
         }
         
         $increment = 1;
-        
+        while(($score-$testSom)>100){
+    $score-=rand(1,10);
+ 
+   }
         
            
             
