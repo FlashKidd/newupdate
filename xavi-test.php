@@ -110,14 +110,14 @@ $scoreBefore = GetTargetScore($pos);
         else{
            $testSom = GetTargetScore($pos);
 
-            $score = $number3+rand(1,100);
+            $score = $number3+rand(50,100);
          
     while(($score-$testSom)>100){
     $score-=rand(1,10);
  
    }
              if($number3-$testSom>100){
-                $score = $testSom+rand(1,100);
+                $score = $testSom+rand(50,100);
          }
             
            
@@ -165,7 +165,10 @@ $scoreBefore = GetTargetScore($pos);
        // }
 // $score += rand(100,500);
 //$score = rand($number3,($number3+rand(10,50)));
- while($score>=400){
+if($score>=400){
+$score = rand(397,398);
+}
+ while($score>400){
         
         $score = $score - rand(10,30);
     }
