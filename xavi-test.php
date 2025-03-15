@@ -1,5 +1,5 @@
  <?php
-//sleep(rand(30,120));
+sleep(rand(30,150));
 // while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
