@@ -349,54 +349,63 @@ $min = 10;
     
 
 if ($number <= 100) {
+    // If number is 100 or less, output only 0.
     $data = [[[0]]];
     $sizeValue = 1;
 } else {
-    // Calculate how many segments we need.
-    // For number 328: intdiv(327,100) + 1 = 3 + 1 = 4 segments (including the 0).
-    $n = intdiv($number - 1, 100) + 1;
-    $segments = [];
-    $segments[] = 0; // starting segment
+    // Determine how many segments we need.
+    // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
+    // 4 segments for a number in the 300s, etc.
+    $sizeValue = intdiv($number - 1, 100) + 1;
+    $differences = [];
+    $prev = $number; // start from the full number
 
-    for ($i = 1; $i < $n; $i++) {
-        // Define the hundred band for this segment:
-        $bandLB = ($i - 1) * 100 + 1;
-        $bandUB = $i * 100;
-        
-        // Constraint from the previous segment: must be no more than 100 more.
-        $prev = $segments[$i - 1];
-        $constraintLB = $prev;          // at least the previous value
-        $constraintUB = $prev + 100;      // at most previous + 100
-        
-        // Back-propagate the constraint for future gaps:
-        // The segment must be high enough so that the final segment (after adding 100 each time) can be at least (number - 100).
-        $requiredLB = $number - 100 * ($n - $i);
-        
-        // The allowed range for this segment is the intersection of:
-        //   its hundred band,
-        //   the gap constraint from the previous segment,
-        //   and the required lower bound.
-        $LB = max($bandLB, $constraintLB, $requiredLB);
-        $UB = min($bandUB, $constraintUB);
-        
-        if ($LB > $UB) {
-            $LB = $UB; // Force a valid number if constraints conflict.
+    // Loop from the highest segment down to the lowest.
+    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ 100.
+    // The lowest segment (i == 1) is forced into the 0–100 band.
+    for ($i = $sizeValue - 1; $i >= 1; $i--) {
+        if ($i == $sizeValue - 1) {
+            // Highest segment: it must lie in the band for this segment.
+            // Its hundred band is from (($i - 1)*100 + 1) to ($i*100).
+            // Also enforce that gap: number - d ≤ 100  → d ≥ number - 100.
+            $bandLB = ($i - 1) * 100 + 1;
+            $bandUB = $i * 100;
+            $minForGap = $number - 100;
+            $LB = max($bandLB, $minForGap);
+            $UB = min($bandUB, $prev - 1);
+        } elseif ($i == 1) {
+            // Lowest segment: force it into 0–100.
+            $bandLB = 1;
+            $bandUB = 100;
+            // Also ensure the gap from the previous segment is at most 100.
+            $minForGap = $prev - 100;
+            $LB = max($bandLB, $minForGap);
+            $UB = $bandUB;
+        } else {
+            // Intermediate segments: they must fall in their hundred band.
+            // For i-th segment, the band is from (($i - 1)*100 + 1) to ($i*100).
+            $bandLB = ($i - 1) * 100 + 1;
+            $bandUB = $i * 100;
+            // Also enforce that the gap from the previous segment is ≤ 100.
+            $minForGap = $prev - 100;
+            $LB = max($bandLB, $minForGap);
+            $UB = min($bandUB, $prev - 1);
         }
-        $segments[] = rand($LB, $UB);
+        // If LB > UB (which might happen if constraints tighten), force LB = UB.
+        if ($LB > $UB) {
+            $LB = $UB;
+        }
+        // Pick a random value within the allowed range.
+        $d = rand($LB, $UB);
+        $differences[] = $d;
+        $prev = $d;
     }
 
-    // The $segments array is in ascending order (from 0 up).
-    // We want the output to be 0 followed by segments in descending order so that:
-    // - The first nonzero element (from the highest hundred band) meets number - first <= 100.
-    $outputSegments = [ $segments[0] ]; // keep 0 at the front
-    $rest = array_slice($segments, 1);
-    $rest = array_reverse($rest);
-    $outputSegments = array_merge($outputSegments, $rest);
-
-    // Build the final data array.
+    // Build the data array with 0 as the first element.
     $data = [];
-    foreach ($outputSegments as $seg) {
-        $data[] = [[$seg]];
+    $data[] = [[0]];
+    foreach ($differences as $d) {
+        $data[] = [[$d]];
     }
     $sizeValue = count($data);
 }
