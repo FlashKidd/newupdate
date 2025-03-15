@@ -60,9 +60,9 @@ $scoreBefore = GetTargetScore($pos);
         $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
-            // if (empty($unique_id)){
-            //     // return;
-            // }
+            if (empty($unique_id)){
+                 return;
+            }
 
        // echo "<br>Uniquie_id: $unique_id<hr>";
         //echo "<br>Game_id: $game_id<hr>";
