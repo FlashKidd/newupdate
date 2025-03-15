@@ -36,7 +36,7 @@ $c_values = [
     ];
 
 $urls_ar = array();
-
+$c_values = array_rand($c_values, 4);
 foreach ($c_values as $c) {
 
     
