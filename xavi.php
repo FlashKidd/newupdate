@@ -106,81 +106,41 @@ echo "\nOur target at num3 is: $number3";
           echo "\n<br> X-Powered-Version: $x_power\n";
 
        
- $testSom = GetTargetScore($pos);
-        if($pos == 0){
-            $score = rand(17,rand(40,100));
-            $score =-100;
-     }
-        else{
-          
-
-            $score = $number3+rand(1,100);
-         
-    
-             if($number3-$testSom>100){
-                $score = $testSom+rand(1,100);
-         }
-            
-           
-             
-            
-        }
-        
-        $increment = 1;
-        while(($score-$testSom)>100){
-    $score-=rand(1,10);
- 
-   }
-        
-           
-            
-            // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
-                
-            //    // if ($pos>=6 || $pos ==0){
-            //  // $score =  rand(500,1000)+$number3;
-           
-            //     $score = rand($number3,($number3+rand(5,10)));
-           
-            // //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
-
-            // //  if ($number3 >= 45000){
-            // // return;
-            // //  }
-
-            // }
-               /// }
-               
-            //if($score <40000){
-              //  $score+= rand(10000,20000);
-           // }
-            // sleep(5);
-       // }
-// $score += rand(100,500);
-//if($score<=0){
-      //  $score = 10;
-//}
-//$score = rand($number3,($number3+rand(5,10)));
- while($score>400){
-        
-        $score = $score - rand(10,30);
+$testSom = GetTargetScore($pos);
+if($pos == 0){
+    $score = rand(17,rand(40,100));
+    $score =-100;
+} else {
+    $score = $number3+rand(1,100);
+    if($number3-$testSom>100){
+        $score = $testSom+rand(1,100);
     }
-//$score = rand(10,60);
+}
+
+// Ensure the condition is never broken
+while(($score-$testSom)>100){
+    $score-=rand(1,10);
+}
+
+// Round the score
 $score = round($score, -1); 
 
+$increment = 1;
+while(($score-$testSom)>100){
+    $score-=rand(1,10);
+}
 
+// Round the score
+$score = round($score, -1); 
 
-     
-        ///////////////////////////
-        $uA = RandomUa();
-        
-        //echo "\n<br>UA used => $uA\n";
-        $memory = validate_request($x_power,$score);
-        $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
+// Continue with the rest of your code
+while($score>400){
+    $score = $score - rand(10,30);
+}
 
+$score = round($score, -1); 
 
-//  sleep(rand(40,80));     
-// }
-
-//}
-
+$uA = RandomUa();
+$memory = validate_request($x_power,$score);
+$OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
 
