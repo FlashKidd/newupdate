@@ -106,13 +106,13 @@ echo "\nOur target at num3 is: $number3";
           echo "\n<br> X-Powered-Version: $x_power\n";
 
        
-
+ $testSom = GetTargetScore($pos);
         if($pos == 0){
             $score = rand(17,rand(40,100));
             $score =-100;
      }
         else{
-           $testSom = GetTargetScore($pos);
+          
 
             $score = $number3+rand(1,100);
          
