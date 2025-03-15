@@ -120,8 +120,8 @@ echo "\nOur target at num3 is: $number3";
     $score-=rand(1,10);
  
    }
-             if($number3-$testSom>100){
-                $score = $testSom+rand(1,100);
+             if($number3-$testSom>50){
+                $score = $testSom+rand(1,50);
          }
             
            
