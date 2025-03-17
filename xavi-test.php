@@ -123,9 +123,9 @@ $scoreBefore = GetTargetScore($pos);
              if($number3-$testSom>100){
                 $score = $testSom+rand(0,10);
          }
-         else if (abs($testSom - 400) <= 100 && $number3 == 400) {
-        $score = 200;
-    }
+    //      else if (abs($testSom - 400) <= 100 && $number3 == 400) {
+    //     $score = 200;
+    // }
             
            
              
