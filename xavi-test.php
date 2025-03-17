@@ -107,14 +107,14 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos == 0) {
+if ($pos < 3) {
     $score = rand(17, rand(40, 100));
 } else {
     $testSom = GetTargetScore($pos);
     $score = $number3 + rand(0, 10);
 
     if ($number3 - $testSom > 100) {
-        $score = $testSom + rand(0, 10);
+        $score = $testSom + rand(0, 20);
     }
 
     while ($score >= 78) {
