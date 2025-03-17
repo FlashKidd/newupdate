@@ -107,95 +107,24 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-      if($pos == 0){
-    $score = rand(17,rand(40,100));
-   
+if ($pos == 0) {
+    $score = rand(17, rand(40, 100));
 } else {
+    $testSom = GetTargetScore($pos);
+    $score = $number3 + rand(0, 10);
 
-           $testSom = GetTargetScore($pos);
-
-            $score = $number3+rand(0,10);
-         
-   //  while(($score-$testSom)>100){
-   //  $score-=rand(1,10);
- 
-   // }
-             if($number3-$testSom>100){
-                $score = $testSom+rand(0,10);
-         }
-    //      else if (abs($testSom - 400) <= 100 && $number3 == 400) {
-    //     $score = 200;
-    // }
-            
-           
-             
-            
-        }
-        
-        $increment = 1;
-        
-//              if (in_array($current_time->format('i'), ['17','34','45'])) {
-            
-//             if($score<$number3){
-                        
-//             $score = rand($number3,($number3+rand(35,10)));
-                        
-//             }
-
-//             }
-//  if (in_array($current_time->format('i'), ['34','45'])) {
-//             if($score<300){
-// $score = rand(300,350);
-//             }
-//  }    
-
-            // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
-                
-            //    // if ($pos>=6 || $pos ==0){
-            //  // $score =  rand(500,1000)+$number3;
-           
-            //     $score = rand($number3,($number3+rand(10,5)));
-           
-            // //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
-
-            // //  if ($number3 >= 45000){
-            // // return;
-            // //  }
-
-            // }
-               /// }
-               
-            //if($score <40000){
-              //  $score+= rand(10000,20000);
-           // }
-            // sleep(5);
-       // }
-// $score += rand(100,500);
-//$score = rand($number3,($number3+rand(10,50)));
-// if($score>400){
-// $score = rand(398,400);
-// }
- while($score>=200){
-        
-        $score = $score - rand(10,30);
+    if ($number3 - $testSom > 100) {
+        $score = $testSom + rand(0, 10);
     }
-// $score = round($score, -1);
 
-// $score = rand(1,50);
-//$score =-$score;
-   
-        ///////////////////////////
-        $uA = RandomUa();
-        
-        //echo "\n<br>UA used => $uA\n";
-        $memory = validate_request($x_power,$score);
-        $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
+    while ($score >= 200) {
+        $score -= rand(10, 30);
+    }
+}
 
-//     sleep(rand(40,80));
-// }
-        
+$increment = 1;
 
-
-//}
-
+$uA = RandomUa();
+$memory = validate_request($x_power, $score);
+$OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
 
