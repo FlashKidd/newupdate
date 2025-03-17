@@ -117,7 +117,7 @@ if ($pos == 0) {
         $score = $testSom + rand(0, 10);
     }
 
-    while ($score >= 200) {
+    while ($score >= 78) {
         $score -= rand(10, 30);
     }
 }
