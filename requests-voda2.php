@@ -41,7 +41,7 @@ $c_values =[
 
 $urls_ar = array();
 shuffle($c_values); 
-$randomItems = array_slice($c_values, 0, rand(1,4)); 
+$randomItems = array_slice($c_values, 0, 4); 
 
 foreach ($randomItems as $c) {
 
