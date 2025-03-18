@@ -163,8 +163,8 @@ function AttackLast($url,$xavi,$score,$power,$memory,$increment,$uA,$array){
 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
-               curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-               curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
+               // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+               // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
                 curl_setopt($ch, CURLOPT_POST, 1);
                 $headers = array(
                     'Accept: */*',
@@ -272,8 +272,8 @@ curl_close($ch);
 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
-         curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-        curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
+        //  curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
                 curl_setopt($ch, CURLOPT_POST, 1);
                 $headers = array(
                     'Accept: */*',
