@@ -142,7 +142,7 @@ while($score>200){
     $score = $score - rand(10,30);
 }
 
-$score = round($score, -1); 
+// $score = round($score, -1); 
 
 $uA = RandomUa();
 $memory = validate_request($x_power,$score);
