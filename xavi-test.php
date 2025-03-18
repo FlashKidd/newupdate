@@ -27,8 +27,8 @@ $scoreBefore = GetTargetScore($pos);
        // $scoreAfter = GetTargetScore($pos);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
-        curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-        curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
+        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -72,8 +72,8 @@ $scoreBefore = GetTargetScore($pos);
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
-        curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-        curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
+        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Referer:'.$redirectedUrl,
