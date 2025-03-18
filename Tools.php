@@ -344,46 +344,46 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
   $min = 10;
  $max = 100;
     
-if ($number <= 100) {
-    // If number is 100 or less, output only 0.
+if ($number <= $max) {
+    // If number is $max or less, output only 0.
     $data = [];
     $sizeValue = 0;
 } else {
     // Determine how many segments we need.
     // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
     // 4 segments for a number in the 300s, etc.
-    $sizeValue = intdiv($number - 1, 100) + 1;
+    $sizeValue = intdiv($number - 1, $max) + 1;
     $differences = [];
     $prev = $number; // start from the full number
 
     // Loop from the highest segment down to the lowest.
-    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ 100.
-    // The lowest segment (i == 1) is forced into the 0–100 band.
+    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ $max.
+    // The lowest segment (i == 1) is forced into the 0–$max band.
     for ($i = $sizeValue - 1; $i >= 1; $i--) {
         if ($i == $sizeValue - 1) {
             // Highest segment: it must lie in the band for this segment.
-            // Its hundred band is from (($i - 1)*100 + 1) to ($i*100).
-            // Also enforce that gap: number - d ≤ 100  → d ≥ number - 100.
-            $bandLB = ($i - 1) * 100 + 1;
-            $bandUB = $i * 100;
-            $minForGap = $number - 100;
+            // Its hundred band is from (($i - 1)*$max + 1) to ($i*$max).
+            // Also enforce that gap: number - d ≤ $max  → d ≥ number - $max.
+            $bandLB = ($i - 1) * $max + 1;
+            $bandUB = $i * $max;
+            $minForGap = $number - $max;
             $LB = max($bandLB, $minForGap);
             $UB = min($bandUB, $prev - 1);
         } elseif ($i == 1) {
-            // Lowest segment: force it into 0–100.
+            // Lowest segment: force it into 0–$max.
             $bandLB = 1;
-            $bandUB = 100;
-            // Also ensure the gap from the previous segment is at most 100.
-            $minForGap = $prev - 100;
+            $bandUB = $max;
+            // Also ensure the gap from the previous segment is at most $max.
+            $minForGap = $prev - $max;
             $LB = max($bandLB, $minForGap);
             $UB = $bandUB;
         } else {
             // Intermediate segments: they must fall in their hundred band.
-            // For i-th segment, the band is from (($i - 1)*100 + 1) to ($i*100).
-            $bandLB = ($i - 1) * 100 + 1;
-            $bandUB = $i * 100;
-            // Also enforce that the gap from the previous segment is ≤ 100.
-            $minForGap = $prev - 100;
+            // For i-th segment, the band is from (($i - 1)*$max + 1) to ($i*$max).
+            $bandLB = ($i - 1) * $max + 1;
+            $bandUB = $i * $max;
+            // Also enforce that the gap from the previous segment is ≤ $max.
+            $minForGap = $prev - $max;
             $LB = max($bandLB, $minForGap);
             $UB = min($bandUB, $prev - 1);
         }
