@@ -108,7 +108,7 @@ echo "\nOur target at num3 is: $number3";
        
 $testSom = GetTargetScore($pos);
 if($pos == 0){
-    $score = rand(5,rand(20,40));
+    $score = rand(5,rand(20,25));
     // $score =-100;
 } else {
   
