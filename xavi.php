@@ -108,36 +108,36 @@ echo "\nOur target at num3 is: $number3";
        
 $testSom = GetTargetScore($pos);
 if($pos == 0){
-    $score = rand(17,rand(40,100));
-    $score =-100;
+    $score = rand(5,rand(20,40));
+    // $score =-100;
 } else {
   
-    $score = $number3+rand(1,100);
-    if($number3-$testSom>100){
-        $score = $testSom+rand(1,100);
-   }  else if (abs($testSom - 200) <= 100 && $number3 == 200) {
-        $score = 200;
-    }
+    $score = $number3+rand(1,25);
+    if($number3-$testSom>25){
+        $score = $testSom+rand(1,25);
+   // }  else if (abs($testSom - 200) <= 100 && $number3 == 200) {
+   //      $score = 200;
+   //  }
 }
 
 // Ensure the condition is never broken
-while(($score-$testSom)>100){
+while(($score-$testSom)>25){
     $score-=rand(1,10);
 }
 
 // Round the score
-$score = round($score, -1); 
+// $score = round($score, -1); 
 
 $increment = 1;
-while(($score-$testSom)>100){
-    $score-=rand(1,10);
-}
+// while(($score-$testSom)>25){
+//     $score-=rand(1,10);
+// }
 
 // Round the score
-$score = round($score, -1); 
+// $score = round($score, -1); 
 
 // Continue with the rest of your code
-while($score>400){
+while($score>200){
     $score = $score - rand(10,30);
 }
 
