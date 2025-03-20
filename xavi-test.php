@@ -107,7 +107,7 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos < ) {
+if ($pos < 7) {
     $score = rand(17, rand(40, 100));
 } else {
     $testSom = GetTargetScore($pos);
