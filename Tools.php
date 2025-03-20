@@ -347,7 +347,7 @@ $data = [];
 if ($number <= $max) {
     // If number is $max or less, output only 0.
     
-    $data = [[[0]]];
+    $data = [];
     $sizeValue = 0;
 } else {
     // Determine how many segments we need.
