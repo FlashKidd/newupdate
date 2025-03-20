@@ -127,7 +127,7 @@ if ($pos < 7) {
 
             $score = $number3 + rand(0, 10);
 
-     while ($score >= 210) {
+     while ($score >= 250) {
         $score -= rand(10, 30);
      }
 
