@@ -41,10 +41,10 @@ $c_values =[
 
 $urls_ar = array();
 shuffle($c_values); 
-$randomItems = array_slice($c_values, 0, 4); 
+$randomItems = array_slice($c_values, 0, 3); 
 
 foreach ($randomItems as $c) {
-sleep(rand(0,30));
+//sleep(rand(0,30));
     
     $url = 'http://102.210.146.144/newupdate/xavi.php?c=' . urlencode($c);
 
