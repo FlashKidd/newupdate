@@ -3,6 +3,10 @@
 // while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
+$check_time = new DateTime('04:00'); 
+$check_tim = new DateTime('17:00');
+
+
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
@@ -132,7 +136,13 @@ if ($pos < 7) {
      }
 
              }
+if ($current_time > $check_time && $current_time < $check_tim) {
 
+     while ($score >= 100) {
+        $score -= rand(10, 30);
+     }
+
+}
 
 $increment = 1;
 
