@@ -117,15 +117,22 @@ if ($pos < 7) {
         $score = $testSom + rand(0, 20);
     }
 
-        if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
+        }
+
+ while ($score >= 150) {
+        $score -= rand(10, 30);
+     }
+
+ if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
             $score = $number3 + rand(0, 10);
+
+     while ($score >= 200) {
+        $score -= rand(10, 30);
+     }
+
              }
 
-    while ($score >= 150) {
-        $score -= rand(10, 30);
-    }
-}
 
 $increment = 1;
 
