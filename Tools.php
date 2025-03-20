@@ -343,6 +343,10 @@ curl_close($ch);
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
 $min = 10;
 $max = 25;
+$null = rand(1,2);
+
+if($null == 1){
+
 $data = [];
 if ($number <= $max) {
     // If number is $max or less, output only 0.
@@ -412,7 +416,57 @@ $result = [
     "size" => [count($data), 1, 1],
     "data" => $data
 ];
+}else{
 
+$data = [];
+ // Generate a random number between 200 and 600
+ $randomValue = rand($min, $max);
+
+ // Check if the number can be reduced to zero in one step
+ if ($number <= $randomValue) {
+    // return "0";
+ }
+
+ // Start with 0 as the first element
+ $data[] = [[0]];
+
+ $currentValue = $number;
+ $decide = 0;
+ // Continue subtracting until the number is zero
+ while ($currentValue > 0) {
+     // Generate a random number between 200 and 600
+ $randomValue = rand($min, $max);
+      
+     
+     // Decrease the number by the random value, but don't go below 0
+     $currentValue -= $randomValue;
+     //echo "\n<br> $randomValue $currentValue";
+     // Ensure the number does not drop below 0
+     if ($currentValue < 0) {
+         $currentValue = 0;
+     }
+
+     // Add the current value to the data array only if it’s greater than zero
+     if ($currentValue > 0) {
+         $data[] = [[$currentValue]];
+         
+     }
+ }
+
+ // Ensure that the last value is not zero if it was added already
+ if (end($data)[0][0] == 0) {
+     array_pop($data);
+ }
+
+ // Format the result into the JSON structure
+ $result = [
+     "c2array" => true,
+     "size" => [count($data), 1, 1],
+     "data" => $data
+ ];
+ 
+
+}
 
 // Sort the data in ascending order
 $data = array_filter($data, function($value) {
