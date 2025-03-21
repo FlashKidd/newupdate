@@ -127,7 +127,7 @@ if ($pos < 7) {
     $score = $number3 + rand(0, 10);
 
     if ($number3 - $testSom > 100) {
-        $score = $testSom + rand(0, 20);
+        $score = $testSom + rand(0, 100);
     }
 
         }
@@ -152,6 +152,10 @@ if ($current_time >= $check_time && $current_time <= $check_tim) {
         $score -= rand(10, 30);
      }
 
+}
+
+while(($score-$testSom)>100){
+    $score-=rand(1,10);
 }
 
 $increment = 1;
