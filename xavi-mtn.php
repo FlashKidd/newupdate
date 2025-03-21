@@ -139,7 +139,7 @@ if ($pos < 7) {
 
  if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
 
-            $score = $number3 + rand(0, 10);
+            $score = $number3 + rand(50, 100);
 
      while ($score >= ($limit+100)) {
         $score -= rand(10, 30);
