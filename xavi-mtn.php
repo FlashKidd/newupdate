@@ -72,7 +72,16 @@ $scoreBefore = GetTargetScore($pos);
 
        // echo "<br>Uniquie_id: $unique_id<hr>";
         //echo "<br>Game_id: $game_id<hr>";
+     $limit = $number3+100;
 
+      if ($number3  >= 150 && $number3 <= 200){
+      $limit = 150;
+      }else if ($number3  >= 201 && $number3 <= 300){
+      $limit = 250;
+      }
+     else if ($number3  >= 301 && $number3 <= 400){
+      $limit = 350;
+      }
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
@@ -123,22 +132,23 @@ if ($pos < 7) {
 
         }
 
- while ($score >= 150) {
+ while ($score >= $limit) {
         $score -= rand(10, 30);
      }
+
 
  if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
 
             $score = $number3 + rand(0, 10);
 
-     while ($score >= 250) {
+     while ($score >= $limit) {
         $score -= rand(10, 30);
      }
 
              }
 if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-     while ($score >= 100) {
+     while ($score >= 150) {
         $score -= rand(10, 30);
      }
 
