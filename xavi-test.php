@@ -4,7 +4,7 @@
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 $check_time = new DateTime('04:00'); 
-$check_tim = new DateTime('17:00');
+$check_tim = new DateTime('12:00');
 
 
 //Business of the day
