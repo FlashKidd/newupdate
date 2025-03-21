@@ -72,7 +72,7 @@ $scoreBefore = GetTargetScore($pos);
 
        // echo "<br>Uniquie_id: $unique_id<hr>";
         //echo "<br>Game_id: $game_id<hr>";
-     $limit = $number3+100;
+     $limit = 100;
 
       if ($number3  >= 150 && $number3 <= 200){
       $limit = 150;
@@ -141,7 +141,7 @@ if ($pos < 7) {
 
             $score = $number3 + rand(0, 10);
 
-     while ($score >= $limit) {
+     while ($score >= ($limit+100)) {
         $score -= rand(10, 30);
      }
 
