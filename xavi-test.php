@@ -76,6 +76,11 @@ $scoreBefore = GetTargetScore($pos);
 
       if ($number3  >= 150 && $number3 <= 200){
       $limit = 150;
+      }else if ($number3  >= 201 && $number3 <= 300){
+      $limit = 250;
+      }
+     else if ($number3  >= 301 && $number3 <= 400){
+      $limit = 350;
       }
         ###################
         $ch = curl_init();
