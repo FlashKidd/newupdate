@@ -138,7 +138,7 @@ if ($pos < 7) {
              }
 if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-     while ($score >= 100) {
+     while ($score >= 150) {
         $score -= rand(10, 30);
      }
 
