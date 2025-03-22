@@ -47,7 +47,7 @@ $cookiez = [
   // }
 system('clear');
 // echo "\n$ii cookie sent \n";
-        // $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+         $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
         
         //echo "Cookie; $cookie";
         $pos = GetPosition ($cookie);
