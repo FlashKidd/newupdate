@@ -112,9 +112,9 @@ if($pos == 0){
     // $score =-100;
 } else {
   
-    $score = $number3+rand(1,25);
+    $score = $number3+rand(10,25);
     if($number3-$testSom>25){
-        $score = $testSom+rand(1,25);
+        $score = $testSom+rand(10,25);
    } 
  // else if (abs($testSom - 25) <= 25 && $number3 == 25) {
  //        $score = 25;
