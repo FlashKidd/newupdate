@@ -192,6 +192,7 @@ function AttackLast($url,$xavi,$score,$power,$memory,$increment,$uA,$array){
                 curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
                 curl_setopt($ch, CURLOPT_HEADER, 1);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
                 $curl = curl_exec($ch);
                 //echo "Response: $curl\n";
@@ -299,6 +300,7 @@ curl_close($ch);
                 curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
                 curl_setopt($ch, CURLOPT_HEADER, 1);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
                 $curl = curl_exec($ch);
 
