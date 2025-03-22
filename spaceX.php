@@ -10,7 +10,8 @@ $curl->option(CURLOPT_TIMEOUT, 900);
 @unlink('cache');
 
 $starttime = microtime(true);
-
+while(true){
+system("rm -rf cache");
 $c_values = [
      '_ga=GA1.1.1490512954.1733123762; _ga_47GFPLWSMZ=GS1.1.1733123761.1.1.1733124006.0.0.0; XSRF-TOKEN=eyJpdiI6Ii9aQzF5eTEzVkdrWTVBZktlbmI5UWc9PSIsInZhbHVlIjoiL29lYXVQMG80aUxVbVNkNGh4Z0lkQkxBVkdBcldWR1FUSWdHZDBBL1RWYW9lbEFVaWdOWC9iVGhDWHo2WDdlVW16Y1c1NTc2bUkzbzVuYUxaQmt1dkt0bnczOXVtZzhEWlBPNTc0MWozbFpmMzZSK1cweW5aRTJPZGs3c1lidHoiLCJtYWMiOiI4NTZhM2EzODBhMGM3MTEzNDBjYTFiZWUxMjJjYWQwZDc2YTlmMGZiNGJiMTA1MjYyNGNiMTM5YTQ4NjNiYjIwIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IitNakdJT2lLOUkvMWhQVU5KL1lnbFE9PSIsInZhbHVlIjoiS1cxYnRWQ0NKT1k3bkI2YWFMdTNzbjFyVjd2NTNEZk9Kb3FrTzNyKzV0UmlRazI1UjhYaEErZ2pKdUYxSjBoZlc3Z3p6NmhXdW1pQWNNQ25BUWtEaXYrS3pvZnViYzV6UktMd05EMmNJRmlFanc4VnhMVkxlYTR0SmJpblAyb00iLCJtYWMiOiI4ZjBlN2Y1YjAzY2ViYzU4NGQ3OGQ0NGUzY2I3YzdjYTlhMTBhMDhiZTdkOGYwNjAzMGNlMzRkZTQxZjAxYmYwIiwidGFnIjoiIn0%3D',
     
@@ -85,3 +86,5 @@ for ($i = 0; $i < $num_batches; $i++) {
 $endtime = microtime(true);
 $duration = $endtime - $starttime;
 echo "All batches processed. Total execution time: " . $duration . " seconds\n";
+
+}
