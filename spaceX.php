@@ -6,7 +6,7 @@ $curl = new Zebra_cURL();
 $curl->cache('/var/www/html/newupdate/cache', 59);
 $curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
 $curl->threads = 10;
-$curl->option(CURLOPT_TIMEOUT, 900);
+$curl->option(CURLOPT_TIMEOUT, 3600);
 @unlink('cache');
 
 $starttime = microtime(true);
