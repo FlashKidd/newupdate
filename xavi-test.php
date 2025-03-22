@@ -14,9 +14,9 @@ system('clear');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
-if ($number3>=400){
- sleep(rand(10,90));
-}
+// if ($number3>=400){
+//  sleep(rand(10,90));
+// }
 
 
 
