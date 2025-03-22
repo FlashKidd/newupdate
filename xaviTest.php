@@ -43,7 +43,7 @@ $cookiez = [
 $ii++;
 
   if($ii>1){
- sleep(rand(20,60));   
+ // sleep(rand(20,60));   
   }
 system('clear');
 echo "\n$ii cookie sent \n";
@@ -133,8 +133,8 @@ echo "\n$ii cookie sent \n";
        
 $testSom = GetTargetScore($pos);
 if($pos == 0){
-    $score = rand(19,rand(20,25));
-    $score =25;
+    $score = rand(20,25);
+    // $score =25;
 } else {
   
     $score = $number3+rand(20,25);
