@@ -1,7 +1,7 @@
 <?php
 
 
-while(true){
+
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -39,14 +39,14 @@ $cookiez = [
 'XSRF-TOKEN=eyJpdiI6IlAyc0xjWlRXbU8ycmJzQ1VvVEJCYkE9PSIsInZhbHVlIjoiWTRvODNkN0JWbk1ueDNjZnN2alRrSlpISzl1b2tHOG5KME4wL3htandZWUNqdERzWTQya3FKYTA1YnJrMG5mTm0vbmtDeFliRFFWTDQ0TkZtVXdmNFpneHZNZCtIa2dQaHRBVzRFaC92aTNrbGY2L0g5c3RPZ3dGai80UVNENU4iLCJtYWMiOiJlZmExN2ZlODQ1YWU4YTMzYzQyYzYyYTdhODY0ZTc0ZWQ1ZWQ1OThkNmViN2QxNzJhMGYxMmQzZmUzZWM5YmQ2IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IlN2OHg4a0szS2FEa255a1NIUDJZakE9PSIsInZhbHVlIjoiTjJONCtHWmYvd0NFMDUwaGNqUFpiQXlaWTBKamt1NXA1aWVGYVlWbCszd1ZVcXJzelJVTlNVODJ4TXdJOW0zWncrRkxUSmNOUDgrV005RVZZZ0VnYVJUdS8rdEFCc2hlL0cyVGVKTUpEQW5hNFF6ZVBvYzF0ZzBQQVhhcDdNTEMiLCJtYWMiOiI4NjgzOWFiZWQ5MDVmOGFkZmRmMGVmZDFjNWUyYzc3NGFlYjllOGNiNWM2MzBmYzg5NDNmY2NkMjgwNjQ4ZDc1IiwidGFnIjoiIn0%3D',
  ];
 
- foreach ($cookiez as $cookie){
-$ii++;
+//  foreach ($cookiez as $cookie){
+// $ii++;
 
-  if($ii>1){
-  sleep(rand(20,60));   
-  }
+  // if($ii>1){
+  // sleep(rand(20,60));   
+  // }
 system('clear');
-echo "\n$ii cookie sent \n";
+// echo "\n$ii cookie sent \n";
         // $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
         
         //echo "Cookie; $cookie";
@@ -172,5 +172,5 @@ while($score>200){
 $uA = RandomUa();
 $memory = validate_request($x_power,$score);
 $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
-}
-}
+// }
+// }
