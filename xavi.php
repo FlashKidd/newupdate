@@ -134,7 +134,7 @@ system('clear');
 $testSom = GetTargetScore($pos);
 if($pos == 0){
     $score = rand(19,rand(20,25));
-    // $score =-100;
+    $score =-25;
 } else {
   
     $score = $number3+rand(10,25);
