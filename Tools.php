@@ -345,7 +345,7 @@ $min = 10;
 $max = 25;
 $null = rand(1,2);
 
-if($null == 1){
+if($number <= 100){
 
 $data = [];
 if ($number <= $max) {
