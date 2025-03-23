@@ -86,6 +86,9 @@ $scoreBefore = GetTargetScore($pos);
      else if ($number3  >= 301 && $number3 <= 400){
       $limit = 350;
       }
+     else if ($number3  >= 401 && $number3 <= 500){
+      $limit = 450;
+      }
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
