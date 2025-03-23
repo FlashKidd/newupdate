@@ -88,6 +88,8 @@ $scoreBefore = GetTargetScore($pos);
       }
      else if ($number3  >= 401 && $number3 <= 500){
       $limit = 450;
+      }else{
+      $limit = 450;
       }
         ###################
         $ch = curl_init();
