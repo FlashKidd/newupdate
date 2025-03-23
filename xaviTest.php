@@ -43,7 +43,7 @@ $cookiez = [
 $ii++;
 
   if($ii>1){
-  sleep(rand(40,60));   
+  sleep(rand(60,80));   
   }
 system('clear');
 echo "\n$ii cookie sent \n";
