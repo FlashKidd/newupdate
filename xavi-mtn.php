@@ -14,6 +14,10 @@ system('clear');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
+// if ($number3>=400){
+//  sleep(rand(10,90));
+// }
+
 
 
     
@@ -81,6 +85,11 @@ $scoreBefore = GetTargetScore($pos);
       }
      else if ($number3  >= 301 && $number3 <= 400){
       $limit = 350;
+      }
+     else if ($number3  >= 401 && $number3 <= 500){
+      $limit = 450;
+      }else{
+      $limit = 450;
       }
         ###################
         $ch = curl_init();
