@@ -1,7 +1,7 @@
 <?php
 //echo "cool down";return;
 system("rm -rf cache");
-while(true){
+
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
 $curl = new Zebra_cURL();
 $curl->cache('/var/www/html/newupdate/cache', 59);
@@ -45,7 +45,7 @@ foreach ($c_values as $c) {
 
 // Define batch size and delay
 $batch_size = 2;
-$delay = 80; // 1 minute 20 seconds in seconds
+$delay = 90; // 1 minute 20 seconds in seconds
 
 // Calculate the number of batches
 $num_batches = ceil(count($urls_ar) / $batch_size);
@@ -88,4 +88,4 @@ $endtime = microtime(true);
 $duration = $endtime - $starttime;
 echo "All batches processed. Total execution time: " . $duration . " seconds\n";
 
-}
+
