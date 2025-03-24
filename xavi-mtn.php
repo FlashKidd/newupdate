@@ -133,7 +133,7 @@ if ($pos < 7) {
     $score = rand(17, rand(40, 100));
 } else {
     $testSom = GetTargetScore($pos);
-    $score = $number3 + rand(0, 10);
+    $score = $number3 + rand(0, 100);
 
     if ($number3 - $testSom > 100) {
         $score = $testSom + rand(0, 100);
@@ -141,7 +141,7 @@ if ($pos < 7) {
 
         }
 
- while ($score >= $limit) {
+ while ($score >= ($limit+100)) {
         $score -= rand(10, 30);
      }
 
