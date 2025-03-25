@@ -384,12 +384,12 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
     $unique_id = isset($query_params['unique_id']) ? $query_params['unique_id'] : '';
     $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
 
-    $xavi = GetXavi($unique_id,$game_id,$number,$result);
+    $xavi = GetXavi($unique_id,$game_id,$number,$arrayData);
     $cleanXavi = trim($xavi, '"');
     //echo "\n Xavi Generated => $cleanXavi";
     $memory = validate_request($power,$number);
     AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
-    return json_encode($result);
+    return json_encode($arrayData);
 }
 
 
