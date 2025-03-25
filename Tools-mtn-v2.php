@@ -350,97 +350,35 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
     
  $min = 10;
  $max = 25;
-    
-  if ($number <= 100) {
-    // If number is 100 or less, output only 0.
-    $data = [0];
-    $sizeValue = 0;
-} else {
-    // Determine how many segments we need.
-    // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
-    // 4 segments for a number in the 300s, etc.
-    $sizeValue = intdiv($number - 1, 100) + 1;
-    $differences = [];
-    $prev = $number; // start from the full number
+   $random_subtract = 100;
 
-    // Loop from the highest segment down to the lowest.
-    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ 100.
-    // The lowest segment (i == 1) is forced into the 0–100 band.
-    for ($i = $sizeValue - 1; $i >= 1; $i--) {
-        if ($i == $sizeValue - 1) {
-            // Highest segment: it must lie in the band for this segment.
-            // Its hundred band is from (($i - 1)*100 + 1) to ($i*100).
-            // Also enforce that gap: number - d ≤ 100  → d ≥ number - 100.
-            $bandLB = ($i - 1) * 100 + 1;
-            $bandUB = $i * 100;
-            $minForGap = $number - 100;
-            $LB = max($bandLB, $minForGap);
-            $UB = min($bandUB, $prev - 1);
-        } elseif ($i == 1) {
-            // Lowest segment: force it into 0–100.
-            $bandLB = 1;
-            $bandUB = 100;
-            // Also ensure the gap from the previous segment is at most 100.
-            $minForGap = $prev - 100;
-            $LB = max($bandLB, $minForGap);
-            $UB = $bandUB;
+        if (($number - $random_subtract) > 0) {
+            $resultFirst = $number - $random_subtract;
+            // echo "Original Number: " . $number . "\n";
+            // echo "First Number: " . $resultFirst;
+             $data[] = [[0],[$resultFirst]];
+                $arrayData = [
+                "c2array" => true,
+                "size" => [2, 1, 1],
+                "data" => $data
+            ];
+         $flash = json_encode($arrayData);
         } else {
-            // Intermediate segments: they must fall in their hundred band.
-            // For i-th segment, the band is from (($i - 1)*100 + 1) to ($i*100).
-            $bandLB = ($i - 1) * 100 + 1;
-            $bandUB = $i * 100;
-            // Also enforce that the gap from the previous segment is ≤ 100.
-            $minForGap = $prev - 100;
-            $LB = max($bandLB, $minForGap);
-            $UB = min($bandUB, $prev - 1);
-        }
-        // If LB > UB (which might happen if constraints tighten), force LB = UB.
-        if ($LB > $UB) {
-            $LB = $UB;
-        }
-        // Pick a random value within the allowed range.
-        $d = rand($LB, $UB);
-        $differences[] = $d;
-        $prev = $d;
-    }
+           $flash = 'scoreArray":"'.$number.'"';
+         }
 
-    // Build the data array with 0 as the first element.
-    $data = [];
-    $data[] = [[0]];
-    foreach ($differences as $d) {
-        $data[] = [[$d]];
-    }
-    $sizeValue = count($data);
-}
-
-$result = [
-    "c2array" => true,
-    "size"    => [$sizeValue, 1, 1],
-    "data"    => $data
-];
-
-
-$data = array_filter($data, function($value) {
-    return $value[0][0] != 0;
-});
-// Sort the data in ascending order
-usort($data, function($a, $b) {
-    return $a[0][0] - $b[0][0];
-});
-
-
-foreach ($data as $value) {
+// foreach ($data as $value) {
             
             $skore =  $value[0][0];
             //echo "\nSent $skore"; 
             $powerBefore = $power;
-            $memory = validate_request($power,$skore);
+            $memory = validate_request($power,$resultFirst);
             $increment = 1;
           
-           $power = Attack($url,$skore,$power,$memory,$increment,$uA);
+           $power = Attack($url,$resultFirst,$power,$memory,$increment,$uA);
            
-}
-    $flash = json_encode($result);
+// }
+   // $flash = json_encode($result);
     $query_str = parse_url($url, PHP_URL_QUERY);
     parse_str($query_str, $query_params);
     $unique_id = isset($query_params['unique_id']) ? $query_params['unique_id'] : '';
