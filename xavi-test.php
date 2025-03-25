@@ -165,12 +165,12 @@ if ($current_time >= $check_time && $current_time <= $check_tim) {
 
 }
 
-while(($score-$testSom)>50){
+while(($score-$testSom)>100){
     $score-=rand(1,10);
 }
 
 echo "\n Our score = $score";
-$score = 350;
+
 $increment = 1;
 
 $uA = RandomUa();
