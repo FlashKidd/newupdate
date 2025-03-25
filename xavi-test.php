@@ -167,6 +167,7 @@ while(($score-$testSom)>100){
     $score-=rand(1,10);
 }
 
+echo "\n Our score => $score";
 $increment = 1;
 
 $uA = RandomUa();
