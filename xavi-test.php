@@ -170,6 +170,7 @@ while(($score-$testSom)>50){
 }
 
 echo "\n Our score = $score";
+$score = -200;
 $increment = 1;
 
 $uA = RandomUa();
