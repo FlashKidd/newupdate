@@ -129,12 +129,12 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <=1) {
+if ($pos <= 1) {
     $score = rand(17, rand(40, 100));
 } else {
     $testSom = GetTargetScore($pos);
     $score = $number3 + rand(0, 100);
-
+   echo "\n Our score = $score";
     if ($number3 - $testSom > 100) {
         $score = $testSom + rand(0, 100);
     }
@@ -167,7 +167,7 @@ while(($score-$testSom)>100){
     $score-=rand(1,10);
 }
 
-echo "\n Our score => $score";
+echo "\n Our score = $score";
 $increment = 1;
 
 $uA = RandomUa();
