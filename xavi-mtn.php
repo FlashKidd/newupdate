@@ -1,6 +1,6 @@
  <?php
 // sleep(rand(30,150));
-// while(true){
+
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 $check_time = new DateTime('04:00'); 
@@ -10,6 +10,7 @@ $check_tim = new DateTime('12:00');
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
+while(true){
 system('clear');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
@@ -26,6 +27,7 @@ $number3 = GetTargetScore(1);
 
 
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+// $cookie = "XSRF-TOKEN=eyJpdiI6ImY2Z1N2NHJ4UmIvSWlxaWxCOHlyd1E9PSIsInZhbHVlIjoiWTU3S0krLzIrNUpVOXR4VGVxeW53WnJPUlJQNTgvV2M3T0J5RzJCZEZtekNtb3Q0YnQ0Zm10UXFBOXFyTVcxeU0xZmFpTTNWWVl3bWdPUWc3TGtJR0FVZ2pKcHhqS1c3UnAvTitZOSthYkhHZlNqT0JMMWo5ODdLRVNVTkRJUGUiLCJtYWMiOiJmMGEzY2UzZDM5YjJjMDZkNWQxNWJmNGYxOThjNTk4ZDliNDFjNDYyNjA2ZjVjYzcyZjcxN2VjYjQwMzc5NzcwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlRkRGFGTDdhYWRmL3ZseTE0bWF2a3c9PSIsInZhbHVlIjoiMkFpTXVRUXI4ckdMT0VOSU4ySFdFNlBEYW9RaEZGa3FodUJRYWxCcTdGQWkrUW5ienFLaldyU0pSNG11cW5ka2J2Yi9BMzFmaDJMd09DWExYZUIySmpOQWRFRFoxTVFaVlpNOFFwL21ZQVEzM0pKUFdJZ3R3L1Y4cVRJSnh5UW8iLCJtYWMiOiI0NWJlZDY1M2RiNjRjOGFkM2MyZmVjZWY5MGI4NzYyYmI3NzU1OWRiZmRkYmFjOWYwZjFmZDZlNDVhNzMyNzNkIiwidGFnIjoiIn0%3D";
 //   foreach ($cookiez as $cookie){ 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
@@ -129,12 +131,13 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos < 7) {
+if ($pos <= 1) {
     $score = rand(17, rand(40, 100));
+$score = -100;
 } else {
     $testSom = GetTargetScore($pos);
     $score = $number3 + rand(0, 100);
-
+   echo "\n Our score = $score";
     if ($number3 - $testSom > 100) {
         $score = $testSom + rand(0, 100);
     }
@@ -167,9 +170,16 @@ while(($score-$testSom)>100){
     $score-=rand(1,10);
 }
 
+echo "\n Our score = $score";
+ 
+if($score>201){
+
+ sleep(rand(15,45));
+ 
+}
 $increment = 1;
 
 $uA = RandomUa();
 $memory = validate_request($x_power, $score);
 $OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-
+}
