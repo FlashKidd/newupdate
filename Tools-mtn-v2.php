@@ -414,28 +414,6 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 }
 
 ///sort
-$zero_positions = [];
-$values = [];
-
-foreach ($data as $index => $item) {
-    if ($item === [[0]]) {
-        $zero_positions[] = $index;
-    } else {
-        $values[] = $item[0][0];
-    }
-}
-
-// Sort extracted values in ascending order
-sort($values);
-
-// Reconstruct $data while keeping zeros in place
-$value_index = 0;
-
-foreach ($data as $index => &$item) { // Use reference to modify $data directly
-    if (!in_array($index, $zero_positions)) {
-        $item = [[$values[$value_index++]]];
-    }
-}
 
 
 ///
