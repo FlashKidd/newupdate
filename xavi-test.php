@@ -1,6 +1,6 @@
  <?php
 // sleep(rand(30,150));
-while(true){
+
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 $check_time = new DateTime('04:00'); 
@@ -10,6 +10,7 @@ $check_tim = new DateTime('12:00');
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
+while(true){
 system('clear');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
@@ -172,7 +173,8 @@ while(($score-$testSom)>100){
 echo "\n Our score = $score";
  
 if($score>201){
-sleep(rand(15,45));
+
+ sleep(rand(15,45));
  
 }
 $increment = 1;
