@@ -133,7 +133,7 @@ $scoreBefore = GetTargetScore($pos);
 
 if ($pos <= 1) {
     $score = rand(17, rand(40, 100));
-$score = -100;
+
 } else {
     $testSom = GetTargetScore($pos);
     $score = $number3 + rand(0, 100);
