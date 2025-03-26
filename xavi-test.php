@@ -10,7 +10,7 @@ $check_tim = new DateTime('12:00');
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
-while(true){
+// while(true){
 system('clear');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
@@ -182,4 +182,4 @@ $increment = 1;
 $uA = RandomUa();
 $memory = validate_request($x_power, $score);
 $OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-}
+// }
