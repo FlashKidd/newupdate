@@ -144,7 +144,7 @@ $score = -100;
 
         }
 
- while ($score >= ($limit+100)) {
+      while ($score >= 300) {
         $score -= rand(10, 30);
      }
 
