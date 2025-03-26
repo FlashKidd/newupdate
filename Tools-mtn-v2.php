@@ -429,17 +429,17 @@ usort($data, function($a, $b) {
 });
 
 
-foreach ($data as $value) {
+// foreach ($data as $value) {
             
-            $skore =  $value[0][0];
-            //echo "\nSent $skore"; 
-            $powerBefore = $power;
-            $memory = validate_request($power,$skore);
-            $increment = 1;
+//             $skore =  $value[0][0];
+//             //echo "\nSent $skore"; 
+//             $powerBefore = $power;
+//             $memory = validate_request($power,$skore);
+//             $increment = 1;
           
-           $power = Attack($url,$skore,$power,$memory,$increment,$uA);
+//            $power = Attack($url,$skore,$power,$memory,$increment,$uA);
            
-}
+// }
     $flash = json_encode($result);
     $query_str = parse_url($url, PHP_URL_QUERY);
     parse_str($query_str, $query_params);
