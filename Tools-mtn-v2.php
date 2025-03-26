@@ -415,15 +415,15 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 
 ///sort
 // Remove the first element (which always contains 0)
-$first = array_shift($data);
+// $first = array_shift($data);
 
-// Sort the remaining elements in descending order based on the number
-usort($data, function($a, $b) {
-    return $b[0][0] <=> $a[0][0]; // Descending order
-});
+// // Sort the remaining elements in descending order based on the number
+// usort($data, function($a, $b) {
+//     return $b[0][0] <=> $a[0][0]; // Descending order
+// });
 
-// Reinsert the first element at the beginning of the array
-array_unshift($data, $first);
+// // Reinsert the first element at the beginning of the array
+// array_unshift($data, $first);
 
 
 ///
@@ -435,13 +435,13 @@ $result = [
 ];
 
 
-// $data = array_filter($data, function($value) {
-//     return $value[0][0] != 0;
-// });
-// // Sort the data in ascending order
-// usort($data, function($a, $b) {
-//     return $a[0][0] - $b[0][0];
-// });
+$data = array_filter($data, function($value) {
+    return $value[0][0] != 0;
+});
+// Sort the data in ascending order
+usort($data, function($a, $b) {
+    return $a[0][0] - $b[0][0];
+});
 
 
 foreach ($data as $value) {
