@@ -131,12 +131,12 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 1) {
+if ($pos <= 0) {
     $score = rand(17, rand(40, 100));
 $score = -100;
 } else {
     $testSom = GetTargetScore($pos);
-    $score = $number3 + rand(0, 100);
+    $score = $number3 + rand(50, 100);
    echo "\n Our score = $score";
     if ($number3 - $testSom > 100) {
         $score = $testSom + rand(0, 100);
