@@ -455,9 +455,9 @@ foreach ($data as $value) {
            $power = Attack($url,$skore,$power,$memory,$increment,$uA);
            
 }
-if ($number>0){
- $number = -$number;
-}
+// if ($number>0){
+//  $number = -$number;
+// }
     $flash = json_encode($result);
     $query_str = parse_url($url, PHP_URL_QUERY);
     parse_str($query_str, $query_params);
