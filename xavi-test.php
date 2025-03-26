@@ -172,11 +172,11 @@ while(($score-$testSom)>100){
 
 echo "\n Our score = $score";
  
-if($score>201){
+// if($score>201){
 
- sleep(rand(15,45));
+//  sleep(rand(15,45));
  
-}
+// }
 $increment = 1;
 
 $uA = RandomUa();
