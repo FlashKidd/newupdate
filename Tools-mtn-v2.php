@@ -408,7 +408,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
     $data = [];
     $data[] = [[0]];
     foreach ($differences as $d) {
-        $data[] = [[-$d]];
+        $data[] = [[$d]];
     }
     $sizeValue = count($data);
 }
