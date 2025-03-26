@@ -1,6 +1,6 @@
  <?php
 // sleep(rand(30,150));
-// while(true){
+while(true){
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 $check_time = new DateTime('04:00'); 
@@ -170,10 +170,14 @@ while(($score-$testSom)>100){
 }
 
 echo "\n Our score = $score";
-
+ 
+if($score>201){
+sleep(rand(15,45));
+ 
+}
 $increment = 1;
 
 $uA = RandomUa();
 $memory = validate_request($x_power, $score);
 $OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-
+}
