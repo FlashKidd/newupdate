@@ -1,5 +1,5 @@
  <?php
-// sleep(rand(30,150));
+sleep(rand(30,60));
 
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
@@ -131,12 +131,12 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 0) {
+if ($pos <= 1) {
     $score = rand(17, rand(40, 100));
-$score = -100;
+
 } else {
     $testSom = GetTargetScore($pos);
-    $score = $number3 + rand(50, 100);
+    $score = $number3 + rand(0, 100);
    echo "\n Our score = $score";
     if ($number3 - $testSom > 100) {
         $score = $testSom + rand(0, 100);
@@ -144,7 +144,7 @@ $score = -100;
 
         }
 
- while ($score >= ($limit+100)) {
+      while ($score >= 300) {
         $score -= rand(10, 30);
      }
 
@@ -172,11 +172,11 @@ while(($score-$testSom)>100){
 
 echo "\n Our score = $score";
  
-// if($score>201){
+if($score>201){
 
-//  sleep(rand(15,45));
+ sleep(rand(15,45));
  
-// }
+}
 $increment = 1;
 
 $uA = RandomUa();
