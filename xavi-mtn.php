@@ -144,7 +144,7 @@ if ($pos <= 1) {
 
         }
 
-      while ($score >= rand(380,600)) {
+      while ($score >= 1000) {
         $score -= rand(10, 30);
      }
 
