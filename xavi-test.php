@@ -144,7 +144,7 @@ if ($pos <= 1) {
 
         }
 
-      while ($score >= 1000) {
+      while ($score >= 10000) {
         $score -= rand(10, 30);
      }
 
@@ -167,7 +167,7 @@ if ($pos <= 1) {
 // }
 
 while(($score-$testSom)>1000){
-    $score-=rand(1,10);
+    $score-=rand(100,5000);
 }
 
 echo "\n Our score = $score";
