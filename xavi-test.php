@@ -137,9 +137,9 @@ if ($pos <= 1) {
 } else {
     $testSom = GetTargetScore($pos);
     $score = $number3 + 1000;
-    if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
-     $score = rand(2800,3000);
-   }
+   //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
+   //   $score = rand(2800,3000);
+   // }
    echo "\n Our score = $score";
     if ($number3 - $testSom > 1000) {
         $score = $testSom + 1000;
@@ -149,7 +149,7 @@ if ($pos <= 1) {
         }
 
       while ($score >= 10000) {
-        $score -= rand(10, 30);
+        $score -= rand(1, 10);
      }
 
 
@@ -176,7 +176,7 @@ while(($score-$testSom)>1000){
 
 echo "\n Our score = $score";
  
-if($score>1001){
+if($score>3001){
 
  sleep(rand(15,45));
  
