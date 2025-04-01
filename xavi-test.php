@@ -132,47 +132,47 @@ $scoreBefore = GetTargetScore($pos);
        
 
 if ($pos <= 1) {
-    $score = rand(50,100);
+    $score = 1000;
 
 } else {
     $testSom = GetTargetScore($pos);
-    $score = $number3 + rand(0, 100);
+    $score = $number3 + 1000;
    echo "\n Our score = $score";
-    if ($number3 - $testSom > 100) {
-        $score = $testSom + rand(0, 100);
+    if ($number3 - $testSom > 1000) {
+        $score = $testSom + 1000;
     }
 
         }
 
-      while ($score >= 800) {
+      while ($score >= 1000) {
         $score -= rand(10, 30);
      }
 
 
- if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
+ // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
 
-            $score = $number3 + rand(50, 100);
+ //            $score = $number3 + rand(50, 100);
 
-     while ($score >= ($limit+100)) {
-        $score -= rand(10, 30);
-     }
+ //     while ($score >= ($limit+100)) {
+ //        $score -= rand(10, 30);
+ //     }
 
-             }
-if ($current_time >= $check_time && $current_time <= $check_tim) {
+ //             }
+// if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-     while ($score >= 90) {
-        $score -= rand(10, 30);
-     }
+//      while ($score >= 90) {
+//         $score -= rand(10, 30);
+//      }
 
-}
+// }
 
-while(($score-$testSom)>100){
+while(($score-$testSom)>1000){
     $score-=rand(1,10);
 }
 
 echo "\n Our score = $score";
  
-if($score>201){
+if($score>1001){
 
  sleep(rand(15,45));
  
