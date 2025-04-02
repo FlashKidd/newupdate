@@ -1,0 +1,84 @@
+<?php
+//echo "cool down";return;
+system("rm -rf cache");
+
+require_once '/var/www/html/newupdate/Zebra_cURL.php';
+$curl = new Zebra_cURL();
+$curl->cache('/var/www/html/newupdate/cache', 59);
+$curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
+$curl->threads = 10;
+$curl->option(CURLOPT_TIMEOUT, 3600);
+@unlink('cache');
+
+$starttime = microtime(true);
+
+$c_values = [ "XSRF-TOKEN=eyJpdiI6IkRmWHVUYWo0US9UbHFEbld5WUFBV1E9PSIsInZhbHVlIjoiRGRQMXo2enJHVVJCM3NCMVByeWc2aUpjQmN3YVlHL3R6OS9NYnpSVHFxV1RQTFRLYXg1K0xpV3IrcVR5dGdGakNkQUJEUDJOUDV5S2RvaXRvcElIV0FYL2ZHcFNscGNyajA1UWErd2tpb2tJYzNkR3pCOVVadDIrWTVxSURhMjYiLCJtYWMiOiIzNTM2MGI4NTZmNTA2Njk2NTM5NjgzMDM3NGZjZDI3ZTYwMjc0YmFjYmFjMTk2ZjY3MjYxNzAzZWNmOWFmODgyIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IkVHOUVSME1LdjE3VVVKeWJjOTJkMkE9PSIsInZhbHVlIjoiNktWNEl6UTFLVmt1czVOVTUvOHREeFRXV3RJUjU5Z3RsQkc2ZVZ1VUJPa29KMGpuU2l2bzJpek9tM3VScnFIeWVUQ01EL1p1QUQya2xHdElETVpPSld2WTJjanpqNGZQMlkxYWRkbTQ1b3NSSXNFZklMQ3YyeER4WFdTQW0xTkwiLCJtYWMiOiI4ODIzZDA3NWZkODBjMWZmNzI0YmRmNDk3YzEyNGFkYTA4MDkzMTNkNDlmMTE1NzY2MzQ5NzdiYWZkY2IyYjJkIiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6IlJQT1NKeXhJd0RSK2RvTk42UkNGNGc9PSIsInZhbHVlIjoiemUrWnRMVFFBclo4Y09aNnpreGM5anJXS0ZLRWxZMjBLYk8xSVZ4MFVwTVdjMTBNdlJ2NDlNU3o5bUo1QkJ0NUVBd2NwU1NBM3pNaEFDR2J5TUxMQ2thcnlFRDFadm9TeFdKQU1EVDJEOUg3N2Zud2JDQ3FGNEZ5REM2S01mWEMiLCJtYWMiOiJiMzhkOGE5YzFkN2EzMjVjOGYyY2NhYWExOTZiNTEzNTkyYTQ5NzhiYjlkNzA0YTBjNmViMTA5ZDA5MzQxN2M0IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlNQVVA2RXdTWDRWakpOMkFKc1hEbGc9PSIsInZhbHVlIjoiazREN1BDVE9Ib09rRW1yb1FFSldMdkxmVXlnbklwMHZFRklTcHJGNmdoUUdRc3IzNzk1MUYvZVlPaktId2V3dlkrakxCaTR5UWtMZ3NKYmZ5RFhZU2hJWlJRQjdBd3MxZVhsSXAyQ20xbm5yR1lXV0IxSCt0M0h4S0pMMysvejciLCJtYWMiOiIyNTUwNGYzNzc4Njc0MDJhMzdiMzE3MTEzNGFiZjhiZTBhNjMyMTc5MTJlNDE0ZTFmNWZkOTBmOWViYzU2NzQxIiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6InRBU3VpaDd3VXZxRlgwMStjTnNOTHc9PSIsInZhbHVlIjoiTzQxK0krRmdIbGJGTEFxbmxicGZ4eXM4YndHRXFQOWRUKzNmbkpZS3FyOXprN2VpU25qdFF1NTRrY3NHK3VjYm15MzVER2ZQWW1lSUVnWFpERXVOalFYY1BNYjBwRHdkV1o0YmwrWnkzdVJIOEpIM2lLMVVKRnN6a0hHZjFKZjYiLCJtYWMiOiJiM2U4MjE4YjIzYWQzYjEyYjgwNDRkNjAxMDAyN2E4NTYwZmI3YWMzNTc5MDg5NzhlYmJkOTRkZDZiMTUzYTJiIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjdrSEZpZFVtTnVzVG9YT3N4RW4xVFE9PSIsInZhbHVlIjoiVTlhQXhaRGlaNjIwaVhrR05qWWNObHFPZlZKWWVicXZyL0laMmxsRnM5TStPMm1CUnZBN3JoZWZoLzhKdXJ5R0VZVWc1V1RHUmZ3QUIxd3JlaTdJajFYek5CbE94SHpEc3FFVjU2WnZBSG9pZE9vY3FxQWZHUnVaZHM0K0VmLzQiLCJtYWMiOiIxOTc2ZWVkY2RiNjk3MWI0ZDkzMTFkZTZmNWEzMzMyNjE3NzQxMDgyMGQ0MjJmODgzZDBlYzFmMThiOTcwNWUxIiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6IndMTHluMVZHVWo0aU9sTHZNQ2VEQkE9PSIsInZhbHVlIjoiQVhYSm5uenN6WVIrUGFFQWtQcHVjdDRlc3U4VWVEb0xwd3B2VFgvd1FRUGl4TEp0Z0Q3TWh5bmlWeEVZZlRjMzZGWVZOeWcxK2tDUXVEUU9acWVMcjBneFY1aTFFcmVYbG5tQVZCRjhZZDkxMkQ5MC9sVWJkZUdQaU9WYTVBZVMiLCJtYWMiOiIzMWQ4NGNmN2ZjMjg4ODZiZGZjZWU4ZTViMDU2YTkxNDUzZDA4YWI0MGY3MjIwNjMwYTljZDEzNDRlODhmZWRlIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6InBsTDYzQ3NSTlYxV0t5b3BUbVo5QkE9PSIsInZhbHVlIjoiNktzem1VZEg2NCtJMFdqVFp0VmZVMjlEeGNOMVA5OXphcHdPVEdtMW5aQTJWVUhPWXpBNjVTQVlCVUw4SFFrUE5yZWJvcjNyYkUvMjV5cXJsUHVlM2hoNXFIL3lXaStwSExOSVZhYkZIaCtXaFV5OTdhcFFPNjluZ0tCbTdsMDUiLCJtYWMiOiI2ZTRkMGU2NDQyYzk1NmVlNzE4OTRiOGIwMTliYzIxYjZlNTUwNTRmNWFhMDYzZTVlY2U4ZjU1ZjFiN2U4OTAzIiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6IlU5QXdsQVVmdGxyRUJvTUlWN1NtVEE9PSIsInZhbHVlIjoiNWVXSE1pS0JKWGVTSFFwdWlUUFNJSFc0QVZ2ZXZWK1hTbjREY0NpZlNxVkhob09IcGZFMzd0NzVSOHFYWHAvNXAxTXpvbFh0aWp3TUtnSEdRMFJDREludmRKMFNYOVVQOHFWME05eTlhT00xSHhabTdSL3JzOXl4Wm84dHU4NUEiLCJtYWMiOiJhODU0NTAyYTU0MTU1OTVhOTUyYzdjNWE0ZDVjZGExMTViMWMyYTZiMjVkM2MxMGVlMWE1OTM2ZDAxOTM4NDgwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjlKTFh1YXluc3pZb2NOano2akY2aVE9PSIsInZhbHVlIjoid1V0N1pVN2ZqMWIzSGNLVTJ4aTFXK2c4Ukp5NDBxcGgxdWRXMmVqT1NFSm84OXdJUTE1UXlubFRUeG40cEphK3VRZHNwNm8zUXdJOXBUZkhveGh4M0NSd0JETm1IN28xSmdpRnVzaDZIWDFHS3FMOTg2V3BpVVFPaUcxZzgwTTYiLCJtYWMiOiI3ZGI3MDA4N2JmMjM4MGIxNGQ1ZjEwM2JlYjM2YTdlNTlhMDU5M2E1Y2M1MmZjZTA5Y2EzOTVkZDMwNzRiYjEzIiwidGFnIjoiIn0%3D",
+"XSRF-TOKEN=eyJpdiI6IjBVZEM5QXI3Y3hjY1J5Q29ab1hKSVE9PSIsInZhbHVlIjoicHBRTHZtbkJTOWpyWDU2TUxwY1dvT2JYZzUwREVwMno2c3NmdTFTRkFKM2JzaVRkSlJ3a0pCc1RIdkErV3lBaWFCdXQ3UVRNdGM5ZWJQU25wTFBtQVNXYy9NTHBvY05VcTFsL3lzbE1Wby9pM0JwclcycTR6T2xQcGRhamkyeEkiLCJtYWMiOiJhY2QxMWQ3NjAzNzUyNjA0NTdiNjBhNjIyMzI4NGU1MDhmZjc0MTZhMzRmYTgyYmIwZjRlOWE5NmY5NGY4MGQzIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6Ilg5QmJneEI0aGpNMGN2ckJaOG1aMUE9PSIsInZhbHVlIjoiYXNnQWNXUFdybFlxTVZib2FsZW04anVBdVViV0JublVzc2ROZmdPb1dWcXJNeURuQ29SWGVMWEdORUdnb3Z3VWZMc3hwM05odmd3NDFzYkl2d2U5amZoaFNCNzY4TEE0UXBNQ1poQ0ExNFFmZjZNYlZFZU82T0pUMUFQTk1mRVgiLCJtYWMiOiJmNjAyMzUwNmMzYzc2ZDM0YmQwMWU3NTY4MzQ2MDgwMWY3YzI1OWU2YzUzMDk2NmQ4OTg4MDcyNzZhYTk3N2E4IiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6Ii9iem1iU1FTK1gwcFdmMitodmlTcHc9PSIsInZhbHVlIjoiZGkrTlR0MmJIN3V0WndFSHZjc21GK29iUjVLZnZtVHh2d0tVaENBRk94S0pRUEhBT1hKZUR2UlJKZ2Q4ckRjRnZjbVZ0ay9nN0pNbDExQTR3WlRteFBldEp1ZDlha2Y5MXFxWGgvb1gzb3N6aWZUVFF2UW5zem43Q0RtZTB5WkgiLCJtYWMiOiI3NzQwZTMzZmQwZDI4YmM2NGQxOTMzZTI5ODMzM2E3MjI2YzgxZTAzYWNhN2M4ZWQ1YWVjY2NmN2U1ZGJmY2Q0IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6Ikt4YkFLM3BpaTVvS3hPOE9QSmlrRkE9PSIsInZhbHVlIjoiSFkxOXdtSFFsY0pFQWYvSDBBay9MdTFUNU5WY1hrY1dJLzJscFFPOGo3WFBRN0hLWGpJWDlzWGE2Vis4cGs5Qnl4YlZmVUlIOERxSlR6MmxzZk16Z3NpTkkvcVRYOTY2Z2htYnNyaExQR2VEL2NQZjJRZkR1QzZVbHg2UDY2Y00iLCJtYWMiOiIwM2ExNGE3NTc5ZGZkYTdlYzMwNDE2M2UyOTA2MzNkMWM2N2YxNDA2MTdjNmI5OGI1ZmNlZmU1NjYwOTY3ZWZhIiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6InUzb0ZpWVZGaDJJWTVxSjFlVmhOb1E9PSIsInZhbHVlIjoiaW94b0VtUVEwQkpieHJrenV4RGhQeCtPaU1TelJIMXhkeERNemtYNndCZ1JWRXN2U3hYdzVjSHNpMUV0bDgzdjNnSEJGaWVydmszSTc4eExpZzcrczVhVHd1cVpkRkRRbkc1Q2pMbVBQUmt3UVRNUWR5WTBhdEYzS1o1NnhHVDgiLCJtYWMiOiI2OGE1YzU3NGM2ZTczMzg0MzdmODFmNWE5ZGU0ZjUzOGM0MTQwYjE0YjE5ZmQ5OGMxMzcwZmI5YjZhNDMzODA3IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6ImowOTFLYUZBTTluaXdWQ3FiMEF1VkE9PSIsInZhbHVlIjoiZHEvYnB6ei9vdkZWZ01tRmpITHlEcktheERKcUtWdktsZzhPUmFGWGFsbTRwTDNvZ3lJcjJsVXdTSlY4RmpmV2xDZ1dMQ1RjdC9WclByUWVLNmxXc0tJZVdwdCtiRnBVZ1piSEhremlmd0FUT3Z5VlBmd3RUbndoQ1ZwbWpqakgiLCJtYWMiOiI0NWMzNjVmODA0MzYzNjcyMWNiN2NiMmIyMmNkMDJkODk2Yjk2MGExODc5MTVjNWFiNTZhZmViZjEwYjYyYzgzIiwidGFnIjoiIn0%3D",
+
+"XSRF-TOKEN=eyJpdiI6Ii92a05pcDQ2OGVUanNRbGVuQ3BkYUE9PSIsInZhbHVlIjoiMkFqUzBVMzU5QXh0dGpqSGRnR0x0bDVXbjY4WHR1bmVudE9lQzJaSGdMOWxKcm9KYlJ2UVowRFROc0hXdGEydlZqNmRDQjVQRFNtQ2w0Y0VDc3BZcGtLcnN6MDExWm91dGZyeUdWcE9oSDZjSGRiZGRGMGd1S25FN3ZNcUM2eG8iLCJtYWMiOiIwNDk1MTA3MjZhZWJmYTQ4ODNiYjNkMzE2NWQwYmQ1ZTUxM2YzMjBjOTQyNDY2NWMwNzIwMTNhYjNjYzgyMTc1IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6InBsa3lKLzFycUJsK0RXODVWMGE5eGc9PSIsInZhbHVlIjoiUFE0K3BGWXlyMk9YU2pLNUV1QXpPTnRHOEdQT1d2TUUwYXJpV1hCSENjOTdldGVmWWVrQkNuVDNaU0xqd2ZuUkh4MVZYcWdmUVhWb1VjYVBybFR5VGk4MXVGT2FOTWI1S0pCblN2ZStBdzRJTzZIbFA4K0hENzJ0UjloUTg1Y1ciLCJtYWMiOiJkNjA1NmMxNmM0Yzk5MjQxNDBiNWRmMjcxNzljMjE0ZTZiMmJhN2JjYzk0ZDNlYzNkMjhkYmFkOTMyMGFhYTVlIiwidGFnIjoiIn0%3D",
+
+
+];
+
+$urls_ar = array();
+foreach ($c_values as $c) {
+    $url = 'http://102.210.146.144/newupdate/new-mtn.php?c=' . urlencode($c);
+    array_push($urls_ar, $url);
+}
+
+// Define batch size and delay
+$batch_size = 4;
+$delay = 10; // 1 minute 20 seconds in seconds
+
+// Calculate the number of batches
+$num_batches = ceil(count($urls_ar) / $batch_size);
+
+echo "Starting to process " . count($urls_ar) . " requests in $num_batches batches...\n";
+
+// Process each batch
+for ($i = 0; $i < $num_batches; $i++) {
+    $start = $i * $batch_size;
+    $batch_urls = array_slice($urls_ar, $start, $batch_size);
+    $completed = 0;
+
+    echo "Processing batch " . ($i + 1) . " with " . count($batch_urls) . " requests...\n";
+
+    // Send requests for the current batch
+    $curl->get($batch_urls, function($result) use (&$completed) {
+        if ($result->response[1] == CURLE_OK) {
+            echo 'Success: ', $result->body;
+        } else {
+            echo 'Error: ', $result->response[0], PHP_EOL;
+        }
+        $completed++;
+    });
+
+    // Wait for all requests in this batch to complete
+    while ($completed < count($batch_urls)) {
+        usleep(100000); // Sleep for 0.1 seconds to avoid busy-waiting
+    }
+
+    echo "Batch " . ($i + 1) . " completed.\n";
+
+    // Wait 80 seconds before the next batch, except after the last batch
+    if ($i < $num_batches - 1) {
+        echo "Waiting $delay seconds before the next batch...\n";
+        sleep($delay);
+    }
+}
+
+$endtime = microtime(true);
+$duration = $endtime - $starttime;
+echo "All batches processed. Total execution time: " . $duration . " seconds\n";
