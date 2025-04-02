@@ -39,8 +39,8 @@ foreach ($c_values as $c) {
 }
 
 // Define batch size and delay
-$batch_size = 4;
-$delay = 10; // 1 minute 20 seconds in seconds
+$batch_size = 3;
+$delay = 30; // 1 minute 20 seconds in seconds
 
 // Calculate the number of batches
 $num_batches = ceil(count($urls_ar) / $batch_size);
