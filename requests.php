@@ -32,7 +32,7 @@ $c_values = [
 $urls_ar = array();
 shuffle($c_values); 
 $randomItems = array_slice($c_values, 0, 3); 
-foreach ($randomItems as $c) {
+foreach ($c_values as $c) {
 
     
   $url = 'http://102.210.146.144/newupdate/xavi-mtn.php?c=' . urlencode($c);
