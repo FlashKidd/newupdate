@@ -131,7 +131,7 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 7) {
+if ($pos <= 6) {
     $score = rand(800,1000);
 
 } else {
