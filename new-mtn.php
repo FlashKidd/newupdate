@@ -162,13 +162,13 @@ if ($pos <= 3) {
  //     }
 
  //             }
-// if ($current_time >= $check_time && $current_time <= $check_tim) {
+if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-//      while ($score >= 90) {
-//         $score -= rand(10, 30);
-//      }
+     while ($score >= rand(100, 300)) {
+        $score -= rand(10, 30);
+     }
 
-// }
+}
 
 while(($score-$testSom)>1000){
     $score-=rand(1,10);
