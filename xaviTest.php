@@ -1,7 +1,7 @@
 <?php
 
 
-while(true){
+
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -43,7 +43,7 @@ $cookiez = [
 $ii++;
 
   if($ii>1){
-  sleep(rand(60,80));   
+  sleep(rand(60,60));   
   }
 system('clear');
 echo "\n$ii cookie sent \n";
@@ -137,9 +137,9 @@ if($pos == 0){
     // $score =25;
 } else {
   
-    $score = $number3+rand(20,25);
+    $score = $number3+25;
     if($number3-$testSom>25){
-        $score = $testSom+rand(20,25);
+        $score = $testSom+25;
    } 
  // else if (abs($testSom - 25) <= 25 && $number3 == 25) {
  //        $score = 25;
@@ -172,5 +172,5 @@ while($score>200){
 $uA = RandomUa();
 $memory = validate_request($x_power,$score);
 $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
-}
+
 }
