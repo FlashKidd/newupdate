@@ -1,6 +1,6 @@
 <?php
 
-
+sleep(rand(0,30));
 
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
@@ -139,9 +139,9 @@ if($pos == 0){
    // $score =25;
 } else {
   
-    $score = $number3+rand(20,25);
+    $score = $number3+25;
     if($number3-$testSom>25){
-        $score = $testSom+rand(20,25);
+        $score = $testSom+25;
    } 
  // else if (abs($testSom - 25) <= 25 && $number3 == 25) {
  //        $score = 25;
