@@ -65,7 +65,7 @@ $randomItems = array_slice($c_values, 0, 2);
 foreach ($randomItems as $c) {
 //sleep(rand(0,30));
     
-    $url = 'http://102.210.146.144/newupdate/xavi.php?c=' . urlencode($c);
+    $url = 'http://102.209.117.85/newupdate/xavi.php?c=' . urlencode($c);
 
 
 
