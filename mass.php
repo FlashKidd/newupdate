@@ -30,7 +30,7 @@ $c_values = [
 
 $urls_ar = array();
 foreach ($c_values as $c) {
-    $url = 'http://102.210.146.144/newupdate/xavi-mtn.php?c=' . urlencode($c);
+    $url = 'http://102.209.117.85/newupdate/xavi-mtn.php?c=' . urlencode($c);
     array_push($urls_ar, $url);
 }
 
