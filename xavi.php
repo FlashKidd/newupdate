@@ -170,7 +170,11 @@ while($score>200){
 }
 
 // $score = round($score, -1); 
+if($score>25){
 
+ sleep(rand(15,45));
+ 
+}
 
 $memory = validate_request($x_power,$score);
 $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
