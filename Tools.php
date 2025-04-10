@@ -344,10 +344,10 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
 $min = 10;
-$max = 25;
+$max = 1000;
 $null = rand(1,2);
 
-if($number >= 600){
+if($number >= 10000){
 
 $data = [];
 if ($number <= $max) {
