@@ -78,7 +78,6 @@ system('clear');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 90);
         $curl = curl_exec($ch);
         $redirectedUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
                     
@@ -117,7 +116,6 @@ system('clear');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 90);
 
         $curl = curl_exec($ch);
 
