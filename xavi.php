@@ -135,13 +135,13 @@ system('clear');
        
 $testSom = GetTargetScore($pos);
 if($pos == 0){
-    $score = rand(600,rand(789,859));
+    $score = rand(20,rand(23,25));
    // $score =25;
 } else {
   
-    $score = $number3+1000;
-    if($number3-$testSom>1000){
-        $score = $testSom+1000;
+    $score = $number3+25;
+    if($number3-$testSom>25){
+        $score = $testSom+25;
    } 
  // else if (abs($testSom - 25) <= 25 && $number3 == 25) {
  //        $score = 25;
@@ -149,7 +149,7 @@ if($pos == 0){
 }
 
 // Ensure the condition is never broken
-while(($score-$testSom)>1000){
+while(($score-$testSom)>25){
     $score-=rand(1,10);
 }
 
@@ -165,12 +165,12 @@ $increment = 1;
 // $score = round($score, -1); 
 
 // Continue with the rest of your code
-while($score>12000){
-    $score = $score - rand(10,30);
+while($score>25){
+    $score = $score - rand(1,10);
 }
 
 // $score = round($score, -1); 
-if($score>1000){
+if($score>25){
 
  sleep(rand(15,45));
  
