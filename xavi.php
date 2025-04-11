@@ -133,7 +133,7 @@ system('clear');
        
 $testSom = GetTargetScore($pos);
 if($pos == 0){
-    $score = rand(20,rand(23,25));
+    $score = rand(20,25);
    // $score =25;
 } else {
   
@@ -163,7 +163,7 @@ $increment = 1;
 // $score = round($score, -1); 
 
 // Continue with the rest of your code
-while($score>25){
+while($score>200){
     $score = $score - rand(1,10);
 }
 
