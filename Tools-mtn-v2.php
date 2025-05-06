@@ -11,7 +11,7 @@ function GetTargetScore($position_){
             'Connection: keep-alive',
             'Pragma: no-cache',
             'Host: www.yellorush.co.za',
-            'Referer: https://www.yellorush.co.za/',
+            'Referer: https:/www.yellorush.co.za/',
             'Sec-Ch-Ua: "Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
             'Sec-Ch-Ua-Mobile: ?1',
             'Sec-Ch-Ua-Platform: "Android"',
@@ -71,9 +71,7 @@ function GetPosition ($cookie){
             'Connection: keep-alive',
             'Cookie: '.$cookie,
             'Pragma: no-cache',
-             'Host: www.yellorush.co.za',
-            'Referer: https://www.yellorush.co.za/',
-            'Sec-Ch-Ua: "Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+            'Referer: https:/www.yellorush.co.za/',
             'Sec-Ch-Ua: "Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
             'Sec-Ch-Ua-Mobile: ?1',
             'Sec-Ch-Ua-Platform: "Android"',
@@ -164,56 +162,52 @@ function AttackLast($url,$xavi,$score,$power,$memory,$increment,$uA,$array){
 
             echo "\nArray Data: $jsonData";
 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
-               // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-               // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
-                curl_setopt($ch, CURLOPT_POST, 1);
-                $headers = array(
-                    'Accept: */*',
-                    'Connection: keep-alive',
-                    'Host: yellorush.co.za',
-                    'Content-Type: application/json;charset=UTF-8;'.$memory.'',
-                    'Origin: https://yellorush.co.za',
-                    'Referer: ' . $url,
-                    'X-Chavi: ' . $xavi,
-                    'X-Sign: ' . $sigv1,
-                    'X-Data-Str: '.$jsonData,
-                    // 'Device-Memory: '.$memory,
-                    'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
-                    'Sec-CH-UA-Mobile: ?1',
-                    'Sec-CH-UA-Platform: \"iOS\"',
-                    'Device-Memory-Qut: 3',
-                    'X-Powered-Version: '.$power,
-                    'User-Agent: '.$uA
-                );
-
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-                curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
-                curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
-                curl_setopt($ch, CURLOPT_HEADER, 1);
-
-                $curl = curl_exec($ch);
-                //echo "Response: $curl\n";
-               
-                // Separate headers and body
-                $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-                $header = substr($curl, 0, $header_size);
-                $body = substr($curl, $header_size);
-                curl_close($ch);
-
-                if (strpos($curl, "Score info is stored successfully.")){
-                    echo "\n$score was plugged successfully";
-                }else{
-                    echo "\nServer error, or some shi!";
-                }
-                $x_power = X_Power($header);
-                return $x_power;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://www.yellorush.co.za/aakado-mokalavo/{$game_id}/{$unique_id}");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                "Accept: */*",
+                "Connection: keep-alive",
+                "Host: www.yellorush.co.za",
+                "Content-Type: application/json;charset=UTF-8; {$memory}",
+                "Origin: https://www.yellorush.co.za",
+                "Referer: {$url}",
+                "X-Chavi: {$xavi}",
+                "X-Sign: {$sigv1}",
+                "X-Data-Str: {$jsonData}",
+                "Device-Memory-Qut: 3",
+                "X-Powered-Version: {$power}",
+                "User-Agent: {$uA}"
+            ]);
+            
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd() . '/cookie.txt');
+            curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd() . '/cookie.txt');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+            curl_setopt($ch, CURLOPT_HEADER, true);
+            
+            $curl = curl_exec($ch);
+            echo "Last Response: {$curl}\n";
+            
+            // Separate headers and body
+            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+            $header = substr($curl, 0, $header_size);
+            $body = substr($curl, $header_size);
+            curl_close($ch);
+            
+            if (strpos($curl, "Score info is stored successfully.") !== false) {
+                echo "\n{$score} was plugged successfully";
+            } else {
+                echo "\nServer error, or some shi!";
+            }
+            
+            $x_power = X_Power($header);
+            return $x_power;
+            
 }
 function X_Power($header){
      $lines = explode("\r\n", $header);
@@ -231,7 +225,6 @@ function X_timeout($header){
      $lines = explode("\r\n", $header);
         $trimmed_value = '';
         foreach ($lines as $line) {
-         
             if (stripos($line, 'Fari-Feravva-No-Samay:') === 0) {
         $trimmed_value = trim(str_replace('Fari-Feravva-No-Samay:', '', $line));
         break;
@@ -258,7 +251,7 @@ $content = curl_exec($ch);
 if (curl_errno($ch)) {
     echo 'Error: ' . curl_error($ch);
 } else {
-    //echo $content; // Display or process the content as needed
+    echo "\nkim xavi".$content; // Display or process the content as needed
 }
 
 curl_close($ch);
@@ -272,62 +265,51 @@ curl_close($ch);
             
              
              
-            //echo "<br><hr>Xavi: $content\nArray: ".json_encode($array2)." b4 $jsonData";
+           // echo "<br><hr>Xavi: $content\nArray: b4 $jsonData";
 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/aakado-mokalavo/'.$game_id.'/'.$unique_id.'');
-        //  curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
-                curl_setopt($ch, CURLOPT_POST, 1);
-                $headers = array(
-                    'Accept: */*',
-                    'Connection: keep-alive',
-                    'Host: yellorush.co.za',
-                    'Content-Type: application/json;charset=UTF-8;'.$memory.'',
-                    'Host: www.yellorush.co.za',
-                     'Origin: https://www.yellorush.co.za',
-                    'Referer: ' . $url,
-                    'X-Chavi: ' . $content,
-                    'X-Sign: ' . $sigv1,
-                    'X-Data-Str: '.$jsonData,
-                    // 'Device-Memory: '.$memory,
-                    'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
-                    'Sec-CH-UA-Mobile: ?1',
-                    'Sec-CH-UA-Platform: \"iOS\"',
-                    'Device-Memory-QUT: 2',
-                    'X-Powered-Version: '.$power,
-                    'User-Agent: '.$uA
-                );
-
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-                curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
-                curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
-                curl_setopt($ch, CURLOPT_HEADER, 1);
-
-                $curl = curl_exec($ch);
-
-                // Separate headers and body
-                $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-                $header = substr($curl, 0, $header_size);
-                $body = substr($curl, $header_size);
-                curl_close($ch);
-                echo "<br><hr>ResultS: $curl";
-                if (strpos($curl, "Score info is stored successfully.")){
-                    echo "\nRequests was successful!";
-                }else{
-                    echo "\nServer error, or some shi!";
-                }
-
-                $x_power = X_Power($header);
-                $X_timeout = X_timeout($header);
-                
-                echo "<br><hr>Timeout: $X_timeout";
-                sleep($X_timeout);
+           $ch = curl_init();
+           curl_setopt($ch, CURLOPT_URL, "https://www.yellorush.co.za/aakado-mokalavo/{$game_id}/{$unique_id}");
+           curl_setopt($ch, CURLOPT_POST, 1);
+           curl_setopt($ch, CURLOPT_HTTPHEADER, [
+               "Accept: */*",
+               "Connection: keep-alive",
+               "Host: www.yellorush.co.za",
+               "Content-Type: application/json;charset=UTF-8; {$memory}",
+               "Origin: https://www.yellorush.co.za",
+               "Referer: {$url}",
+               "X-Chavi: {$content}",
+               "X-Sign: {$sigv1}",
+               "X-Data-Str: {$jsonData}",
+               "Device-Memory-QUT: 2",
+               "X-Powered-Version: {$power}",
+               "User-Agent: {$uA}"
+           ]);
+           curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+           curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+           curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+           curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd()."/cookie.txt");
+           curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd()."/cookie.txt");
+           curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+           curl_setopt($ch, CURLOPT_HEADER, 1);
+           
+           $curl = curl_exec($ch);
+           $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+           $header = substr($curl, 0, $header_size);
+           $body = substr($curl, $header_size);
+           curl_close($ch);
+           
+           if (strpos($curl, "Score info is stored successfully.") !== false) {
+               echo "\nRequest was successful!";
+           } else {
+               echo "\nServer error, or some shi!";
+           }
+           
+           $x_power = X_Power($header);
+           $X_timeout = X_timeout($header);
+           echo "<br><hr>Timeout: $X_timeout,";
+        sleep($X_timeout);
+           
                 // sleep(10);
                 return $x_power;
 }
@@ -343,7 +325,7 @@ curl_close($ch);
           'Content-Type: application/json'
         ));
         $response = curl_exec($ch);
-        //"\nToken: $response\nFor $arrayJson";
+        echo "\nToken: $response\nFor $arrayJson";
         return $response;
 
 }
@@ -354,7 +336,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 //  $max = 100;
     
  $min = 10;
- $max = 400;
+ $max = 3000;
     
   if ($number <= $max) {
     // If number is $max or less, output only 0.
@@ -404,7 +386,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
             $LB = $UB;
         }
         // Pick a random value within the allowed range.
-        $d = rand($LB, $UB);
+        $d = round(rand($LB, $UB),-1);
         $differences[] = $d;
         $prev = $d;
     }
@@ -471,7 +453,7 @@ foreach ($data as $value) {
 
     $xavi = GetXavi($unique_id,$game_id,$number,$result);
     $cleanXavi = trim($xavi, '"');
-    echo "\n Xavi Generated => $cleanXavi";
+    echo "\n my xavi => $cleanXavi";
     $memory = validate_request($power,$number);
     AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
     return json_encode($result);
