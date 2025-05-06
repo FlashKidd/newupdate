@@ -76,7 +76,7 @@ $scoreBefore = GetTargetScore($pos);
             // if (empty($unique_id)){
             //     // return;
             // }
-       echo "<br>Uniquie_id: $unique_id<hr>";
+       echo "<br>Uniquie_id: $redirectedUrl<hr>";
        echo "<br>Uniquie_id: $unique_id<hr>";
         echo "<br>Game_id: $game_id<hr>";
      $limit = 100;
@@ -101,6 +101,7 @@ $scoreBefore = GetTargetScore($pos);
         // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
+           'Host: www.yellorush.co.za',
             'Referer:'.$redirectedUrl,
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
@@ -128,7 +129,7 @@ $scoreBefore = GetTargetScore($pos);
         
         
         $x_power = X_Power($header);
-        echo "\n<br> X-Powered-Version: $x_power\n";
+        echo "\n<br> X-Powered-Version: $x_power\n";return;
 
        
 
