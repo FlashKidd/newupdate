@@ -78,7 +78,7 @@ $scoreBefore = GetTargetScore($pos);
             // }
        echo "<br>Uniquie_id: $unique_id<hr>";
        echo "<br>Uniquie_id: $unique_id<hr>";
-        echo "<br>Game_id: $game_id<hr>";return;
+        echo "<br>Game_id: $game_id<hr>";
      $limit = 100;
 
       if ($number3  >= 150 && $number3 <= 200){
