@@ -137,7 +137,7 @@ if ($pos <= 1) {
    
         }
 
-      while ($score >= 10000) {
+      while ($score >= $MAX_SCORE*6) {
         $score -= rand(1, 10);
      }
 
