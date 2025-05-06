@@ -231,6 +231,7 @@ function X_timeout($header){
      $lines = explode("\r\n", $header);
         $trimmed_value = '';
         foreach ($lines as $line) {
+         
             if (stripos($line, 'Fari-Feravva-No-Samay:') === 0) {
         $trimmed_value = trim(str_replace('Fari-Feravva-No-Samay:', '', $line));
         break;
@@ -315,7 +316,7 @@ curl_close($ch);
                 $header = substr($curl, 0, $header_size);
                 $body = substr($curl, $header_size);
                 curl_close($ch);
-                //echo "<br><hr>ResultS: $curl";
+                echo "<br><hr>ResultS: $curl";
                 if (strpos($curl, "Score info is stored successfully.")){
                     echo "\nRequests was successful!";
                 }else{
@@ -470,7 +471,7 @@ foreach ($data as $value) {
 
     $xavi = GetXavi($unique_id,$game_id,$number,$result);
     $cleanXavi = trim($xavi, '"');
-    //echo "\n Xavi Generated => $cleanXavi";
+    echo "\n Xavi Generated => $cleanXavi";
     $memory = validate_request($power,$number);
     AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
     return json_encode($result);
