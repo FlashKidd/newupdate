@@ -129,7 +129,7 @@ $scoreBefore = GetTargetScore($pos);
         
         
         $x_power = X_Power($header);
-        echo "\n<br> X-Powered-Version: $x_power\n";return;
+        echo "\n<br> X-Powered-Version: $x_power\n";
 
        
 
