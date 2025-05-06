@@ -47,6 +47,7 @@ $scoreBefore = GetTargetScore($pos);
             'Connection: keep-alive',
             'Cookie: '.$cookie,
             'Pragma: no-cache',
+            'Host: www.yellorush.co.za',
             'Referer: https://yellorush.co.za/',
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
@@ -75,9 +76,9 @@ $scoreBefore = GetTargetScore($pos);
             // if (empty($unique_id)){
             //     // return;
             // }
-
-       // echo "<br>Uniquie_id: $unique_id<hr>";
-        //echo "<br>Game_id: $game_id<hr>";
+       echo "<br>Uniquie_id: $unique_id<hr>";
+       echo "<br>Uniquie_id: $unique_id<hr>";
+        echo "<br>Game_id: $game_id<hr>";return;
      $limit = 100;
 
       if ($number3  >= 150 && $number3 <= 200){
