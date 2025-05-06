@@ -349,7 +349,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 //  $max = 100;
     
  $min = 10;
- $max = 1000;
+ $max = 400;
     
   if ($number <= $max) {
     // If number is $max or less, output only 0.
