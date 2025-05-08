@@ -27,7 +27,7 @@ $number3 = GetTargetScore(1);
 
 
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
-$MAX_SCORE = 3000;
+$MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
