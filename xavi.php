@@ -133,7 +133,7 @@ system('clear');
 
        
 $testSom = GetTargetScore($pos);
-$max = 2400;
+$max = 2000;
 if($pos == 0){
     $score = rand($max-5,$max);
    // $score =$max;
