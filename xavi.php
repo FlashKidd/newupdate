@@ -133,7 +133,7 @@ system('clear');
 
        
 $testSom = GetTargetScore($pos);
-$max = 25;
+$max = 2400;
 if($pos == 0){
     $score = rand($max-5,$max);
    // $score =$max;
@@ -165,11 +165,13 @@ $increment = 1;
 // $score = round($score, -1); 
 
 // Continue with the rest of your code
-while($score>$max*6){
-    $score = $score - rand(1,10);
+// $score = rand(3700,3945);
+$score = round($score, -1); 
+while($score>=4000){
+    $score = round($score - rand(10,30),-1);
 }
 
-// $score = round($score, -1); 
+
 
 
 $memory = validate_request($x_power,$score);
