@@ -149,9 +149,9 @@ if($pos == 0){
 }
 
 // Ensure the condition is never broken
-while(($score-$testSom)>4000){
-    $score = 4000;
-}
+// while(($score-$testSom)>4000){
+//     $score = 4000;
+// }
 
 // Round the score
 
@@ -167,7 +167,7 @@ $increment = 1;
 // Continue with the rest of your code
 // $score = rand(3700,3945);
 $score = round($score, -1); 
-while($score>=5000){
+while($score>4000){
     $score = round($score - rand(10,30),-1);
 }
 
