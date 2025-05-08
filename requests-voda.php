@@ -1,9 +1,10 @@
 <?php
 //echo "cool down";return;
-require_once 'C:\xampp\htdocs\newupdate\Zebra_cURL.php';
+system("rm -rf cache");
+require_once '/var/www/html/newupdate/Zebra_cURL.php';
 $curl = new Zebra_cURL();
-$curl->cache('C:\xampp\htdocs\newupdate\cache', 59);
-$curl->ssl(true, 2, 'C:\xampp\htdocs\newupdate\cacert.pem');
+$curl->cache('/var/www/html/newupdate/cache', 59);
+$curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
 $curl->threads = 10;
 $curl->option(CURLOPT_TIMEOUT, 300);
 @unlink('cache');
