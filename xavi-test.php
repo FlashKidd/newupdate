@@ -120,7 +120,7 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 5) {
+if ($pos <= 4) {
     $score = rand(($MAX_SCORE/5),($MAX_SCORE/3));
 
 } else {
