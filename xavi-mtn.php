@@ -1,5 +1,5 @@
  <?php
-sleep(rand(30,60));
+//sleep(rand(30,60));
 
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
@@ -11,7 +11,7 @@ $check_tim = new DateTime('12:00');
 
 require_once('Tools-mtn-v2.php');
 // while(true){
-system('clear');
+system('cls');
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
@@ -27,8 +27,8 @@ $number3 = GetTargetScore(1);
 
 
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
-// $cookie = "XSRF-TOKEN=eyJpdiI6ImY2Z1N2NHJ4UmIvSWlxaWxCOHlyd1E9PSIsInZhbHVlIjoiWTU3S0krLzIrNUpVOXR4VGVxeW53WnJPUlJQNTgvV2M3T0J5RzJCZEZtekNtb3Q0YnQ0Zm10UXFBOXFyTVcxeU0xZmFpTTNWWVl3bWdPUWc3TGtJR0FVZ2pKcHhqS1c3UnAvTitZOSthYkhHZlNqT0JMMWo5ODdLRVNVTkRJUGUiLCJtYWMiOiJmMGEzY2UzZDM5YjJjMDZkNWQxNWJmNGYxOThjNTk4ZDliNDFjNDYyNjA2ZjVjYzcyZjcxN2VjYjQwMzc5NzcwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlRkRGFGTDdhYWRmL3ZseTE0bWF2a3c9PSIsInZhbHVlIjoiMkFpTXVRUXI4ckdMT0VOSU4ySFdFNlBEYW9RaEZGa3FodUJRYWxCcTdGQWkrUW5ienFLaldyU0pSNG11cW5ka2J2Yi9BMzFmaDJMd09DWExYZUIySmpOQWRFRFoxTVFaVlpNOFFwL21ZQVEzM0pKUFdJZ3R3L1Y4cVRJSnh5UW8iLCJtYWMiOiI0NWJlZDY1M2RiNjRjOGFkM2MyZmVjZWY5MGI4NzYyYmI3NzU1OWRiZmRkYmFjOWYwZjFmZDZlNDVhNzMyNzNkIiwidGFnIjoiIn0%3D";
-//   foreach ($cookiez as $cookie){ 
+$MAX_SCORE = 6000;
+
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
 $scoreBefore = GetTargetScore($pos);
@@ -47,6 +47,7 @@ $scoreBefore = GetTargetScore($pos);
             'Connection: keep-alive',
             'Cookie: '.$cookie,
             'Pragma: no-cache',
+            'Host: www.yellorush.co.za',
             'Referer: https://yellorush.co.za/',
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
@@ -76,23 +77,10 @@ $scoreBefore = GetTargetScore($pos);
             //     // return;
             // }
 
-       // echo "<br>Uniquie_id: $unique_id<hr>";
-        //echo "<br>Game_id: $game_id<hr>";
-     $limit = 100;
+        echo "<br>Uniquie_id: $unique_id<hr>";
+        echo "<br>Game_id: $game_id<hr>";
 
-      if ($number3  >= 150 && $number3 <= 200){
-      $limit = 150;
-      }else if ($number3  >= 201 && $number3 <= 300){
-      $limit = 250;
-      }
-     else if ($number3  >= 301 && $number3 <= 400){
-      $limit = 350;
-      }
-     else if ($number3  >= 401 && $number3 <= 500){
-      $limit = 450;
-      }else{
-      $limit = 450;
-      }
+
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
@@ -100,6 +88,7 @@ $scoreBefore = GetTargetScore($pos);
         // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
+            'Host: www.yellorush.co.za',
             'Referer:'.$redirectedUrl,
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
@@ -132,23 +121,23 @@ $scoreBefore = GetTargetScore($pos);
        
 
 if ($pos <= 1) {
-    $score = rand(500,800);
+    $score = rand(($MAX_SCORE/5),($MAX_SCORE/3));
 
 } else {
     $testSom = GetTargetScore($pos);
-    $score = $number3 + 1000;
+    $score = $number3 + $MAX_SCORE;
    //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
    //   $score = rand(2800,3000);
    // }
    echo "\n Our score = $score";
-    if ($number3 - $testSom > 1000) {
-        $score = $testSom + 1000;
+    if ($number3 - $testSom > $MAX_SCORE) {
+        $score = $testSom + $MAX_SCORE;
     }
 
    
         }
 
-      while ($score >= 10000) {
+      while ($score >= $MAX_SCORE*6) {
         $score -= rand(1, 10);
      }
 
@@ -162,21 +151,21 @@ if ($pos <= 1) {
  //     }
 
  //             }
-// if ($current_time >= $check_time && $current_time <= $check_tim) {
+if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-//      while ($score >= rand(100, 300)) {
-//         $score -= rand(10, 30);
-//      }
+     while ($score >= rand(100, 300)) {
+        $score -= rand(10, 30);
+     }
 
-// }
+}
 
-while(($score-$testSom)>1000){
+while(($score-$testSom)>$MAX_SCORE){
     $score-=rand(1,10);
 }
 
 echo "\n Our score = $score";
  
-if($score>3001){
+if($score>($MAX_SCORE*2+1)){
 
  sleep(rand(15,45));
  
@@ -184,6 +173,7 @@ if($score>3001){
 $increment = 1;
 
 $uA = RandomUa();
+$score = round($score,-1);
 $memory = validate_request($x_power, $score);
 $OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
 // }
