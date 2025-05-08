@@ -167,9 +167,10 @@ $increment = 1;
 // Continue with the rest of your code
 // $score = rand(3700,3945);
 $score = round($score, -1); 
-while($score>=4000){
-    $score = 3999);
+while($score>=5000){
+    $score = round($score - rand(10,30),-1);
 }
+
 
 
 
