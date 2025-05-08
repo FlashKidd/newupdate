@@ -149,12 +149,12 @@ if($pos == 0){
 }
 
 // Ensure the condition is never broken
-while(($score-$testSom)>$max){
-    $score-=rand(1,10);
+while(($score-$testSom)>4000){
+    $score = 4000;
 }
 
 // Round the score
-// $score = round($score, -1); 
+
 
 $increment = 1;
 // while(($score-$testSom)>$max){
