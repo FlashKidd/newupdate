@@ -142,22 +142,22 @@ if ($pos <= 4) {
      }
 
 
- // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
+  //if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
 
- //            $score = $number3 + rand(50, 100);
+           // $score = $number3 + rand(50, 100);
 
  //     while ($score >= ($limit+100)) {
  //        $score -= rand(10, 30);
  //     }
 
  //             }
-//if ($current_time >= $check_time && $current_time <= $check_tim) {
+if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-//     while ($score >= rand(100, 300)) {
-    //    $score -= rand(10, 30);
-//     }
+   while ($score >= rand(100, 900)) {
+       $score -= rand(10, 30);
+     }
 
-//}
+}
 
 while(($score-$testSom)>$MAX_SCORE){
     $score-=rand(1,10);
