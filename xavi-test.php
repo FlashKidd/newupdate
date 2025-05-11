@@ -151,11 +151,11 @@ if ($pos <= 4) {
  //     }
 
  //             }
-//if ($current_time >= $check_time && $current_time <= $check_tim) {
+if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-  //   while ($score >= rand(100, 300)) {
-  //      $score -= rand(10, 30);
-  //   }
+     while ($score >= rand(300, 900)) {
+        $score -= rand(10, 30);
+     }
 
 //}
 
