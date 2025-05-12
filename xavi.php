@@ -133,7 +133,7 @@ system('clear');
 
        
 $testSom = GetTargetScore($pos);
-$max = 2000;
+$max = 3000;
 if($pos == 0){
     $score = rand($max-5,$max);
    // $score =$max;
@@ -167,7 +167,7 @@ $increment = 1;
 // Continue with the rest of your code
 // $score = rand(3700,3945);
  
-while($score>4000){
+while($score>3000){
     $score = round($score - rand(10,30),-1);
 }
 $score = round($score, -1);
