@@ -3,8 +3,8 @@
 
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
-$check_time = new DateTime('04:00'); 
-$check_tim = new DateTime('12:00');
+$check_time = new DateTime('07:00'); 
+$check_tim = new DateTime('09:00');
 
 
 //Business of the day
@@ -129,10 +129,10 @@ if ($pos <= 4) {
    //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
    //   $score = rand(2800,3000);
    // }
-  // echo "\n Our score = $score";
-   // if ($number3 - $testSom > $MAX_SCORE) {
-     //   $score = $testSom + $MAX_SCORE;
-    }
+ //  echo "\n Our score = $score";
+  //  if ($number3 - $testSom > $MAX_SCORE) {
+        //$score = $testSom + $MAX_SCORE;
+  //  }
 
    
         }
@@ -142,9 +142,9 @@ if ($pos <= 4) {
      }
 
 
- // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
+  //if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
 
- //            $score = $number3 + rand(50, 100);
+           // $score = $number3 + rand(50, 100);
 
  //     while ($score >= ($limit+100)) {
  //        $score -= rand(10, 30);
@@ -153,15 +153,15 @@ if ($pos <= 4) {
  //             }
 if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-     while ($score >= rand(300, 900)) {
-        $score -= rand(10, 30);
+   while ($score >= rand(100, 900)) {
+       $score -= rand(10, 30);
      }
 
-//}
-
-while(($score-$testSom)>$MAX_SCORE){
-    $score-=rand(1,10);
 }
+
+// while(($score-$testSom)>$MAX_SCORE){
+//     $score-=rand(1,10);
+// }
 
 echo "\n Our score = $score";
  
