@@ -167,7 +167,7 @@ $increment = 1;
 // Continue with the rest of your code
 // $score = rand(3700,3945);
  
-while($score>19000){
+while($score>$max*6){
     $score = round($score - rand(10,30),-1);
 }
 $score = round($score, -1);
