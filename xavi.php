@@ -139,10 +139,10 @@ if($pos <= 4){
    // $score =$max;
 } else {
   
-    $score = $number3+rand($max-5,$max);
-    if($number3-$testSom>$max){
-        $score = $testSom+rand($max-5,$max);
-   } 
+    $score = ($number3/5)+$scoreTarget;
+    //if($number3-$testSom>$max){
+   //     $score = $testSom+rand($max-5,$max);
+//   } 
  // else if (abs($testSom - $max) <= $max && $number3 == $max) {
  //        $score = $max;
  //    }
