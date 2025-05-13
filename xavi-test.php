@@ -125,13 +125,13 @@ if ($pos <= 4) {
 
 } else {
     $testSom = GetTargetScore($pos);
-    $score = $number3 + $MAX_SCORE;
+    $score = ($number3/5) + $scoreTarget;
    //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
    //   $score = rand(2800,3000);
    // }
-   echo "\n Our score = $score";
-    if ($number3 - $testSom > $MAX_SCORE) {
-        $score = $testSom + $MAX_SCORE;
+  // echo "\n Our score = $score";
+   // if ($number3 - $testSom > $MAX_SCORE) {
+     //   $score = $testSom + $MAX_SCORE;
     }
 
    
