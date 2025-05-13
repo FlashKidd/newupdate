@@ -3,8 +3,8 @@
 
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
-$check_time = new DateTime('04:00'); 
-$check_tim = new DateTime('12:00');
+$check_time = new DateTime('07:00'); 
+$check_tim = new DateTime('09:00');
 
 
 //Business of the day
@@ -159,9 +159,9 @@ if ($current_time >= $check_time && $current_time <= $check_tim) {
 
 }
 
-while(($score-$testSom)>$MAX_SCORE){
-    $score-=rand(1,10);
-}
+// while(($score-$testSom)>$MAX_SCORE){
+//     $score-=rand(1,10);
+// }
 
 echo "\n Our score = $score";
  
