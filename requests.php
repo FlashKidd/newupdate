@@ -35,10 +35,13 @@ $c_values = [
 $urls_ar = array();
 shuffle($c_values); 
 $randomItems = array_slice($c_values, 0, 3); 
+$serverIP = $_SERVER['SERVER_ADDR'] ?? '127.0.0.1';
+
+echo "\nIP ADDR: $serverIP";
 foreach ($randomItems as $c) {
 
     
-  $url = 'http://127.0.0.1/newupdate/xavi-mtn.php?c=' . urlencode($c);
+  $url = 'http://'.$serverIP.'/newupdate/xavi-mtn.php?c=' . urlencode($c);
 
 
 array_push($urls_ar, $url);
