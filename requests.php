@@ -38,7 +38,7 @@ $randomItems = array_slice($c_values, 0, 3);
 foreach ($randomItems as $c) {
 
     
-  $url = 'http://102.209.117.85/newupdate/xavi-mtn.php?c=' . urlencode($c);
+  $url = 'http://127.0.0.1/newupdate/xavi-mtn.php?c=' . urlencode($c);
 
 
 array_push($urls_ar, $url);
