@@ -27,7 +27,7 @@ $number3 = GetTargetScore(1);
 
 
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
-$MAX_SCORE = 7000;
+$MAX_SCORE = 9000;
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
@@ -165,7 +165,7 @@ if ($current_time >= $check_time && $current_time <= $check_tim) {
 
 echo "\n Our score = $score";
  
-if($score>($MAX_SCORE*2+1)){
+if($score>($MAX_SCORE*/6+1)){
 
  sleep(rand(15,45));
  
