@@ -1,5 +1,6 @@
 <?php
-
+require_once('Tools-mtn-v2.php');
+$scoreTarget = TargetScore();
 //echo "cool down";return;
 system('sudo rm -rf cache');
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
@@ -34,13 +35,17 @@ $c_values = [
 
 $urls_ar = array();
 shuffle($c_values); 
-$randomItems = array_slice($c_values, 0, 2); 
+$controll = 3;
+if($scoreTarget>=40001){
+ $controll = 2;
+}
+$randomItems = array_slice($c_values, 0, $controll); 
 $serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
 foreach ($randomItems as $c) {
 
     
-  $url = 'http://5.39.117.107/newupdate/xavi-mtn.php?c=' . urlencode($c);
+  $url = 'http://'.$serverIP.'/newupdate/xavi-mtn.php?c=' . urlencode($c);
 
 
 array_push($urls_ar, $url);
