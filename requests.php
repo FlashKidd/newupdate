@@ -34,8 +34,8 @@ $c_values = [
 
 $urls_ar = array();
 shuffle($c_values); 
-$randomItems = array_slice($c_values, 0, 3); 
-$serverIP = gethostbyname(gethostname());
+$randomItems = array_slice($c_values, 0, 2); 
+$serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
 foreach ($randomItems as $c) {
 
