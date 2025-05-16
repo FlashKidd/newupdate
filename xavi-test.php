@@ -3,8 +3,8 @@
 
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
-$check_time = new DateTime('07:00'); 
-$check_tim = new DateTime('09:00');
+$check_time = new DateTime('04:00'); 
+$check_tim = new DateTime('12:00');
 
 
 //Business of the day
@@ -26,8 +26,9 @@ $number3 = GetTargetScore(1);
 
 
 
-$cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
-$MAX_SCORE = 9000;
+$cookie = "XSRF-TOKEN=eyJpdiI6ImFzOC9MZmxWUTFZVjlLTFk5aUFJYVE9PSIsInZhbHVlIjoiNE1XRG1QRi9ueTlSSG9UTW9LRHAzbGJ0V1NoSlRZZkJtZC9wRmJ1TC9Cb3JPNnRvVGFTSWF5dy9Cd0oxTkJWUWlzekNMSm1TbHk1VU9OUWs0bk5weTRwQVpXYndnL0MrZVlVYlAzNW9IMXlDbm1ZclEwUDMxNkJXMXExTFdFdHAiLCJtYWMiOiJkM2VlMGRkODBjMDAzZTNhOTEzZGMwNzlkZmJmMGI1NTE0ZTRkODljY2FlNzZiMTE0ZjA0MTg4MGVhZDdmNWE5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IitJbURFWTBhdENVa2s3S1p3b3lSYnc9PSIsInZhbHVlIjoibGxPTmg5RmYwNGVnNUhBdG40dFl5TkVoQXVmMk9EbG1HSDhva2hwVk5pcFNqSHYyZmNxUG4zMWw4WmR0TjAwcjN2amkxcDhYVFlVbXN0RkZCNnlWb1UzUnNYM0trY1p1eWxmYjZXdGZFZ1FteUkvK2Jqc1NwZ3RTazBGTTRLUk0iLCJtYWMiOiJmNTIzMzUzZGU1OGM1NzhmZTg5NjliZDM1NTNkOTJmZDQwYThkMmRhNDI0YzY4ZjQwMTg1YjBlNDdkM2RjZTBjIiwidGFnIjoiIn0%3D";
+
+$MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
@@ -120,19 +121,19 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 4) {
+if ($pos <= 1) {
     $score = rand(($MAX_SCORE/5),($MAX_SCORE/3));
 
 } else {
     $testSom = GetTargetScore($pos);
-    $score = ($number3/5) + $scoreTarget;
+    $score = $number3 + $MAX_SCORE;
    //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
    //   $score = rand(2800,3000);
    // }
- //  echo "\n Our score = $score";
-  //  if ($number3 - $testSom > $MAX_SCORE) {
-        //$score = $testSom + $MAX_SCORE;
-  //  }
+   echo "\n Our score = $score";
+    if ($number3 - $testSom > $MAX_SCORE) {
+        $score = $testSom + $MAX_SCORE;
+    }
 
    
         }
@@ -142,9 +143,9 @@ if ($pos <= 4) {
      }
 
 
-  //if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
+ // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
 
-           // $score = $number3 + rand(50, 100);
+ //            $score = $number3 + rand(50, 100);
 
  //     while ($score >= ($limit+100)) {
  //        $score -= rand(10, 30);
@@ -153,19 +154,19 @@ if ($pos <= 4) {
  //             }
 if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-   while ($score >= rand(100, 900)) {
-       $score -= rand(10, 30);
+     while ($score >= rand(100, 300)) {
+        $score -= rand(10, 30);
      }
 
 }
 
-// while(($score-$testSom)>$MAX_SCORE){
-//     $score-=rand(1,10);
-// }
+while(($score-$testSom)>50000){
+    $score-=rand(1,10);
+}
 
 echo "\n Our score = $score";
  
-if($score>($MAX_SCORE/6+1)){
+if($score>($MAX_SCORE*2+1)){
 
  sleep(rand(15,45));
  
