@@ -1,4 +1,6 @@
 <?php
+require_once('Tools-mtn-v2.php');
+$scoreTarget = TargetScore();
 //echo "cool down";return;
 system("rm -rf cache");
 
@@ -39,14 +41,19 @@ $c_values = [
 ];
 
 $urls_ar = array();
+$serverIP = trim(gethostbyname(gethostname()));
+echo "\nIP ADDR: $serverIP";
 foreach ($c_values as $c) {
-    $url = 'http://102.209.117.85/newupdate/new-mtn.php?c=' . urlencode($c);
+    $url = 'http://'.$serverIP.'/newupdate/new-mtn.php?c=' . urlencode($c);
     array_push($urls_ar, $url);
 }
-
-// Define batch size and delay
 $batch_size = 3;
-$delay = 30; // 1 minute 20 seconds in seconds
+if ($scoreTarget >= 40001){
+  $batch_size = 2;  
+}
+// Define batch size and delay
+
+$delay = 40; // 1 minute 20 seconds in seconds
 
 // Calculate the number of batches
 $num_batches = ceil(count($urls_ar) / $batch_size);
