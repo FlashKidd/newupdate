@@ -27,6 +27,8 @@ $number3 = GetTargetScore(1);
 
 
 $cookie = "XSRF-TOKEN=eyJpdiI6ImFzOC9MZmxWUTFZVjlLTFk5aUFJYVE9PSIsInZhbHVlIjoiNE1XRG1QRi9ueTlSSG9UTW9LRHAzbGJ0V1NoSlRZZkJtZC9wRmJ1TC9Cb3JPNnRvVGFTSWF5dy9Cd0oxTkJWUWlzekNMSm1TbHk1VU9OUWs0bk5weTRwQVpXYndnL0MrZVlVYlAzNW9IMXlDbm1ZclEwUDMxNkJXMXExTFdFdHAiLCJtYWMiOiJkM2VlMGRkODBjMDAzZTNhOTEzZGMwNzlkZmJmMGI1NTE0ZTRkODljY2FlNzZiMTE0ZjA0MTg4MGVhZDdmNWE5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IitJbURFWTBhdENVa2s3S1p3b3lSYnc9PSIsInZhbHVlIjoibGxPTmg5RmYwNGVnNUhBdG40dFl5TkVoQXVmMk9EbG1HSDhva2hwVk5pcFNqSHYyZmNxUG4zMWw4WmR0TjAwcjN2amkxcDhYVFlVbXN0RkZCNnlWb1UzUnNYM0trY1p1eWxmYjZXdGZFZ1FteUkvK2Jqc1NwZ3RTazBGTTRLUk0iLCJtYWMiOiJmNTIzMzUzZGU1OGM1NzhmZTg5NjliZDM1NTNkOTJmZDQwYThkMmRhNDI0YzY4ZjQwMTg1YjBlNDdkM2RjZTBjIiwidGFnIjoiIn0%3D";
+$cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+        
 
 $MAX_SCORE = 6000;
 
@@ -131,8 +133,8 @@ if ($pos <= 1) {
    //   $score = rand(2800,3000);
    // }
    echo "\n Our score = $score";
-    if ($number3 - $testSom > $MAX_SCORE) {
-        $score = $testSom + $MAX_SCORE;
+    if ($number3 - $testSom > $MAX_SCORE*2) {
+        $score = $testSom + $MAX_SCORE*2;
     }
 
    
