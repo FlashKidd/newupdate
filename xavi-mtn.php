@@ -165,7 +165,7 @@ if ($current_time >= $check_time && $current_time <= $check_tim) {
 
 echo "\n Our score = $score";
  
-if($score>($MAX_SCORE*/6+1)){
+if($score>($MAX_SCORE/6+1)){
 
  sleep(rand(15,45));
  
