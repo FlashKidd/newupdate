@@ -140,9 +140,9 @@ if ($pos <= 1) {
    
         }
 
-      while ($score >= 50000) {
-        $score -= rand(1, 10);
-     }
+     //  while ($score >= 50000) {
+     //    $score -= rand(1, 10);
+     // }
 
 
  // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
@@ -154,15 +154,15 @@ if ($pos <= 1) {
  //     }
 
  //             }
-if ($current_time >= $check_time && $current_time <= $check_tim) {
+// if ($current_time >= $check_time && $current_time <= $check_tim) {
 
-     while ($score >= rand(100, 300)) {
-        $score -= rand(10, 30);
-     }
+//      while ($score >= rand(100, 300)) {
+//         $score -= rand(10, 30);
+//      }
 
-}
+// }
 
-while(($score-$testSom)>50000){
+while(($score-$testSom)>50001){
     $score-=rand(1,10);
 }
 
