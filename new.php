@@ -53,7 +53,7 @@ if ($scoreTarget >= 40001){
 }
 // Define batch size and delay
 
-$delay = 40; // 1 minute 20 seconds in seconds
+$delay = 30; // 1 minute 20 seconds in seconds
 
 // Calculate the number of batches
 $num_batches = ceil(count($urls_ar) / $batch_size);
