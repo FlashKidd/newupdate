@@ -140,9 +140,9 @@ if ($pos <= 1) {
    
         }
 
-     //  while ($score >= 50000) {
-     //    $score -= rand(1, 10);
-     // }
+       while ($score > 50000) {
+       $score = 50000;
+      }
 
 
  // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
@@ -162,9 +162,9 @@ if ($pos <= 1) {
 
 // }
 
-while(($score-$testSom)>50001){
-    $score-=rand(1,10);
-}
+// while(($score-$testSom)>50001){
+//     $score-=rand(1,10);
+// }
 
 echo "\n Our score = $score";
  
