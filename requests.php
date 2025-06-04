@@ -45,7 +45,7 @@ echo "\nIP ADDR: $serverIP";
 foreach ($randomItems as $c) {
 
     
-  $url = 'http://'.$serverIP.'/newupdate/xavi-mtn.php?c=' . urlencode($c);
+  $url = 'http://'.$serverIP.'/newupdate/xavi.php?c=' . urlencode($c);
 
 
 array_push($urls_ar, $url);
