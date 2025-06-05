@@ -147,7 +147,7 @@ if ($pos <= 3 || $pos == 0) {
 
     $score = rand($min, $max);
 
-    echo "\n Our score:= $score";
+    echo "\n Our score and range $min - $max := $score";
 
     while ($score > $testSom) {
        $score += rand(1,10);
