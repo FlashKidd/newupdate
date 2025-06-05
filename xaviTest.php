@@ -6,7 +6,7 @@ while (true) {
     $current_time = new DateTime();
     //Business of the day
     require_once('Tools.php');
-    //system('cls');
+    system('clear');
     $scoreTarget = TargetScore();
     $number3 = GetTargetScore(1);
 
