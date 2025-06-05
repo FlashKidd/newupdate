@@ -1,7 +1,7 @@
 <?php
 
 
-
+sleep(rand(30,60));
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
@@ -134,19 +134,29 @@ system('clear');
        
 $testSom = GetTargetScore($pos);
 $MAX_SCORE = 6000;
+$range = 10000;
 if ($pos <= 3 || $pos == 0) {
     $score = rand(7000,10000);
     
 } else {
-    $testSom = GetTargetScore($pos);
-    $score = rand(100,500) + $number3;
-   echo "\n Our score x $pos = $score";
+ 
+   $multiplier = floor($number3 / $range);
 
+    $min = $range * $multiplier + 1;
+    $max = $range * ($multiplier + 1);
+
+    $score = rand($min, $max);
+
+    echo "\n Our score:= $score";
+
+    while ($score > $testSom) {
+       $score += rand(1,10);
+      }
    
         }
 
        while ($score > 50000) {
-       $score = 50000;
+       $score -= 1;
       }
 
 
