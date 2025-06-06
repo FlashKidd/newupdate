@@ -165,8 +165,18 @@ echo "\n Our score = $score";
  
 
 $increment = 1;
+$score = round($score, -1);
 
-$uA = RandomUa();
-$score = round($score,-1);
-$memory = validate_request($x_power, $score);
-$OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+// Keep resending the score until it shows on the leaderboard
+do {
+    $uA = RandomUa();
+    $memory = validate_request($x_power, $score);
+    // capture the new X-Powered-Version returned by the request sequence
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+
+    sleep(10); // wait before checking again
+    $currentScore = GetTargetScore($pos);
+    echo "\nLeaderboard value: $currentScore (expected $score)";
+} while ($currentScore != $score);
+
+echo "\nLeaderboard updated with score: $currentScore";
