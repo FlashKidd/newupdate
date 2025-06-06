@@ -500,8 +500,9 @@ foreach ($data as $value) {
     $cleanXavi = trim($xavi, '"');
    // echo "\n Xavi Generated => $cleanXavi";
     $memory = validate_request($power,$number);
-    AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
-    return json_encode($result);
+    // Final request returns the latest X-Powered-Version value
+    $power = AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
+    return $power;
 }
 
 
