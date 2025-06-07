@@ -30,7 +30,7 @@ $cookie = "XSRF-TOKEN=eyJpdiI6ImFzOC9MZmxWUTFZVjlLTFk5aUFJYVE9PSIsInZhbHVlIjoiNE
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
         
 
-$MAX_SCORE = 6000;
+// $MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
@@ -123,48 +123,34 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 1) {
-    $score = rand(($MAX_SCORE/5),($MAX_SCORE/3));
-
+$testSom = GetTargetScore($pos);
+$MAX_SCORE = 6000;
+$range = 10000;
+if ($pos <= 2 || $pos == 0) {
+    $score = rand(5000,7000);
+    
 } else {
-    $testSom = GetTargetScore($pos);
-    $score = $number3 + $MAX_SCORE;
-   //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
-   //   $score = rand(2800,3000);
-   // }
-   echo "\n Our score = $score";
-    if ($number3 - $testSom > $MAX_SCORE*2) {
-        $score = $testSom + $MAX_SCORE*2;
-    }
+ 
+   $multiplier = floor($number3 / $range);
 
+    $min = $range * $multiplier + 1;
+    $max = $range * ($multiplier + 1);
+
+    $score = rand($min, $max);
+
+    echo "\n Our score and range $min - $max := $score";
+
+    while ($score < $number3) {
+       $score += rand(1,10);
+      }
    
         }
 
        while ($score > 50000) {
-       $score = 50000;
+       $score -= 1;
       }
 
 
- // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
-
- //            $score = $number3 + rand(50, 100);
-
- //     while ($score >= ($limit+100)) {
- //        $score -= rand(10, 30);
- //     }
-
- //             }
-// if ($current_time >= $check_time && $current_time <= $check_tim) {
-
-//      while ($score >= rand(100, 300)) {
-//         $score -= rand(10, 30);
-//      }
-
-// }
-
-// while(($score-$testSom)>50001){
-//     $score-=rand(1,10);
-// }
 
 echo "\n Our score = $score";
  
