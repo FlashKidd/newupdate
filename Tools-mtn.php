@@ -406,8 +406,8 @@ usort($data, function($a, $b) {
     $cleanXavi = trim($xavi, '"');
     echo "\n <br><hr>Xavi Generated => $cleanXavi<br><hr>";
     $memory = validate_request($power,$number);
-    AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
-    return json_encode($result);
+    $power = AttackLast($url,$cleanXavi,$number,$power,$memory,$increment,$uA,$flash);
+    return $power;
 }
 
 function validate_request($fetchKey2, $LOP) {
