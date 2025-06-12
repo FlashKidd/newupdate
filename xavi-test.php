@@ -125,6 +125,61 @@ $scoreBefore = GetTargetScore($pos);
        
 
 $testSom = GetTargetScore($pos);
+
+ $MAX_SCORE = 6000;
+ $range = 10000;
+ $multiplier = ($pos <= 3 || $pos == 0) ? 0 : floor($number3 / $range);
+ $attemptLimit = 2;
+
+ while (true) {
+    if ($multiplier <= 0) {
+        $score = rand(7000,10000);
+        $min = 7000;
+        $max = 10000;
+    } else {
+        $min = $range * $multiplier + 1;
+        $max = $range * ($multiplier + 1);
+        $score = rand($min, $max);
+        while ($score < $number3) {
+            $score += rand(1,10);
+        }
+    }
+
+    while ($score > 50000) {
+        $score -= 1;
+    }
+
+    echo "\nTrying score $score in range $min - $max";
+    if($score>($MAX_SCORE*2+1)){
+        sleep(rand(15,45));
+    }
+
+    $increment = 1;
+    $score = round($score, -1);
+    $tries = 0;
+    $success = false;
+    do {
+        $uA = RandomUa();
+        $memory = validate_request($x_power, $score);
+        $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+        sleep(rand(30,50));
+        $currentScore = GetTargetScore($pos);
+        echo "\nLeaderboard value: $currentScore (expected $score)";
+        if ($currentScore == $score) {
+            $success = true;
+        }
+        $tries++;
+    } while (!$success && $tries < $attemptLimit);
+
+    if ($success) {
+        echo "\nLeaderboard updated with score: $currentScore";
+        $multiplier++;
+        break;
+    } else {
+        echo "\nFailed for range $min - $max, stepping down";
+        $multiplier = max(0, $multiplier - 1);
+    }
+ }
 $MAX_SCORE = 6000;
 $range = 10000;
 if ($pos <= 3 || $pos == 0) {
@@ -176,3 +231,4 @@ do {
 } while ($currentScore != $score);
 
 echo "\nLeaderboard updated with score: $currentScore";
+
