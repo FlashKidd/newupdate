@@ -2,8 +2,13 @@
 session_start();
 
 $password = 'flashkidd';
+
+$message  = '';
+$success  = '';
+
 $message = '';
 $success = '';
+
 
 function fetchInfo($cookie, $url) {
     $ch = curl_init();
@@ -48,6 +53,32 @@ function fetchInfo($cookie, $url) {
     return ['phone' => $phone, 'name' => $name];
 }
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $entered = $_POST['password'] ?? '';
+    $cookie  = trim($_POST['cookie'] ?? '');
+    if ($entered === $password) {
+        $file = 'cookies.json';
+        $url  = 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+
+        $list = json_decode(file_get_contents($file), true);
+        foreach ($list as $entry) {
+            if ($entry['value'] === $cookie) {
+                $message = 'Cookie already exists';
+                break;
+            }
+        }
+
+        if ($message === '') {
+            $info = fetchInfo($cookie, $url);
+            if ($info['name'] && $info['phone']) {
+                $list[] = ['value' => $cookie, 'isFree' => true];
+                file_put_contents($file, json_encode($list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+                $success = sprintf('%s (%s) has been added.', htmlspecialchars($info['name']), htmlspecialchars($info['phone']));
+            } else {
+                $message = 'Invalid cookie';
+            }
+=======
 if (!isset($_SESSION['auth'])) {
     if (isset($_POST['password'])) {
         if ($_POST['password'] === $password) {
@@ -87,6 +118,7 @@ if (!isset($_SESSION['auth'])) {
             $success = sprintf('%s (%s) has been added.', htmlspecialchars($info['name']), htmlspecialchars($info['phone']));
         } else {
             $message = 'Invalid cookie';
+
         }
     }
 }
@@ -97,6 +129,7 @@ if (!isset($_SESSION['auth'])) {
 <meta charset="UTF-8">
 <title>Add Cookie</title>
 <style>
+
 
 
 body {
@@ -128,8 +161,12 @@ label {
 }
 
 input[type="password"], textarea {
+=======
+
+input[type="password"], textarea {
 
 input[type="password"], textarea, select {
+
 
     width: 100%;
     padding: 10px;
@@ -139,10 +176,15 @@ input[type="password"], textarea, select {
 
     background: #222;
     color: #fff;
+=======
+
+    background: #222;
+    color: #fff;
 
 
     background: #222;
     color: #fff;
+
 
 
 }
@@ -170,6 +212,7 @@ button {
     text-align: center;
 }
 
+
 body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
 .container { width: 400px; margin: 80px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 h2 { text-align: center; }
@@ -182,22 +225,34 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
 
 
 
+
 </style>
 </head>
 <body>
 <div class="container">
+
+    <h2>Add Cookie</h2>
+    <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
+    <?php if ($success): ?><p class="success"><?php echo $success; ?></p><?php endif; ?>
+    <form method="post">
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Password" required>
+        <label>Cookie:</label>
+        <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
+        <button type="submit">Add</button>
+    </form>
+
 <?php if (!isset($_SESSION['auth'])): ?>
     <h2>Enter Password</h2>
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
     <form method="post">
         <label>Password:</label>
 
-        <input type="password" name="password" placeholder="Password" required>
 
 
         <input type="password" name="password" placeholder="Password" required>
 
-        <input type="password" name="password" required>
+
 
         <button type="submit">Login</button>
     </form>
@@ -211,13 +266,7 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
 
 
-        <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
-        <label>Provider:</label>
 
-
-        <textarea name="cookie" required></textarea>
-
-        <input type="text" name="cookie" required>
 
         <label>Type:</label>
 
@@ -229,6 +278,7 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
         <button type="submit">Add</button>
     </form>
 <?php endif; ?>
+
 </div>
 </body>
 </html>

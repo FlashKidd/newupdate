@@ -26,11 +26,21 @@ headers, manage cookies, and submit scores.
   Store cookie strings with an `isFree` flag so multiple runs can share cookies
   without conflicts. `cookies-mtn.json` is used by the MTN scripts.
 
+
 - **update-mtn.php**
   Utility script that resets the `isFree` flags in `cookies-mtn.json` so the
   MTN cookie pool can be reused.
 
-- **app.js**  
+
+- **update-mtn.php**
+  Utility script that resets the `isFree` flags in `cookies-mtn.json` so the
+  MTN cookie pool can be reused.
+
+  - **website.php**
+  A minimal page with one password input and one textarea for the cookie.
+  When the password is correct, the cookie is validated and stored in `cookies.json`.
+
+- **app.js**
   A small Express server that returns encrypted “X-CHAVI” tokens needed by the game
   endpoints.
 
