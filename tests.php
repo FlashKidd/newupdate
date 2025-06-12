@@ -1,7 +1,6 @@
 <?php
 require_once('Tools-mtn-v2.php');
 $scoreTarget = TargetScore();
-//echo "cool down";return;
 system('sudo rm -rf cache');
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
 $curl = new Zebra_cURL();
@@ -13,44 +12,42 @@ $curl->option(CURLOPT_TIMEOUT, 2400);
 
 $starttime = microtime(true);
 
-$c_values = [
-"XSRF-TOKEN=eyJpdiI6IkhzZ0tqWVE0V0ZrTDJ4T2hmdFBMeHc9PSIsInZhbHVlIjoicXI2aURlckt6YlBlYkZISjlEbWkzaTc2S0grY1pVVTQwLzJpdjBNUmllaU5tV0Vxd1hVSTViZ1dwMTVVakFXalVCM3JNUG1mbEsvQUJPUTk1N001SU0zWmk5SlZHWWprZk0xdEsyVnJORHBDNUk5d1NVSjJNdTRURDk0eEhHeHUiLCJtYWMiOiI1MWU2OTg2MjIyMTdhZmJjYjJjMWNlNWVjNmJjMDI3ZDFiZDgxYWM3MGQwNTllMTJmOWJjZGQ0OTcwNjViNTJmIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6IjlweWtmQmQ2YlZBRTFzREdOSFJXaUE9PSIsInZhbHVlIjoibUNQdlkxMzhrV0V4QzJEbE1Pd1E2YkRvTHpCVUJaT0Uwa2Qycnl3eG1zNGZrTVpEaDkwa0ZaMk5uemZnbzR6eG1kZUFabXhkZXVvT1U4ZzJ6ZmREWUFSWVhMRGRTeEZHeTBCUVBneWU5YU9NaDBhT0FYUXpqblgvcFloVENDRk4iLCJtYWMiOiI4ZDEyZTUwOWU3MjA3MjhjNmIxM2UzMmYzMjQxYTJiYTA3YzNlNTIxYTZlMzEzOWJmMGJlYjkxMTBiMWJlZGQ1IiwidGFnIjoiIn0%3D",
-
-"XSRF-TOKEN=eyJpdiI6IktvbDNmQ2Zoc3Iyd3I4bGJwQ2k2emc9PSIsInZhbHVlIjoieFNYV1RFSTJ6WkZSaDBVTnNjVnRQb3RZWWVTQTVjR05wOXViZndPeHdZM1EwUjhTTnNKMWU5eUxtclVYTkprZUdDSVZWejVUOGtOMVdack5JYmNTckt1RUszRXppUFBBSTRwNjRPSEtoWEhVci85VWV0eUZVblpCMmk1M3I1SkIiLCJtYWMiOiJjZTljYTE5NTA1NTZjMGNlNmVhM2YyNDhmYTMyZGVjMTdkZGVmMTZhMDVkOTg0ZWQyZWY1MjhmYmIyYWQxMGNiIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IkhjRUZFUkRNZi9yZys0UmJsWCtCR1E9PSIsInZhbHVlIjoiVHI3Q2RvTVg5RHM4L1NsdWdLY2VwMG1HNlh4WlNXNndBTFVzVXZoNllxMEF0Q1pTR3dyYnEyV0h6T01TbUpRa25YcUFGN0l3UkxIQk5zWk5ZWEsyZFRGZzIxV3pUWDY3MUNHQjN5WnJHTkNSNWxYQlpHUFRpckg3T2w0OTVTVysiLCJtYWMiOiJkZTliYzBiZjhiODQwOTE0ODNjYjExZjhmM2M3Y2Y4ZmYzOTViNjM3MzE2MWY2YzM5ODc4ZjU1ZWQzYjRmYjFhIiwidGFnIjoiIn0%3D"
-
-// "XSRF-TOKEN=eyJpdiI6Ii9oS3hoQkRKZ1pvV3lWQTJPL1BWSnc9PSIsInZhbHVlIjoibW4wZG5GREFQd283aURwM1BGSURaZkx1Z3FhNmpoQ0JWdEMrYlk4bmppN2N1WDZzSUlTR2Q5NlVwUmNkQ2lZN1dPSStRQW4yaFE1cnlwcUtzaTgxd3Bmb0hueFlpRXZVSzdyNy9YR200WHNEYjVVTWs5RWp3WFRNajFFczJyZHEiLCJtYWMiOiI4ZjA5Mjg3MDM4Njc4M2NlNTY3MDg3NjM4MjAzYTRiOTg4MzMzMjM3MmIxMGJjMjdhMjJmODU3NjcxNWM0ZTU2IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6InhVMnl4d1VEeUlWeDBkNW9MeGlLdHc9PSIsInZhbHVlIjoiak5Ya1RYcDVpTmZqRE5XSFQ5SGgwb2xvUWFQTmFFUlA4ZUJITUJEMGEvWmVDdWpxQWdsNnZIK3Y1VUFHOGtjTHd6c1VuNVhVOVovYTdzbmQxVHJnTlNreVJya0tUY0tnZFVHSURwRm8ySU9uaFFrZ1ZwaDZ0Nk4rRlVsOVc4K1AiLCJtYWMiOiI0OGU0NTMzYmMzZTg3NzkxNWE1YWNmZmQ3OWJiOTIxZmMwNmEwOWIyMTA3YjM5ZTY1YTRlMjk1YjBhYmI0ZjUxIiwidGFnIjoiIn0%3D",
-    
-// "XSRF-TOKEN=eyJpdiI6IjVKWXFDSTQ1R3RGamhNUzYyVzNtcVE9PSIsInZhbHVlIjoiM0RyTlY4M1dWTGJYMUNGcmJFalVWcWtobExmbTltdzIrM3NvOEhEQjNiT25yRnV1amFLSlhuNnlkMkNHWHA2Q1RFRllJWUtRMWI3UWJ1R1BxRHk2Q1ByUFB2cEJzdlIxWnU1WTJpWUZZd3lRejBMNWtvUTN5MFhEMVgzTG4rN0YiLCJtYWMiOiI1NmMzZDE5MzQ2NTk4NzdiY2ZmMTQ5NGQwZDdmYzJmNzY2ZGVlMTM1YjNhNDA3NGI3ZWNhYjI5YjZjNTQ4NTZiIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjMvSWZlT0dyUVdVdVN4aXhLeGt4enc9PSIsInZhbHVlIjoicmZmYVFYUzhOMEwvT1dnTm1OSDhVS2gyaEtsVnJvVmsxd3hqVzBxWGlZZmVMZTVtOFd6b0V5UnlUV0o4dE53cFZBZDhyS2VMZ3B0QkhNMzFCelRqYkttMnBXaWNvRlRMNmFYK2N1Tk1tUndIMTYyK2NkS0FzbjlIS1gwYThDRGkiLCJtYWMiOiI3NDNhMzliY2Q0OTIyYTEyMmQ4ZDQ2MjJjZjhlNjBmZjhjMTNjNzhmMTg3NGRmZjVkNzFjYzcyNjQwNDllODk1IiwidGFnIjoiIn0%3D",
-
-// "XSRF-TOKEN=eyJpdiI6IktvbDNmQ2Zoc3Iyd3I4bGJwQ2k2emc9PSIsInZhbHVlIjoieFNYV1RFSTJ6WkZSaDBVTnNjVnRQb3RZWWVTQTVjR05wOXViZndPeHdZM1EwUjhTTnNKMWU5eUxtclVYTkprZUdDSVZWejVUOGtOMVdack5JYmNTckt1RUszRXppUFBBSTRwNjRPSEtoWEhVci85VWV0eUZVblpCMmk1M3I1SkIiLCJtYWMiOiJjZTljYTE5NTA1NTZjMGNlNmVhM2YyNDhmYTMyZGVjMTdkZGVmMTZhMDVkOTg0ZWQyZWY1MjhmYmIyYWQxMGNiIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IkhjRUZFUkRNZi9yZys0UmJsWCtCR1E9PSIsInZhbHVlIjoiVHI3Q2RvTVg5RHM4L1NsdWdLY2VwMG1HNlh4WlNXNndBTFVzVXZoNllxMEF0Q1pTR3dyYnEyV0h6T01TbUpRa25YcUFGN0l3UkxIQk5zWk5ZWEsyZFRGZzIxV3pUWDY3MUNHQjN5WnJHTkNSNWxYQlpHUFRpckg3T2w0OTVTVysiLCJtYWMiOiJkZTliYzBiZjhiODQwOTE0ODNjYjExZjhmM2M3Y2Y4ZmYzOTViNjM3MzE2MWY2YzM5ODc4ZjU1ZWQzYjRmYjFhIiwidGFnIjoiIn0%3D",
-
-// "XSRF-TOKEN=eyJpdiI6Ikt4MGZtN0tia1dFZFZTcEZ0MHJBYWc9PSIsInZhbHVlIjoiRjZ2dTUxOWRPdmlHSTFsQmkxK1NuRm5sS3VNODltalI2dEhGMXNFNmRjd0paSUpzRmYzMExrTDdYS0FiYkk5VmdwVUxydjJZRnJaVDRjdDhPUzBJV005T3Z5K3g3TWdEMXd4aFgwemR0M3dyRFh4NmViTjJXT3gzNGVwMU9iak0iLCJtYWMiOiIxNzQ1ZGJlNDIxOTNjM2E5ZWZmZDQ5YjIwMGEyNmFjYjAzNGQ5ZjdlYWZjMDNlYWYwODE2ZDU5NDczOTg2NWI4IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IldBQzZ3dGhCazROSjA4cGNndTBFblE9PSIsInZhbHVlIjoiV2I4NWJrbk1LaXE5US9FVnptTkIwR05JelNkT3JPQmp6aWVVbjBQVGdkTlYwNGZwbEVLUFFiRE9FR0QvR1pRaHFuQ2FRcmgreCtaalg4TDlid0hYSFh4SVFXa1prc1dEdWZFYlpiSXhHblhQN0M1cnJ4dm1KYVBGMC93OENTbEwiLCJtYWMiOiJhMzI0Njg5YTEwNjViMmNlNDE2OTk5ZGU3NjEzODhjNGI4NjVlMDNjY2M4NzU5ZjRhMDEwY2FiNTMzYjM1YWYxIiwidGFnIjoiIn0%3D",
-
-    ];
-
-$urls_ar = array();
-shuffle($c_values); 
-$controll = 3;
-if($scoreTarget >= 40001){
-    $controll = 2;
+$cookieFile = __DIR__ . '/cookies-mtn.json';
+$maxConcurrent = 2;
+$selectedIndexes = [];
+$urls_ar = [];
+while (true) {
+    $fp = fopen($cookieFile, 'c+');
+    if (flock($fp, LOCK_EX)) {
+        $cookies = json_decode(stream_get_contents($fp), true);
+        foreach ($cookies as $idx => $cookie) {
+            if (!empty($cookie['isFree'])) {
+                $cookies[$idx]['isFree'] = false;
+                $selectedIndexes[] = $idx;
+                $urls_ar[] = $cookie['value'];
+                if (count($urls_ar) >= $maxConcurrent) break;
+            }
+        }
+        ftruncate($fp, 0);
+        rewind($fp);
+        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+        flock($fp, LOCK_UN);
+        fclose($fp);
+        if (!empty($urls_ar)) break;
+    } else {
+        fclose($fp);
+    }
+    sleep(1);
 }
-$randomItems = array_slice($c_values, 0, $controll); 
+
 $serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
-
-foreach ($c_values as $c) {
-
-    
-  $url = 'http://'.$serverIP.'/newupdate/xavi-test.php?c=' . urlencode($c);
-
-
-array_push($urls_ar, $url);
-
+$urls = [];
+foreach ($urls_ar as $c) {
+    $urls[] = 'http://'.$serverIP.'/newupdate/xavi-test.php?c=' . urlencode($c);
 }
 
-
-
-$curl->get($urls_ar, function($result) {
+$curl->get($urls, function($result) {
     if ($result->response[1] == CURLE_OK) {
         echo 'Success: ', $result->body;
     } else {
@@ -58,7 +55,19 @@ $curl->get($urls_ar, function($result) {
     }
 });
 
+$fp = fopen($cookieFile, 'c+');
+flock($fp, LOCK_EX);
+$cookies = json_decode(stream_get_contents($fp), true);
+foreach ($selectedIndexes as $idx) {
+    $cookies[$idx]['isFree'] = true;
+}
+ftruncate($fp, 0);
+rewind($fp);
+fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+flock($fp, LOCK_UN);
+fclose($fp);
+
 $endtime = microtime(true);
 $duration = $endtime - $starttime;
 echo "Execution time: " . $duration . " seconds";
-
+?>
