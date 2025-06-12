@@ -12,6 +12,7 @@ $check_tim = new DateTime('12:00');
 require_once('Tools-mtn-v2.php');
 // while(true){
 system('cls');
+$uA = RandomUa();
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
@@ -58,7 +59,7 @@ $scoreBefore = GetTargetScore($pos);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
-            'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+            'User-Agent: '.$uA
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -79,8 +80,8 @@ $scoreBefore = GetTargetScore($pos);
             //     // return;
             // }
 
-        echo "<br>Uniquie_id: $unique_id<hr>";
-        echo "<br>Game_id: $game_id<hr>";
+        // echo "<br>Uniquie_id: $unique_id<hr>";
+        // echo "<br>Game_id: $game_id<hr>";
 
 
         ###################
@@ -99,6 +100,7 @@ $scoreBefore = GetTargetScore($pos);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA,
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -125,8 +127,8 @@ $scoreBefore = GetTargetScore($pos);
 $testSom = GetTargetScore($pos);
 $MAX_SCORE = 6000;
 $range = 10000;
-if ($pos <= 2 || $pos == 0) {
-    $score = rand(5000,7000);
+if ($pos <= 3 || $pos == 0) {
+    $score = rand(7000,10000);
     
 } else {
  
