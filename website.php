@@ -90,6 +90,7 @@ if (!isset($_SESSION['auth'])) {
 <meta charset="UTF-8">
 <title>Add Cookie</title>
 <style>
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, sans-serif;
@@ -123,8 +124,10 @@ input[type="password"], textarea, select {
     box-sizing: border-box;
     border-radius: 6px;
     border: 1px solid #ccc;
+
     background: #222;
     color: #fff;
+
 }
 textarea {
     height: 80px;
@@ -149,6 +152,18 @@ button {
     color: #4caf50;
     text-align: center;
 }
+
+body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+.container { width: 400px; margin: 80px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+h2 { text-align: center; }
+form { margin-top: 15px; }
+label { display: block; margin-top: 10px; }
+input[type="text"], input[type="password"], select { width: 100%; padding: 8px; box-sizing: border-box; }
+button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+.message { color: red; text-align: center; }
+.success { color: green; text-align: center; }
+
+
 </style>
 </head>
 <body>
@@ -158,7 +173,11 @@ button {
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
     <form method="post">
         <label>Password:</label>
+
         <input type="password" name="password" placeholder="Password" required>
+
+        <input type="password" name="password" required>
+
         <button type="submit">Login</button>
     </form>
 <?php else: ?>
@@ -167,8 +186,17 @@ button {
     <?php if ($success): ?><p class="success"><?php echo $success; ?></p><?php endif; ?>
     <form method="post">
         <label>Cookie:</label>
+
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
         <label>Provider:</label>
+
+
+        <textarea name="cookie" required></textarea>
+
+        <input type="text" name="cookie" required>
+
+        <label>Type:</label>
+
         <select name="type">
             <option value="voda">Vodacom</option>
             <option value="mtn">MTN</option>
