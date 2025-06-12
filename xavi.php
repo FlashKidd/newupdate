@@ -174,7 +174,11 @@ do {
     // capture the new X-Powered-Version returned by the request sequence
     $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
 
+
+    sleep(10); // wait before checking again
+
     sleep(rand(30,50)); // wait before checking again
+
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore (expected $score)";
 } while ($currentScore != $score);

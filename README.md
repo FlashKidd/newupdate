@@ -26,6 +26,12 @@ headers, manage cookies, and submit scores.
   Store cookie strings with an `isFree` flag so multiple runs can share cookies
   without conflicts. `cookies-mtn.json` is used by the MTN scripts.
 
+
+- **update-mtn.php**
+  Utility script that resets the `isFree` flags in `cookies-mtn.json` so the
+  MTN cookie pool can be reused.
+
+
 - **update-mtn.php**
   Utility script that resets the `isFree` flags in `cookies-mtn.json` so the
   MTN cookie pool can be reused.
