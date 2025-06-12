@@ -42,10 +42,10 @@ if($scoreTarget>=40001){
 $randomItems = array_slice($c_values, 0, $controll); 
 $serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
-foreach ($randomItems as $c) {
+foreach ($c_values as $c) {
 
     
-  $url = 'http://'.$serverIP.'/newupdate/xavi.php?c=' . urlencode($c);
+  $url = 'http://'.$serverIP.'/newupdate/xavi-test.php?c=' . urlencode($c);
 
 
 array_push($urls_ar, $url);

@@ -6,13 +6,14 @@ $curl = new Zebra_cURL();
 $curl->cache('/var/www/html/newupdate/cache', 59);
 $curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
 $curl->threads = 10;
-$curl->option(CURLOPT_TIMEOUT, 300);
+$curl->option(CURLOPT_TIMEOUT, 600);
 @unlink('cache');
 
 
 $starttime = microtime(true);
 
 $cookieFile = __DIR__ . '/cookies.json';
+
 $currentMinute = intval(date('i'));
 $fp = fopen($cookieFile, 'c+');
 if (flock($fp, LOCK_EX)) {
@@ -35,6 +36,7 @@ if (flock($fp, LOCK_EX)) {
     flock($fp, LOCK_UN);
 }
 fclose($fp);
+
 $maxConcurrent = 2;
 $selectedIndexes = [];
 $urls_ar = [];
