@@ -12,6 +12,7 @@ $check_tim = new DateTime('12:00');
 require_once('Tools-mtn-v2.php');
 // while(true){
 system('cls');
+$uA = RandomUa();
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
@@ -26,7 +27,6 @@ $number3 = GetTargetScore(1);
 
 
 
-$cookie = "XSRF-TOKEN=eyJpdiI6ImFzOC9MZmxWUTFZVjlLTFk5aUFJYVE9PSIsInZhbHVlIjoiNE1XRG1QRi9ueTlSSG9UTW9LRHAzbGJ0V1NoSlRZZkJtZC9wRmJ1TC9Cb3JPNnRvVGFTSWF5dy9Cd0oxTkJWUWlzekNMSm1TbHk1VU9OUWs0bk5weTRwQVpXYndnL0MrZVlVYlAzNW9IMXlDbm1ZclEwUDMxNkJXMXExTFdFdHAiLCJtYWMiOiJkM2VlMGRkODBjMDAzZTNhOTEzZGMwNzlkZmJmMGI1NTE0ZTRkODljY2FlNzZiMTE0ZjA0MTg4MGVhZDdmNWE5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IitJbURFWTBhdENVa2s3S1p3b3lSYnc9PSIsInZhbHVlIjoibGxPTmg5RmYwNGVnNUhBdG40dFl5TkVoQXVmMk9EbG1HSDhva2hwVk5pcFNqSHYyZmNxUG4zMWw4WmR0TjAwcjN2amkxcDhYVFlVbXN0RkZCNnlWb1UzUnNYM0trY1p1eWxmYjZXdGZFZ1FteUkvK2Jqc1NwZ3RTazBGTTRLUk0iLCJtYWMiOiJmNTIzMzUzZGU1OGM1NzhmZTg5NjliZDM1NTNkOTJmZDQwYThkMmRhNDI0YzY4ZjQwMTg1YjBlNDdkM2RjZTBjIiwidGFnIjoiIn0%3D";
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
         
 
@@ -59,7 +59,7 @@ $scoreBefore = GetTargetScore($pos);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
-            'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+            'User-Agent: '.$uA
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -80,8 +80,8 @@ $scoreBefore = GetTargetScore($pos);
             //     // return;
             // }
 
-        echo "<br>Uniquie_id: $unique_id<hr>";
-        echo "<br>Game_id: $game_id<hr>";
+        // echo "<br>Uniquie_id: $unique_id<hr>";
+        // echo "<br>Game_id: $game_id<hr>";
 
 
         ###################
@@ -100,6 +100,7 @@ $scoreBefore = GetTargetScore($pos);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA,
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -126,8 +127,8 @@ $scoreBefore = GetTargetScore($pos);
 $testSom = GetTargetScore($pos);
 $MAX_SCORE = 6000;
 $range = 10000;
-if ($pos <= 2 || $pos == 0) {
-    $score = rand(5000,7000);
+if ($pos <= 3 || $pos == 0) {
+    $score = rand(7000,10000);
     
 } else {
  
@@ -161,8 +162,17 @@ if($score>($MAX_SCORE*2+1)){
 }
 $increment = 1;
 
-$uA = RandomUa();
-$score = round($score,-1);
-$memory = validate_request($x_power, $score);
-$OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-// }
+$score = round($score, -1);
+// Keep resending until leaderboard reflects the new score
+do {
+    $uA = RandomUa();
+    $memory = validate_request($x_power, $score);
+    // capture latest X-Powered-Version
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+
+    sleep(rand(30,50));
+    $currentScore = GetTargetScore($pos);
+    echo "\nLeaderboard value: $currentScore (expected $score)";
+} while ($currentScore != $score);
+
+echo "\nLeaderboard updated with score: $currentScore";
