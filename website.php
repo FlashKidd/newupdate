@@ -56,6 +56,12 @@ if (!isset($_SESSION['auth'])) {
             $message = 'Incorrect password';
         }
     }
+
+} elseif (isset($_POST['cookie'])) {
+    $cookie = trim($_POST['cookie']);
+    $file = 'cookies.json';
+    $url = 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+
 } elseif (isset($_POST['cookie'], $_POST['type'])) {
     $cookie = trim($_POST['cookie']);
     $type = $_POST['type'] === 'mtn' ? 'mtn' : 'voda';
@@ -63,6 +69,7 @@ if (!isset($_SESSION['auth'])) {
     $url = $type === 'mtn'
         ? 'https://yellorush.co.za/my-winnings?display=tab3'
         : 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+
 
     $list = json_decode(file_get_contents($file), true);
     foreach ($list as $entry) {
@@ -91,6 +98,7 @@ if (!isset($_SESSION['auth'])) {
 <title>Add Cookie</title>
 <style>
 
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, sans-serif;
@@ -118,7 +126,11 @@ label {
     display: block;
     margin-top: 10px;
 }
+
+input[type="password"], textarea {
+
 input[type="password"], textarea, select {
+
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -127,6 +139,11 @@ input[type="password"], textarea, select {
 
     background: #222;
     color: #fff;
+
+
+    background: #222;
+    color: #fff;
+
 
 }
 textarea {
@@ -164,6 +181,7 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
 .success { color: green; text-align: center; }
 
 
+
 </style>
 </head>
 <body>
@@ -173,6 +191,9 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
     <form method="post">
         <label>Password:</label>
+
+        <input type="password" name="password" placeholder="Password" required>
+
 
         <input type="password" name="password" placeholder="Password" required>
 
@@ -188,6 +209,9 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
         <label>Cookie:</label>
 
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
+
+
+        <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
         <label>Provider:</label>
 
 
@@ -201,6 +225,7 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
             <option value="voda">Vodacom</option>
             <option value="mtn">MTN</option>
         </select>
+
         <button type="submit">Add</button>
     </form>
 <?php endif; ?>
