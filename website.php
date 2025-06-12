@@ -90,6 +90,65 @@ if (!isset($_SESSION['auth'])) {
 <meta charset="UTF-8">
 <title>Add Cookie</title>
 <style>
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    margin: 0;
+    padding: 0;
+    color: #eee;
+}
+.container {
+    width: 420px;
+    margin: 80px auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+h2 {
+    text-align: center;
+}
+form {
+    margin-top: 15px;
+}
+label {
+    display: block;
+    margin-top: 10px;
+}
+input[type="password"], textarea, select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+textarea {
+    height: 80px;
+    overflow-wrap: break-word;
+    resize: vertical;
+}
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #00bcd4;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.message {
+    color: #ff6b6b;
+    text-align: center;
+}
+.success {
+    color: #4caf50;
+    text-align: center;
+}
+
 body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
 .container { width: 400px; margin: 80px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 h2 { text-align: center; }
@@ -99,6 +158,7 @@ input[type="text"], input[type="password"], select { width: 100%; padding: 8px; 
 button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
 .message { color: red; text-align: center; }
 .success { color: green; text-align: center; }
+
 </style>
 </head>
 <body>
@@ -117,7 +177,11 @@ button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; colo
     <?php if ($success): ?><p class="success"><?php echo $success; ?></p><?php endif; ?>
     <form method="post">
         <label>Cookie:</label>
+
+        <textarea name="cookie" required></textarea>
+
         <input type="text" name="cookie" required>
+
         <label>Type:</label>
         <select name="type">
             <option value="voda">Vodacom</option>
