@@ -13,6 +13,30 @@ $curl->option(CURLOPT_TIMEOUT, 600);
 $starttime = microtime(true);
 
 $cookieFile = __DIR__ . '/cookies.json';
+
+$currentMinute = intval(date('i'));
+$fp = fopen($cookieFile, 'c+');
+if (flock($fp, LOCK_EX)) {
+    $cookies = json_decode(stream_get_contents($fp), true);
+    $allLocked = true;
+    foreach ($cookies as $cookie) {
+        if (!empty($cookie['isFree'])) {
+            $allLocked = false;
+            break;
+        }
+    }
+    if ($allLocked && $currentMinute < 10) {
+        foreach ($cookies as &$cookie) {
+            $cookie['isFree'] = true;
+        }
+        ftruncate($fp, 0);
+        rewind($fp);
+        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+    }
+    flock($fp, LOCK_UN);
+}
+fclose($fp);
+
 $maxConcurrent = 2;
 $selectedIndexes = [];
 $urls_ar = [];
