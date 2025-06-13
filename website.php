@@ -1,22 +1,12 @@
 <?php
 session_start();
 
-
 $password = 'flashkidd';
 $message  = '';
 $success  = '';
-
-
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-
-$password = 'flashkidd';
-$message  = '';
-$success  = '';
-
-
 
 function fetchInfo($cookie, $url) {
     $ch = curl_init();
@@ -62,17 +52,9 @@ function fetchInfo($cookie, $url) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $entered = $_POST['password'] ?? '';
     $cookie  = trim($_POST['cookie'] ?? '');
     $type    = $_POST['type'] ?? 'voda';
-
-
-
-    $entered = isset($_POST['password']) ? $_POST['password'] : '';
-    $cookie  = isset($_POST['cookie']) ? trim($_POST['cookie']) : '';
-
-
 
     if ($entered === $password) {
         $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
@@ -98,166 +80,103 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $message = 'Invalid cookie';
             }
         }
+    } else {
+        $message = 'Incorrect password';
     }
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Add Cookie</title>
-<style>
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    margin: 0;
-    padding: 0;
-    color: #e5e5e5;
-}
-
-.container {
-    width: 420px;
-    margin: 80px auto;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-h2 {
-    text-align: center;
-    margin-top: 0;
-}
-
-label {
-    display: block;
-    margin-top: 12px;
-}
-
-
-input[type="password"],
-textarea,
-select {
-
-input[type="password"], textarea, select {
-
-
-input[type="password"], textarea, select {
-
-input[type="password"], textarea {
-
-
-
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background: #222;
-    color: #fff;
-}
-
-textarea {
-    height: 80px;
-    resize: vertical;
-    overflow-wrap: break-word;
-}
-
-button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 10px;
-    background: #10a37f;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.message {
-    color: #ff6b6b;
-    text-align: center;
-}
-
-.success {
-    color: #4caf50;
-    text-align: center;
-}
-
-/* Basic light theme previously used */
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-.container {
-    width: 400px;
-    margin: 80px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-h2 {
-    text-align: center;
-}
-form {
-    margin-top: 15px;
-}
-label {
-    display: block;
-    margin-top: 10px;
-}
-input[type="text"], input[type="password"], select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.message {
-    color: red;
-    text-align: center;
-}
-.success {
-    color: green;
-    text-align: center;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <title>Add Cookie</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #1f2937, #111827);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            max-width: 420px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            font-weight: 600;
+        }
+        label {
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #111827;
+            color: #fff;
+        }
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background: #10b981;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #059669;
+        }
+        .message {
+            color: #f87171;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .success {
+            color: #4ade80;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h2>Add Cookie</h2>
-    <?php if ($message): ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
-    <?php if ($success): ?><p class="success"><?php echo $success; ?></p><?php endif; ?>
+    <?php if ($message): ?><p class="message"><?= $message ?></p><?php endif; ?>
+    <?php if ($success): ?><p class="success"><?= $success ?></p><?php endif; ?>
     <form method="post">
         <label>Password:</label>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="Enter password" required>
+
         <label>Cookie:</label>
-        <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
-
-
-
-
-
+        <textarea name="cookie" placeholder="Paste cookie here..." required></textarea>
 
         <label>Type:</label>
         <select name="type">
             <option value="voda">Vodacom</option>
             <option value="mtn">MTN</option>
         </select>
+
         <button type="submit">Add</button>
     </form>
 </div>
