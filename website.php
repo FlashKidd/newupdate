@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($entered === $password) {
         $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
         $url  = $type === 'mtn'
-            ? 'https://yellorush.co.za/my-winnings?display=tab3'
+            ? 'https://www.yellorush.co.za/my-winnings?display=tab3'
             : 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
 
         $list = json_decode(file_get_contents($file), true);
