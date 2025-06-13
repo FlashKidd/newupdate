@@ -1,8 +1,10 @@
 <?php
 session_start();
 
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 
 $password = 'flashkidd';
 $message  = '';
@@ -52,11 +54,19 @@ function fetchInfo($cookie, $url) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $entered = $_POST['password'] ?? '';
+    $cookie  = trim($_POST['cookie'] ?? '');
+    $type    = $_POST['type'] ?? 'voda';
+
     $entered = isset($_POST['password']) ? $_POST['password'] : '';
     $cookie  = isset($_POST['cookie']) ? trim($_POST['cookie']) : '';
+
     if ($entered === $password) {
-        $file = 'cookies.json';
-        $url  = 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+        $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
+        $url  = $type === 'mtn'
+            ? 'https://yellorush.co.za/my-winnings?display=tab3'
+            : 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
 
         $list = json_decode(file_get_contents($file), true);
         foreach ($list as $entry) {
@@ -112,7 +122,11 @@ label {
     display: block;
     margin-top: 10px;
 }
+
+input[type="password"], textarea, select {
+
 input[type="password"], textarea {
+
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -156,6 +170,13 @@ button {
         <input type="password" name="password" placeholder="Password" required>
         <label>Cookie:</label>
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
+
+        <label>Type:</label>
+        <select name="type">
+            <option value="voda">Vodacom</option>
+            <option value="mtn">MTN</option>
+        </select>
+
         <button type="submit">Add</button>
     </form>
 </div>
