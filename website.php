@@ -44,7 +44,7 @@ function fetchInfo($cookie, $url) {
     curl_close($ch);
 
     // Save full HTML to inspect the response
-    file_put_contents("debug.html", $html);
+    //file_put_contents("debug.html", $html);
 
     $dom = new DOMDocument();
     @$dom->loadHTML($html);
@@ -57,7 +57,7 @@ function fetchInfo($cookie, $url) {
     $name = $nameNode->length > 0 ? trim($nameNode->item(0)->nodeValue) : '';
 
     // Save what it extracted
-    file_put_contents("debug_info.txt", "Name: $name\nPhone: $phone");
+    //file_put_contents("debug_info.txt", "Name: $name\nPhone: $phone");
 
     return array('phone' => $phone, 'name' => $name);
 }
