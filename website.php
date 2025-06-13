@@ -2,6 +2,12 @@
 session_start();
 
 
+$password = 'flashkidd';
+$message  = '';
+$success  = '';
+
+
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -9,6 +15,7 @@ ini_set('display_errors', 1);
 $password = 'flashkidd';
 $message  = '';
 $success  = '';
+
 
 function fetchInfo($cookie, $url) {
     $ch = curl_init();
@@ -59,8 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cookie  = trim($_POST['cookie'] ?? '');
     $type    = $_POST['type'] ?? 'voda';
 
+
     $entered = isset($_POST['password']) ? $_POST['password'] : '';
     $cookie  = isset($_POST['cookie']) ? trim($_POST['cookie']) : '';
+
 
     if ($entered === $password) {
         $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
@@ -125,7 +134,11 @@ label {
 
 input[type="password"], textarea, select {
 
+
+input[type="password"], textarea, select {
+
 input[type="password"], textarea {
+
 
     width: 100%;
     padding: 10px;
@@ -158,6 +171,56 @@ button {
     color: #4caf50;
     text-align: center;
 }
+
+/* Basic light theme previously used */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 400px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+}
+form {
+    margin-top: 15px;
+}
+label {
+    display: block;
+    margin-top: 10px;
+}
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.message {
+    color: red;
+    text-align: center;
+}
+.success {
+    color: green;
+    text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -171,12 +234,14 @@ button {
         <label>Cookie:</label>
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
 
+
+
+
         <label>Type:</label>
         <select name="type">
             <option value="voda">Vodacom</option>
             <option value="mtn">MTN</option>
         </select>
-
         <button type="submit">Add</button>
     </form>
 </div>
