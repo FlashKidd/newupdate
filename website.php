@@ -30,13 +30,21 @@ function fetchInfo($cookie, $url) {
         'User-Agent: Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
     );
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
     $html = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        file_put_contents("curl_error.txt", curl_error($ch));
+    }
+
     curl_close($ch);
+
+    // Save full HTML to inspect the response
+    file_put_contents("debug.html", $html);
 
     $dom = new DOMDocument();
     @$dom->loadHTML($html);
@@ -48,8 +56,12 @@ function fetchInfo($cookie, $url) {
     $nameNode = $xpath->query("//div[contains(@class,'user-name-new')]//h6");
     $name = $nameNode->length > 0 ? trim($nameNode->item(0)->nodeValue) : '';
 
+    // Save what it extracted
+    file_put_contents("debug_info.txt", "Name: $name\nPhone: $phone");
+
     return array('phone' => $phone, 'name' => $name);
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $entered = trim($_POST['password'] ?? '');
