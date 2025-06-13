@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 $password = 'flashkidd';
 $message  = '';
 $success  = '';
@@ -9,7 +14,7 @@ function fetchInfo($cookie, $url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-    $headers = [
+    $headers = array(
         'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'Accept-Language: en-US,en;q=0.9',
         'Cache-Control: no-cache',
@@ -25,7 +30,7 @@ function fetchInfo($cookie, $url) {
         'Sec-Fetch-Site: same-origin',
         'Upgrade-Insecure-Requests: 1',
         'User-Agent: Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
-    ];
+    );
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -45,13 +50,18 @@ function fetchInfo($cookie, $url) {
     $nameNode = $xpath->query("//div[contains(@class,'user-name-new')]//h6");
     $name = $nameNode->length > 0 ? trim($nameNode->item(0)->nodeValue) : '';
 
-    return ['phone' => $phone, 'name' => $name];
+    return array('phone' => $phone, 'name' => $name);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $entered = $_POST['password'] ?? '';
     $cookie  = trim($_POST['cookie'] ?? '');
     $type    = $_POST['type'] ?? 'voda';
+
+    $entered = isset($_POST['password']) ? $_POST['password'] : '';
+    $cookie  = isset($_POST['cookie']) ? trim($_POST['cookie']) : '';
+
     if ($entered === $password) {
         $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
         $url  = $type === 'mtn'
@@ -69,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($message === '') {
             $info = fetchInfo($cookie, $url);
             if ($info['name'] && $info['phone']) {
-                $list[] = ['value' => $cookie, 'isFree' => true];
+                $list[] = array('value' => $cookie, 'isFree' => true);
                 file_put_contents($file, json_encode($list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
                 $success = sprintf('%s (%s) has been added.', htmlspecialchars($info['name']), htmlspecialchars($info['phone']));
             } else {
@@ -112,7 +122,11 @@ label {
     display: block;
     margin-top: 10px;
 }
+
 input[type="password"], textarea, select {
+
+input[type="password"], textarea {
+
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -156,11 +170,13 @@ button {
         <input type="password" name="password" placeholder="Password" required>
         <label>Cookie:</label>
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
+
         <label>Type:</label>
         <select name="type">
             <option value="voda">Vodacom</option>
             <option value="mtn">MTN</option>
         </select>
+
         <button type="submit">Add</button>
     </form>
 </div>
