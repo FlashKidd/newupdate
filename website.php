@@ -52,9 +52,9 @@ function fetchInfo($cookie, $url) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $entered = $_POST['password'] ?? '';
+    $entered = trim($_POST['password'] ?? '');
     $cookie  = trim($_POST['cookie'] ?? '');
-    $type    = $_POST['type'] ?? 'voda';
+    $type    = trim($_POST['type'] ?? 'voda');
 
     if ($entered === $password) {
         $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = 'Incorrect password';
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
