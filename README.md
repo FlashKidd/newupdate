@@ -31,14 +31,11 @@ headers, manage cookies, and submit scores.
   Utility script that resets the `isFree` flags in `cookies-mtn.json` so the
   MTN cookie pool can be reused.
 
-
-- **update-mtn.php**
-  Utility script that resets the `isFree` flags in `cookies-mtn.json` so the
-  MTN cookie pool can be reused.
-
-  - **website.php**
-  A minimal page with one password input and one textarea for the cookie.
-  When the password is correct, the cookie is validated and stored in `cookies.json`.
+- **website.php**
+  Simple page for submitting cookies. Users enter the password, paste the cookie
+  string, and select whether it belongs to Vodacom or MTN. The cookie is then
+  validated and saved to the matching file (`cookies.json` or
+  `cookies-mtn.json`).
 
 - **app.js**
   A small Express server that returns encrypted “X-CHAVI” tokens needed by the game
