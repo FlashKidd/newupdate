@@ -17,6 +17,7 @@ $message  = '';
 $success  = '';
 
 
+
 function fetchInfo($cookie, $url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -67,8 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type    = $_POST['type'] ?? 'voda';
 
 
+
     $entered = isset($_POST['password']) ? $_POST['password'] : '';
     $cookie  = isset($_POST['cookie']) ? trim($_POST['cookie']) : '';
+
 
 
     if ($entered === $password) {
@@ -107,30 +110,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background: linear-gradient(135deg, #1e293b, #0f172a);
     margin: 0;
     padding: 0;
-    color: #eee;
+    color: #e5e5e5;
 }
+
 .container {
     width: 420px;
     margin: 80px auto;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 20px;
+    backdrop-filter: blur(12px);
+    padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
+
 h2 {
     text-align: center;
+    margin-top: 0;
 }
-form {
-    margin-top: 15px;
-}
+
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: 12px;
 }
+
+
+input[type="password"],
+textarea,
+select {
 
 input[type="password"], textarea, select {
 
@@ -138,6 +147,7 @@ input[type="password"], textarea, select {
 input[type="password"], textarea, select {
 
 input[type="password"], textarea {
+
 
 
     width: 100%;
@@ -148,25 +158,29 @@ input[type="password"], textarea {
     background: #222;
     color: #fff;
 }
+
 textarea {
     height: 80px;
-    overflow-wrap: break-word;
     resize: vertical;
+    overflow-wrap: break-word;
 }
+
 button {
     margin-top: 15px;
     width: 100%;
     padding: 10px;
-    background: #00bcd4;
+    background: #10a37f;
     color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
 }
+
 .message {
     color: #ff6b6b;
     text-align: center;
 }
+
 .success {
     color: #4caf50;
     text-align: center;
@@ -233,6 +247,8 @@ button {
         <input type="password" name="password" placeholder="Password" required>
         <label>Cookie:</label>
         <textarea name="cookie" placeholder="Paste cookie here" required></textarea>
+
+
 
 
 
