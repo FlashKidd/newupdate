@@ -177,7 +177,7 @@ do {
     $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
 
 
-    sleep(10); // wait before checking again
+     // wait before checking again
 
     sleep(rand(30,50)); // wait before checking again
 
