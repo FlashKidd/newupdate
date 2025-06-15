@@ -189,7 +189,7 @@ do {
 
         // If we have tried twice without the leaderboard updating and the
         // player is outside the top 10, fallback to one of the top scores
-        if ($attempts >= 2 && $pos > 10) {
+        if ($attempts >= 2 && $pos >= 7) {
             $choice = rand(1, 2);
             $score = GetTargetScore($choice); // use exact top score
             $attempts = 0; // reset attempts for the new target score
