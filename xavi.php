@@ -166,6 +166,8 @@ echo "\n Our score = $score";
 
 $increment = 1;
 $score = round($score, -1);
+// Number of attempts made to push the score to the leaderboard
+$attempts = 0;
 
 // Keep resending the score until it shows on the leaderboard
 do {
@@ -181,6 +183,19 @@ do {
 
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore (expected $score)";
+
+    if ($currentScore != $score) {
+        $attempts++;
+
+        // If we have tried twice without the leaderboard updating and the
+        // player is outside the top 10, fallback to one of the top scores
+        if ($attempts >= 2 && $pos > 10) {
+            $choice = rand(1, 2);
+            $score = GetTargetScore($choice); // use exact top score
+            $attempts = 0; // reset attempts for the new target score
+            echo "\nSwitching to score from position $choice: $score";
+        }
+    }
 } while ($currentScore != $score);
 
 echo "\nLeaderboard updated with score: $currentScore";
