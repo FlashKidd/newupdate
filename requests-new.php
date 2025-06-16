@@ -69,7 +69,7 @@ $serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
 $urls = [];
 foreach ($urls_ar as $c) {
-    $urls[] = 'http://'.$serverIP.'/newupdate/xavi.php?c=' . urlencode($c);
+    $urls[] = 'http://'.$serverIP.'/newupdate/xavi-newgame.php?c=' . urlencode($c);
 }
 
 
