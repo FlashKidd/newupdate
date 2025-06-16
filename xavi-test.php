@@ -168,6 +168,7 @@ $testSom = GetTargetScore($pos);
         $memory = validate_request($x_power, $score);
         $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
         sleep(rand(30,50));
+        $pos = GetPosition ($cookie);
         $currentScore = GetTargetScore($pos);
         echo "\nLeaderboard value: $currentScore (expected $score)";
         if ($currentScore == $score) {
