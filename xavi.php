@@ -180,7 +180,7 @@ do {
      // wait before checking again
 
     sleep(rand(30,50)); // wait before checking again
-    $pos = GetPosition ($cookie);
+    //$pos = GetPosition ($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore (expected $score)";
 
