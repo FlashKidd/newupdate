@@ -34,7 +34,14 @@ function fetchInfo($cookie, $url) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'];
     $index = (int)$_POST['index'];
-    $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
+    if ($type === 'mtn') {
+    $file = 'cookies-mtn.json';
+} elseif ($type === 'mtn-r70') {
+    $file = 'cookies-newgame.json';
+} else {
+    $file = 'cookies.json'; 
+}
+
 
     $list = json_decode(file_get_contents($file), true);
     array_splice($list, $index, 1);
@@ -115,5 +122,11 @@ function renderList($type, $file, $url) {
     <ul>
         <?php renderList('mtn', 'cookies-mtn.json', 'https://www.yellorush.co.za/my-winnings?display=tab3'); ?>
     </ul>
+
+    <h2>MTN R70</h2>
+<ul>
+    <?php renderList('mtn-r70', 'cookies-newgame.json', 'https://rush-games-telkom.yellorush.co.za/my-winnings?display=tab3'); ?>
+</ul>
+
 </body>
 </html>
