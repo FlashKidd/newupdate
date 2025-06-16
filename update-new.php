@@ -1,5 +1,5 @@
 <?php
-$cookieFile = __DIR__ . '/cookies-new.json';
+$cookieFile = __DIR__ . '/cookies-newgame.json';
 if (!file_exists($cookieFile)) {
     fwrite(STDERR, "Cookie file not found\n");
     exit(1);
