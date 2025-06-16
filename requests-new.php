@@ -37,7 +37,7 @@ if (flock($fp, LOCK_EX)) {
 }
 fclose($fp);
 
-$maxConcurrent = 2;
+$maxConcurrent = 3;
 $selectedIndexes = [];
 $urls_ar = [];
 while (true) {
