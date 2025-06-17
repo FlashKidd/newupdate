@@ -69,11 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type    = trim($_POST['type'] ?? 'voda');
 
     if ($entered === $password) {
-        $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
-        $url  = $type === 'mtn'
-            ? 'https://www.yellorush.co.za/my-winnings?display=tab3'
-            : 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
-
+        // $file = $type === 'mtn' ? 'cookies-mtn.json' : 'cookies.json';
+        // $url  = $type === 'mtn'
+        //     ? 'https://www.yellorush.co.za/my-winnings?display=tab3'
+        //     : 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+        if ($type == 'mtn2'){
+            $url = 'https://rush-games-telkom.yellorush.co.za/my-winnings?display=tab3';
+            $file = 'cookies-newgame.json';
+        }else if($type == 'voda'){
+            $url = 'https://gameplay.mzansigames.club/my-winnings?display=tab3';
+            $file = 'cookies.json';
+        }else{
+            $url = 'https://www.yellorush.co.za/my-winnings?display=tab3';
+            $file = 'cookies-mtn.json';
+        }
         $list = json_decode(file_get_contents($file), true);
         foreach ($list as $entry) {
             if ($entry['value'] === $cookie) {
@@ -188,6 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <select name="type">
             <option value="voda">Vodacom</option>
             <option value="mtn">MTN</option>
+            <option value="mtn2">MTN 70R</option>
         </select>
 
         <button type="submit">Add</button>
