@@ -2,7 +2,7 @@
 
 
 //sleep(rand(30,60));
-date_default_timezone_set('Africa/Johannesburg');
+//date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 //Business of the day
 require_once('Tools.php');
