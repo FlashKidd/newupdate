@@ -165,7 +165,7 @@ echo "\n Our score = $score";
  
 
 $increment = 1;
-$score = round($score, -1);
+// $score = round($score, -1);
 // Number of attempts made to push the score to the leaderboard
 $attempts = 0;
 
