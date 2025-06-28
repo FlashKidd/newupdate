@@ -344,7 +344,7 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
 $min = 10;
-$max = 1000;
+$max = 2000;
 $null = 1;
 
 if($null = 1){
