@@ -13,7 +13,7 @@ $number3 = GetTargetScore(1);
 
 
 echo "\nOur target at num3 is: $number3";
-$ii = 0;
+//$ii = 0;
 
 $cookiez = [
 
