@@ -133,10 +133,10 @@ system('clear');
 
        
 $testSom = GetTargetScore($pos);
-$MAX_SCORE = 2000;
-$range = 2000;
+$MAX_SCORE = 110;
+$range = 100;
 if ($pos <= 3 || $pos == 0) {
-    $score = rand(5000,10000);
+    $score = rand(50,100);
     
 } else {
  
@@ -155,7 +155,7 @@ if ($pos <= 3 || $pos == 0) {
    
         }
 
-       while ($score > 50000) {
+       while ($score > 500) {
        $score -= 1;
       }
 
