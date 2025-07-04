@@ -130,16 +130,16 @@ $testSom = GetTargetScore($pos);
 
 
 
- $MAX_SCORE = 6000;
- $range = 10000;
+ $MAX_SCORE = 110;
+ $range = 100;
  $multiplier = ($pos <= 3 || $pos == 0) ? 0 : floor($number3 / $range);
  $attemptLimit = 2;
 
  while (true) {
     if ($multiplier <= 0) {
-        $score = rand(7000,10000);
-        $min = 7000;
-        $max = 10000;
+        $score = rand(70,100);
+        $min = 70;
+        $max = 100;
     } else {
         $min = $range * $multiplier + 1;
         $max = $range * ($multiplier + 1);
