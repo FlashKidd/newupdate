@@ -95,6 +95,7 @@ if ($action === 'add_paste') {
     'phone' => $info['phone'],
     'name' => $info['name'],
     'balance' => null,
+    'isFree' => true,
     'created_at' => date('c'),
   ];
   saveCookies($store, $list);
