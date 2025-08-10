@@ -122,62 +122,67 @@ $scoreBefore = GetTargetScore($pos);
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
 
+       
+
+$testSom = GetTargetScore($pos);
 
 
-// Adjustable score range for leaderboard placement
-$scoreStart = 277; // lowest score to consider
-$scoreEnd   = 287; // highest score to consider
 
-// Gather current top 10 scores
-$topScores = [];
-for ($i = 1; $i <= 10; $i++) {
-    $current = GetTargetScore($i);
-    if (!empty($current)) {
-        $topScores[] = (int)$current;
+
+
+ $MAX_SCORE = 287;
+ $range = 287;
+ $multiplier = ($pos <= 3 || $pos == 0) ? 0 : floor($number3 / $range);
+ $attemptLimit = 2;
+
+ while (true) {
+    if ($multiplier <= 0) {
+        $score = rand(277,287);
+        $min = 277;
+        $max = 287;
+    } else {
+        $min = $range * $multiplier + 1;
+        $max = $range * ($multiplier + 1);
+        $score = rand($min, $max);
+        while ($score < $number3) {
+            $score += rand(1,10);
+
+        }
     }
-}
 
-// Skip if this cookie already holds a top 10 position
-// Refresh position to ensure it's up to date
-$pos = GetPosition($cookie);
-if ($pos > 0 && $pos <= 10) {
-    echo "\nAlready in top 10 at position $pos, skipping request.";
-    exit;
-}
-
-// Determine available score slots within the configured range
-$desiredScores = range($scoreStart, $scoreEnd);
-$availableScores = array_values(array_diff($desiredScores, $topScores));
-
-if (empty($availableScores)) {
-    echo "\nNo available top 10 slots, skipping request.";
-    exit;
-}
-
-$score = $availableScores[0];
-echo "\nTrying score $score";
-
-$increment = 1;
-$tries = 0;
-$attemptLimit = 3;
-$success = false;
-do {
-    $uA = RandomUa();
-    $memory = validate_request($x_power, $score);
-    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-    sleep(rand(5,10));
-    $pos = GetPosition($cookie);
-    $currentScore = GetTargetScore($pos);
-    echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore == $score && $pos > 0 && $pos <= 10) {
-        $success = true;
+    while ($score > 300) {
+        $score -= 1;
     }
-    $tries++;
-} while (!$success && $tries < $attemptLimit);
 
-if ($success) {
-    echo "\nLeaderboard updated with score: $currentScore";
-} else {
-    echo "\nFailed to update leaderboard";
-}
+    echo "\nTrying score $score in range $min - $max";
+    if($score>($MAX_SCORE*2+1)){
+        sleep(rand(15,45));
+    }
 
+    $increment = 1;
+    $score = round($score, -1);
+    $tries = 0;
+    $success = false;
+    do {
+        $uA = RandomUa();
+        $memory = validate_request($x_power, $score);
+        $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+        sleep(rand(30,50));
+        $pos = GetPosition ($cookie);
+        $currentScore = GetTargetScore($pos);
+        echo "\nLeaderboard value: $currentScore (expected $score)";
+        if ($currentScore == $score) {
+            $success = true;
+        }
+        $tries++;
+    } while (!$success && $tries < $attemptLimit);
+
+    if ($success) {
+        echo "\nLeaderboard updated with score: $currentScore";
+        $multiplier++;
+        break;
+    } else {
+        echo "\nFailed for range $min - $max, stepping down";
+        $multiplier = max(0, $multiplier - 1);
+    }
+ }
