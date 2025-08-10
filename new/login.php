@@ -54,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <button class="btn primary" type="submit">Sign in</button>
         </div>
       </form>
-      <div class="small">Preset user: <b>flash</b> &middot; password: <b>flashkidd123</b></div>
-      <div class="footer" style="margin-top:14px">Built for testing — replace with real auth later.</div>
+<!--       <div class="small">Preset user: <b>flash</b> &middot; password: <b>flashkidd123</b></div> -->
+<!--       <div class="footer" style="margin-top:14px">Built for testing — replace with real auth later.</div> -->
     </div>
   </div>
 </body>
