@@ -8,7 +8,7 @@ $USERS = [
 
 // Already logged in?
 if (!empty($_SESSION['user'])) {
-  header('Location: home.php');
+  header('Location: index.php');
   exit;
 }
 
