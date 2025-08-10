@@ -34,10 +34,6 @@ $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
-$scoreBefore = GetTargetScore($pos);
-
-        //while($scoreBefore == $scoreAfter){
-       // $scoreAfter = GetTargetScore($pos);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
         // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
@@ -128,15 +124,6 @@ $scoreBefore = GetTargetScore($pos);
 $scoreStart = 278; // lowest score to consider
 $scoreEnd   = 287; // highest score to consider
 
-// Gather current top 10 scores
-$topScores = [];
-for ($i = 1; $i <= 10; $i++) {
-    $current = GetTargetScore($i);
-    if (!empty($current)) {
-        $topScores[] = (int)$current;
-    }
-}
-
 // Skip if this cookie already holds a top 10 position
 // Refresh position to ensure it's up to date
 $pos = GetPosition($cookie);
@@ -145,23 +132,16 @@ if ($pos > 0 && $pos <= 10) {
     exit;
 }
 
-// Determine available score slots within the configured range
-$desiredScores = range($scoreStart, $scoreEnd);
-$availableScores = array_values(array_diff($desiredScores, $topScores));
-
-if (empty($availableScores)) {
-    echo "\nNo available top 10 slots, skipping request.";
-    exit;
-}
-
-$score = $availableScores[0];
-echo "\nTrying score $score";
-
-$increment = 1;
-$tries = 0;
-$attemptLimit = 3;
 $success = false;
-do {
+$currentScore = null;
+
+// Build and shuffle the score list so each score is attempted once in random order
+$scores = range($scoreStart, $scoreEnd);
+shuffle($scores);
+
+foreach ($scores as $score) {
+    echo "\nTrying score $score";
+    $increment = 1;
     $uA = RandomUa();
     $memory = validate_request($x_power, $score);
     $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
@@ -171,9 +151,10 @@ do {
     echo "\nLeaderboard value: $currentScore at pos $pos";
     if ($currentScore == $score && $pos > 0 && $pos <= 10) {
         $success = true;
+        break;
     }
-    $tries++;
-} while (!$success && $tries < $attemptLimit);
+    echo "\nScore $score failed to update.";
+}
 
 if ($success) {
     echo "\nLeaderboard updated with score: $currentScore";
