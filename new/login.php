@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['user'] = $user;
     // Simple CSRF token for future forms
     $_SESSION['csrf'] = bin2hex(random_bytes(16));
-    header('Location: home.php');
+    header('Location: index.php');
     exit;
   } else {
     $error = 'Invalid credentials';
