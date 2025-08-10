@@ -8,7 +8,8 @@
         "phone": "27780073561",
         "name": "shandymama",
         "balance": null,
-        "created_at": "2025-08-10T01:03:48+02:00"
+        "created_at": "2025-08-10T01:03:48+02:00",
+        "isFree": true
     },
     {
         "id": "7662d5f19422",
@@ -19,6 +20,7 @@
         "phone": "27646337204",
         "name": "BiggieSmalls",
         "balance": null,
-        "created_at": "2025-08-10T15:20:36+02:00"
+        "created_at": "2025-08-10T15:20:36+02:00",
+        "isFree": true
     }
 ]

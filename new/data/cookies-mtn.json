@@ -8,7 +8,8 @@
         "phone": "27737943880",
         "name": "Pikoktfb",
         "balance": null,
-        "created_at": "2025-08-10T12:18:44+02:00"
+        "created_at": "2025-08-10T12:18:44+02:00",
+        "isFree": true
     },
     {
         "id": "619760fff46b",
@@ -19,6 +20,7 @@
         "phone": "27737618806",
         "name": "letsgo",
         "balance": null,
-        "created_at": "2025-08-10T14:40:53+02:00"
+        "created_at": "2025-08-10T14:40:53+02:00",
+        "isFree": true
     }
 ]
