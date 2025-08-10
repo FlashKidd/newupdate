@@ -1,0 +1,24 @@
+[
+    {
+        "id": "0df7ae1f69e9",
+        "network": "MTN",
+        "domain": "yellorush.co.za",
+        "label": "Shandy",
+        "cookie": "XSRF-TOKEN=eyJpdiI6InFNeUV3ZG9mRlVjU01qOHErVStjSnc9PSIsInZhbHVlIjoiMEQwS1FLODJBVHc1aWU2dFYxUmh5QmlONkpmZlhSMlNKUHhGSW9tb21PU0MvdDRUS2ZxVW5XRlJhaW85YWJybHdVL3VVME45WEZ2RkJzbm5pVGhFL3VNanFmcVlkdm1SS3pTYmo0dk84eUFtOWVPZExBLzY5ZzgrOXhtcmdEVWYiLCJtYWMiOiI0OTBlMjg1ZTdhODlkNTM0NjAyMmFjYmQwNWQxOTgzNWQzZWJlNGUzNDA1ZWRlMzVlNzAyY2FmOTQ5OGFhNTY5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6ImcxYWNFbE5RS0I0RFNTdmZXdFYzc0E9PSIsInZhbHVlIjoidllDVHFqb2d0SEM5dUQ4a2IxdzhlQ2ltS2MzS2crSGJxV3B5NnhkUHJuTzV1YlRqRHpKZEM0VjhQaCtUaTZaNytCUkpxUHkxV3RkR1BRT2w2cjNjeFlvNFB6c1ZPVm9GZVdXYS8zOGVMZjBnWlNmL1dKOEdWRDJrcktvWG5LTHgiLCJtYWMiOiI0YTQ0M2ZjNThiY2U4OTY1NWU0MmZjYjI0OTllOGNmYTgxZGYyYWI1NzcxNjY4OTQ5MmE2ZWQxMjhjZDkxNjFhIiwidGFnIjoiIn0%3D",
+        "phone": "27780073561",
+        "name": "shandymama",
+        "balance": null,
+        "created_at": "2025-08-10T01:03:48+02:00"
+    },
+    {
+        "id": "7662d5f19422",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "boki",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IldDamphRHdsSWZOVHlZYWEzeEJneVE9PSIsInZhbHVlIjoiUUlwelZGdExDY0J1TGFCWEttblM4eTJpODdKR0x3cEV1OWNaTEZxVDdwMXBPZTdrMTRLUWJieXB3dXVaeDgyZXJuS0hJOHVnbG1TbDlBZ2ZLc1dvTGUyc2x4Sk84cWliU0oxemhjU1p1SFBEbUFzc1YyY3ZvZVkxdnRoTktrdzQiLCJtYWMiOiI2Y2E1NjEzM2I2YjU2MzIwMGM1Y2VmZGM3N2RmYmE5OGI4YjA4ZGY2YjRlZDBmMmM2ZjQ3MmM2ODY3NGJiNTRiIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImNhajBFR0pqWVRqTDVpRU1zaitMenc9PSIsInZhbHVlIjoicHBNaHdsbElJNThaeXE0VUQ5ZDZmdHN5bTA4WGZaSXBYbldEZG5uUUZnWU1paGJELzNEQlFqM2NEcWdJVjRkWEUyZTJsRk0wSzdpdml5MmFxSDlsWVlNNXpKWkR4UXFkTCtCcjNHKzlTQW5QRlRsT3NzSGdZY1FTS0pJcUFKOXgiLCJtYWMiOiIwOTY1MDA5OTA2MThiOTc3NDhlN2VhNmFmYmZhMmM4MTMxYTk4YzE0NWYxMjM3ZWYxZjk5YTlmOWY1MTQyNDM5IiwidGFnIjoiIn0%3D",
+        "phone": "27646337204",
+        "name": "BiggieSmalls",
+        "balance": null,
+        "created_at": "2025-08-10T15:20:36+02:00"
+    }
+]
