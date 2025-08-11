@@ -22,5 +22,29 @@
         "balance": null,
         "isFree": true,
         "created_at": "2025-08-11T13:16:24+02:00"
+    },
+    {
+        "id": "d414d1ff14b7",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "Roman\u00ea\u00ea",
+        "cookie": "XSRF-TOKEN=eyJpdiI6InVKdjZBTFdRbUFIaHdVa3NKbHVUUXc9PSIsInZhbHVlIjoib2ptY0NKZUsxdlk5YWRaakNtcU4zTzNVaTZ4NzgyS2V2STdieWlta09lWlNIT1RaUUVjYUNRamdLR2Q5OXRGbHFVa1VxSEwwVkJCQTBkODIycjBuZFFYbDZQY2lCN3NCZ2JQNTZ1cFZlOGdBdXpGaUpUNnNJYjAwZE5haDZiM0MiLCJtYWMiOiIxOWEzNzVlMGVhZjlmNmVkNjk1OTAwZWVhOWUwOTM0ZWE1NzM3N2E4OWVhMWFjYzZhMmNkYmY5NzI0NzJlMTY1IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IkVvNXJ5elBuL3NlbzlwSUJRZVNVc0E9PSIsInZhbHVlIjoiNU1vSXJuT1paVjV2eG9GVW9QTTBrY2xTWjBoZnFodVV0clJrZ1ZFRWlpam5kc1dRNkxLWDF4ZzBxdlNuZWdCTktDYitCaDZsL3FyWkhSWU1LM3FxUDBucFNRZ2VNNDRQd05OTnJpVVoyUytiTkVVMWNDS1hqaDdxc1oralpGVTgiLCJtYWMiOiIzNzRjNzIwMGU0YjA3NGI0NzI1NjIxZTBiMTRkZjNkYTAyOWI0MzlmZTIwMTBhOGZlODNiZWNlMWRjNTk1NjYzIiwidGFnIjoiIn0%3D",
+        "phone": "27818748757",
+        "name": "Roman\u00ea\u00ea",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-08-11T16:41:52+00:00"
+    },
+    {
+        "id": "93cd9e253b42",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "bomblacat ngwanesho",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IlNiT1hObGt0d0tPYmk0ajlicE91SEE9PSIsInZhbHVlIjoiZEtBNysvOGI4UG1NV0Zobi9NMUJQdWgxVUVZQU81OWR5UXVLeUtXK0JqZUhYQW9peFdPRzd5T24xMHFSTmVSNEx6bG1KSUdRelhZRURFcE1Gb0VsTjduZE94WGV3aWtlak5qOGZRZTBUSHZZa3hycFFFMi9zZ1o4ZnpDZGozMVAiLCJtYWMiOiI1ZWUwMDc3OGJhMWM2NmIwNzhhOWRhNzc2YmVlOGM0ZTNiMjIxNzVmMTU1NjA4ZjNkMTMzMTM4OWM4NTA0NWM4IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6InJrVFI0K2JROGpVUllrL0xoVHRoK0E9PSIsInZhbHVlIjoidWV4U2g4MDQvbk5wU0NDSTNZMldGNjZBRm9vdHlmNjgzdC83RE9vdjF0L09aOG5zQUpabHk0R0wvSzM5Q1pWbEl6dEp3dW5oTDlScUs0MTZlc2NsQjZMZ3BTZlFldmpRNFhnV2d4RGhDZU5PcWRzWTcvcUxzK3AzOHRSNFNONTYiLCJtYWMiOiI5NmJmODU3YTRhNWM0YTMwNTFlZDVjNTQ5MmI0YjEzMDk1NGIwMmVhYWVmNGY2MzQ2Y2E3ZTRiNWMxMzcwNTNhIiwidGFnIjoiIn0%3D",
+        "phone": "27773949710",
+        "name": "bomblacat ngwanesho",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-08-11T17:01:43+00:00"
     }
 ]
