@@ -106,6 +106,7 @@ textarea{resize:vertical;min-height:92px}
   .grid{grid-template-columns:1fr}
   .headline{font-size:22px}
 }
+
 @media (max-width: 480px){
   .page{padding:12px}
   .neo-header .h-inner{padding:8px 12px}
