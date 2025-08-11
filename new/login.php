@@ -8,7 +8,7 @@ $USERS = [
 
 // Already logged in?
 if (!empty($_SESSION['user'])) {
-  header('Location: home.php');
+  header('Location: index.php');
   exit;
 }
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($USERS[$user]) && hash_equals($USERS[$user], $pass)) {
     $_SESSION['user'] = $user;
     $_SESSION['csrf'] = bin2hex(random_bytes(16));
-    header('Location: home.php');
+    header('Location: index.php');
     exit;
   } else {
     $error = 'Invalid credentials';
