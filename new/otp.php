@@ -119,7 +119,7 @@ $fileMap = [
 $storeFile = $fileMap[$provider];
 if (!file_exists($storeFile)) { file_put_contents($storeFile, json_encode([], JSON_PRETTY_PRINT)); }
 
-$cookieFile = __DIR__ . '/otp_cookie_' . session_id() . '_' . bin2hex(random_bytes(4)) . '.txt';
+$cookieFile = __DIR__ . '/useless/otp_cookie_' . session_id() . '_' . bin2hex(random_bytes(4)) . '.txt';
 @unlink($cookieFile);
 
 // ---- Actions ----
@@ -275,16 +275,18 @@ if ($action === 'verify') {
     }
   }
   if (!$dup){
+    @unlink($cookieFile);
     $network = ($provider==='mtn' ? 'MTN' : ($provider==='voda' ? 'Vodacom' : 'Telkom-MTN70'));
     $list[] = [
       'id' => bin2hex(random_bytes(6)),
       'network' => $network,
       'domain' => $domain,
-      'label' => '',
+      'label' => $info['name'],
       'cookie' => $cookieStr,
       'phone' => $info['phone'],
       'name'  => $info['name'],
       'balance' => null,
+      'isFree' => true,
       'created_at' => date('c'),
     ];
     saveCookies($storeFile, $list);
