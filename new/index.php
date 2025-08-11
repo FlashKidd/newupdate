@@ -1,7 +1,6 @@
 <?php
 session_start();
-// Keep whatever auth you use; if you need a cookie/session check, add it back here.
-// This UI relies on api.php and otp.php endpoints.
+
 
 ?>
 <!DOCTYPE html>
