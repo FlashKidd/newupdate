@@ -3,7 +3,7 @@ session_start();
 
 // Hardcoded simple auth
 $USERS = [
-  'flash' => 'flashkidd123',
+  'flash' => '@flash123',
 ];
 
 // Already logged in?
@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="title">Y’ello Manager</div>
       </div>
       <h1>Welcome back</h1>
-      <div class="caption">Sign in to manage cookies & sessions for Y’elloRush / MzansiGames (MTN & Voda)</div>
+      <div class="caption">Sign in to manage</div>
       <?php if ($error): ?>
         <div class="small" style="color:#ffb4b4;margin-bottom:10px"><?php echo htmlspecialchars($error); ?></div>
       <?php endif; ?>
