@@ -13,7 +13,7 @@
     },
     {
         "id": "619760fff46b",
-        "network": "Flash2",
+        "network": "MTN",
         "domain": "www.yellorush.co.za",
         "label": "allin1",
         "cookie": "XSRF-TOKEN=eyJpdiI6IlBZQWZBYm54S3ZqNFFkYzd6SkJFOWc9PSIsInZhbHVlIjoiNmNpZ1RZMVU0WnIvSmxOVk16L04yREZmMUJqNWZCUW85bHJOQ25yOXJ4S2VIVktRN0l3M3JFeWQwNG0vMWREbDZKRk82eHhpNWtyQ0ZHeTFXM3FIczdSSVcrTDQ4aDN4aFRDc0dkTUpOYm9sdjdDdTFKOFhQUm9FV09CNzNHdjUiLCJtYWMiOiI1ZTU5MmMwZDRlMTdhMTlkOGJmODUwMTc0YjFkY2IxZmYwZmJiYWM3ODE3MGQ0ZWNmMmRlYzU1N2YxZTM3OWU3IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6IlU4SUc0M2FNK1YyNVBPMUtRYjg2QUE9PSIsInZhbHVlIjoiaEJMVDNOUWxwclBsQlV4NzRpZFRMWkpVU0JPcGdjTHRqRmdNUUFjbDNnNlJNMzgzRjdOZzN0L0ljUDhMNndYWGRjakZIbEN5NWR4eE4yREdZTTdYSVVUWlBkaFEwR3B1bWsyNkFSSFEvYmZEOEcwS0d1UGUyMnJwa0Fab2dWeXAiLCJtYWMiOiIwZmIyZGFjOGU0ZTVkYTQ2NzhiMzJkZDU2ZTA3NDg4YjUxMzlkMzFkZDA0NGM0NTkzMTljMjQ1NmY5OTkxODIyIiwidGFnIjoiIn0%3D",
@@ -34,5 +34,17 @@
         "balance": null,
         "isFree": true,
         "created_at": "2025-08-11T12:50:39+02:00"
+    },
+    {
+        "id": "dad9a2ff016b",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Allin1",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjY1bzZhNlBwUkVjSDZnZ0tzSVlORFE9PSIsInZhbHVlIjoiKzJkVlJSd1RpYWJCT1lPVXdDSGEwSDhvZzN4S1NtQ3AvVnZ4UngrT0VTamhKVmxyVWlNVG9VMVNXUUhOakhOQlpmcnRJTGhCVUxyc2creXF6M1lIT3dGK0Z1YlYvd2JXUUdqanZDakNsRUMxUTRmUVZxVnR3OStWN0dYZTNUN2UiLCJtYWMiOiI0NGU5YTU4Mzc2MDA2MjJhNzIzMjJlOTVmOTcxNGQyNmU3M2NjZjY5NzIwMWUyNTVlMjlmZDYyMzI4OGEyMzU5IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6IjQzamsxd0FSd1BGbVV2RG1JVjFyQlE9PSIsInZhbHVlIjoiU2tnY0xYV2QxaWp6MGRTcjVLcFVFUWRMVW1mMXY5b3NPVmhZNVdSRFpYTDJQMEJZV2s4dFdHZnVsK1E4Sko5b0hZc3NpQ2MxcVlpcGVVdlZPUy82RGVLK0xHckZLS3NKK2dsVS95TU1TajJvd3VnSFNmeVArVEs5cVdyM2ZmUGsiLCJtYWMiOiIwMDBjNGRlNTRkOTc0Nzk4MzBkNDRkMDgxY2ZjYmI0NGYzYzdhMGQ4ZDBlZmVjODBiMzcwYWJkMmQyMzQyNDM3IiwidGFnIjoiIn0%3D",
+        "phone": "27604697535",
+        "name": "Weetbix\ud83c\udf74",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-08-11T15:57:10+00:00"
     }
 ]
