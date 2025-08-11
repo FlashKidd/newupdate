@@ -1,17 +1,5 @@
 [
     {
-        "id": "0df7ae1f69e9",
-        "network": "MTN",
-        "domain": "yellorush.co.za",
-        "label": "Shandy",
-        "cookie": "XSRF-TOKEN=eyJpdiI6InFNeUV3ZG9mRlVjU01qOHErVStjSnc9PSIsInZhbHVlIjoiMEQwS1FLODJBVHc1aWU2dFYxUmh5QmlONkpmZlhSMlNKUHhGSW9tb21PU0MvdDRUS2ZxVW5XRlJhaW85YWJybHdVL3VVME45WEZ2RkJzbm5pVGhFL3VNanFmcVlkdm1SS3pTYmo0dk84eUFtOWVPZExBLzY5ZzgrOXhtcmdEVWYiLCJtYWMiOiI0OTBlMjg1ZTdhODlkNTM0NjAyMmFjYmQwNWQxOTgzNWQzZWJlNGUzNDA1ZWRlMzVlNzAyY2FmOTQ5OGFhNTY5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6ImcxYWNFbE5RS0I0RFNTdmZXdFYzc0E9PSIsInZhbHVlIjoidllDVHFqb2d0SEM5dUQ4a2IxdzhlQ2ltS2MzS2crSGJxV3B5NnhkUHJuTzV1YlRqRHpKZEM0VjhQaCtUaTZaNytCUkpxUHkxV3RkR1BRT2w2cjNjeFlvNFB6c1ZPVm9GZVdXYS8zOGVMZjBnWlNmL1dKOEdWRDJrcktvWG5LTHgiLCJtYWMiOiI0YTQ0M2ZjNThiY2U4OTY1NWU0MmZjYjI0OTllOGNmYTgxZGYyYWI1NzcxNjY4OTQ5MmE2ZWQxMjhjZDkxNjFhIiwidGFnIjoiIn0%3D",
-        "phone": "27780073561",
-        "name": "shandymama",
-        "balance": null,
-        "created_at": "2025-08-10T01:03:48+02:00",
-        "isFree": true
-    },
-    {
         "id": "7662d5f19422",
         "network": "Vodacom",
         "domain": "gameplay.mzansigames.club",
@@ -20,7 +8,19 @@
         "phone": "27646337204",
         "name": "BiggieSmalls",
         "balance": null,
-        "created_at": "2025-08-10T15:20:36+02:00",
-        "isFree": true
+        "isFree": true,
+        "created_at": "2025-08-10T15:20:36+02:00"
+    },
+    {
+        "id": "0d02eddb924d",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "manaba",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IkthUnJhUmJNQUl0TVlzcnJnRWxtS3c9PSIsInZhbHVlIjoiTktwTVpqWGZKenU2QURocTN1MnVRbHFxMDk3VHd3U2Mrb3YvbDU2TGFxUlUvc1ZGaHN4aXZVTkMrRFpCV2xqVzlVZzd5eUUzVkREUjVlbU10RnV6cFhXYjhOWERybWl5TmdpUzJyZktHdlJXR0UvZXYzZUljQXZSNFdJWWR1Q2siLCJtYWMiOiIzNjkxMTE2MWVkNzhjMzU2ODgwZDNiNjZkMzg0YjFiYWE0NzM5MTRkYTBiYTlkY2M2YzM3OWY3NTJhZTkwZDU3IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IkNlczJLUGhweWdpekRMbFg2UkxyY1E9PSIsInZhbHVlIjoieGI0NGtjV2k5M3hFY1M5SElHaEZwcktJUFY1UThERmZ4M0M2STBwSldZQlpvdnArRnRPY3J2d25pWHlvamUyQ0pzWU9QZ3lKZnpUenU2MHFzM3FQbXFnOTN5VVBkeitQQjg3QTI3dFVWRTBzdW9LaW1ZNVFuSlhKOFdHSHZVVFIiLCJtYWMiOiJhOGRhZGZmMDM1MGQ2ZmY5Y2E5ZjAxNDk3YzUzOTQ3M2FmZTlkZDA4MzcxYmQyYzI3NmZmYzM3ZjMzMWYyNjYyIiwidGFnIjoiIn0%3D",
+        "phone": "27793110193",
+        "name": "manaba",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-08-11T13:16:24+02:00"
     }
 ]
