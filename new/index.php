@@ -25,10 +25,9 @@ session_start();
         <div class="title">Y’ello Manager</div>
       </div>
       <nav class="h-actions" aria-label="Primary">
-        <a href="subscribe.php" class="pill">Subscribe</a>
-        <a href="scores.php" class="pill">Scores</a>
-        <a href="other.php" class="pill">Other</a>
-        <a href="settings.php" class="pill">Settings</a>
+        <a href="#" class="pill">Subscribe</a>
+        <a href="#" class="pill">Register</a>
+        <a href="#" class="pill">Settings</a>
         <a href="logout.php" class="pill warn">Logout</a>
       </nav>
     </div>
