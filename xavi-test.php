@@ -121,8 +121,8 @@ echo "\nOur target score is: $number3 at pos $pos";
 
 
 // Adjustable score range for leaderboard placement
-$scoreStart = 278; // lowest score to consider
-$scoreEnd   = 287; // highest score to consider
+$scoreStart = 49679; // lowest score to consider
+$scoreEnd   = 49690; // highest score to consider
 
 // Skip if this cookie already holds a top 10 position
 // Refresh position to ensure it's up to date
@@ -136,7 +136,11 @@ $success = false;
 $currentScore = null;
 
 // Build and shuffle the score list so each score is attempted once in random order
-$scores = range($scoreStart, $scoreEnd);
+$max = 49690;
+$count = 10;
+$min = $max - ($count - 1) * 10;
+
+$scores = range($max, $min, -10);
 shuffle($scores);
 
 foreach ($scores as $score) {
