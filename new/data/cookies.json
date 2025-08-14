@@ -8,7 +8,7 @@
         "phone": "27646337204",
         "name": "BiggieSmalls",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-10T15:20:36+02:00"
     },
     {
