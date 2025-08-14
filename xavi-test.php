@@ -136,7 +136,7 @@ $success = false;
 $currentScore = null;
 
 // Build and shuffle the score list so each score is attempted once in random order
-$max = 49690;
+$max = 49760;
 $count = 10;
 $min = $max - ($count - 1) * 10;
 
