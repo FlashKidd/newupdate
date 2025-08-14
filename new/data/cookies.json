@@ -8,7 +8,7 @@
         "phone": "27646337204",
         "name": "BiggieSmalls",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-10T15:20:36+02:00"
     },
     {
@@ -20,7 +20,7 @@
         "phone": "27793110193",
         "name": "manaba",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-11T13:16:24+02:00"
     },
     {
@@ -32,7 +32,7 @@
         "phone": "27818748757",
         "name": "Roman\u00ea\u00ea",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-11T16:41:52+00:00"
     },
     {
@@ -44,7 +44,79 @@
         "phone": "27773949710",
         "name": "bomblacat ngwanesho",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-11T17:01:43+00:00"
+    },
+    {
+        "id": "4bec7ac44cf4",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "Yo_father",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjJ2TUluSllPNTl4RElWMHNhbVF5ZFE9PSIsInZhbHVlIjoiZEw1SE15bzBKWHhyUUNXR2FDWGRZZW1XNVpmRDgvUVVZZ3NPOWVyUFJNRGhqYVVNTFR6cFc1MVFGelNsMkt3VnlhMmpFNmgvM0syWFB4Zm9PTmZKWFNob0lMcVZtT09UUzVYd3htMVNxRUMvQWRUK0szbzhYUUp3QTdETWZrYWYiLCJtYWMiOiJjOTRlZjhmZGEyNjVjZTE5NjI1NDk3NmZhNWQzNTY5M2RkYTJhMDBjYTFlNWZkOGYwM2U2MGZjMTA0NGY1YmViIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6ImZnUlFRc3BzTy9oNkVWbmN2MmU1SWc9PSIsInZhbHVlIjoiTDJLQWxjM05RMUV2aGxEbWo2aWdtWTVpYVhtYWo4bUh5RGVWNm8vRmFrL3BIbitlMTJlQlRaSkM3K2g2UTgwNE1ES2RaK1hTUXJqaklPa0NlcDlhWmN6Rjd3TnM2UE1hWm9TRTI1VHpSNlR1bWozZENjYWNIVlpKNDZhMjMvbWgiLCJtYWMiOiI4NDRmZGZjMTFmNTBhZDExNjc5ZTgzZTljMDYxZjI0Y2M2ZDJmOWE5ZGRkODdlNTg2OTk3ODhlN2VlNjc0NmZkIiwidGFnIjoiIn0%3D",
+        "phone": "27825497160",
+        "name": "Yo_father",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T18:49:35+00:00"
+    },
+    {
+        "id": "e8ca355faf70",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "Brother Song",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IkhnNlJMdzhqMWVzdm95Z2xNN2FTeGc9PSIsInZhbHVlIjoiOVFJRGRpV0Z0VnFISU9TVlZVdWExNVJFeWlNb0pvMGRVYm55MHJtcDMrQnBJdHYrK3cyV3NrRnpTVkM1MEVBS1c4ck1kSndyQVBSdk4wNUduREw2MUJidEZSZlRMR05Uc3QwckRybHpZNHlxSkQ0VERaOFc3WFVpNU4rNWZqTEQiLCJtYWMiOiJiMTM1MGY3Y2Q4MDU1OGFlZWQyZDI3NGM2ZjkwM2I1MTdkNzM1NWM3OGIwMGE2MmEwYzlmMTdkYTg5ODE4OTk3IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IloyR0RJZGxhSEZCa1M4UlExamYrL0E9PSIsInZhbHVlIjoibzQ1SGNHU3ZGSGdoT1ZjTzNlL3NJZkJiOVdXckhZQmlMaEhyMnZ1c2hzR2xwbjVVeWNLODJRNUwwamM0Wkt5SXBlVzJ6azVGZG1tZmJyY1lJQmZpN0FieEtxVnRtMnBZRDF4clRHTWFXSU1WSnIxa3F5VkEyNm1FbjNpV2xKdEQiLCJtYWMiOiJiYjYwZDEzYWYxMzI0Y2I5NTk1MTM1YjE4YjAwZTM0OGRjYjY2YmQ2OGRiZTU0NjljNmRhNGFiMjRlN2U5OWIzIiwidGFnIjoiIn0%3D",
+        "phone": "27720836691",
+        "name": "Brother Song",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T19:33:31+00:00"
+    },
+    {
+        "id": "a6e9f48f5459",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "The Prince",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IlVQb21zOTE1NEtQZW5XM2lKUHpoMGc9PSIsInZhbHVlIjoieUxMWG5sTnB4VjdHb0FuQkNBeHo5SnI3MG5IZnh1c3UxQWtmUUxmN0tPYjVTdkhPOFJLMGQ2UXhjeGpFdEpLZU8ya20yeDNuRUpwVnU1cWwvNVNMM2taaVEyQm8rN0JqSDZPOSsxOEsvTHRSUzRiMGVhM292clJFdnpnQ1JHVXQiLCJtYWMiOiI5OGU0NzYwNDQ0MmRiZDMzMDVjNDRkNzc0Y2QyZGZhODE5ODg0OTZiNzM1MjdmOGFlNDIzM2I3N2M2ZTkyZmZkIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IlRkSGEwMnhJcTIxeXRVV2svQzhHcGc9PSIsInZhbHVlIjoiMjNIUXlIZ1lGQVVuSWhaaUwrbkZwT2J2TWVuOHduZ29ET29TRW9pKzlQaHh5WTZxS1ZjdnNHa3h3TEgvWFFiNURUaWd1d1ZCVjJuRjVZTTlGRStYR2R5YmRnRWlHTFpTTUV6cEl1ZkNOS0tLZGNhZytWaVNFa2w3OVZ5bi95cnIiLCJtYWMiOiJkZTMyYTAwMWIyNTY0MTQwZmYyMDA0MTg5NjQ5Mzk3OWU5YmExOTYyMDM0MGUyZDZlNzEwMmFkZGIxNzgwODhlIiwidGFnIjoiIn0%3D",
+        "phone": "27723262756",
+        "name": "The Prince",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T19:49:48+00:00"
+    },
+    {
+        "id": "253e763975a3",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "Sandycroft",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjdPSXNrNHJJdTAwOHJJWThuRm0rUGc9PSIsInZhbHVlIjoiU0xLRDhCMGx6ZEMyNSt1d0RGRkoxNm5yVVZRS1ozN0lsM0ZJRk4rQXBRQnpuaUc2VnNEV2FlOUxiaVFmSWErNW5yMjU3a1IrMUpYUVZqVm5ZK016cmF0UXgvRzV3RzlKRTh0L1kwN0UzenVrY2FmNTg2Nm1DZi9xZWdxMHRaQ0YiLCJtYWMiOiJkNGYyMTNhZDA1YjY5NDAzNjY2ODAzMjdhNjhmMDJmZjRmZGI4NDhlMDIzY2EzM2Q1NTNiMWIwMzIwYmMwODRlIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6InQ3RnJRWmtNL2V5eEpSLy93dUh3ZFE9PSIsInZhbHVlIjoiWGJNWUVHSDB3blpXeHo4Y0Rsb3RNL2ljTUkxYlpKci92TFJ1eDAxc01hMGhRbDgxMm8vRUhhWTdKQ3ZPaERLVnVMMjcvU2RleHdtVVpMNlNlSGNieG9xdzdzSlUyTGMyWURuZWs1a1hVVFE5US82RTd2VExJWC8xclVBdU9LMFMiLCJtYWMiOiI3ODA4NTlhNTE4YmI3ZGU4NTMyYjM1OWU0ZmU5NzM5YTlhOGZmNjUxYzNjNjc2Mjg5NjIxMTAzMjg5ZTkyMjk0IiwidGFnIjoiIn0%3D",
+        "phone": "27663708638",
+        "name": "Sandycroft",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-12T00:36:32+00:00"
+    },
+    {
+        "id": "28caa3befe33",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "Shebe ke kgosi",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IlNrOVBNa0ZEOFRQdVFXVVYxY3IrOWc9PSIsInZhbHVlIjoicHNDS25rSVFORW0rRzdOcWo3YzZzRjZ2VFljajdLVVRZRjkvR0hKQ1FJSVh1ZVI4MFZoZ1pGUkx1eldSTnh5V3pnQ2VOS1ErUWNmOXp2YU9LODRDRU9oRldla0VkN1lCdDF2eGxrNlZxL2h2ellUWDFqbUV3Mm5Fa1NzY0szd2IiLCJtYWMiOiI0ZDI3MjM4Zjk5NzYzYTk3NzQzZjVkMjE5YmM3ZmM1YTFiMGY5MWNiMzM2ZGM5ZjI0MzZjYjUzZGQzNzUyYjgyIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6Ik4vWkp3a2x0dkFzWFFvTFVUVnZqZ3c9PSIsInZhbHVlIjoianZmdXZsY3I3Zks3UUF3cDVyQXVLT0NWSTFLZmJoMjk5N3duRWdHTThCQW9QNU52QVZ6ZWY2VzZzdTFZVkxYTndDSE03c0ZRNFRvWjgrR0oxRXZWQk9xKzRMWnJQYXdUTDhmVVA2YTNoVGlFS3NFQnpYU2xsMFN3V3pIVDc5N3MiLCJtYWMiOiI5ODUxY2VlNDU2MTNiZDIwNTY4NTNkNTRmMzgyNmY2YWM5MTE2ZDhiNjlhOTg0NzY5MmExYTg0NTdlMTJmMGE2IiwidGFnIjoiIn0%3D",
+        "phone": "27825541168",
+        "name": "Shebe ke kgosi",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-12T01:39:18+00:00"
+    },
+    {
+        "id": "894b5120d83d",
+        "network": "Vodacom",
+        "domain": "gameplay.mzansigames.club",
+        "label": "ke maburna",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjloWGJPekFVaVhjWWR2Y3lITXVzYmc9PSIsInZhbHVlIjoielgzd3g5cDAzSFlqdldKQy8yeHhpN3Q1Ymg4ZTA2RWY1cUhGaE5UMS9IOWRIUjN5cUZlUHF1ZmVnajNYWDE5ZG1jYmYvWWxtM1lPZ3hEWU9wVUd6c1lZWVlxd0pwenVZMURNYklTV2kyTGd3ZnV0Z0hWQytwVDFnYW5DVVBjdmQiLCJtYWMiOiI5ZmEzY2U5YzBkMjkwNWI3NTZmNTVlNTQyMDI4YjM1ZGY4Yzc4MzVlNGM1NThlYjhkMDdiYmM1NTIyNTI2ODZkIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6InRnUDdDQ05aTUxqb3RLRWw3YVlROWc9PSIsInZhbHVlIjoiNWJBOTVRekN2SUtoVkZmd0dOYkdCNWFucFBkUTVTN0xqR0VSb09aVE8rZU5qbm1tRGo1RjF3VS9mdzBFb0Ywd3JVNFlXQzlKOWRYSm1hK3ZBc0dHUGgrdURlNjRzclBXcTNMWG9aa042VkczVDlUSU5MeVd1ZXVnWHFJVlZ0REIiLCJtYWMiOiI4ZGNjOTdiMjgwZDY1OTE5NWQwMmJlMTNmMzNkYWZjMGQ1OTc1MjA5ODM1YjcwNTVmZDkzMDYwNmZhYjljMzZiIiwidGFnIjoiIn0%3D",
+        "phone": "27674297139",
+        "name": "ke maburna",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-12T07:32:27+00:00"
     }
 ]
