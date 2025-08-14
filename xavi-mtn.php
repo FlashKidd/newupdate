@@ -12,6 +12,7 @@ $check_tim = new DateTime('12:00');
 require_once('Tools-mtn-v2.php');
 // while(true){
 system('cls');
+$uA = RandomUa();
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
@@ -26,11 +27,10 @@ $number3 = GetTargetScore(1);
 
 
 
-$cookie = "XSRF-TOKEN=eyJpdiI6ImFzOC9MZmxWUTFZVjlLTFk5aUFJYVE9PSIsInZhbHVlIjoiNE1XRG1QRi9ueTlSSG9UTW9LRHAzbGJ0V1NoSlRZZkJtZC9wRmJ1TC9Cb3JPNnRvVGFTSWF5dy9Cd0oxTkJWUWlzekNMSm1TbHk1VU9OUWs0bk5weTRwQVpXYndnL0MrZVlVYlAzNW9IMXlDbm1ZclEwUDMxNkJXMXExTFdFdHAiLCJtYWMiOiJkM2VlMGRkODBjMDAzZTNhOTEzZGMwNzlkZmJmMGI1NTE0ZTRkODljY2FlNzZiMTE0ZjA0MTg4MGVhZDdmNWE5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IitJbURFWTBhdENVa2s3S1p3b3lSYnc9PSIsInZhbHVlIjoibGxPTmg5RmYwNGVnNUhBdG40dFl5TkVoQXVmMk9EbG1HSDhva2hwVk5pcFNqSHYyZmNxUG4zMWw4WmR0TjAwcjN2amkxcDhYVFlVbXN0RkZCNnlWb1UzUnNYM0trY1p1eWxmYjZXdGZFZ1FteUkvK2Jqc1NwZ3RTazBGTTRLUk0iLCJtYWMiOiJmNTIzMzUzZGU1OGM1NzhmZTg5NjliZDM1NTNkOTJmZDQwYThkMmRhNDI0YzY4ZjQwMTg1YjBlNDdkM2RjZTBjIiwidGFnIjoiIn0%3D";
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
         
 
-$MAX_SCORE = 6000;
+// $MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
@@ -59,7 +59,7 @@ $scoreBefore = GetTargetScore($pos);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
-            'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+            'User-Agent: '.$uA
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -80,8 +80,8 @@ $scoreBefore = GetTargetScore($pos);
             //     // return;
             // }
 
-        echo "<br>Uniquie_id: $unique_id<hr>";
-        echo "<br>Game_id: $game_id<hr>";
+        // echo "<br>Uniquie_id: $unique_id<hr>";
+        // echo "<br>Game_id: $game_id<hr>";
 
 
         ###################
@@ -100,6 +100,7 @@ $scoreBefore = GetTargetScore($pos);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA,
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -123,60 +124,62 @@ $scoreBefore = GetTargetScore($pos);
 
        
 
-if ($pos <= 1) {
-    $score = rand(($MAX_SCORE/5),($MAX_SCORE/3));
+$testSom = GetTargetScore($pos);
 
-} else {
-    $testSom = GetTargetScore($pos);
-    $score = $number3 + $MAX_SCORE;
-   //  if ($number3>=2001 && $number3<=3000 && $testSom>=2001){  
-   //   $score = rand(2800,3000);
-   // }
-   echo "\n Our score = $score";
-    if ($number3 - $testSom > $MAX_SCORE*2) {
-        $score = $testSom + $MAX_SCORE*2;
+ $MAX_SCORE = 6000;
+ $range = 3000;
+ $multiplier = ($pos <= 3 || $pos == 0) ? 0 : floor($number3 / $range);
+ $attemptLimit = 2;
+
+ while (true) {
+    if ($multiplier <= 0) {
+        
+        $min = 6000;
+        $max = 9000;
+     $score = rand($min,$max);
+    } else {
+        $min = $range * $multiplier + 1;
+        $max = $range * ($multiplier + 1);
+        $score = rand($min, $max);
+        while ($score < $number3) {
+            $score += rand(1,10);
+
+        }
     }
 
-   
+    while ($score > 50000) {
+        $score -= 1;
+    }
+
+    echo "\nTrying score $score in range $min - $max";
+    if($score>($MAX_SCORE*2+1)){
+        sleep(rand(15,45));
+    }
+
+    $increment = 1;
+    $score = round($score, -1);
+    $tries = 0;
+    $success = false;
+    do {
+        $uA = RandomUa();
+        $memory = validate_request($x_power, $score);
+        $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+        sleep(rand(30,50));
+        //$pos = GetPosition ($cookie);
+        $currentScore = GetTargetScore($pos);
+        echo "\nLeaderboard value: $currentScore (expected $score)";
+        if ($currentScore == $score) {
+            $success = true;
         }
+        $tries++;
+    } while (!$success && $tries < $attemptLimit);
 
-       while ($score > 50000) {
-       $score = 50000;
-      }
-
-
- // if (in_array($current_time->format('i'), ['51','52','53','54','55','56','57', '58', '59'])) {
-
- //            $score = $number3 + rand(50, 100);
-
- //     while ($score >= ($limit+100)) {
- //        $score -= rand(10, 30);
- //     }
-
- //             }
-// if ($current_time >= $check_time && $current_time <= $check_tim) {
-
-//      while ($score >= rand(100, 300)) {
-//         $score -= rand(10, 30);
-//      }
-
-// }
-
-// while(($score-$testSom)>50001){
-//     $score-=rand(1,10);
-// }
-
-echo "\n Our score = $score";
- 
-if($score>($MAX_SCORE*2+1)){
-
- sleep(rand(15,45));
- 
-}
-$increment = 1;
-
-$uA = RandomUa();
-$score = round($score,-1);
-$memory = validate_request($x_power, $score);
-$OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-// }
+    if ($success) {
+        echo "\nLeaderboard updated with score: $currentScore";
+        $multiplier++;
+        break;
+    } else {
+        echo "\nFailed for range $min - $max, stepping down";
+        $multiplier = max(0, $multiplier - 1);
+    }
+ }
