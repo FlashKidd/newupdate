@@ -137,9 +137,10 @@ $testSom = GetTargetScore($pos);
 
  while (true) {
     if ($multiplier <= 0) {
-        $score = rand(7000,10000);
+        
         $min = 7000;
         $max = 20000;
+     $score = rand($min,$max);
     } else {
         $min = $range * $multiplier + 1;
         $max = $range * ($multiplier + 1);
