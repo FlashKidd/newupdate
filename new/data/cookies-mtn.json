@@ -1,17 +1,5 @@
 [
     {
-        "id": "56b9f9f0eec2",
-        "network": "MTN",
-        "domain": "www.yellorush.co.za",
-        "label": "Flash",
-        "cookie": "XSRF-TOKEN=eyJpdiI6Ild5YXR3ajVDbVM2U1JtZXZnN21qL2c9PSIsInZhbHVlIjoiSWdTR3NsUFBMVTRhNEFOOVg1SzhwZ3pLVnU2S1ZzWi9aOHZrb1lvOHBLU2I3b3YyeFJGenJMUDNBMUNOdEU3cU1aMGM5dDFOaWtqYmc1WEs2TXVOckIxV09JT2N4VUdxanoybWpmaU5mYVRDODROWGpIVFJXRDFwcmFOeGVkSEsiLCJtYWMiOiJlN2RjNzMwY2IyNmJmZDhlNmU2YTUwNmQ3OWY5Mjg0MjI1MzcwZjI5MjhiMzU0ZTI1NzI3NTFmNDdmNGM5ZTY4IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6IkhHWWR1by9iK3c2VmEvdjNxQTMrWHc9PSIsInZhbHVlIjoianh5bUd1L2IvM0srQUdoODdyKzVsU1ZwZEg3ZFJwRG1kdkd6Z3BPZkxoa05wRzQ1Ym9jQTJnQnFkbnA1ZEMzRDlYdmlyQTNZbXNHY25QbmZKUXoyVmlwL1dlUFdnV2tnQXlxcUFyMStVWDJoeWlTWHN6MFpnVytLZ09sK09aWXkiLCJtYWMiOiJjM2M4NTMwZDg4Mzk5NTcxYTY5OWYzODBhM2RhMjQ3ZjQ5MmZlOTY4MTE5ZThkMTIzNDZkMTBiNWY1NDY2ZDcyIiwidGFnIjoiIn0%3D",
-        "phone": "27737943880",
-        "name": "Pikoktfb",
-        "balance": null,
-        "created_at": "2025-08-10T12:18:44+02:00",
-        "isFree": true
-    },
-    {
         "id": "619760fff46b",
         "network": "MTN",
         "domain": "www.yellorush.co.za",
@@ -21,7 +9,7 @@
         "name": "letsgo",
         "balance": null,
         "created_at": "2025-08-10T14:40:53+02:00",
-        "isFree": true
+        "isFree": false
     },
     {
         "id": "819ee8b53aeb",
@@ -32,7 +20,7 @@
         "phone": "27780073561",
         "name": "shandymama",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-11T12:50:39+02:00"
     },
     {
@@ -44,7 +32,67 @@
         "phone": "27604697535",
         "name": "Weetbix\ud83c\udf74",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-11T15:57:10+00:00"
+    },
+    {
+        "id": "ce00d9b14117",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "MrKaplan",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IkJFZDZ3VjYzcWE5S2k5QXlJbW5waHc9PSIsInZhbHVlIjoiUFJNVTYrNnFGVzBUS01XNlBaT2l6ZFFEelZMUDJEa3RDbmVYVmJRMXpPK29aSVJoSmpoOHUyTldWUHY4UjYwSU00OU1WYnltaWk0UzFmRWdZeENvbDJScXZyQ0tpWGF3aE4rQWg1QlNDVjUrWkoxMW9MbkcxTTZGWXFodWl2ODIiLCJtYWMiOiI5NGU1OWFiMTU1NDA3YjU2MzZjZTY4YjAwZjk5MGMxMjBiNzdkZWI3YjgzODFiNWVjY2VhMzM3ZGIzMGEwM2Q5IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6ImdKSjlGVkUzZzN5RUtyQ3FMSldSOUE9PSIsInZhbHVlIjoiS2ZiV2hNcVVXczJ6VGI2QzRZWXo0bG14bFFqS1hVL2t3Tk9SKytwRUllaHpjR2FzTmZmaTlCZ3JiaHZoU2ZPUFZUZFJsMHllcHNUMWFIejZEVTVSNCtVUHF6WUVtUCtmU3lGdWg3TXFETmJtNituRkZ6M1NWRjJPOXNFMjIzVmYiLCJtYWMiOiJmMThmZDlmNDYzZWJiMzg3MWYzMTNlMDU1ZjJmZDRmMDE4YWYzYzBmN2M3MTUxMmY5MGJiNTJiOTI5NmZjMmY3IiwidGFnIjoiIn0%3D",
+        "phone": "27785518729",
+        "name": "MrKaplan",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T18:07:53+00:00"
+    },
+    {
+        "id": "109861668804",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Medical Aid",
+        "cookie": "XSRF-TOKEN=eyJpdiI6ImVraVdtcXROT2ZmaGhRLzVQNjRpZFE9PSIsInZhbHVlIjoiS2I1MENtSi9oYWd2YXdEQXhwVWdRVUsyemF2c2d2cmtiMU4ybVkya1NXOVcveG9pK0ZPKzRlYUVYZXR6a1R6R0RpdkVuSUJWQ0NnRUpxNlptZ1RLZTE5cnJQUW1NOCsrc2tPK3NUOTc5Z0lwMFJqbERTZGVmcTJuUGdiMlBYcEgiLCJtYWMiOiIzZWZjNGY5YTU5OGMzYzdhYzZhMjZlN2Q1MDRjNDQ5YTM3YmMwNzU3OTk3ZTYyOWUzN2QzNWE0ZGVhM2YzZTljIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6IkpuaTZ3L1hLNzAvRUV0TkdidlNQTlE9PSIsInZhbHVlIjoiT2lOQ1U2dHNFYzU3WmFhMnZuZTl2OTFSRFlYKzNQdVd1djdzZ1liWEE4Mk1uY0FHMS9tRkIwVVdNZkdUSVZFalJRU3hEamJmRk5pLzdNdVFMaWVuNmxxR251T1JlL2Nud2kwNEpMVmxYcjN2ZjZFaXQ4eFJWUHBManZIQitCR24iLCJtYWMiOiJlMzQ0Y2MzNzg2YTMyNTIwZThmYjNmODQ2MjRkNzc0NmZmOTUzN2Y2NDcxZDk3Y2Q2MGQwMjk5ZDdlMWNiNmFhIiwidGFnIjoiIn0%3D",
+        "phone": "27839823430",
+        "name": "Medical Aid",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T18:39:55+00:00"
+    },
+    {
+        "id": "efa68a89d785",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "\u0930\u093e\u091c\u0947\u0936",
+        "cookie": "XSRF-TOKEN=eyJpdiI6Ill3RVFUdHNvU1l4Sm1zQU1kQVFkanc9PSIsInZhbHVlIjoiR2RCdmVKdUtCQy9VcFJJeGRlRzVzN0JyREFtb2Y5WmppUTNuRzFkUlRCUVJyMk1NcHg4RGFJczJWL1lPM2NFQXZ3Smp5TGM3R3ZxUXhybUdybVM5VFVuZHh0RjJMeXUwdnc1K0dpRzVJV3VNVU8xR2VIbDJER1NaM2Y1T0hlU0kiLCJtYWMiOiIyZjhiMmQzOTUwNDFlYjQxOGVjNGMzNmVlYjA2ZGUyNWVhNzFiNWEyZGRkYzJhODcwY2VhNWVkYzI2MzViNmFiIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6InBCSFpmZDNFb2w1REN5aGJ2QmdUdEE9PSIsInZhbHVlIjoibVh0UjZ1WUV4N09EdUxveWg4cE1Ub0FRcTdtMVhEOXVCMjIybFBCWWVTSzUxaXdwSElMM1A2TG1CSnpsR2wvdzFTQVhRYVRRTGNaeDR6cWR4Q1lOYmpVN1lJZkxQQUhOMGVVTXJ1ZFRFamJ4VEpsUzJ1ZWVITnlzYTRZeFpGRzgiLCJtYWMiOiJlN2M1N2ExN2VkNzQxMzY4YTExNzAxNzM1ZTcxNzdhYTI5M2IxNjM3ZWZhZTUyMGE2NTA1MjIzM2NhMzFlZjBiIiwidGFnIjoiIn0%3D",
+        "phone": "27736887512",
+        "name": "\u0930\u093e\u091c\u0947\u0936",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T18:43:20+00:00"
+    },
+    {
+        "id": "861a926d9abc",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Flash",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjB4b0tWb3d5WExhOVVBSTg3aEUvelE9PSIsInZhbHVlIjoiNVlLS0JwQUFjRnN4dC9zdGJGaGl0N01CQlRQWitDNnRuTkRnUVFiZU1RVGVkaE56MmpLcDlRYWVHQjNwdjBCTWtKM2NmSTdLcTY0YnZnRzJPV2ZaZ3NTRlU0UjU3WUNFOHZCb3o2a1IzN3B5bEJKOHVrdHNiRzJ0VG5RTU1WekUiLCJtYWMiOiIwMzEzMWRiNzkwZWUwY2Y5ODcxNDExYzBmNTkxODY0OTg4OTZhNTE3Nzk0YzU5ZDI4ODVmNGUzOWVlZmVjMmE5IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6ImJkWDQ2U2xRSXFRRm41Ynlhb3RHT0E9PSIsInZhbHVlIjoidDFmbnoxbjZxU0tLVHNzT0JlWkx6WVc2b3kxcDVzQ0VPME9teGc2Nlc0K0R5NmhOWEtZZWdyZllRZlRVbnBKWE1OcmdtMTVrU0xYelJvams3V0dUd2FYYlcwZXRlV2Viek9LRWtSbm9mT0l1cGdjYnZrL01LUXU3b0NQT2xXWWEiLCJtYWMiOiJkNWM5ZTQ2Y2E2YjFiOWY0NDM3NDMxMDQ1NTEwNjdmMmY3Y2E4MTllMDc4ZWFhOTQ0ZWM2Yzg2OThmNzI1Nzc4IiwidGFnIjoiIn0%3D",
+        "phone": "27638932272",
+        "name": "Within",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T18:57:04+00:00"
+    },
+    {
+        "id": "fe80e481a860",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Flash",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IkdBVmZpdU9xeTYxUGw5TXU1Kzk1WVE9PSIsInZhbHVlIjoiMnJVS1pNTjdNc05CcDVJTVFndktVV2JWTEdHZlBnWWM0ZDl0NG50TzAvUjdCV2YwK1lzYS8wZitGY205UU1JZlBLWUNqaVBtUStUaERhQTNpeTAvNzQxWStweXpBdTV4U1BzVmoySGpkalMyQk1SQ2MxYlphUmZSeUx1c25vYS8iLCJtYWMiOiI1NGNjOWUwNzk4Y2Q3ODYxZWQ2YWUzZGNlNGZhOTFjYzQyNGZjMjRhNDE0NmNkOWQxZTFmNzRhMWM5ZGY3MDNlIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6InV4UjNZRjQ5eEJEaFBLcUd5ZHhBd3c9PSIsInZhbHVlIjoiaHp1OFd3RFFMM20rb1ZkelQwSmJJd0ZvUHd4NkQ1V3ZxVVRUY3cyZXZzM3h1a2dsV2h1WlJTdGJjdk9MZW0xcWUwRzFEWFVQU1NHVXpJaklQYUZNb0VlWXBYa2EyU0RnandlcGRiN011ZUNnWVhQN1F2TFNoUWlqSWIxZ0ZXR0UiLCJtYWMiOiIyY2JkZWE5MzIzZmU2Y2E5MmNlMmY2MzhkYjkwODY0OGFmNjNkNzFkMmNhYTRjZDEwMDcyYzJkMjZjNzQ1NTI2IiwidGFnIjoiIn0%3D",
+        "phone": "27686970527",
+        "name": "ayoooyeeyaaeis",
+        "balance": null,
+        "isFree": false,
+        "created_at": "2025-08-11T18:58:12+00:00"
     }
 ]
