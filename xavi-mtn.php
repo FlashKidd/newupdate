@@ -139,7 +139,7 @@ $testSom = GetTargetScore($pos);
     if ($multiplier <= 0) {
         $score = rand(7000,10000);
         $min = 7000;
-        $max = 10000;
+        $max = 20000;
     } else {
         $min = $range * $multiplier + 1;
         $max = $range * ($multiplier + 1);
