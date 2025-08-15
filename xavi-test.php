@@ -129,6 +129,7 @@ $scoreEnd   = 49690; // highest score to consider
 $pos = GetPosition($cookie);
 if ($pos > 0 && $pos <= 10) {
     echo "\nAlready in top 10 at position $pos, skipping request.";
+  sleep(rand(60,240))
     exit;
 }
 
