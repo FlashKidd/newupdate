@@ -13,7 +13,7 @@ $curl->option(CURLOPT_TIMEOUT, 2400);
 $starttime = microtime(true);
 
 $cookieFile = __DIR__ . '/data/cookies.json';
-$maxConcurrent = 3;
+$maxConcurrent = 2;
 $selectedIndexes = [];
 $urls_ar = [];
 while (true) {
