@@ -9,7 +9,7 @@
         "name": "letsgo",
         "balance": null,
         "created_at": "2025-08-10T14:40:53+02:00",
-        "isFree": false
+        "isFree": true
     },
     {
         "id": "819ee8b53aeb",
@@ -20,7 +20,7 @@
         "phone": "27780073561",
         "name": "shandymama",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T12:50:39+02:00"
     },
     {
@@ -32,7 +32,7 @@
         "phone": "27604697535",
         "name": "Weetbix\ud83c\udf74",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T15:57:10+00:00"
     },
     {
@@ -44,7 +44,7 @@
         "phone": "27785518729",
         "name": "MrKaplan",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T18:07:53+00:00"
     },
     {
@@ -56,7 +56,7 @@
         "phone": "27839823430",
         "name": "Medical Aid",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T18:39:55+00:00"
     },
     {
@@ -68,7 +68,7 @@
         "phone": "27736887512",
         "name": "\u0930\u093e\u091c\u0947\u0936",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T18:43:20+00:00"
     },
     {
@@ -80,7 +80,7 @@
         "phone": "27638932272",
         "name": "Within",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T18:57:04+00:00"
     },
     {
@@ -92,7 +92,19 @@
         "phone": "27686970527",
         "name": "ayoooyeeyaaeis",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T18:58:12+00:00"
+    },
+    {
+        "id": "325f9c340541",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Skibidi",
+        "cookie": "XSRF-TOKEN=eyJpdiI6Ik9tcWlENkYvOXRpUWMzQkk0azk4YkE9PSIsInZhbHVlIjoialU3dzdqcXV3c1N3WEREckNOTGR1NG15VkFWMEZVcGovYzB4MlNkM1RyeGdyYVJZeCtXMHJFSXdkeXNBSExkT1NHVENZOVkzR0Zkd0ZBWVAzZ3BNeU9mZjF5a1RBbDc1TXd3WENiajh2TG9wWElaeDEwQXYxOE05WjVlcUNRM0MiLCJtYWMiOiJmZjliMGMzZTZlNGUyMmE4Yzk3YTMxY2Q4YTNiM2NlMTFmNzY2NDkxYjkzNTM1YjY2MzU2OTkwMDM1MDgxOTRlIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6Ikphb29MSHJJdXhQSkg1QmRhcmtpcEE9PSIsInZhbHVlIjoiaG9Dcm56c05ObDdoUzAxSHlXdnVVcjl5N2lnNWM1S3ZvOVJFK0dLeC9Rd3BDUXBDTWpYRmRTWDNUMmxLelJpWmRiMjV2OVlnK2ZaQU9tVHpsTDFBdms2UFNQNmZXZktjRGt0MHNRVTFPdTAyZ2pzYjFBY2dhUWltS1FsRGhnNTciLCJtYWMiOiJiOGJhNTA0YzQ5NDk4OTIyZGZlYjcwOWEyNzRhNmZlYTYzZGU4ODEyZjdkY2NjNmYzNWNmMmRhNTI2YWJmZDk5IiwidGFnIjoiIn0%3D",
+        "phone": "27785658022",
+        "name": "Skibidi",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-08-15T09:03:57-04:00"
     }
 ]
