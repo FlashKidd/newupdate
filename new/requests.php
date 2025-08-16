@@ -79,12 +79,22 @@ if (is_array($cookies)) {
             $cookies[$idx]['isFree'] = true;
         }
     }
+
     $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
     if ($encoded !== false) {
         rewind($fp);
         ftruncate($fp, 0);
         fwrite($fp, $encoded);
     }
+
+    ftruncate($fp, 0);
+    rewind($fp);
+    fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+} else {
+    ftruncate($fp, 0);
+    rewind($fp);
+    fwrite($fp, $contents);
+
 }
 flock($fp, LOCK_UN);
 fclose($fp);
