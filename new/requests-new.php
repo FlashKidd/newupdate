@@ -35,9 +35,16 @@ while (true) {
                 if (count($urls_ar) >= $maxConcurrent) break;
             }
         }
-        ftruncate($fp, 0);
+        $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
+        if ($encoded === false) {
+            flock($fp, LOCK_UN);
+            fclose($fp);
+            sleep(1);
+            continue;
+        }
         rewind($fp);
-        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+        ftruncate($fp, 0);
+        fwrite($fp, $encoded);
         flock($fp, LOCK_UN);
         fclose($fp);
         if (!empty($urls_ar)) break;
@@ -72,6 +79,14 @@ if (is_array($cookies)) {
             $cookies[$idx]['isFree'] = true;
         }
     }
+
+    $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
+    if ($encoded !== false) {
+        rewind($fp);
+        ftruncate($fp, 0);
+        fwrite($fp, $encoded);
+    }
+
     ftruncate($fp, 0);
     rewind($fp);
     fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
@@ -79,6 +94,7 @@ if (is_array($cookies)) {
     ftruncate($fp, 0);
     rewind($fp);
     fwrite($fp, $contents);
+
 }
 flock($fp, LOCK_UN);
 fclose($fp);
