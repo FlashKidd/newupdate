@@ -13,10 +13,47 @@ $curl->option(CURLOPT_TIMEOUT, 2400);
 $starttime = microtime(true);
 
 $cookieFile = __DIR__ . '/data/cookies-mtn2.json';
+
+function checkCookieFile($path) {
+    $backup = $path . '.bak';
+    $fp = fopen($path, 'c+');
+    if (!$fp) {
+        return;
+    }
+    if (flock($fp, LOCK_EX)) {
+        clearstatcache(true, $path);
+        $size = filesize($path);
+        $contents = $size > 0 ? stream_get_contents($fp) : '';
+        $data = $size > 0 ? json_decode($contents, true) : null;
+        if ($size === 0 || !is_array($data)) {
+            if (file_exists($backup)) {
+                $backupContents = file_get_contents($backup);
+                ftruncate($fp, 0);
+                rewind($fp);
+                fwrite($fp, $backupContents);
+                fflush($fp);
+                sleep(2);
+            }
+        }
+        if (file_exists($backup)) {
+            fflush($fp);
+            clearstatcache(true, $path);
+            if (hash_file('md5', $path) !== hash_file('md5', $backup)) {
+                ftruncate($fp, 0);
+                rewind($fp);
+                fwrite($fp, file_get_contents($backup));
+                fflush($fp);
+            }
+        }
+        flock($fp, LOCK_UN);
+    }
+    fclose($fp);
+}
 $maxConcurrent = 2;
 $selectedIndexes = [];
 $urls_ar = [];
 while (true) {
+    checkCookieFile($cookieFile);
     $fp = fopen($cookieFile, 'c+');
     if (flock($fp, LOCK_EX)) {
         $contents = stream_get_contents($fp);
@@ -69,6 +106,7 @@ $curl->get($urls, function($result) {
     }
 });
 
+checkCookieFile($cookieFile);
 $fp = fopen($cookieFile, 'c+');
 flock($fp, LOCK_EX);
 $contents = stream_get_contents($fp);
