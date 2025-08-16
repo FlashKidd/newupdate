@@ -19,7 +19,14 @@ $urls_ar = [];
 while (true) {
     $fp = fopen($cookieFile, 'c+');
     if (flock($fp, LOCK_EX)) {
-        $cookies = json_decode(stream_get_contents($fp), true);
+        $contents = stream_get_contents($fp);
+        $cookies = json_decode($contents, true);
+        if (!is_array($cookies)) {
+            flock($fp, LOCK_UN);
+            fclose($fp);
+            sleep(1);
+            continue;
+        }
         foreach ($cookies as $idx => $cookie) {
             if (!empty($cookie['isFree'])) {
                 $cookies[$idx]['isFree'] = false;
@@ -28,9 +35,16 @@ while (true) {
                 if (count($urls_ar) >= $maxConcurrent) break;
             }
         }
-        ftruncate($fp, 0);
+        $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
+        if ($encoded === false) {
+            flock($fp, LOCK_UN);
+            fclose($fp);
+            sleep(1);
+            continue;
+        }
         rewind($fp);
-        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+        ftruncate($fp, 0);
+        fwrite($fp, $encoded);
         flock($fp, LOCK_UN);
         fclose($fp);
         if (!empty($urls_ar)) break;
@@ -57,13 +71,21 @@ $curl->get($urls, function($result) {
 
 $fp = fopen($cookieFile, 'c+');
 flock($fp, LOCK_EX);
-$cookies = json_decode(stream_get_contents($fp), true);
-foreach ($selectedIndexes as $idx) {
-    $cookies[$idx]['isFree'] = true;
+$contents = stream_get_contents($fp);
+$cookies = json_decode($contents, true);
+if (is_array($cookies)) {
+    foreach ($selectedIndexes as $idx) {
+        if (isset($cookies[$idx])) {
+            $cookies[$idx]['isFree'] = true;
+        }
+    }
+    $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
+    if ($encoded !== false) {
+        rewind($fp);
+        ftruncate($fp, 0);
+        fwrite($fp, $encoded);
+    }
 }
-ftruncate($fp, 0);
-rewind($fp);
-fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
 flock($fp, LOCK_UN);
 fclose($fp);
 
