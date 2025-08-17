@@ -13,50 +13,20 @@ $curl->option(CURLOPT_TIMEOUT, 2400);
 $starttime = microtime(true);
 
 $cookieFile = __DIR__ . '/data/cookies.json';
-
-function checkCookieFile($path) {
-    $backup = $path . '.bak';
-    $fp = fopen($path, 'c+');
-    if (!$fp) {
-        return;
-    }
-    if (flock($fp, LOCK_EX)) {
-        clearstatcache(true, $path);
-        $size = filesize($path);
-        $contents = $size > 0 ? stream_get_contents($fp) : '';
-        $data = $size > 0 ? json_decode($contents, true) : null;
-        if ($size === 0 || !is_array($data)) {
-            if (file_exists($backup)) {
-                $backupContents = file_get_contents($backup);
-                ftruncate($fp, 0);
-                rewind($fp);
-                fwrite($fp, $backupContents);
-                fflush($fp);
-                sleep(2);
-            }
-        }
-        if (file_exists($backup)) {
-            fflush($fp);
-            clearstatcache(true, $path);
-            if (hash_file('md5', $path) !== hash_file('md5', $backup)) {
-                ftruncate($fp, 0);
-                rewind($fp);
-                fwrite($fp, file_get_contents($backup));
-                fflush($fp);
-            }
-        }
-        flock($fp, LOCK_UN);
-    }
-    fclose($fp);
-}
-$maxConcurrent = 3;
+$maxConcurrent = 2;
 $selectedIndexes = [];
 $urls_ar = [];
 while (true) {
-    checkCookieFile($cookieFile);
     $fp = fopen($cookieFile, 'c+');
     if (flock($fp, LOCK_EX)) {
-        $cookies = json_decode(stream_get_contents($fp), true);
+        $contents = stream_get_contents($fp);
+        $cookies = json_decode($contents, true);
+        if (!is_array($cookies)) {
+            flock($fp, LOCK_UN);
+            fclose($fp);
+            sleep(1);
+            continue;
+        }
         foreach ($cookies as $idx => $cookie) {
             if (!empty($cookie['isFree'])) {
                 $cookies[$idx]['isFree'] = false;
@@ -65,9 +35,16 @@ while (true) {
                 if (count($urls_ar) >= $maxConcurrent) break;
             }
         }
-        ftruncate($fp, 0);
+        $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
+        if ($encoded === false) {
+            flock($fp, LOCK_UN);
+            fclose($fp);
+            sleep(1);
+            continue;
+        }
         rewind($fp);
-        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+        ftruncate($fp, 0);
+        fwrite($fp, $encoded);
         flock($fp, LOCK_UN);
         fclose($fp);
         if (!empty($urls_ar)) break;
@@ -92,16 +69,33 @@ $curl->get($urls, function($result) {
     }
 });
 
-checkCookieFile($cookieFile);
 $fp = fopen($cookieFile, 'c+');
 flock($fp, LOCK_EX);
-$cookies = json_decode(stream_get_contents($fp), true);
-foreach ($selectedIndexes as $idx) {
-    $cookies[$idx]['isFree'] = true;
+$contents = stream_get_contents($fp);
+$cookies = json_decode($contents, true);
+if (is_array($cookies)) {
+    foreach ($selectedIndexes as $idx) {
+        if (isset($cookies[$idx])) {
+            $cookies[$idx]['isFree'] = true;
+        }
+    }
+
+    $encoded = json_encode($cookies, JSON_PRETTY_PRINT);
+    if ($encoded !== false) {
+        rewind($fp);
+        ftruncate($fp, 0);
+        fwrite($fp, $encoded);
+    }
+
+    ftruncate($fp, 0);
+    rewind($fp);
+    fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+} else {
+    ftruncate($fp, 0);
+    rewind($fp);
+    fwrite($fp, $contents);
+
 }
-ftruncate($fp, 0);
-rewind($fp);
-fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
 flock($fp, LOCK_UN);
 fclose($fp);
 
