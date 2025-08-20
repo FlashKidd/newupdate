@@ -1,5 +1,6 @@
  <?php
 //sleep(rand(30,60));
+
 date_default_timezone_set('Africa/Johannesburg');
 $current_time = new DateTime();
 $check_time = new DateTime('04:00'); 
@@ -26,17 +27,13 @@ $number3 = GetTargetScore(1);
 
 
 
-$cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+$cookie = 'XSRF-TOKEN=eyJpdiI6IlBZQWZBYm54S3ZqNFFkYzd6SkJFOWc9PSIsInZhbHVlIjoiNmNpZ1RZMVU0WnIvSmxOVk16L04yREZmMUJqNWZCUW85bHJOQ25yOXJ4S2VIVktRN0l3M3JFeWQwNG0vMWREbDZKRk82eHhpNWtyQ0ZHeTFXM3FIczdSSVcrTDQ4aDN4aFRDc0dkTUpOYm9sdjdDdTFKOFhQUm9FV09CNzNHdjUiLCJtYWMiOiI1ZTU5MmMwZDRlMTdhMTlkOGJmODUwMTc0YjFkY2IxZmYwZmJiYWM3ODE3MGQ0ZWNmMmRlYzU1N2YxZTM3OWU3IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6IlU4SUc0M2FNK1YyNVBPMUtRYjg2QUE9PSIsInZhbHVlIjoiaEJMVDNOUWxwclBsQlV4NzRpZFRMWkpVU0JPcGdjTHRqRmdNUUFjbDNnNlJNMzgzRjdOZzN0L0ljUDhMNndYWGRjakZIbEN5NWR4eE4yREdZTTdYSVVUWlBkaFEwR3B1bWsyNkFSSFEvYmZEOEcwS0d1UGUyMnJwa0Fab2dWeXAiLCJtYWMiOiIwZmIyZGFjOGU0ZTVkYTQ2NzhiMzJkZDU2ZTA3NDg4YjUxMzlkMzFkZDA0NGM0NTkzMTljMjQ1NmY5OTkxODIyIiwidGFnIjoiIn0%3D';
         
 
 // $MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
 echo "\nOur target score is: $number3 at pos $pos";
-$scoreBefore = GetTargetScore($pos);
-
-        //while($scoreBefore == $scoreAfter){
-       // $scoreAfter = GetTargetScore($pos);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
         // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
@@ -75,9 +72,9 @@ $scoreBefore = GetTargetScore($pos);
         $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
-            // if (empty($unique_id)){
-            //     // return;
-            // }
+             if (empty($unique_id)){
+                 return;
+             }
 
         // echo "<br>Uniquie_id: $unique_id<hr>";
         // echo "<br>Game_id: $game_id<hr>";
@@ -121,68 +118,51 @@ $scoreBefore = GetTargetScore($pos);
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
 
-       
-
-$testSom = GetTargetScore($pos);
 
 
+// Adjustable score range for leaderboard placement
+$scoreStart = 49679; // lowest score to consider
+$scoreEnd   = 49690; // highest score to consider
 
+// Skip if this cookie already holds a top 10 position
+// Refresh position to ensure it's up to date
+$pos = GetPosition($cookie);
+if ($pos > 0 && $pos <= 10) {
+    echo "\nAlready in top 10 at position $pos, skipping request.";
+  sleep(rand(120,340));
+    exit;
+}
 
+$success = false;
+$currentScore = null;
 
- $MAX_SCORE = 6000;
- $range = 10000;
- $multiplier = ($pos <= 3 || $pos == 0) ? 0 : floor($number3 / $range);
- $attemptLimit = 2;
+// Build and shuffle the score list so each score is attempted once in random order
+$max = 49760;
+$count = 10;
+$min = $max - ($count - 1) * 10;
 
- while (true) {
-    if ($multiplier <= 0) {
-        
-        $min = 7000;
-        $max = 20000;
-     $score = rand($min,$max);
-    } else {
-        $min = $range * $multiplier + 1;
-        $max = $range * ($multiplier + 1);
-        $score = rand($min, $max);
-        while ($score < $number3) {
-            $score += rand(1,10);
+$scores = range($max, $min, -10);
+shuffle($scores);
 
-        }
-    }
-
-    while ($score > 50000) {
-        $score -= 1;
-    }
-
-    echo "\nTrying score $score in range $min - $max";
-    if($score>($MAX_SCORE*2+1)){
-        sleep(rand(15,45));
-    }
-
+foreach ($scores as $score) {
+    echo "\nTrying score $score";
     $increment = 1;
-    $score = round($score, -1);
-    $tries = 0;
-    $success = false;
-    do {
-        $uA = RandomUa();
-        $memory = validate_request($x_power, $score);
-        $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-        sleep(rand(30,50));
-        //$pos = GetPosition ($cookie);
-        $currentScore = GetTargetScore($pos);
-        echo "\nLeaderboard value: $currentScore (expected $score)";
-        if ($currentScore == $score) {
-            $success = true;
-        }
-        $tries++;
-    } while (!$success && $tries < $attemptLimit);
-
-    if ($success) {
-        echo "\nLeaderboard updated with score: $currentScore";
-        $multiplier++;
+    $uA = RandomUa();
+    $memory = validate_request($x_power, $score);
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+    sleep(rand(5,10));
+    $pos = GetPosition($cookie);
+    $currentScore = GetTargetScore($pos);
+    echo "\nLeaderboard value: $currentScore at pos $pos";
+    if ($currentScore == $score && $pos > 0 && $pos <= 10) {
+        $success = true;
         break;
-    } else {
-        echo "\nFailed for range $min - $max, stepping down";
-        $multiplier = max(0, $multiplier - 1);
     }
- }
+    echo "\nScore $score failed to update.";
+}
+
+if ($success) {
+    echo "\nLeaderboard updated with score: $currentScore";
+} else {
+    echo "\nFailed to update leaderboard";
+}
