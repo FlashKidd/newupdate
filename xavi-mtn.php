@@ -73,6 +73,7 @@ echo "\nOur target score is: $number3 at pos $pos";
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
              if (empty($unique_id)){
+              echo "Cookie Expired";
                  return;
              }
 
