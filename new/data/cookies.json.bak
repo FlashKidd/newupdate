@@ -20,7 +20,7 @@
         "phone": "27793110193",
         "name": "manaba",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T13:16:24+02:00"
     },
     {
@@ -32,7 +32,7 @@
         "phone": "27818748757",
         "name": "Roman\u00ea\u00ea",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T16:41:52+00:00"
     },
     {
@@ -44,7 +44,7 @@
         "phone": "27773949710",
         "name": "bomblacat ngwanesho",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T17:01:43+00:00"
     },
     {
@@ -56,7 +56,7 @@
         "phone": "27825497160",
         "name": "Yo_father",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T18:49:35+00:00"
     },
     {
@@ -68,7 +68,7 @@
         "phone": "27720836691",
         "name": "Brother Song",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T19:33:31+00:00"
     },
     {
@@ -80,7 +80,7 @@
         "phone": "27723262756",
         "name": "The Prince",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T19:49:48+00:00"
     },
     {
@@ -92,7 +92,7 @@
         "phone": "27663708638",
         "name": "Sandycroft",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-12T00:36:32+00:00"
     },
     {
@@ -104,7 +104,7 @@
         "phone": "27825541168",
         "name": "Shebe ke kgosi",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-12T01:39:18+00:00"
     },
     {
@@ -116,7 +116,7 @@
         "phone": "27674297139",
         "name": "ke maburna",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-12T07:32:27+00:00"
     }
 ]
