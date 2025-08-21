@@ -141,7 +141,7 @@ $max = 400;
 $count = 10;
 $min = $max - ($count - 1) * 10;
 
-$scores = range($max, $min, -10);
+$scores = range($max, $min);
 shuffle($scores);
 
 foreach ($scores as $score) {
