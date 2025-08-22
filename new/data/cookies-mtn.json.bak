@@ -34,7 +34,7 @@
         "balance": null,
         "isFree": true,
         "created_at": "2025-08-21T09:31:47-04:00"
-    ,
+     },
     {
         "id": "d5a24f5a1a2a",
         "network": "MTN",
