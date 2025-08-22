@@ -344,7 +344,7 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
 $min = 10;
-$max = 1000;
+$max = 25;
 $null = 1;
 
 if($null = 1){
@@ -399,7 +399,7 @@ if ($number <= $max) {
             $LB = $UB;
         }
         // Pick a random value within the allowed range.
-        $d = round(rand($LB, $UB),-1);
+        $d = rand($LB, $UB);
         $differences[] = $d;
         $prev = $d;
     }
