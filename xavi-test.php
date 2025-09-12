@@ -137,11 +137,10 @@ $success = false;
 $currentScore = null;
 
 // Build and shuffle the score list so each score is attempted once in random order
-$max = 1253;
+$max = rand(500,3000);
 $count = 10;
-
-$min = $max - ($count - 1); 
-$scores = range($max, $min); 
+$min = $max - ($count - 1) * 10;
+$scores = range($max, $min, -10);
 shuffle($scores);
 
 foreach ($scores as $score) {
