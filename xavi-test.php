@@ -139,8 +139,8 @@ $currentScore = null;
 // Build and shuffle the score list so each score is attempted once in random order
 $max = rand(500,3000);
 $count = 10;
-$min = $max - ($count - 1) * 10;
-$scores = range($max, $min, -10);
+$min = $max - ($count - 1) * 100;
+$scores = range($max, $min, -100);
 shuffle($scores);
 
 foreach ($scores as $score) {
