@@ -36,18 +36,6 @@
         "created_at": "2025-08-22T07:26:23-04:00"
     },
     {
-        "id": "fe221228f3d3",
-        "network": "MTN",
-        "domain": "www.yellorush.co.za",
-        "label": "shandymama",
-        "cookie": "XSRF-TOKEN=eyJpdiI6InlGMFFmYzhhRnFRWERVVHl1L09PWHc9PSIsInZhbHVlIjoic2ViZXY1TWErdWh2VXFOdkx0Tm9DbXRhTm1HaGpFalFValM3blJBbzR6VTBwYkZUS29wTkc3aEJUUUlpU1lWNEhtVmNUYTk1VWJObTZiYVVES0RxeTNOelAwNE5ZMDNzWW5UUm1Zd1M5TWhmVTEya0paUHFlWU4xWGM3bnRCa3ciLCJtYWMiOiI3MWJjMGEwZDQ1MTNiNmZjZmY0ZTZlN2EwMTg1NmQ4YjRkNDU2ZTdmOGQxNWJlY2Q0ZWE3OGFhYzE5YzlhZjZiIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6ImFlTVRSMHVMc1JObWlSeVBTblZRYkE9PSIsInZhbHVlIjoib25sQ0pubitCQmdFbEJiZ2owOXFnOUlBRkRqMm1Vakh3TUVMc0R1S1ZvZXlIMlZtZGFLbWt6UlNEc2RQWE9oRUhCN2lQdURWb1o5ejRoVHliS1VyUUNYK1Mxa2xTaWZxcVhjV0ZRbW8rU0JjclVSRlVJNjNtcmlEKzFhZkFFRjciLCJtYWMiOiJlZTM1NWUwNTcxNmRjOWVmNjRiODNlYTZlN2EyZWI0MWU0ZDI0MzEzODg0YjJkMzQxOTkwYjA4OWRiYjkzMGY3IiwidGFnIjoiIn0%3D",
-        "phone": "27780073561",
-        "name": "shandymama",
-        "balance": null,
-        "isFree": true,
-        "created_at": "2025-08-22T07:34:09-04:00"
-    },
-    {
         "id": "dd33267c4550",
         "network": "MTN",
         "domain": "www.yellorush.co.za",
@@ -56,7 +44,7 @@
         "phone": "27785658022",
         "name": "Skibidi",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-08-22T08:12:38-04:00"
     },
     {
@@ -118,5 +106,17 @@
         "balance": null,
         "isFree": true,
         "created_at": "2025-09-12T14:06:24-04:00"
+    },
+    {
+        "id": "25d45305e544",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "shandymama",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjdRdWRCQlFCTlZYTWxxNm83b2poaFE9PSIsInZhbHVlIjoiR1YrNTFDSjdaTG5UMDREQVZKQjhUVDM4VEx4RjMzU2xDYlZCLzNLSGE1VDJyNlA2aWlQUXRDeHcrRVBFc1k3OCt6QmJVNytvaFAwbGR2ejcwN1lVWUlkZ0k3VGhlbWZOWDljcTBrd1lPKzhYa0dNeHJ6UlhyM0pUazdaL2U2ZXciLCJtYWMiOiJjZjM4ZjY3ZmNkZWViMmFkYWE4OGJiNWU3Nzk0MmNlZjMxOGM5NWIwZTgzNGI3Y2E3YTFjZTE3ZjA1MWI2ZWVlIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6Im5SdGtHK2c4dkduOExTSk9GdUVtN1E9PSIsInZhbHVlIjoiVVE2V25SVHlaMTBtb1JPWGpmTHpoaFlCTkI5T0FoajJQcW5PY2xEYWNnb28zU1IrNEVtVm9iMk9BT05kUzdzRW1TT0R1UUF1Q2t5QXphWm9mWjBONzZDZE05UzhiSGxzakZSbzgxWGlTRnJ3TVlhcVd5cUJwVzZKYS9VY2IwN0QiLCJtYWMiOiIyZDcwY2U5ZDc4N2ZmMWU2NjVlMDllNmIzMDA4MjExY2NjNjAyNjI3ZDRlNjQ2ODhhZWVkNzAyNDhkYzQ3ZTVlIiwidGFnIjoiIn0%3D",
+        "phone": "27780073561",
+        "name": "shandymama",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-09-12T14:10:15-04:00"
     }
 ]
