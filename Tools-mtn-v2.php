@@ -336,7 +336,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 //  $max = 100;
     
  $min = 10;
- $max = 500;
+ $max = 1000;
     
   if ($number <= $max) {
     // If number is $max or less, output only 0.
@@ -386,7 +386,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
             $LB = $UB;
         }
         // Pick a random value within the allowed range.
-        $d = round(rand($LB, $UB),-2);
+        $d = round(rand($LB, $UB),0);
         $differences[] = $d;
         $prev = $d;
     }
