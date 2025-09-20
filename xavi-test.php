@@ -127,7 +127,7 @@ $scoreEnd   = 49690; // highest score to consider
 // Skip if this cookie already holds a top 10 position
 // Refresh position to ensure it's up to date
 $pos = GetPosition($cookie);
-if ($pos > 0 && $pos <= 10) {
+if ($pos > 0 && $pos <= 3) {
     echo "\nAlready in top 10 at position $pos, skipping request.";
   sleep(rand(120,340));
     exit;
@@ -137,7 +137,7 @@ $success = false;
 $currentScore = null;
 
 // Build and shuffle the score list so each score is attempted once in random order
-$max = rand(9000,12000);
+$max = rand(37000,37950);
 $count = 10;
 $min = $max - ($count - 1);
 $scores = range($max, $min);
