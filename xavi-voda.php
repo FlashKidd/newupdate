@@ -140,7 +140,7 @@ $scoreEnd   = 4000; // highest score to consider
 // Skip if this cookie already holds a top 10 position
 // Refresh position to ensure it's up to date
 $pos = GetPosition($cookie);
-if ($pos > 0 && $pos <= 10) {
+if ($pos > 0 && $pos <= 3) {
     echo "\nAlready in top 10 at position $pos, skipping request.";
     exit;
 }
