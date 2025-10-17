@@ -27,7 +27,7 @@ $number3 = GetTargetScore(1);
 
 
 
-$cookie = "XSRF-TOKEN=eyJpdiI6InBmSkhTb3RTdkk5RWZkdXQyY0RLQWc9PSIsInZhbHVlIjoibmU0NUIyTjhLekp1dVZOVXVMS3JsZVloV1dFc3RHZkJNQS9PRVZWclo5aUNOVTliQS9yaDNJY09jZ2hFZmVkckJaUTY2S2pibC92M1VLbFkrSk92QTBWRVhLLzVWVkxkV2p0OUw1NEtqbjlZSU12dnphcW1WK255OEdIUXNWak8iLCJtYWMiOiIzNmE3ZmJmNTkwYjY4NjRmZjQ3N2JkYTZlYjkzMDExNWMzMTk1MjI2MmJhOGEwZDQ5YWQ3NjU0ZGUxNzA0NWQ2IiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6InpORTZFcFpRTGplbjdPZWpIbGJKcGc9PSIsInZhbHVlIjoiQ2xCUmN5SVpqelAxWUhiaEk3QzdBbVlwL2loZDYxVThzZGpqd0VEWnlFSG5ZOWNkam1QYkRubmxxVjJNNlVXUU1zNzM3YlVZbzBqQThFT1VHK3Q3QXdmb3VPY0kwUDY5V25JVHhuNm1Vb1R3dUZ3SURVayt3OTE4SzRSNFlVQ3UiLCJtYWMiOiJhYjVlMjQwMjI0ZmM4ZjlkYmU0NDllMWM2MWE1ODMyN2EyYTZjNzZiNDgyNjliYmE5ZjBiNmM4NTc5MThkMTRiIiwidGFnIjoiIn0%3D";
+$cookie = "XSRF-TOKEN=eyJpdiI6IlBPd25rc05pR3htQ0pjRis2UjZ6U2c9PSIsInZhbHVlIjoiRjlQL1lHL3VOQ1p0UWRNNXE1enZoOFNmQTRjSnIzeWZxeXM1WEVwTW9UY25PNmZtaE12MURRVlFTMHAwcWpRaVBoaVhZQldCNFBVY2Y5V1dybXZnRHBTVFFPOVc0RFVMUVMvUVlFWDB4TzRBVzVKU0ZpUlVibE15UGFrOFRYT2QiLCJtYWMiOiIxYjE3YmI5NjhmNTRjNzFiZTU2OTU2Y2U5ZWM4YWU0MDBjN2IxZDA1OWY3ZTZmMTMwNmUzNmE3Mzc3ZTYxOTFkIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlVQNEx0Z0xaOEZUZUZKUmRWMmp4dWc9PSIsInZhbHVlIjoiQ2ROZEhNUFNicWJrWnZOaGYrQkk2N2NmZHZuSzZzQk94aW43S2doakNUMXBTYkpsT2YraDJuazhhTk15MU11eU1VOFVWVlozaXpYK3JuaDA1SGpCQWF6S1Y5VFgrb2JVL0N5cXA1VUNodFRRMit6SHVObUxDZjFjbDY0NHRmai8iLCJtYWMiOiJlZjVlNTFiOTc4Y2ExMWEzYjdlMjZhODAwODM5MjRjZDU1YTgwMjk5Yjk4Y2E5OTZlYmE3ZmIwNjg3MGY2YmVmIiwidGFnIjoiIn0%3D";
         
 
 // $MAX_SCORE = 6000;
@@ -73,12 +73,11 @@ echo "\nOur target score is: $number3 at pos $pos";
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
              if (empty($unique_id)){
-              echo "Cookie Expired";
                  return;
              }
 
-        echo "<br>Uniquie_id: $unique_id<hr>";
-        echo "<br>Game_id: $game_id<hr>";
+        // echo "<br>Uniquie_id: $unique_id<hr>";
+        // echo "<br>Game_id: $game_id<hr>";
 
 
         ###################
@@ -128,7 +127,7 @@ $scoreEnd   = 49690; // highest score to consider
 // Skip if this cookie already holds a top 10 position
 // Refresh position to ensure it's up to date
 $pos = GetPosition($cookie);
-if ($pos > 0 && $pos <= 10) {
+if ($pos > 0 && $pos <= 1) {
     echo "\nAlready in top 10 at position $pos, skipping request.";
   sleep(rand(120,340));
     exit;
@@ -138,12 +137,24 @@ $success = false;
 $currentScore = null;
 
 // Build and shuffle the score list so each score is attempted once in random order
-$max = 49760;
-$count = 10;
-$min = $max - ($count - 1) * 10;
+// $max = 33642;
+// $count = 10;
+// $min = $max - ($count - 1);
+// $scores = range($max, $min);
+// shuffle($scores);
 
-$scores = range($max, $min, -10);
+
+$max = 1000;
+$count = 10;
+$step = 100;
+
+// calculate minimum based on max, step, and count
+$min = $max - ($count - 1) * $step;
+
+$scores = range($max, $min, -$step); // negative step for descending
 shuffle($scores);
+
+print_r($scores);
 
 foreach ($scores as $score) {
     echo "\nTrying score $score";
@@ -151,11 +162,10 @@ foreach ($scores as $score) {
     $uA = RandomUa();
     $memory = validate_request($x_power, $score);
     $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-    sleep(rand(5,10));
     $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore == $score && $pos > 0 && $pos <= 10) {
+    if ($currentScore == $score && $pos > 0 && $pos <= 1) {
         $success = true;
         break;
     }
