@@ -137,11 +137,24 @@ $success = false;
 $currentScore = null;
 
 // Build and shuffle the score list so each score is attempted once in random order
-$max = 33642;
+// $max = 33642;
+// $count = 10;
+// $min = $max - ($count - 1);
+// $scores = range($max, $min);
+// shuffle($scores);
+
+
+$max = 5000;
 $count = 10;
-$min = $max - ($count - 1);
-$scores = range($max, $min);
+$step = 100;
+
+// calculate minimum based on max, step, and count
+$min = $max - ($count - 1) * $step;
+
+$scores = range($max, $min, -$step); // negative step for descending
 shuffle($scores);
+
+print_r($scores);
 
 foreach ($scores as $score) {
     echo "\nTrying score $score";
