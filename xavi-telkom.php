@@ -1,31 +1,44 @@
-<?php
+ <?php
+//sleep(rand(30,60));
+
 date_default_timezone_set('Africa/Johannesburg');
-            $current_time = new DateTime();
+$current_time = new DateTime();
+$check_time = new DateTime('04:00'); 
+$check_tim = new DateTime('12:00');
+
+
 //Business of the day
-require_once('Tools-telkom-v2.php');
-system('clear');
+
+require_once('Tools-mtn-v2.php');
+// while(true){
+system('cls');
+$uA = RandomUa();
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
+// if ($number3>=400){
+//  sleep(rand(10,90));
+// }
 
-echo "\nOur target score is: $number3";
+
+
     
 
 
-$cookiez = ['XSRF-TOKEN=eyJpdiI6IkFrMS9sVCtsc1B1dzFZVUpXWWR5ZFE9PSIsInZhbHVlIjoiSWwrakhVc1o5b3Q4ZTRlL0JGTkhqYkxaWnp6bzZ0aVMzODM0ck54MjRaNU9ZRklqeEhxZTMxcnVOZ0t5dXljWE9Gd1pZNjZ5Q1VTOXV1MGpjTi9pOUxTRzlLK0Y2bTQ3K2paU0Y1VmFzN2JHai9EdmgzVzEyMzNsQ2g2UjhSbFIiLCJtYWMiOiJiMDQyZGZlYTZhOTZmNzEyNjdkODg3OGJiZGM3NDhlZGVjZjYxZTQxZTY1OTZhY2UwOTI0YThkYTA3ZDY3MDdmIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6InEzR2kvN2c1eDA4aDljbzdqSEt4a0E9PSIsInZhbHVlIjoiZThlc21uOVliU09NNWZWckpqblZSdDBTWjJEUkUyYUVzY2czbjZPVnAzdk1JZ3lYcjRmd2p5TnVFYmhJZ1ZWUXZaOXMzcjdwdFpIQnlpM3RhNFlCSkFvT3VhMllzeTFYUk1aWjZSZmJLbjMxUGpCdFpGdTF4a2xTdDh6RTJSNDEiLCJtYWMiOiI2NjkyYjYxNjlhYjJhNzc1OWQ4MTFmZGQ0YWRmMGFmZGU2NzM3ZDhkMGM4Yzk2OTJjNjNjNzZlYWRmNmU2OGViIiwidGFnIjoiIn0%3D',
-
-'XSRF-TOKEN=eyJpdiI6IlFQcHYwdW00ZkNmSzhTb2t6aEtZR3c9PSIsInZhbHVlIjoiN3B6NEtLVmdVd3dKTmxGSU1MZkRpV3UzcmY3dXhiL2FVN1RKdzA5c0E1dFVyeGhmdldvTWo4MjlhWVZmVUQ2cnZqNy9KSG9Lb281dlFmTDZaWm5TMUw3a3Bkb2V1cmQ2Rks5SStRQ0FzVTlJdlRKYXhPbVVFT0p5RVp0UWkvWUYiLCJtYWMiOiIyOTM4MzhlNGNkYjc1YzhkNDY3Njk2NTA1Zjk5ODA0NzM4M2E2YzJkZTU3M2YxODg5ZDFmNGE3OTU2NzRmOGJiIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlpCdnRXQ0JKcmRKbE05cEVRYU9MUHc9PSIsInZhbHVlIjoieXFMUk4zZTFPVHltRnI5OEZnMGNTcWVORGRBT3c1VDgvY1NNbnIzOGZOd01nS1VtbmIzMDlMMDlsajNzTzBMQWVHYnN4b1Q5TFNhNitIUGFrb3VYTVpKRUxLWlFVYklLZ3BUUTJHditMYkJDNVZMcUNTeUpPWlg2SC9pNCtEdGUiLCJtYWMiOiJhYmQxOTNiOWU4MzcwMGY4NjE1YTg0MWI5NGZhYjc3MTA3ZTk5OGZiMDAzYTAzMjhjMzFhMzdmM2UwMDdmOWJjIiwidGFnIjoiIn0%3D'
-
-];
-
-$cookie = "XSRF-TOKEN=eyJpdiI6ImZGTm9WUWZaaXZyRWhSWjE5d2syd2c9PSIsInZhbHVlIjoiV0pZYzkrOVgzQ1c4STgzNlZRTUprV2piTzJXRDF1SE9CSTd2Yzh5Z1REbTVZS1cxeTNoQ050cEtMTHNHNFRHL0NHQTJ3cXNHOXlmUDY0OUVGL1VLODI1QW1BVHp1akJvZmZldm1VSm9rWGNCRmI1ZGhZc1VNbWlqTlJ4L3VUM3ciLCJtYWMiOiJmNTM4NzY4MjkyZjQ3NGNiNTg1MDcyM2JkYzllY2QyZDI1NmJlYTk1MmNmODRjOTVlZmNmZTA1ZGZmMDg4Y2ZhIiwidGFnIjoiIn0%3D; wozagames_mzansi_games_session=eyJpdiI6IlFoQ3RQQlRUVFlEcElZc21HMkN3N0E9PSIsInZhbHVlIjoiekdldG5aTVBRWklYRENGRnlUK2xJbmRCaXRuaFp1Z090K3dGd3QxRzQvR283emNrMStTSEJnbDlRTWplZVRxLzZVV21qVTZidGJQeWZCd0pVOXl3YWw4b1ZaQ0lrZGpFVmtrWVYzVXliL05UTXhicU9uTlpIT0pPalRpVVhNZ2siLCJtYWMiOiI2ZmNkNjM1ZmI4NTA4OTAzZGE4NGE3NTBmZWVkZTUyMjc4MDc3ODE0ZTZjZGY5ZmI1ZWNkZmQ2NzIwNTU2NjVmIiwidGFnIjoiIn0%3D";
-//   foreach ($cookiez as $cookie){ 
-$pos = GetPosition ($cookie);
 
 
+$cookie = 'XSRF-TOKEN=eyJpdiI6ImFXZnF4MFFOaE9oUHppT2FFMzlBQmc9PSIsInZhbHVlIjoiamNxRDlYUXJzaG5FZzVVUUw2QXoyTnNraW9FeEM1SHJxb2xzMUJ5MmVLTUIzWnpyRi8rYm1FSUVyWlBjeWZUbm9ZTkg1aFZMZHFrOVIvZXE3MnlMQjdycm15Qkg3aEJ0ZE9VeklEZ1JVMVJ1QlpHdTNLem82eElnRUtncmFibUoiLCJtYWMiOiIwNDI2ZDAzMGFjMWZiOGY0YzA2ZTMxYWUwYTQ1OTYyMjlhM2NjODU2NjcwMjcyNjQ1ODJlYzFlOTE0MzE3OWQwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IndCSFNqVGYrZFNIMzQvL2ZUZXNLcFE9PSIsInZhbHVlIjoiOUtXb1pPdk12TlFvOHRIVDE5OWsxTk1DSVVacHJUWk5BNVlNZ0IyUEl6dE5PSWtJSnZHZG52OTRwbERqZG82SmxJRzU0TndaS1k5WEI3RGQ3SmRDWHZnYUlFR25vZUp5OHF1ZHo3SDJwZUlVemFnOExVcjV5Y2s3N1FBT2Z2bmUiLCJtYWMiOiI4OWUzMzE3YmNkMDI0ZTFhYjJkNWMwMzI3OTE0NjI1ZDExYWVjNjE5NWY1MmU2MjBjNmQwYjA4NTJkZmE4ZTg5IiwidGFnIjoiIn0%3D';
         
+
+// $MAX_SCORE = 6000;
+
+$pos = GetPosition ($cookie);
+$b4Score = GetTargetScore($pos);
+echo "\nOur target score is: $number3 at pos $pos";
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/play-now');
+        curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
+        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -34,7 +47,8 @@ $pos = GetPosition ($cookie);
             'Connection: keep-alive',
             'Cookie: '.$cookie,
             'Pragma: no-cache',
-            'Referer: https://www.wozagames.com/',
+            'Host: www.yellorush.co.za',
+            'Referer: https://yellorush.co.za/',
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
             'Sec-CH-UA-Platform: \"iOS\"',
@@ -42,7 +56,7 @@ $pos = GetPosition ($cookie);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
-            'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+            'User-Agent: '.$uA
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -59,14 +73,22 @@ $pos = GetPosition ($cookie);
         $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
-       // echo "<br>Uniquie_id: $unique_id<hr>";
-        //echo "<br>Game_id: $game_id<hr>";
+             if (empty($unique_id)){
+                 return;
+             }
+
+        // echo "<br>Uniquie_id: $unique_id<hr>";
+        // echo "<br>Game_id: $game_id<hr>";
+
 
         ###################
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://www.wozagames.com/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
+        curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
+        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
+            'Host: www.yellorush.co.za',
             'Referer:'.$redirectedUrl,
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
@@ -75,6 +97,7 @@ $pos = GetPosition ($cookie);
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA,
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -96,66 +119,62 @@ $pos = GetPosition ($cookie);
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
 
-       
 
-        if(($pos >= 1 && $pos <=2 )|| $pos == 0){
-                $score = rand(30,50);
-        }else{
-            
-            
-            $score = rand($number3,($number3+rand(35,10)));
-             
-            
-            
-             
-            
-        }
-        
-        $increment = 1;
-        
-            
-            
-            // if (in_array($current_time->format('i'), ['50','54','55','57', '58', '59'])) {
-                
-            //    // if ($pos>=6 || $pos ==0){
-            //  // $score =  rand(500,1000)+$number3;
-           
-            //     $score = rand($number3,($number3+rand(10,5)));
-           
-            // //  if (in_array($current_time->format('i'), ['55','57', '58', '59'])) {
 
-            // //  if ($number3 >= 45000){
-            // // return;
-            // //  }
+// Adjustable score range for leaderboard placement
+$scoreStart = 49679; // lowest score to consider
+$scoreEnd   = 49690; // highest score to consider
 
-            // }
-               /// }
-               
-            //if($score <40000){
-              //  $score+= rand(10000,20000);
-           // }
-            // sleep(5);
-       // }
-// $score += rand(100,500);
- while($score>=2000){
-        
-        $score = $score - rand(50,100);
+// Skip if this cookie already holds a top 10 position
+// Refresh position to ensure it's up to date
+$pos = GetPosition($cookie);
+if ($pos > 0 && $pos <= 1) {
+    echo "\nAlready in top 10 at position $pos, skipping request.";
+  sleep(rand(120,340));
+    exit;
+}
+
+$success = false;
+$currentScore = null;
+
+// Build and shuffle the score list so each score is attempted once in random order
+// $max = 33642;
+// $count = 10;
+// $min = $max - ($count - 1);
+// $scores = range($max, $min);
+// shuffle($scores);
+
+
+$max = 1200;
+$count = 10;
+$step = 10;
+
+// calculate minimum based on max, step, and count
+$min = $max - ($count - 1) * $step;
+
+$scores = range($max, $min, -$step); // negative step for descending
+shuffle($scores);
+
+print_r($scores);
+
+foreach ($scores as $score) {
+    echo "\nTrying score $score";
+    $increment = 1;
+    $uA = RandomUa();
+    $memory = validate_request($x_power, $score);
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+    $pos = GetPosition($cookie);
+    $currentScore = GetTargetScore($pos);
+    echo "\nLeaderboard value: $currentScore at pos $pos";
+    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
+        $success = true;
+        break;
     }
+    echo "\nScore $score failed to update.";
+}
 
-   // $score = rand(20000,30000);
-
-    // $score = round($score, -1);
-        ///////////////////////////
-        $uA = RandomUa();
-        
-        //echo "\n<br>UA used => $uA\n";
-        $memory = validate_request($x_power,$score);
-        $OnePieceIsReal = generateRandomDivisionData($score,$redirectedUrl,$x_power,$memory,$increment,$uA);
-
-
-        
-
-
-//}
-
-
+if ($success) {
+    echo "\nLeaderboard updated with score: $currentScore";
+} else {
+    echo "\nFailed to update leaderboard";
+}
