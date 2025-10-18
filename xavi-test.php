@@ -253,7 +253,7 @@ $currentScore = null;
 // Example: max=1200, count=10, step=10 → 1200,1190,... then shuffle
 $max = 1200;
 $count = 10;
-$step = 10;
+$step = 100;
 $min = $max - ($count - 1) * $step;
 $candidates = range($max, $min, -$step);
 shuffle($candidates); // randomize order per run; unique-first is enforced by the lock
