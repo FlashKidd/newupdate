@@ -10,8 +10,8 @@ $check_tim = new DateTime('12:00');
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
-require_once(__DIR__ . '/score_allocator.php');
-require_once(__DIR__ . '/round_guard.php');
+require_once('/var/www/html/newupdate/score_allocator.php');
+require_once('/var/www/html/newupdate/round_guard.php');
 // while(true){
 system('cls');
 $uA = RandomUa();
@@ -82,7 +82,11 @@ echo "\nOur target score is: $number3 at pos $pos";
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
              if (empty($unique_id)){
-                 return;
+                 echo "[xavi] Missing unique_id; cookie may be invalid or session expired.\n";
+                 if (!empty($redirectedUrl)) {
+                     echo "[xavi] Redirect URL: $redirectedUrl\n";
+                 }
+                 exit;
              }
 
         // echo "<br>Uniquie_id: $unique_id<hr>";
