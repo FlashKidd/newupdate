@@ -27,12 +27,13 @@ $number3 = GetTargetScore(1);
 
 
 
-$cookie = "XSRF-TOKEN=eyJpdiI6IlBPd25rc05pR3htQ0pjRis2UjZ6U2c9PSIsInZhbHVlIjoiRjlQL1lHL3VOQ1p0UWRNNXE1enZoOFNmQTRjSnIzeWZxeXM1WEVwTW9UY25PNmZtaE12MURRVlFTMHAwcWpRaVBoaVhZQldCNFBVY2Y5V1dybXZnRHBTVFFPOVc0RFVMUVMvUVlFWDB4TzRBVzVKU0ZpUlVibE15UGFrOFRYT2QiLCJtYWMiOiIxYjE3YmI5NjhmNTRjNzFiZTU2OTU2Y2U5ZWM4YWU0MDBjN2IxZDA1OWY3ZTZmMTMwNmUzNmE3Mzc3ZTYxOTFkIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlVQNEx0Z0xaOEZUZUZKUmRWMmp4dWc9PSIsInZhbHVlIjoiQ2ROZEhNUFNicWJrWnZOaGYrQkk2N2NmZHZuSzZzQk94aW43S2doakNUMXBTYkpsT2YraDJuazhhTk15MU11eU1VOFVWVlozaXpYK3JuaDA1SGpCQWF6S1Y5VFgrb2JVL0N5cXA1VUNodFRRMit6SHVObUxDZjFjbDY0NHRmai8iLCJtYWMiOiJlZjVlNTFiOTc4Y2ExMWEzYjdlMjZhODAwODM5MjRjZDU1YTgwMjk5Yjk4Y2E5OTZlYmE3ZmIwNjg3MGY2YmVmIiwidGFnIjoiIn0%3D";
+$cookie = 'XSRF-TOKEN=eyJpdiI6InpkUmEzUGZNeHhyQlRpMjJEb043VUE9PSIsInZhbHVlIjoiclB6OGFlcXp5T3VaM3BOOEtGUk5YQTJIRTZHb0pVcXJsdk9zZkFtSDlhdlo0eStNOTB0alVRVjdYRlYwdEZUcWsvOU1YV3U5ZVdEUVlWUnAxaUZ5bFlPRnV3eDdKWEhGUmROS1k5TDcrbU5IQzdMSkhZbENvVmNVWFYzdWNKYXkiLCJtYWMiOiJiOWM5NjkyMjA4ZmFiMDI5OTc0M2E5YmZkZTI2Yjk5NWM1M2FhOGU3MWU4ZDI2NTNlMGE5YzIwZGY2ZjU5ZDZkIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjFOalRMM1k1bGNMSnAySzc3TTc1Umc9PSIsInZhbHVlIjoibWtzRXBjay9YdlNnTFdOOHlFR2c3Yjl5WlVidU9aWWd3c0JEdUtpcmZaVTNoSHd4aTdYOHJOa3RqdHFjdmppeDcyL0FXZXMyN1FwMnlQZmNYRjlITUcva0tQSEhLbk8rb1BJY0pHZndYU3Zaa0xEYzN6dm05aEZFYStYVnFWdW0iLCJtYWMiOiIyYWU4NDI4ZmZlZGQ3MDAzMjhiZDMxNjU2NGVkZmE4MmM0NDYyODdlN2Y4YjUyMGI0ZTY5NmEzODU1ODgyZDA5IiwidGFnIjoiIn0%3D';
         
 
 // $MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
+$b4Score = GetTargetScore($pos);
 echo "\nOur target score is: $number3 at pos $pos";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
@@ -144,7 +145,7 @@ $currentScore = null;
 // shuffle($scores);
 
 
-$max = 4100;
+$max = 5000;
 $count = 10;
 $step = 100;
 
@@ -165,7 +166,7 @@ foreach ($scores as $score) {
     $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore == $score && $pos > 0 && $pos <= 1) {
+    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
         $success = true;
         break;
     }
