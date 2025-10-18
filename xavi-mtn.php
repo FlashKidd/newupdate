@@ -145,9 +145,9 @@ $currentScore = null;
 // shuffle($scores);
 
 
-$max = 5000;
+$max = 4900;
 $count = 10;
-$step = 100;
+$step = 10;
 
 // calculate minimum based on max, step, and count
 $min = $max - ($count - 1) * $step;
