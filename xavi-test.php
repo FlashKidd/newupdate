@@ -33,6 +33,7 @@ $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
 // $MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
+$b4Score = GetTargetScore($pos);
 echo "\nOur target score is: $number3 at pos $pos";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
@@ -162,11 +163,10 @@ foreach ($scores as $score) {
     $uA = RandomUa();
     $memory = validate_request($x_power, $score);
     $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-    sleep(rand(5,10));
     $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore == $score && $pos > 0 && $pos <= 1) {
+    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
         $success = true;
         break;
     }
