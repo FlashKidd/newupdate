@@ -144,7 +144,7 @@ $currentScore = null;
 // shuffle($scores);
 
 
-$max = 1000;
+$max = 4100;
 $count = 10;
 $step = 100;
 
