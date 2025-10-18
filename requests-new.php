@@ -26,7 +26,7 @@ if (function_exists('rg_is_maintenance_window') && rg_is_maintenance_window()) {
     exit;
 }
 
-$cookieFile = __DIR__ . '/data/cookies-mtn.json';
+$cookieFile = '/var/www/html/newupdate/new/data/cookies-mtn.json';
 $maxConcurrent = rand(2, 4);
 $selectedIndexes = [];
 $urls_ar = [];
