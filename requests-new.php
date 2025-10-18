@@ -1,176 +1,190 @@
-<?php
-require_once(__DIR__ . '/../Tools-mtn-v2.php');
+ <?php
+//sleep(rand(30,60));
+
+date_default_timezone_set('Africa/Johannesburg');
+$current_time = new DateTime();
+$check_time = new DateTime('04:00'); 
+$check_tim = new DateTime('12:00');
+
+
+//Business of the day
+
+require_once('Tools-mtn-v2.php');
+require_once('/var/www/html/newupdate/score_allocator.php');
 require_once('/var/www/html/newupdate/round_guard.php');
+// while(true){
+system('cls');
+$uA = RandomUa();
 $scoreTarget = TargetScore();
+$number3 = GetTargetScore(1);
 
-// clean cache directory
-system('sudo rm -rf cache');
+// if ($number3>=400){
+//  sleep(rand(10,90));
+// }
 
-require_once '/var/www/html/newupdate/Zebra_cURL.php';
-$curl = new Zebra_cURL();
-$curl->cache('/var/www/html/newupdate/cache', 59);
-$curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
-$curl->threads = 10;
-$curl->option(CURLOPT_TIMEOUT, 2400);
-@unlink('cache');
 
-// record start time
-$starttime = microtime(true);
 
-// Maintenance window: stop scheduling and reset round, then exit
-if (function_exists('rg_is_maintenance_window') && rg_is_maintenance_window()) {
-    echo "[" . date("H:i:s") . "] [Maintenance] Minute 58-59: resetting state and skipping run.\n";
-    if (function_exists('rg_round_reset')) {
-        rg_round_reset();
-    }
+    
+
+
+
+
+$cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+
+// Respect maintenance window early
+if (rg_is_maintenance_window()) {
+    echo "\n[Maintenance] Minute 58-59: skipping run.";
+    exit;
+}
+        
+
+// $MAX_SCORE = 6000;
+
+$pos = GetPosition ($cookie);
+$b4Score = GetTargetScore($pos);
+echo "\nOur target score is: $number3 at pos $pos";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
+        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        $headers = array(
+            'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Accept-Language: en-US,en;q=0.9',
+            'Cache-Control: no-cache',
+            'Connection: keep-alive',
+            'Cookie: '.$cookie,
+            'Pragma: no-cache',
+            'Host: www.yellorush.co.za',
+            'Referer: https://yellorush.co.za/',
+            'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
+            'Sec-CH-UA-Mobile: ?1',
+            'Sec-CH-UA-Platform: \"iOS\"',
+            'Sec-Fetch-Dest: empty',
+            'Sec-Fetch-Mode: navigate',
+            'Sec-Fetch-Site: same-origin',
+            'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA
+        );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        $curl = curl_exec($ch);
+        $redirectedUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+                    
+        curl_close($ch);
+        $query_str = parse_url($redirectedUrl, PHP_URL_QUERY);
+        parse_str($query_str, $query_params);
+        $unique_id = isset($query_params['unique_id']) ? $query_params['unique_id'] : '';
+        $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
+        $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
+
+             if (empty($unique_id)){
+                 return;
+             }
+
+        // echo "<br>Uniquie_id: $unique_id<hr>";
+        // echo "<br>Game_id: $game_id<hr>";
+
+
+        ###################
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
+        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
+        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        $headers = array(
+            'Host: www.yellorush.co.za',
+            'Referer:'.$redirectedUrl,
+            'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
+            'Sec-CH-UA-Mobile: ?1',
+            'Sec-CH-UA-Platform: \"iOS\"',
+            'Sec-Fetch-Dest: empty',
+            'Sec-Fetch-Mode: navigate',
+            'Sec-Fetch-Site: same-origin',
+            'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA,
+        );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+
+        $curl = curl_exec($ch);
+
+        // Separate headers and body
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $header = substr($curl, 0, $header_size);
+        $body = substr($curl, $header_size);
+        curl_close($ch);
+
+        
+        
+        $x_power = X_Power($header);
+        echo "\n<br> X-Powered-Version: $x_power\n";
+
+
+
+// Adjustable score range for leaderboard placement
+$scoreStart = 49679; // lowest score to consider
+$scoreEnd   = 49690; // highest score to consider
+
+// Skip if this cookie already holds a top 10 position
+// Refresh position to ensure it's up to date
+$pos = GetPosition($cookie);
+if ($pos > 0 && $pos <= 1) {
+    echo "\nAlready in top 10 at position $pos, skipping request.";
+  sleep(rand(120,340));
     exit;
 }
 
-$cookieFile = '/var/www/html/newupdate/new/data/cookies-mtn.json';
-$maxConcurrent = rand(2, 4);
-$selectedIndexes = [];
-$urls_ar = [];
+$success = false;
+$currentScore = null;
 
-// Ensure cookie file exists and is valid JSON array
-if (!file_exists($cookieFile)) {
-    @file_put_contents($cookieFile, "[]");
-}
+// Build a fixed top-N descending score set
+$max = 5000;
+$count = 10;
+$step = 100;
+$min = $max - ($count - 1) * $step;
+$scores = range($max, $min, -$step);
 
-// If file is empty or whitespace, initialize to []
-$rawInit = @file_get_contents($cookieFile);
-if ($rawInit === false || trim($rawInit) === '') {
-    @file_put_contents($cookieFile, "[]");
-}
+// Allocate a unique score for this cookie from the pool
+$roundKey = date('Y-m-d-H');
+$poolKey = 'xavi-test:' . $roundKey . ':' . md5(json_encode($scores));
+$score = sa_allocate_score($cookie, $poolKey, $scores, 300);
 
-/* ────────────────────────────────
-   STEP 1: SAFE COOKIE ASSIGNMENT
-   (with auto-recovery)
-──────────────────────────────── */
-$fp = fopen($cookieFile, 'c+');
-if ($fp && flock($fp, LOCK_EX)) {
-    rewind($fp);
-    $data = stream_get_contents($fp);
-    $cookies = json_decode($data, true);
-    if (!is_array($cookies)) {
-        // Attempt to recover from bad JSON by resetting file to []
-        $cookies = [];
-    }
-
-    $now = time();
-
-    // 1️⃣ Recovery: free any stuck cookies older than 15 min
-    if (!empty($cookies)) {
-        foreach ($cookies as &$c) {
-            if (!empty($c['takenAt']) && ($now - $c['takenAt'] > 600)) {
-                $c['isFree'] = true;
-                unset($c['takenAt']);
-            }
-        }
-        unset($c);
-    }
-
-    // 2️⃣ Pick new cookies up to $maxConcurrent
-    if (!empty($cookies)) {
-        foreach ($cookies as $idx => $c) {
-            if (!empty($c['isFree'])) {
-                $cookies[$idx]['isFree'] = false;
-                $cookies[$idx]['takenAt'] = $now;
-                $selectedIndexes[] = $idx;
-                $urls_ar[] = $c['cookie'];
-                if (count($urls_ar) >= $maxConcurrent) break;
-            }
-        }
-    }
-
-    // 3️⃣ Write back updated JSON
-    ftruncate($fp, 0);
-    rewind($fp);
-    fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-    fflush($fp);
-    flock($fp, LOCK_UN);
-}
-fclose($fp);
-
-// If maintenance kicked in right after selection, revert and exit
-if (function_exists('rg_is_maintenance_window') && rg_is_maintenance_window()) {
-    $fp2 = fopen($cookieFile, 'c+');
-    if ($fp2 && flock($fp2, LOCK_EX)) {
-        rewind($fp2);
-        $data2 = stream_get_contents($fp2);
-        $cookies2 = json_decode($data2, true);
-        if (!is_array($cookies2)) $cookies2 = [];
-        foreach ($selectedIndexes as $idx) {
-            if (isset($cookies2[$idx])) {
-                $cookies2[$idx]['isFree'] = true;
-                unset($cookies2[$idx]['takenAt']);
-            }
-        }
-        ftruncate($fp2, 0);
-        rewind($fp2);
-        fwrite($fp2, json_encode($cookies2, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        fflush($fp2);
-        flock($fp2, LOCK_UN);
-    }
-    if ($fp2) fclose($fp2);
-    echo "[" . date("H:i:s") . "] [Maintenance] Skipping dispatch, cookies reverted.\n";
+if ($score === null) {
+    echo "\nNo available scores to try right now.";
     exit;
 }
 
-/* ────────────────────────────────
-   STEP 2: MAIN WORK SECTION
-   (no file lock here)
-──────────────────────────────── */
-if (empty($urls_ar)) {
-    echo "[" . date("H:i:s") . "] No free cookies found. Waiting for next cron...\n";
+echo "\nTrying score $score";
+$increment = 1;
+$uA = RandomUa();
+// Re-check maintenance window just before sending the scoring request
+if (rg_is_maintenance_window()) {
+    echo "\n[Maintenance] Minute 58-59 hit mid-run. Aborting.";
+    sa_release_score($cookie, $poolKey);
     exit;
 }
-
-$serverIP = trim(gethostbyname(gethostname()));
-echo "[" . date("H:i:s") . "] IP ADDR: $serverIP\n";
-
-$urls = [];
-foreach ($urls_ar as $c) {
-    $urls[] = 'http://' . $serverIP . '/newupdate/xavi-test.php?c=' . urlencode($c);
+$memory = validate_request($x_power, $score);
+$x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+$pos = GetPosition($cookie);
+$currentScore = GetTargetScore($pos);
+echo "\nLeaderboard value: $currentScore at pos $pos";
+if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
+    $success = true;
 }
 
-$curl->get($urls, function($result) {
-    if ($result->response[1] == CURLE_OK) {
-        echo "Success: ", $result->body, PHP_EOL;
-    } else {
-        echo "Error: ", $result->response[0], PHP_EOL;
-    }
-});
+// Release the score so others can use it later
+sa_release_score($cookie, $poolKey);
 
-/* ────────────────────────────────
-   STEP 3: MARK USED COOKIES FREE
-──────────────────────────────── */
-$fp = fopen($cookieFile, 'c+');
-if ($fp && flock($fp, LOCK_EX)) {
-    rewind($fp);
-    $data = stream_get_contents($fp);
-    $cookies = json_decode($data, true);
-    if (!is_array($cookies)) $cookies = [];
-
-    if (!empty($selectedIndexes) && !empty($cookies)) {
-        foreach ($selectedIndexes as $idx) {
-            if (isset($cookies[$idx])) {
-                $cookies[$idx]['isFree'] = true;
-                unset($cookies[$idx]['takenAt']);
-            }
-        }
-    }
-
-    ftruncate($fp, 0);
-    rewind($fp);
-    fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-    fflush($fp);
-    flock($fp, LOCK_UN);
+if ($success) {
+    echo "\nLeaderboard updated with score: $currentScore";
+} else {
+    echo "\nFailed to update leaderboard";
 }
-fclose($fp);
-
-/* ────────────────────────────────
-   STEP 4: FINAL TIMESTAMP + TIME
-──────────────────────────────── */
-$duration = round(microtime(true) - $starttime, 2);
-echo "[" . date("H:i:s") . "] Execution time: {$duration}s\n";
-?>
