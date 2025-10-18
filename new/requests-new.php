@@ -36,7 +36,7 @@ if ($fp && flock($fp, LOCK_EX)) {
 
     // 1️⃣ Recovery: free any stuck cookies older than 15 min
     foreach ($cookies as &$c) {
-        if (!empty($c['takenAt']) && ($now - $c['takenAt'] > 900)) {
+        if (!empty($c['takenAt']) && ($now - $c['takenAt'] > 600)) {
             $c['isFree'] = true;
             unset($c['takenAt']);
         }
