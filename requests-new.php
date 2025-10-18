@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../Tools-mtn-v2.php');
-require_once(__DIR__ . '/../round_guard.php');
+require_once('/var/www/html/newupdate/round_guard.php');
 $scoreTarget = TargetScore();
 
 // clean cache directory
