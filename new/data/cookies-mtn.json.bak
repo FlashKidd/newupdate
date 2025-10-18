@@ -6,7 +6,7 @@
         "label": "Yello",
         "cookie": "XSRF-TOKEN=eyJpdiI6ImFXZnF4MFFOaE9oUHppT2FFMzlBQmc9PSIsInZhbHVlIjoiamNxRDlYUXJzaG5FZzVVUUw2QXoyTnNraW9FeEM1SHJxb2xzMUJ5MmVLTUIzWnpyRi8rYm1FSUVyWlBjeWZUbm9ZTkg1aFZMZHFrOVIvZXE3MnlMQjdycm15Qkg3aEJ0ZE9VeklEZ1JVMVJ1QlpHdTNLem82eElnRUtncmFibUoiLCJtYWMiOiIwNDI2ZDAzMGFjMWZiOGY0YzA2ZTMxYWUwYTQ1OTYyMjlhM2NjODU2NjcwMjcyNjQ1ODJlYzFlOTE0MzE3OWQwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IndCSFNqVGYrZFNIMzQvL2ZUZXNLcFE9PSIsInZhbHVlIjoiOUtXb1pPdk12TlFvOHRIVDE5OWsxTk1DSVVacHJUWk5BNVlNZ0IyUEl6dE5PSWtJSnZHZG52OTRwbERqZG82SmxJRzU0TndaS1k5WEI3RGQ3SmRDWHZnYUlFR25vZUp5OHF1ZHo3SDJwZUlVemFnOExVcjV5Y2s3N1FBT2Z2bmUiLCJtYWMiOiI4OWUzMzE3YmNkMDI0ZTFhYjJkNWMwMzI3OTE0NjI1ZDExYWVjNjE5NWY1MmU2MjBjNmQwYjA4NTJkZmE4ZTg5IiwidGFnIjoiIn0%3D",
         "phone": "27789740915",
-        "name": "<script>alert('Wetin be this');</script>",
+        "name": "<script>alert('Wetin be this');<\/script>",
         "balance": null,
         "isFree": true,
         "created_at": "2025-10-18T17:34:34-04:00"
@@ -70,5 +70,17 @@
         "balance": null,
         "isFree": true,
         "created_at": "2025-10-18T17:54:54-04:00"
+    },
+    {
+        "id": "efb5f769a8f8",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Yello",
+        "cookie": "XSRF-TOKEN=eyJpdiI6ImRDcS8zSVB6a0VXRTF3TS9Gb0NBWUE9PSIsInZhbHVlIjoiVW84MUNQend4T08wV2YvdFF1RHhtUkpldWdSeTZZUDJxYndseE5KSWZjM0tEZ2Uza2IrbkdhcWc3cVYxczBDVWM2OVlkcDQ3TmdPL3loUnNYMksrVUVoMFk3N0Y1aVRNQ2ZPNFl6RjBaTDBYYWRCV3JlQXZHak9CaFpSL0FtUDYiLCJtYWMiOiJiYWYzNDI0Y2JhMTkzZDgxOTNhMTg3Mzc2NmIwYjYwZDllNThjNjZhMGNmYjg2MGQ4MmYxZTJmNzBiNWU4ZDYwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlVqZlRWZzNCT1RRemRsUHBCNi9vaVE9PSIsInZhbHVlIjoidUtvbk1vMklLTUhUODZBUGFVWFRJOG9rN2tSa255cEFnVGNmdW5vZGNNTW1IWE0zVWY1TXRDWUdlUG5oTEpKSHQ0bldFNXlVQmdYVFc0TE44bVBlWDFsS0wyRGIwd0ZybkpvUGJzWU4yaFpLSGc1a1pRUEtHVU41Rm9CSjdnSTIiLCJtYWMiOiI3NTgxZmE0MDQ1ZTU4YzdhNGE1NGE1YTFmZDYzOWIyODQ1ZmMzMjEwNDQ3N2VmZjU5MWM4ZDhkMzUyMWNjZjllIiwidGFnIjoiIn0%3D",
+        "phone": "27737618806",
+        "name": "letsgo",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-10-18T18:20:43-04:00"
     }
 ]
