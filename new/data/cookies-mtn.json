@@ -9,7 +9,8 @@
         "name": "Weetbix\ud83c\udf74",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-09-20T08:19:46-04:00"
+        "created_at": "2025-09-20T08:19:46-04:00",
+        "takenAt": 1760745823
     },
     {
         "id": "40562192be40",
@@ -21,7 +22,8 @@
         "name": "yallBrokeOr",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-10-17T18:19:58-04:00"
+        "created_at": "2025-10-17T18:19:58-04:00",
+        "takenAt": 1760745823
     },
     {
         "id": "c782949c0997",
@@ -33,6 +35,19 @@
         "name": "Weetbix\ud83c\udf74",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-10-17T18:21:00-04:00"
+        "created_at": "2025-10-17T18:21:00-04:00",
+        "takenAt": 1760745840
+    },
+    {
+        "id": "217c70dcd234",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Yello",
+        "cookie": "XSRF-TOKEN=eyJpdiI6Im96QXIrZTRxVU1wMWVDeWYxazN1dGc9PSIsInZhbHVlIjoiTDd5K0xieGk2RjVNTUpxNDBGc3g3YlozVzIrbkc3VnQxWHJEam9hSnZsTDduWjFLVGtVRUNZQUZiY3hwRHVyWEFsZkpEaEF0ZTdHVUFVeVRQRkpUVzdtQVhYNTNIZTJPMnZlRFUzc1ZHb1QxUUxCcGRDOFF0YUNYd1VaN2xCaHIiLCJtYWMiOiI2YThkYmQ5OGI2YjM0Mzc5M2M3YTYzM2IyZTA3Nzg5NzE5ZTAzZDVlODdiNGJmNWUyMzUzYjBkNTgzMWI0YmVjIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6Im1zUmFyc3poT0Mxd0piR3F4TS9iTmc9PSIsInZhbHVlIjoiNWZKdEpQd0ZvSkRUVVpHT0tobWpjeWNVQXdvMHNlajk0ZHRaZ1RNd0s2ejM1aEFyOFRnSWZvNHVKZzV0d24zUFJISjVJS2IreU9yZHZJenE4M1A1SXZ0cklQR0RHY2NsZmRBb1lvY0tlNFo1dEw1SDRWbTVtMmVCYUMwZG91TFoiLCJtYWMiOiI4ZDZiY2UyMTI3M2ZlY2FmOTBmZjdjNjY2ZTE3ZmFlZjViZTAzYjNmY2E0OWEwMGM0Zjk2ODAyZDFhZDVmMGMxIiwidGFnIjoiIn0%3D",
+        "phone": "27839823430",
+        "name": "Medical Aid",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-10-17T20:27:46-04:00"
     }
 ]
