@@ -8,7 +8,7 @@
         "phone": "27736887512",
         "name": "Weetbix\ud83c\udf74",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-09-20T08:19:46-04:00",
         "takenAt": 1760748183
     },
@@ -21,7 +21,7 @@
         "phone": "27630361348",
         "name": "yallBrokeOr",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-10-17T18:19:58-04:00",
         "takenAt": 1760748183
     },
@@ -34,7 +34,7 @@
         "phone": "27604697535",
         "name": "Weetbix\ud83c\udf74",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-10-17T18:21:00-04:00",
         "takenAt": 1760748183
     },
@@ -47,7 +47,7 @@
         "phone": "27839823430",
         "name": "Medical Aid",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-10-17T20:43:25-04:00",
         "takenAt": 1760748242
     }
