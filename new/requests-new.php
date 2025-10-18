@@ -1,10 +1,7 @@
 <?php
 require_once(__DIR__ . '/../Tools-mtn-v2.php');
 $scoreTarget = TargetScore();
-
-// clean cache directory
 system('sudo rm -rf cache');
-
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
 $curl = new Zebra_cURL();
 $curl->cache('/var/www/html/newupdate/cache', 59);
@@ -13,67 +10,38 @@ $curl->threads = 10;
 $curl->option(CURLOPT_TIMEOUT, 2400);
 @unlink('cache');
 
-// record start time
 $starttime = microtime(true);
 
 $cookieFile = __DIR__ . '/data/cookies-mtn.json';
-$maxConcurrent = rand(2, 4);
+$maxConcurrent = rand(2,4);
 $selectedIndexes = [];
 $urls_ar = [];
-
-/* ────────────────────────────────
-   STEP 1: SAFE COOKIE ASSIGNMENT
-   (with auto-recovery)
-──────────────────────────────── */
-$fp = fopen($cookieFile, 'c+');
-if ($fp && flock($fp, LOCK_EX)) {
-    rewind($fp);
-    $data = stream_get_contents($fp);
-    $cookies = json_decode($data, true);
-    if (!is_array($cookies)) $cookies = [];
-
-    $now = time();
-
-    // 1️⃣ Recovery: free any stuck cookies older than 15 min
-    foreach ($cookies as &$c) {
-        if (!empty($c['takenAt']) && ($now - $c['takenAt'] > 600)) {
-            $c['isFree'] = true;
-            unset($c['takenAt']);
+while (true) {
+    $fp = fopen($cookieFile, 'c+');
+    if (flock($fp, LOCK_EX)) {
+        $cookies = json_decode(stream_get_contents($fp), true);
+        foreach ($cookies as $idx => $cookie) {
+            if (!empty($cookie['isFree'])) {
+                $cookies[$idx]['isFree'] = false;
+                $selectedIndexes[] = $idx;
+                $urls_ar[] = $cookie['cookie'];
+                if (count($urls_ar) >= $maxConcurrent) break;
+            }
         }
+        ftruncate($fp, 0);
+        rewind($fp);
+        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+        flock($fp, LOCK_UN);
+        fclose($fp);
+        if (!empty($urls_ar)) break;
+    } else {
+        fclose($fp);
     }
-
-    // 2️⃣ Pick new cookies up to $maxConcurrent
-    foreach ($cookies as $idx => $c) {
-        if (!empty($c['isFree'])) {
-            $cookies[$idx]['isFree'] = false;
-            $cookies[$idx]['takenAt'] = $now;
-            $selectedIndexes[] = $idx;
-            $urls_ar[] = $c['cookie'];
-            if (count($urls_ar) >= $maxConcurrent) break;
-        }
-    }
-
-    // 3️⃣ Write back updated JSON
-    ftruncate($fp, 0);
-    rewind($fp);
-    fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-    fflush($fp);
-    flock($fp, LOCK_UN);
-}
-fclose($fp);
-
-/* ────────────────────────────────
-   STEP 2: MAIN WORK SECTION
-   (no file lock here)
-──────────────────────────────── */
-if (empty($urls_ar)) {
-    echo "[" . date("H:i:s") . "] No free cookies found. Waiting for next cron...\n";
-    exit;
+    sleep(1);
 }
 
 $serverIP = trim(gethostbyname(gethostname()));
-echo "[" . date("H:i:s") . "] IP ADDR: $serverIP\n";
-
+echo "\nIP ADDR: $serverIP";
 $urls = [];
 foreach ($urls_ar as $c) {
     $urls[] = 'http://' . $serverIP . '/newupdate/xavi-test.php?c=' . urlencode($c);
@@ -81,40 +49,25 @@ foreach ($urls_ar as $c) {
 
 $curl->get($urls, function($result) {
     if ($result->response[1] == CURLE_OK) {
-        echo "Success: ", $result->body, PHP_EOL;
+        echo 'Success: ', $result->body;
     } else {
-        echo "Error: ", $result->response[0], PHP_EOL;
+        echo 'Error: ', $result->response[0], PHP_EOL;
     }
 });
 
-/* ────────────────────────────────
-   STEP 3: MARK USED COOKIES FREE
-──────────────────────────────── */
 $fp = fopen($cookieFile, 'c+');
-if ($fp && flock($fp, LOCK_EX)) {
-    rewind($fp);
-    $data = stream_get_contents($fp);
-    $cookies = json_decode($data, true);
-    if (!is_array($cookies)) $cookies = [];
-
-    foreach ($selectedIndexes as $idx) {
-        if (isset($cookies[$idx])) {
-            $cookies[$idx]['isFree'] = true;
-            unset($cookies[$idx]['takenAt']);
-        }
-    }
-
-    ftruncate($fp, 0);
-    rewind($fp);
-    fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-    fflush($fp);
-    flock($fp, LOCK_UN);
+flock($fp, LOCK_EX);
+$cookies = json_decode(stream_get_contents($fp), true);
+foreach ($selectedIndexes as $idx) {
+    $cookies[$idx]['isFree'] = true;
 }
+ftruncate($fp, 0);
+rewind($fp);
+fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+flock($fp, LOCK_UN);
 fclose($fp);
 
-/* ────────────────────────────────
-   STEP 4: FINAL TIMESTAMP + TIME
-──────────────────────────────── */
-$duration = round(microtime(true) - $starttime, 2);
-echo "[" . date("H:i:s") . "] Execution time: {$duration}s\n";
+$endtime = microtime(true);
+$duration = $endtime - $starttime;
+echo "Execution time: " . $duration . " seconds";
 ?>
