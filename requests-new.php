@@ -1,35 +1,59 @@
 <?php
-require_once(__DIR__ . '/../Tools-mtn-v2.php');
-require_once('/var/www/html/newupdate/round_guard.php');
-$scoreTarget = TargetScore();
-system('sudo rm -rf cache');
+//echo "cool down";return;
+system("rm -rf cache");
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
+require_once '/var/www/html/newupdate/round_guard.php';
+require_once(__DIR__ . '/round_guard.php');
 $curl = new Zebra_cURL();
 $curl->cache('/var/www/html/newupdate/cache', 59);
 $curl->ssl(true, 2, '/var/www/html/newupdate/cacert.pem');
 $curl->threads = 10;
-$curl->option(CURLOPT_TIMEOUT, 2400);
+$curl->option(CURLOPT_TIMEOUT, 600);
 @unlink('cache');
+
 
 $starttime = microtime(true);
 
-// Maintenance window: stop scheduling and reset round, then exit
-if (function_exists('rg_is_maintenance_window') && rg_is_maintenance_window()) {
-    echo "[" . date("H:i:s") . "] [Maintenance] Minute 58-59: resetting state and skipping run.\n";
-    if (function_exists('rg_round_reset')) {
-        rg_round_reset();
-    }
-    exit;
+// Maintenance window: stop scheduling and reset round
+if (rg_is_maintenance_window()) {
+    echo "\n[Maintenance] Minute 58-59: resetting state and skipping run.";
+    rg_round_reset();
+    return;
 }
 
-$cookieFile = __DIR__ . '/data/cookies-mtn.json';
-$maxConcurrent = rand(2,4);
+$cookieFile = __DIR__ . '/cookies-mtn.json';
+
+$currentMinute = intval(date('i'));
+$fp = fopen($cookieFile, 'c+');
+if (flock($fp, LOCK_EX)) {
+    $cookies = json_decode(stream_get_contents($fp), true);
+    $allLocked = true;
+    foreach ($cookies as $cookie) {
+        if (!empty($cookie['isFree'])) {
+            $allLocked = false;
+            break;
+        }
+    }
+    if ($allLocked && $currentMinute < 10) {
+        foreach ($cookies as &$cookie) {
+            $cookie['isFree'] = true;
+        }
+        ftruncate($fp, 0);
+        rewind($fp);
+        fwrite($fp, json_encode($cookies, JSON_PRETTY_PRINT));
+    }
+    flock($fp, LOCK_UN);
+}
+fclose($fp);
+
+$maxConcurrent = 1;
 $selectedIndexes = [];
 $urls_ar = [];
 while (true) {
-    if (function_exists('rg_is_maintenance_window') && rg_is_maintenance_window()) {
-        echo "[" . date("H:i:s") . "] [Maintenance] Skipping selection.\n";
-        exit;
+    if (rg_is_maintenance_window()) {
+        echo "\n[Maintenance] Minute 58-59 detected during selection. Exiting.";
+        rg_round_reset();
+        return;
     }
     $fp = fopen($cookieFile, 'c+');
     if (flock($fp, LOCK_EX)) {
@@ -38,7 +62,7 @@ while (true) {
             if (!empty($cookie['isFree'])) {
                 $cookies[$idx]['isFree'] = false;
                 $selectedIndexes[] = $idx;
-                $urls_ar[] = $cookie['cookie'];
+                $urls_ar[] = $cookie['value'];
                 if (count($urls_ar) >= $maxConcurrent) break;
             }
         }
@@ -54,12 +78,15 @@ while (true) {
     sleep(1);
 }
 
+
 $serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
 $urls = [];
 foreach ($urls_ar as $c) {
-    $urls[] = 'http://' . $serverIP . '/newupdate/xavi-test.php?c=' . urlencode($c);
+    $urls[] = 'http://'.$serverIP.'/newupdate/xavi-test.php?c=' . urlencode($c);
 }
+
+
 
 $curl->get($urls, function($result) {
     if ($result->response[1] == CURLE_OK) {
@@ -84,4 +111,3 @@ fclose($fp);
 $endtime = microtime(true);
 $duration = $endtime - $starttime;
 echo "Execution time: " . $duration . " seconds";
-?>
