@@ -31,6 +31,17 @@ $maxConcurrent = rand(2, 4);
 $selectedIndexes = [];
 $urls_ar = [];
 
+// Ensure cookie file exists and is valid JSON array
+if (!file_exists($cookieFile)) {
+    @file_put_contents($cookieFile, "[]");
+}
+
+// If file is empty or whitespace, initialize to []
+$rawInit = @file_get_contents($cookieFile);
+if ($rawInit === false || trim($rawInit) === '') {
+    @file_put_contents($cookieFile, "[]");
+}
+
 /* ────────────────────────────────
    STEP 1: SAFE COOKIE ASSIGNMENT
    (with auto-recovery)
@@ -40,26 +51,34 @@ if ($fp && flock($fp, LOCK_EX)) {
     rewind($fp);
     $data = stream_get_contents($fp);
     $cookies = json_decode($data, true);
-    if (!is_array($cookies)) $cookies = [];
+    if (!is_array($cookies)) {
+        // Attempt to recover from bad JSON by resetting file to []
+        $cookies = [];
+    }
 
     $now = time();
 
     // 1️⃣ Recovery: free any stuck cookies older than 15 min
-    foreach ($cookies as &$c) {
-        if (!empty($c['takenAt']) && ($now - $c['takenAt'] > 600)) {
-            $c['isFree'] = true;
-            unset($c['takenAt']);
+    if (!empty($cookies)) {
+        foreach ($cookies as &$c) {
+            if (!empty($c['takenAt']) && ($now - $c['takenAt'] > 600)) {
+                $c['isFree'] = true;
+                unset($c['takenAt']);
+            }
         }
+        unset($c);
     }
 
     // 2️⃣ Pick new cookies up to $maxConcurrent
-    foreach ($cookies as $idx => $c) {
-        if (!empty($c['isFree'])) {
-            $cookies[$idx]['isFree'] = false;
-            $cookies[$idx]['takenAt'] = $now;
-            $selectedIndexes[] = $idx;
-            $urls_ar[] = $c['cookie'];
-            if (count($urls_ar) >= $maxConcurrent) break;
+    if (!empty($cookies)) {
+        foreach ($cookies as $idx => $c) {
+            if (!empty($c['isFree'])) {
+                $cookies[$idx]['isFree'] = false;
+                $cookies[$idx]['takenAt'] = $now;
+                $selectedIndexes[] = $idx;
+                $urls_ar[] = $c['cookie'];
+                if (count($urls_ar) >= $maxConcurrent) break;
+            }
         }
     }
 
@@ -132,10 +151,12 @@ if ($fp && flock($fp, LOCK_EX)) {
     $cookies = json_decode($data, true);
     if (!is_array($cookies)) $cookies = [];
 
-    foreach ($selectedIndexes as $idx) {
-        if (isset($cookies[$idx])) {
-            $cookies[$idx]['isFree'] = true;
-            unset($cookies[$idx]['takenAt']);
+    if (!empty($selectedIndexes) && !empty($cookies)) {
+        foreach ($selectedIndexes as $idx) {
+            if (isset($cookies[$idx])) {
+                $cookies[$idx]['isFree'] = true;
+                unset($cookies[$idx]['takenAt']);
+            }
         }
     }
 
