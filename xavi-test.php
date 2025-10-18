@@ -10,110 +10,6 @@ $check_tim = new DateTime('12:00');
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
-// Shared score locking to ensure unique score per running cookie
-function score_lock_file_path() {
-    return __DIR__ . '/new/data/score-locks-mtn.json';
-}
-
-function current_hour_key() {
-    return date('Y-m-d-H');
-}
-
-function ensure_score_lock_file_exists() {
-    $path = score_lock_file_path();
-    if (!file_exists($path)) {
-        $dir = dirname($path);
-        if (!is_dir($dir)) {
-            @mkdir($dir, 0777, true);
-        }
-        file_put_contents($path, json_encode([
-            'hour_key' => current_hour_key(),
-            'scores' => new stdClass(),
-            'cookies' => new stdClass(),
-            'initial_done' => new stdClass(),
-            'first_used' => new stdClass()
-        ], JSON_PRETTY_PRINT));
-    }
-}
-
-function with_score_state(callable $fn) {
-    ensure_score_lock_file_exists();
-    $path = score_lock_file_path();
-    $fp = fopen($path, 'c+');
-    if (!$fp) { return null; }
-    try {
-        if (!flock($fp, LOCK_EX)) { fclose($fp); return null; }
-        $raw = stream_get_contents($fp);
-        $state = json_decode($raw ?: '{}', true);
-        if (!is_array($state)) { $state = []; }
-        // Initialize state buckets
-        if (!isset($state['scores']) || !is_array($state['scores'])) { $state['scores'] = []; }
-        if (!isset($state['cookies']) || !is_array($state['cookies'])) { $state['cookies'] = []; }
-        if (!isset($state['initial_done']) || !is_array($state['initial_done'])) { $state['initial_done'] = []; }
-        if (!isset($state['first_used']) || !is_array($state['first_used'])) { $state['first_used'] = []; }
-        $now_key = current_hour_key();
-        if (!isset($state['hour_key']) || $state['hour_key'] !== $now_key) {
-            // Reset all locks and initial flags at the start of a new hour
-            $state['hour_key'] = $now_key;
-            $state['scores'] = [];
-            $state['cookies'] = [];
-            $state['initial_done'] = [];
-            $state['first_used'] = [];
-        }
-        $result = $fn($state);
-        ftruncate($fp, 0);
-        rewind($fp);
-        fwrite($fp, json_encode($state, JSON_PRETTY_PRINT));
-        fflush($fp);
-        flock($fp, LOCK_UN);
-        fclose($fp);
-        return $result;
-    } catch (\Throwable $e) {
-        try { flock($fp, LOCK_UN); fclose($fp); } catch (\Throwable $e2) {}
-        return null;
-    }
-}
-
-function cookie_key($cookie) {
-    return substr(sha1($cookie), 0, 16);
-}
-
-function claim_unique_score($cookie, $candidates) {
-    $key = cookie_key($cookie);
-    return with_score_state(function (&$state) use ($key, $candidates) {
-        // Only enforce a unique claim for the cookie's initial run within the hour
-        if (isset($state['initial_done'][$key]) && $state['initial_done'][$key] === true) {
-            return null; // initial unique attempt already performed this hour
-        }
-        // Find first free candidate score and claim it
-        foreach ($candidates as $score) {
-            $skey = (string)$score;
-            if (!isset($state['scores'][$skey]) && !isset($state['first_used'][$skey])) {
-                $state['scores'][$skey] = $key;
-                $state['cookies'][$key] = $score;
-                $state['initial_done'][$key] = true; // mark initial attempt recorded for this hour
-                $state['first_used'][$skey] = true;   // remember this score is used for initial attempts this hour
-                return [ 'cookie_key' => $key, 'score' => $score ];
-            }
-        }
-        return null;
-    });
-}
-
-function release_unique_score($cookie) {
-    $key = cookie_key($cookie);
-    with_score_state(function (&$state) use ($key) {
-        if (isset($state['cookies'][$key])) {
-            $score = $state['cookies'][$key];
-            unset($state['cookies'][$key]);
-            $skey = (string)$score;
-            if (isset($state['scores'][$skey]) && $state['scores'][$skey] === $key) {
-                unset($state['scores'][$skey]);
-            }
-        }
-        return null;
-    });
-}
 // while(true){
 system('cls');
 $uA = RandomUa();
@@ -249,60 +145,37 @@ $currentScore = null;
 // shuffle($scores);
 
 
-// Build candidate pool locally (no live fetch)
-// Example: max=1200, count=10, step=10 → 1200,1190,... then shuffle
-$max = 1200;
+$max = 4900;
 $count = 10;
 $step = 100;
-$min = $max - ($count - 1) * $step;
-$candidates = range($max, $min, -$step);
-shuffle($candidates); // randomize order per run; unique-first is enforced by the lock
 
-// Claim a unique score for this cookie so no other cookie uses it concurrently
-// First: perform one unique attempt for this hour (race at the top of the hour)
-$claim = claim_unique_score($cookie, $candidates);
-if ($claim) {
-    $score = $claim['score'];
-    echo "\nClaimed unique score $score for cookie (initial attempt).";
-    try {
-        $increment = 1;
-        $uA = RandomUa();
-        $memory = validate_request($x_power, $score);
-        $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-        $pos = GetPosition($cookie);
-        $currentScore = GetTargetScore($pos);
-        echo "\nLeaderboard value: $currentScore at pos $pos";
-        if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
-            $success = true;
-        } else {
-            echo "\nScore $score failed to update.";
-        }
-    } finally {
-        // Immediately release the claimed score so others can try it afterward
-        release_unique_score($cookie);
-    }
-} else {
-    echo "\nNo unique score claim available (others claimed). Proceeding to non-unique attempts.";
+// calculate minimum based on max, step, and count
+$min = $max - ($count - 1) * $step;
+
+$scores = range($max, $min, -$step); // negative step for descending
+
+for ($z=0;$z<rand(2,5);$z++){
+shuffle($scores);
+ 
 }
 
-// If not successful yet, continue to try remaining candidates this round (excluding the initial one if used)
-if (!$success) {
-    $remaining = isset($score) ? array_values(array_filter($candidates, function($s) use ($score) { return (int)$s !== (int)$score; })) : $candidates;
-    foreach ($remaining as $tryScore) {
-        echo "\nTrying score $tryScore";
-        $increment = 1;
-        $uA = RandomUa();
-        $memory = validate_request($x_power, $tryScore);
-        $x_power = generateRandomDivisionData($tryScore, $redirectedUrl, $x_power, $memory, $increment, $uA);
-        $pos = GetPosition($cookie);
-        $currentScore = GetTargetScore($pos);
-        echo "\nLeaderboard value: $currentScore at pos $pos";
-        if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
-            $success = true;
-            break;
-        }
-        echo "\nScore $tryScore failed to update.";
+
+// print_r($scores);
+
+foreach ($scores as $score) {
+    echo "\nTrying score $score";
+    $increment = 1;
+    $uA = RandomUa();
+    $memory = validate_request($x_power, $score);
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+    $pos = GetPosition($cookie);
+    $currentScore = GetTargetScore($pos);
+    echo "\nLeaderboard value: $currentScore at pos $pos";
+    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
+        $success = true;
+        break;
     }
+    echo "\nScore $score failed to update.";
 }
 
 if ($success) {
