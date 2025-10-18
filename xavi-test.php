@@ -10,6 +10,8 @@ $check_tim = new DateTime('12:00');
 //Business of the day
 
 require_once('Tools-mtn-v2.php');
+require_once(__DIR__ . '/score_allocator.php');
+require_once(__DIR__ . '/round_guard.php');
 // while(true){
 system('cls');
 $uA = RandomUa();
@@ -28,6 +30,12 @@ $number3 = GetTargetScore(1);
 
 
 $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+
+// Respect maintenance window early
+if (rg_is_maintenance_window()) {
+    echo "\n[Maintenance] Minute 58-59: skipping run.";
+    exit;
+}
         
 
 // $MAX_SCORE = 6000;
@@ -137,41 +145,43 @@ if ($pos > 0 && $pos <= 1) {
 $success = false;
 $currentScore = null;
 
-// Build and shuffle the score list so each score is attempted once in random order
-// $max = 33642;
-// $count = 10;
-// $min = $max - ($count - 1);
-// $scores = range($max, $min);
-// shuffle($scores);
-
-
-$max = 4900;
+// Build a fixed top-N descending score set
+$max = 5000;
 $count = 10;
 $step = 100;
-
-// calculate minimum based on max, step, and count
 $min = $max - ($count - 1) * $step;
+$scores = range($max, $min, -$step);
 
-$scores = range($max, $min, -$step); // negative step for descending
-shuffle($scores);
+// Allocate a unique score for this cookie from the pool
+$roundKey = date('Y-m-d-H');
+$poolKey = 'xavi-test:' . $roundKey . ':' . md5(json_encode($scores));
+$score = sa_allocate_score($cookie, $poolKey, $scores, 300);
 
-print_r($scores);
-
-foreach ($scores as $score) {
-    echo "\nTrying score $score";
-    $increment = 1;
-    $uA = RandomUa();
-    $memory = validate_request($x_power, $score);
-    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-    $pos = GetPosition($cookie);
-    $currentScore = GetTargetScore($pos);
-    echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
-        $success = true;
-        break;
-    }
-    echo "\nScore $score failed to update.";
+if ($score === null) {
+    echo "\nNo available scores to try right now.";
+    exit;
 }
+
+echo "\nTrying score $score";
+$increment = 1;
+$uA = RandomUa();
+// Re-check maintenance window just before sending the scoring request
+if (rg_is_maintenance_window()) {
+    echo "\n[Maintenance] Minute 58-59 hit mid-run. Aborting.";
+    sa_release_score($cookie, $poolKey);
+    exit;
+}
+$memory = validate_request($x_power, $score);
+$x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+$pos = GetPosition($cookie);
+$currentScore = GetTargetScore($pos);
+echo "\nLeaderboard value: $currentScore at pos $pos";
+if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
+    $success = true;
+}
+
+// Release the score so others can use it later
+sa_release_score($cookie, $poolKey);
 
 if ($success) {
     echo "\nLeaderboard updated with score: $currentScore";
