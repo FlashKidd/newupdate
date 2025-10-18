@@ -1,9 +1,6 @@
 <?php
 require_once(__DIR__ . '/../Tools-mtn-v2.php');
-// Robust loader for round_guard.php: prefer absolute, fallback to parent
-$__RG = '/var/www/html/newupdate/round_guard.php';
-if (!file_exists($__RG)) { $__RG = dirname(__DIR__) . '/round_guard.php'; }
-require_once($__RG);
+require_once('/var/www/html/newupdate/round_guard.php');
 $scoreTarget = TargetScore();
 
 // clean cache directory
