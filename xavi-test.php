@@ -30,7 +30,8 @@ function ensure_score_lock_file_exists() {
             'hour_key' => current_hour_key(),
             'scores' => new stdClass(),
             'cookies' => new stdClass(),
-            'initial_done' => new stdClass()
+            'initial_done' => new stdClass(),
+            'first_used' => new stdClass()
         ], JSON_PRETTY_PRINT));
     }
 }
@@ -49,6 +50,7 @@ function with_score_state(callable $fn) {
         if (!isset($state['scores']) || !is_array($state['scores'])) { $state['scores'] = []; }
         if (!isset($state['cookies']) || !is_array($state['cookies'])) { $state['cookies'] = []; }
         if (!isset($state['initial_done']) || !is_array($state['initial_done'])) { $state['initial_done'] = []; }
+        if (!isset($state['first_used']) || !is_array($state['first_used'])) { $state['first_used'] = []; }
         $now_key = current_hour_key();
         if (!isset($state['hour_key']) || $state['hour_key'] !== $now_key) {
             // Reset all locks and initial flags at the start of a new hour
@@ -56,6 +58,7 @@ function with_score_state(callable $fn) {
             $state['scores'] = [];
             $state['cookies'] = [];
             $state['initial_done'] = [];
+            $state['first_used'] = [];
         }
         $result = $fn($state);
         ftruncate($fp, 0);
@@ -85,10 +88,11 @@ function claim_unique_score($cookie, $candidates) {
         // Find first free candidate score and claim it
         foreach ($candidates as $score) {
             $skey = (string)$score;
-            if (!isset($state['scores'][$skey])) {
+            if (!isset($state['scores'][$skey]) && !isset($state['first_used'][$skey])) {
                 $state['scores'][$skey] = $key;
                 $state['cookies'][$key] = $score;
                 $state['initial_done'][$key] = true; // mark initial attempt recorded for this hour
+                $state['first_used'][$skey] = true;   // remember this score is used for initial attempts this hour
                 return [ 'cookie_key' => $key, 'score' => $score ];
             }
         }
