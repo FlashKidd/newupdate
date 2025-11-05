@@ -22,29 +22,5 @@
         "balance": null,
         "isFree": true,
         "created_at": "2025-11-05T18:00:51-05:00"
-    },
-    {
-        "id": "fb48b4b9cd75",
-        "network": "Vodacom",
-        "domain": "gameplay.mzansigames.club",
-        "label": "bomblacat ngwanesho",
-        "cookie": "XSRF-TOKEN=eyJpdiI6IjZhSGpIWU9PRXlpL2oyYTlCSmNGbUE9PSIsInZhbHVlIjoiWkowY0tWTC94WUk4VmpIVlc4cmpkQnFlVDdhaEw4bnhvU2VSaWl0QTVueWpia1dIZ2NMQnNlNlBrNVhscFNDYWx5Q3ZYdHE0OGQ4VXdMaCtyRXJsbk5DVzJsRC9XaHEwYjY2MVMrUGNFNjhnRnoxaFhhNnBqdnpPdW9LTEEzRFMiLCJtYWMiOiJjYzgwYmJkNTdhN2NlMDQ2YmZhNTA1OTdlZDRiZmEzMDBlNzJkNzQyYzA4MjY3MzBhMWJkYjkxOWNmNTEyZjk4IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6Ijd3c0tVaHNSTW9yVnpHRzg2ZDYxa3c9PSIsInZhbHVlIjoiazhUTk9xWWxFdks5cVI2L2l4SHVZcVUyUzNSRWZiQmdTYlhGaUd4RTRNWUcvdEJ4RGFIU3U2NGdMeVlmSjh0NDFoVFVUa1M4ZzZCcmM4TDA1M1hjQTdubVFGa0xRNTZubWNBaVZkM29TdkxVZ3BhTFAwNkFhRFlENEp2SWtQL1giLCJtYWMiOiIzMmE0N2NmMGMwMzgzZjFkNjkzNzViOTdmYWZlYmZmYTRjM2VlMWMzZTU1NzZjYjJhNTg3M2JiYWNkNmRiODYxIiwidGFnIjoiIn0%3D",
-        "phone": "27773949710",
-        "name": "bomblacat ngwanesho",
-        "balance": null,
-        "isFree": true,
-        "created_at": "2025-11-05T18:02:25-05:00"
-    },
-    {
-        "id": "da2d6663aca0",
-        "network": "Vodacom",
-        "domain": "gameplay.mzansigames.club",
-        "label": "ke maburna",
-        "cookie": "XSRF-TOKEN=eyJpdiI6IjBlVC8raEdPUTVIOXpZR0hLTEFvQUE9PSIsInZhbHVlIjoiTVBzQ2VBelhOL0Nuanc3U0tleHVVSEVXRmY3eksrQUNLTXlwUEpoU1ROOHdVWHJrU1k0eDA0Q2tZVWVlb2lVRFZ3ZEpyNCsxaGovNTU3S1VrcWx5bFJrVWk5cU5oYmR3ODlpWTFvZTJpVWNGSFN0ZG42N1cvRnJBVUpWNU5sOVgiLCJtYWMiOiIxNDAwOTFlYmIzNDMyNTllMmRiYTI3OGQ5OTM1ZDM2NWEzZmRiZDZlNTg1MGNlNjNiOGJjODg2ZjYxOTgyNDQ1IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IjNteTEyZjZ0KzBvMTk2d2tGbzRVY2c9PSIsInZhbHVlIjoiM0NLaVcyeDZFWHZkaXdmNnRiSC94cDAwMEJyV0FpSEg5MXFVazczUWZwTVBzVEZrL0lFUW9tK1p4bER6RE1RK05sNGpXTzMwYnM2WGJaY2Rpa1YrQUp6cXBtZ1laM21yd0tuaTJQMFJmMW5nSEt1MEVyb0ZIa0ZwOXlOMVhLZHUiLCJtYWMiOiI1ZjgwYTljZjI5YTcwMDcxNzc4ZWIzOTU5YTM2MzU4NTc4MGI5MTlkZWRmYTdlZTNhZWFjMGFkMDE4ZDc3YzlkIiwidGFnIjoiIn0%3D",
-        "phone": "27674297139",
-        "name": "ke maburna",
-        "balance": null,
-        "isFree": true,
-        "created_at": "2025-11-05T18:06:19-05:00"
     }
 ]
