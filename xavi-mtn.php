@@ -26,7 +26,6 @@ $number3 = GetTargetScore(1);
 
 
 
-
 $cookie = 'XSRF-TOKEN=eyJpdiI6InEzU0hRRFNVVUgxdjB3cXFadnhmc3c9PSIsInZhbHVlIjoiRHhkeXl3c2p4TWR0bEVBRWkyMTJ3c3BYbnFNVVdwRzIreUxVQmd4bUVpRW5QUG5JMWtvYndWaFhQb0dhMmFINFhSdlRvc0o3K29tZldNTU5ZRi9jNmpqbzgzbWFad3hYVUV5ZStkNTV5OFl5MGx6ekxzeUlCYUNOWnMzcDJFN0wiLCJtYWMiOiIzMWQ5ZmUzNTg5YWYzN2YzYTI4NTg5ZWM0M2JjYzgwYmNkYmIwZmI0MDk4MGFlZmRhOTQzZTdmZmVmNDM2OTAwIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6Imdma1dLN2o1c3JBcDBLK3grTlV0VGc9PSIsInZhbHVlIjoiK09lN0N4bktDR3BpTmY0OURUeHJqQkNUaGhEcGx1NTlvcUxwOXlBVE9IbjVhRDBoaUJMUlNrTTRxdEpsblJsMmJWeVRqcldCMTdyeWJHYWFTRkpNT2EwNUVtQUpDVzBrZWpjNk1ZZEE2RE52Y2xLM04yOGxnZUR6a04vclEva28iLCJtYWMiOiI1YzU0NTc5MDEwMzg4MzM5NGNjN2NhZGM3Njg0MWVhYmU0NTU0ZGIyYjE4MjkzN2NjMTA1Y2UzMDA4ZmM5OTI2IiwidGFnIjoiIn0%3D';
         
 
@@ -145,7 +144,7 @@ $currentScore = null;
 // shuffle($scores);
 
 
-$max = 4900;
+$max = 7300;
 $count = 10;
 $step = 100;
 
@@ -153,9 +152,13 @@ $step = 100;
 $min = $max - ($count - 1) * $step;
 
 $scores = range($max, $min, -$step); // negative step for descending
-shuffle($scores);
 
-print_r($scores);
+for ($z=0;$z<rand(2,5);$z++){
+shuffle($scores);
+ 
+}
+
+
 
 foreach ($scores as $score) {
     echo "\nTrying score $score";
