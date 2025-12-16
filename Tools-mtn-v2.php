@@ -547,7 +547,7 @@ function isScoreInTop10(int $myScore): bool {
 
     $xpath = new DOMXPath($dom);
 
-    $defaultScore = 1253;
+    $defaultScore = 5000;
 
     for ($i = 1; $i <= 10; $i++) {
         $query = "//div[contains(concat(' ', normalize-space(@class), ' '), ' rank-$i ')]//p[contains(., 'Score')]";
