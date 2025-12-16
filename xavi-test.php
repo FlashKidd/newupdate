@@ -137,32 +137,26 @@ if ($pos > 0 && $pos <= 1) {
 $success = false;
 $currentScore = null;
 
-// Build and shuffle the score list so each score is attempted once in random order
-// $max = 33642;
-// $count = 10;
-// $min = $max - ($count - 1);
-// $scores = range($max, $min);
-// shuffle($scores);
 
-
-$max = 7300;
+$max = 1253;
 $count = 10;
-$step = 100;
+$step = 1;
 
 // calculate minimum based on max, step, and count
 $min = $max - ($count - 1) * $step;
 
 $scores = range($max, $min, -$step); // negative step for descending
 
-for ($z=0;$z<rand(2,5);$z++){
-shuffle($scores);
- 
-}
 
 
-// print_r($scores);
 
 foreach ($scores as $score) {
+
+ if (isScoreInTop10($score)) {
+    echo "Already in use";
+   continue;
+} 
+
     echo "\nTrying score $score";
     $increment = 1;
     $uA = RandomUa();
@@ -171,11 +165,12 @@ foreach ($scores as $score) {
     $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
+    if ($currentScore == $score && $pos > 0 && $pos <= 6) {
         $success = true;
         break;
     }
     echo "\nScore $score failed to update.";
+ sleep(rand(30,50));
 }
 
 if ($success) {
