@@ -138,7 +138,7 @@ $success = false;
 $currentScore = null;
 
 
-$max = 1253;
+$max = 9842;
 $count = 10;
 $step = 1;
 
@@ -152,10 +152,10 @@ $scores = range($max, $min, -$step); // negative step for descending
 
 foreach ($scores as $score) {
 
- if (isScoreInTop10($score)) {
-    echo "Already in use";
-   continue;
-} 
+//  if (isScoreInTop10($score)) {
+//     echo "Already in use";
+//    continue;
+// } 
 
     echo "\nTrying score $score";
     $increment = 1;
@@ -170,7 +170,7 @@ foreach ($scores as $score) {
         break;
     }
     echo "\nScore $score failed to update.";
- sleep(rand(30,50));
+ // sleep(rand(30,50));
 }
 
 if ($success) {
