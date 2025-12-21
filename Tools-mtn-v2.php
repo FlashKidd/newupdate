@@ -336,7 +336,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 //  $max = 100;
     
  $min = 10;
-$max = 500;
+$max = 1000;
 
 // Step/precision follows $max: 2000->2000, 100->100, 15->15
 $step = max(1, (int)$max);
