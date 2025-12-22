@@ -342,6 +342,7 @@ $max = 1000;
 $step = max(1, (int)$max);
 
 // Helper: pick a random multiple of $step within [$LB, $UB]
+ if (!function_exists('random_multiple_in_range')) {
 function random_multiple_in_range($LB, $UB, $step) {
     $kMin = (int)ceil($LB / $step);
     $kMax = (int)floor($UB / $step);
@@ -360,7 +361,7 @@ function random_multiple_in_range($LB, $UB, $step) {
     }
     return (int)($k * $step);
 }
-
+ }
 $data = [];
 $differences = [];
 
