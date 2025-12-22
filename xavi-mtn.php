@@ -1,42 +1,28 @@
  <?php
-//sleep(rand(30,60));
-
 date_default_timezone_set('Africa/Johannesburg');
-$current_time = new DateTime();
-$check_time = new DateTime('04:00'); 
-$check_tim = new DateTime('12:00');
+// $current_time = new DateTime();
+// $check_time = new DateTime('04:00'); 
+// $check_tim = new DateTime('12:00');
 
 
-//Business of the day
 
 require_once('Tools-mtn-v2.php');
-// while(true){
 system('cls');
+
 $uA = RandomUa();
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
-// if ($number3>=400){
-//  sleep(rand(10,90));
-// }
-
-
-
-    
-
-
 $cookie = 'XSRF-TOKEN=eyJpdiI6IjMrZ1RWV3ZwcUFqbXRyZldUbUcwcFE9PSIsInZhbHVlIjoiL0Rtajk4LytrVmh4K2JGckt2Y3JDSk5xWUhiSFp2Z1BzL2NCZkR0TXp0SmFqSGh4OU9YNTJHTCtmdVFadkVVSkxMNDdoSGNZWVVEeFg0VTYrOGcvSU9hUUhhVEd6TFNOOUxuTzFncmVVdzR6bGJLa1pIK1NUckVCZ0prQktUS08iLCJtYWMiOiIwMjM3MjM4ZmI5OTdhM2M3ZjhjOWI5MDA5M2FkMmU3Y2FjN2I3NTk4NDYwOGY4NTE2NDcwZWY1OWM5NzA0ZTM3IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjNNNGdOMjV2NmM4Y2tkU25BclRHd0E9PSIsInZhbHVlIjoiTm1hL2R4dUdSRXBkWGJlTkJITDRkWHNubFBJTGlzU2N2elFUMUc0RGtxYXpXTFJLNkZXTmJsQ0s2UnBIK3NlZFMxVnBXOFBRc0FuZzlYZnNPOXNTMkRTeUo0ajA0RXMrTVZQVWxGRmxNTENjMTlBdUkvSXRsM0dBc2RoZVFOVVkiLCJtYWMiOiJhYzJjZmExZGQzYWUxMzkxODE3M2Q3N2FhMmQ4MTU3NTY5MGIxOGU4Yjk2NmIwZDNkYzNkMzJhMjFjZjczMGJmIiwidGFnIjoiIn0%3D';
         
 
-// $MAX_SCORE = 6000;
 
 $pos = GetPosition ($cookie);
 $b4Score = GetTargetScore($pos);
-echo "\nOur target score is: $number3 at pos $pos";
+
+echo "\nScore at position 1 is $number3, while our position is $pos(0 for not yet)\n";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
-        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -72,18 +58,13 @@ echo "\nOur target score is: $number3 at pos $pos";
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
              if (empty($unique_id)){
+              "Cookie expired/not valid, please update.\n";
                  return;
              }
-
-        // echo "<br>Uniquie_id: $unique_id<hr>";
-        // echo "<br>Game_id: $game_id<hr>";
-
 
         ###################
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
-        // curl_setopt($ch, CURLOPT_PROXY, 'http://p.webshare.io:80');
-        // curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'ofzhbdla-rotate:5hgqeorbbfwm');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
             'Host: www.yellorush.co.za',
@@ -105,8 +86,6 @@ echo "\nOur target score is: $number3 at pos $pos";
         curl_setopt($ch, CURLOPT_HEADER, 1);
 
         $curl = curl_exec($ch);
-
-        // Separate headers and body
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($curl, 0, $header_size);
         $body = substr($curl, $header_size);
@@ -152,17 +131,14 @@ $min = $max - ($count - 1) * $step;
 
 $scores = range($max, $min, -$step); // negative step for descending
 
-
-
-
 foreach ($scores as $score) {
 
  if (isScoreInTop10($score)) {
-    echo "Already in use $score";
+    echo "Already in use $score\n";
    continue;
 } 
 
-    echo "\nTrying score $score";
+    echo "\nTrying score => $score\n";
     $increment = 1;
     $uA = RandomUa();
     $memory = validate_request($x_power, $score);
