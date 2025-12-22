@@ -129,8 +129,10 @@ $step = 1;
 // calculate minimum based on max, step, and count
 $min = $max - ($count - 1) * $step;
 
-$scores = range($max, $min, -$step); // negative step for descending
+$scores = range($max, $min, -$step); 
 
+shuffle($scores);
+shuffle($scores)
 foreach ($scores as $score) {
 
  if (isScoreInTop10($score)) {
