@@ -522,19 +522,22 @@ return $player1Score;
 
 
 function isScoreInTop10(int $myScore): bool {
-
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/');
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+    curl_setopt_array($ch, [
+        CURLOPT_URL => 'https://yellorush.co.za/',
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => [
+            'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36',
+        ],
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false,
+        CURLOPT_COOKIEFILE => __DIR__ . '/cookie.txt',
+        CURLOPT_COOKIEJAR  => __DIR__ . '/cookie.txt',
+        CURLOPT_TIMEOUT => 20,
+        CURLOPT_CONNECTTIMEOUT => 10,
     ]);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-    curl_setopt($ch, CURLOPT_COOKIEFILE, getcwd().'/cookie.txt');
-    curl_setopt($ch, CURLOPT_COOKIEJAR, getcwd().'/cookie.txt');
 
     $html = curl_exec($ch);
     curl_close($ch);
@@ -548,24 +551,27 @@ function isScoreInTop10(int $myScore): bool {
 
     $xpath = new DOMXPath($dom);
 
-    $defaultScore = 5000;
+    // First 10 rows in table, 4th column is score
+    $nodes = $xpath->query("(//div[contains(@class,'leader-table')]//tbody/tr)[position()<=10]/td[4]");
 
-    for ($i = 1; $i <= 10; $i++) {
-        $query = "//div[contains(concat(' ', normalize-space(@class), ' '), ' rank-$i ')]//p[contains(., 'Score')]";
-        $nodes = $xpath->query($query);
-
-        if ($nodes->length > 0) {
-            $rawScore = trim($nodes->item(0)->textContent);
-            $score = (int) preg_replace('/[^0-9]/', '', $rawScore);
-            if ($score === 0) $score = $defaultScore;
-        } else {
-            $score = $defaultScore;
-        }
-
-        if ($score === $myScore) {
-            return true;
-        }
+    if (!$nodes || $nodes->length < 10) {
+        // scrape failed / page changed / blocked
+        return false;
     }
 
-    return false;
+    $scores = [];
+    foreach ($nodes as $td) {
+        $num = preg_replace('/[^\d]/', '', trim($td->textContent));
+        if ($num !== '') $scores[] = (int)$num;
+    }
+
+    if (count($scores) < 10) return false;
+
+    // if your score matches any displayed top10 score
+    if (in_array($myScore, $scores, true)) return true;
+
+    // optional: treat "top10" as >= 10th place score
+    $tenth = $scores[9];
+    return $myScore >= $tenth;
 }
+
