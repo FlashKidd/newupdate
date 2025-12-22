@@ -7,7 +7,7 @@ date_default_timezone_set('Africa/Johannesburg');
 
 
 require_once('Tools-mtn-v2.php');
-system('cls');
+system('clear');
 
 $uA = RandomUa();
 $scoreTarget = TargetScore();
