@@ -343,69 +343,208 @@ curl_close($ch);
 
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
+// $min = 10;
+// $max = 1000;
+// $null = 1;
+
+// if($null = 1){
+
+// $data = [];
+// if ($number <= $max) {
+//     // If number is $max or less, output only 0.
+    
+//     $data = [];
+//     $sizeValue = 0;
+// } else {
+//     // Determine how many segments we need.
+//     // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
+//     // 4 segments for a number in the 300s, etc.
+//     $sizeValue = intdiv($number - 1, $max) + 1;
+//     $differences = [];
+//     $prev = $number; // start from the full number
+
+//     // Loop from the highest segment down to the lowest.
+//     // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ $max.
+//     // The lowest segment (i == 1) is forced into the 0–$max band.
+//     for ($i = $sizeValue - 1; $i >= 1; $i--) {
+//         if ($i == $sizeValue - 1) {
+//             // Highest segment: it must lie in the band for this segment.
+//             // Its hundred band is from (($i - 1)*$max + 1) to ($i*$max).
+//             // Also enforce that gap: number - d ≤ $max  → d ≥ number - $max.
+//             $bandLB = ($i - 1) * $max + 1;
+//             $bandUB = $i * $max;
+//             $minForGap = $number - $max;
+//             $LB = max($bandLB, $minForGap);
+//             $UB = min($bandUB, $prev - 1);
+//         } elseif ($i == 1) {
+//             // Lowest segment: force it into 0–$max.
+//             $bandLB = 1;
+//             $bandUB = $max;
+//             // Also ensure the gap from the previous segment is at most $max.
+//             $minForGap = $prev - $max;
+//             $LB = max($bandLB, $minForGap);
+//             $UB = $bandUB;
+//         } else {
+//             // Intermediate segments: they must fall in their hundred band.
+//             // For i-th segment, the band is from (($i - 1)*$max + 1) to ($i*$max).
+//             $bandLB = ($i - 1) * $max + 1;
+//             $bandUB = $i * $max;
+//             // Also enforce that the gap from the previous segment is ≤ $max.
+//             $minForGap = $prev - $max;
+//             $LB = max($bandLB, $minForGap);
+//             $UB = min($bandUB, $prev - 1);
+//         }
+//         // If LB > UB (which might happen if constraints tighten), force LB = UB.
+//         if ($LB > $UB) {
+//             $LB = $UB;
+//         }
+//         // Pick a random value within the allowed range.
+//         $d = round(rand($LB, $UB),-1);
+//         $differences[] = $d;
+//         $prev = $d;
+//     }
+
+//     // Build the data array with 0 as the first element.
+ 
+//     $data[] = [[0]];
+//     foreach ($differences as $d) {
+//         $data[] = [[$d]];
+//     }
+//     $sizeValue = count($data);
+// }
+
+// $result = [
+//     "c2array" => true,
+//     "size" => [count($data), 1, 1],
+//     "data" => $data
+// ];
+// }else{
+
+// $data = [];
+//  // Generate a random number between 200 and 600
+//  $randomValue = rand($min, $max);
+
+//  // Check if the number can be reduced to zero in one step
+//  if ($number <= $randomValue) {
+//     // return "0";
+//  }
+
+//  // Start with 0 as the first element
+//  $data[] = [[0]];
+
+//  $currentValue = $number;
+//  $decide = 0;
+//  // Continue subtracting until the number is zero
+//  while ($currentValue > 0) {
+//      // Generate a random number between 200 and 600
+//  $randomValue = rand($min, $max);
+      
+     
+//      // Decrease the number by the random value, but don't go below 0
+//      $currentValue -= $randomValue;
+//      //echo "\n<br> $randomValue $currentValue";
+//      // Ensure the number does not drop below 0
+//      if ($currentValue < 0) {
+//          $currentValue = 0;
+//      }
+
+//      // Add the current value to the data array only if it’s greater than zero
+//      if ($currentValue > 0) {
+//          $data[] = [[$currentValue]];
+         
+//      }
+//  }
+
+//  // Ensure that the last value is not zero if it was added already
+//  if (end($data)[0][0] == 0) {
+//      array_pop($data);
+//  }
+
+//  // Format the result into the JSON structure
+//  $result = [
+//      "c2array" => true,
+//      "size" => [count($data), 1, 1],
+//      "data" => $data
+//  ];
+ 
+
+// }
+
+// // Sort the data in ascending order
+// $data = array_filter($data, function($value) {
+//     return $value[0][0] != 0;
+// });
+// // Sort the data in ascending order
+// usort($data, function($a, $b) {
+//     return $a[0][0] - $b[0][0];
+// });
+
+
 $min = 10;
 $max = 1000;
-$null = 1;
 
-if($null = 1){
+// Step/precision follows $max: 2000->2000, 100->100, 15->15
+$step = max(1, (int)$max);
 
+// Helper: pick a random multiple of $step within [$LB, $UB]
+ if (!function_exists('random_multiple_in_range')) {
+function random_multiple_in_range($LB, $UB, $step) {
+    $kMin = (int)ceil($LB / $step);
+    $kMax = (int)floor($UB / $step);
+    if ($kMin > $kMax) {
+        // No exact multiple inside range; snap to nearest feasible within bounds
+        $cand = max($LB, min($UB, $kMin * $step));
+        if ($cand < $LB || $cand > $UB) {
+            $cand = max($LB, min($UB, $kMax * $step));
+        }
+        return (int)$cand;
+    }
+    try {
+        $k = random_int($kMin, $kMax);
+    } catch (Throwable $e) {
+        $k = (int)floor(($kMin + $kMax) / 2);
+    }
+    return (int)($k * $step);
+}
+ }
 $data = [];
-if ($number <= $max) {
-    // If number is $max or less, output only 0.
-    
-    $data = [];
-    $sizeValue = 0;
-} else {
-    // Determine how many segments we need.
-    // This yields (for example) 3 segments (plus the initial 0) for a number in the 200s,
-    // 4 segments for a number in the 300s, etc.
-    $sizeValue = intdiv($number - 1, $max) + 1;
-    $differences = [];
-    $prev = $number; // start from the full number
+$differences = [];
 
-    // Loop from the highest segment down to the lowest.
-    // The highest segment (i = $sizeValue - 1) must be in its hundred band and guarantee that (number - segment) ≤ $max.
-    // The lowest segment (i == 1) is forced into the 0–$max band.
+if ($number <= $max) {
+    $data[] = [[0]];
+    $sizeValue = 1;
+} else {
+    $sizeValue = intdiv($number - 1, $max) + 1;
+    $prev = $number;
     for ($i = $sizeValue - 1; $i >= 1; $i--) {
         if ($i == $sizeValue - 1) {
-            // Highest segment: it must lie in the band for this segment.
-            // Its hundred band is from (($i - 1)*$max + 1) to ($i*$max).
-            // Also enforce that gap: number - d ≤ $max  → d ≥ number - $max.
             $bandLB = ($i - 1) * $max + 1;
             $bandUB = $i * $max;
             $minForGap = $number - $max;
             $LB = max($bandLB, $minForGap);
             $UB = min($bandUB, $prev - 1);
         } elseif ($i == 1) {
-            // Lowest segment: force it into 0–$max.
             $bandLB = 1;
             $bandUB = $max;
-            // Also ensure the gap from the previous segment is at most $max.
             $minForGap = $prev - $max;
             $LB = max($bandLB, $minForGap);
             $UB = $bandUB;
         } else {
-            // Intermediate segments: they must fall in their hundred band.
-            // For i-th segment, the band is from (($i - 1)*$max + 1) to ($i*$max).
             $bandLB = ($i - 1) * $max + 1;
             $bandUB = $i * $max;
-            // Also enforce that the gap from the previous segment is ≤ $max.
             $minForGap = $prev - $max;
             $LB = max($bandLB, $minForGap);
             $UB = min($bandUB, $prev - 1);
         }
-        // If LB > UB (which might happen if constraints tighten), force LB = UB.
-        if ($LB > $UB) {
-            $LB = $UB;
-        }
-        // Pick a random value within the allowed range.
-        $d = round(rand($LB, $UB),-1);
+        if ($LB > $UB) { $LB = $UB; }
+        // Pick a value aligned to $step (dependent on $max)
+        $d = random_multiple_in_range($LB, $UB, $step);
         $differences[] = $d;
         $prev = $d;
     }
 
     // Build the data array with 0 as the first element.
- 
+    $data = [];
     $data[] = [[0]];
     foreach ($differences as $d) {
         $data[] = [[$d]];
@@ -415,62 +554,11 @@ if ($number <= $max) {
 
 $result = [
     "c2array" => true,
-    "size" => [count($data), 1, 1],
-    "data" => $data
+    "size"    => [$sizeValue, 1, 1],
+    "data"    => $data
 ];
-}else{
 
-$data = [];
- // Generate a random number between 200 and 600
- $randomValue = rand($min, $max);
 
- // Check if the number can be reduced to zero in one step
- if ($number <= $randomValue) {
-    // return "0";
- }
-
- // Start with 0 as the first element
- $data[] = [[0]];
-
- $currentValue = $number;
- $decide = 0;
- // Continue subtracting until the number is zero
- while ($currentValue > 0) {
-     // Generate a random number between 200 and 600
- $randomValue = rand($min, $max);
-      
-     
-     // Decrease the number by the random value, but don't go below 0
-     $currentValue -= $randomValue;
-     //echo "\n<br> $randomValue $currentValue";
-     // Ensure the number does not drop below 0
-     if ($currentValue < 0) {
-         $currentValue = 0;
-     }
-
-     // Add the current value to the data array only if it’s greater than zero
-     if ($currentValue > 0) {
-         $data[] = [[$currentValue]];
-         
-     }
- }
-
- // Ensure that the last value is not zero if it was added already
- if (end($data)[0][0] == 0) {
-     array_pop($data);
- }
-
- // Format the result into the JSON structure
- $result = [
-     "c2array" => true,
-     "size" => [count($data), 1, 1],
-     "data" => $data
- ];
- 
-
-}
-
-// Sort the data in ascending order
 $data = array_filter($data, function($value) {
     return $value[0][0] != 0;
 });
@@ -479,6 +567,8 @@ usort($data, function($a, $b) {
     return $a[0][0] - $b[0][0];
 });
 
+
+ 
 foreach ($data as $value) {
             
             $skore =  $value[0][0];
