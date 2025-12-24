@@ -6,7 +6,7 @@ $cookie = 'XSRF-TOKEN=eyJpdiI6ImppSHBvYzRiNWl1dFdjTDBOd0tkMXc9PSIsInZhbHVlIjoiMG
 
 // ===== Tunables =====
 define('LINK_MAX_TRIES', 4);      // playNow link dies after ~3-5 tries
-define('TRIES_PER_BAND', 5);      // how many score attempts before falling back to next band
+define('TRIES_PER_BAND', 4);      // how many score attempts before falling back to next band
 define('PUSH_STEP', 1);           // "try above anchor score" (1 = closest push-down)
 define('MAX_FALLBACK_POS', 6);    // we fallback using pos 4,5,6
 
