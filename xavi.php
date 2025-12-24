@@ -12,7 +12,7 @@ $number3 = GetTargetScore(1);
 
 
 echo "\nScore at position 1 is $number3, while our position is $pos(0 for not yet)\n";
-system('cls');
+system('clear');
 
         $cookie = 'XSRF-TOKEN=eyJpdiI6ImppSHBvYzRiNWl1dFdjTDBOd0tkMXc9PSIsInZhbHVlIjoiMGs0Uko2cVlFNzJyUGsrUkt1RlBCV25HUFRScTFON0hueFJjRjBTOWdpTVhWRnlqd1dDSnlIQmsvZE5XWnlrSFV2TjN2VnBxS0FiQ1htOW5UdVBRMFgrRzc1aGFiZkl5STJycE9FbTlkWlhKMjhZckQxSklKYUJHd1I3R3VEVUIiLCJtYWMiOiJmZTg4MWJlOGYzOTAxZDVhNzI3YjM4NWVmZDJjNGZiZGFlYzljMmU2ODlkNjI0ODEwYmUzYTU5NzdhMzYzODRiIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IitiTkdCMjEyTzVoMmJGdEtEczV2VlE9PSIsInZhbHVlIjoiNkxGTGZoaytMWUt0M0FFN1pLcVYxZkozN0d4b29qZ2dmSnBhZzRvdmFNTWdCWHZHQnNJclhQWU9qVm5mMmRkcWN6NU1jeXZmUTk1eGMrSEYzc2lzaDNndDRrditseWxlMCs1bllvNTR3RW9NYXlWODM5YWhScTFmcFh6RllBYlYiLCJtYWMiOiJiYzcxZTlmMzEzZDkwYTUwNGUyNGI3MWFlZDczNGQ2ZDE5YTE1ZTRiOWYzMzgwYWU3YjA5MGZjZDk2MWExMzU1IiwidGFnIjoiIn0%3D';
        
