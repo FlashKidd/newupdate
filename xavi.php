@@ -163,6 +163,12 @@ for ($p = 4; $p <= MAX_FALLBACK_POS; $p++) {
 // remove duplicates but keep order
 $fallbackAnchors = array_values(array_unique($fallbackAnchors));
 
+// If no leaderboard anchors exist, use our own fallback bands
+if (empty($fallbackAnchors)) {
+    // Choose your own levels (example ladder)
+    $fallbackAnchors = [2500, 2000, 1500, 1000, 500];
+}
+
 // ===== Build bands: [primary list] then [anchor+1 list] per anchor =====
 $bands = [];
 $bands[] = [
