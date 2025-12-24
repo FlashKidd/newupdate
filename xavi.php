@@ -6,51 +6,16 @@
 //$current_time = new DateTime();
 //Business of the day
 require_once('Tools.php');
-//system('cls');
 $uA = RandomUa();
 $scoreTarget = TargetScore();
 $number3 = GetTargetScore(1);
 
 
-echo "\nOur target at num3 is: $number3";
-//$ii = 0;
+echo "\nScore at position 1 is $number3, while our position is $pos(0 for not yet)\n";
+system('cls');
 
-$cookiez = [
-
- '_ga=GA1.1.1490512954.1733123762; _ga_47GFPLWSMZ=GS1.1.1733123761.1.1.1733124006.0.0.0; XSRF-TOKEN=eyJpdiI6Ii9aQzF5eTEzVkdrWTVBZktlbmI5UWc9PSIsInZhbHVlIjoiL29lYXVQMG80aUxVbVNkNGh4Z0lkQkxBVkdBcldWR1FUSWdHZDBBL1RWYW9lbEFVaWdOWC9iVGhDWHo2WDdlVW16Y1c1NTc2bUkzbzVuYUxaQmt1dkt0bnczOXVtZzhEWlBPNTc0MWozbFpmMzZSK1cweW5aRTJPZGs3c1lidHoiLCJtYWMiOiI4NTZhM2EzODBhMGM3MTEzNDBjYTFiZWUxMjJjYWQwZDc2YTlmMGZiNGJiMTA1MjYyNGNiMTM5YTQ4NjNiYjIwIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IitNakdJT2lLOUkvMWhQVU5KL1lnbFE9PSIsInZhbHVlIjoiS1cxYnRWQ0NKT1k3bkI2YWFMdTNzbjFyVjd2NTNEZk9Kb3FrTzNyKzV0UmlRazI1UjhYaEErZ2pKdUYxSjBoZlc3Z3p6NmhXdW1pQWNNQ$MAX_SCOREBUWtEaXYrS3pvZnViYzV6UktMd05EMmNJRmlFanc4VnhMVkxlYTR0SmJpblAyb00iLCJtYWMiOiI4ZjBlN2Y1YjAzY2ViYzU4NGQ3OGQ0NGUzY2I3YzdjYTlhMTBhMDhiZTdkOGYwNjAzMGNlMzRkZTQxZjAxYmYwIiwidGFnIjoiIn0%3D',
-    
-    
-    '_ga=GA1.1.1373511831.1731512318; _ga_47GFPLWSMZ=GS1.1.1731512318.1.1.173151$MAX_SCORE00.0.0.0; XSRF-TOKEN=eyJpdiI6ImozamUxUENoL0lrdGRaSEJFOHpxZEE9PSIsInZhbHVlIjoiTDlONVc2QlBjZnFYQkFhSTY5UTAzbVcxRmJmcDU1VHVIU0pyK1p0UVNnSkxKN3kxMjRoZ1ZCVTJ2YnFzVERrTDlDdDZGWEZKdDBwWDhxTmVqMlprc$MAX_SCORE0N3JlRVRjSEc1N3haZ0s1ZGEvdXR6bWFiM1JXcnhCRXFkSDRya21SbHgiLCJtYWMiOiIwYjgyNGJiYTEzNTQ5N2M4ZWQ5YmZiOTExNGE1MDBiYWM2NTA4MjU2YmE2ZTBlYjNmNjgzZDQ4N2UzNzM0ZDNjIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IllmcDlpV0ZuZldtSktTL0pUeFFZVEE9PSIsInZhbHVlIjoiNVFUWWtCbDBmcmh2ODBrMHZxRFQvWGZ5ZmE2aDVCOTdiaEVsKy9EOWZNd3dtOHRJZXI2azNKWWF4QndmNmhVSHRLVVY5MENieTRvdUFxMDNCc3VCTkxKOWhCTVN6cVhEZG9DdEd5NWlnUFNZM0IvRkdNOHVlUzlOdzdxRUUraWgiLCJtYWMiOiI0YTA4Y2ZlMGUyYmU0ODNkZTZlMjExNWExMzY0NGJkMGM2MmFlOTE1YWFlYjJmODA5MTA2MzY1YjE0NzllNjNjIiwidGFnIjoiIn0%3D',
-    
-     
-    'XSRF-TOKEN=eyJpdiI6Ik1MYXV0UTY4ay9uWGZqeGdQSWdpYVE9PSIsInZhbHVlIjoiWDkxc2NjdHk5K2FNays4RDZGVEhIb2JIY3RJZ1FxeVVQVE5Tb3gzaXM5QjV1NGNVbG9KYmtBVkExTXRsbE1LaUJnVXRucTZiWjEvZG54SUIxaytDMU1haW1vdk4vK0kwQ3diTFc1ODRTOHd4NGNYZkFqSm9RSzJvTzdvWGxTeFMiLCJtYWMiOiJkMWQ0YjIwNTdlOGVmMzczYmQwYTJhMjExNTNlMGYyODdjODBhOWM1Y2M4MjQ3ZjMzNDAxYTVmNWQ1MTViZGQwIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImRpQTBwSEkxZ3kvQnI5Y2hUbjVTbnc9PSIsInZhbHVlIjoiVzdxMEwrbFVJNndFdGdvY2NWeU9XQW9VVXoyTmJkTjIwMGlXeXJNYTQxK2ZmK1JVNUZvNGc1Sm53TUtMS$MAX_SCORECQ1p3MTk4ZzAyUkVpOHpBYXFPb1pJTDJzZFBLSUVkWE5nSHliSE42eXB6cWdhRm0zWDZiY0xCT3JYT1NaVHB5UXYiLCJtYWMiOiI5YmYzZTM1OWZjM2ZmNzQwZjhlZjIxYzYwMWJiNTAyM2JmZTMzZTY0ZGVmMmFjMjgzNThmMmQ5ZTRmYzRjOWUxIiwidGFnIjoiIn0%3D',
-
-
-'XSRF-TOKEN=eyJpdiI6Ii9CaUJoekwvMjRjNmdKUWFva3R3SlE9PSIsInZhbHVlIjoiOU91djlVMS82R0YvVWo3SUxRTVk5SUloU2I3dkNNS0dJUzhTNXVwdjJkcDllWG84dURYM3RVcC91QXQ4UTdNTERjZUErWE1Xd1Y0b0c4VUwvZWZSMnU0OUN2UjFCYUVlZWdDWUhkN1JsQkx3NWZWOHppczd5Z2pEbkN2bFJINWciLCJtYWMiOiJkNDE2MzYxMmU5NTU3YmEzMzczODFjMTUxMWM3MTJiNjA0MWI0OWM1YWQwMWYxNmU4ZWZmMTUzNGU2YjE5YjI4IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IlpKNGhEMGgwNy9VOEhpTzVXZDN0aFE9PSIsInZhbHVlIjoibjc5ZlRZWllmRGNBM3hCTnBFSWY1Vy9kenlWQnZQNWZBZXhGVStNbm9pa$MAX_SCORExMGxQbmIrcTlNaDd3bTJBeit3Y0NjVC9IMjJYNnZReVBrYis4S212cGR5R1lsL3dpREF0RTQ3d2N2aFE4WnlOM3l3anlheEcrTy9FcnA5OXVQZVgiLCJtYWMiOiI0ZGQ0YzU3YzE1NmU5NzA4NTZmMDY3ZGVhNjEwM2RkMTI4OTA4ZjJjNDcxNDgzMDhhOWNkYzA4MjMxMTkyYjU2IiwidGFnIjoiIn0%3D',
-
-
-'_ga=GA1.1.17399394$MAX_SCORE.1731436752; _ga_47GFPLWSMZ=GS1.1.1731436752.1.0.1731436758.0.0.0; XSRF-TOKEN=eyJpdiI6InlscWlIaWdtckRuQUNyMFJzRGNGcFE9PSIsInZhbHVlIjoiSTRTc3crT2Uxb0FGQmdFb0pnVngrVjkxeTRmMy9QeWpsWlFqWVV4dVpsSlhoT1pPRFJnb3FmblluQ0s3WVd5MEw0MndFSysrQ0ZqRmg5NTI2cUJQSTFxdGpOR0JGZ2VEL1BJVHF6RkE2ZkFBMnFvQnlRSVdyWFlBbWFIWCtSTXoiLCJtYWMiOiJjOTE0NDMxYTY2NzYzZmIyNDU4NDMzMGNjNGZiMDhiODE3OWQyOGNlNDRmMDBhZDgwY2Y1MzJlOTVlNjdjZGY0IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6InF0YmRkZCtPZXRnd2x5UUtkdGNCOEE9PSIsInZhbHVlIjoieER6WXQvQnNOa0xmalNkNTlaY1pHZ2k1NkhGQ1BLWndiTE5wWWY0NWV0b1BjaUt1RENuOC91YkZpUlRndTVJNWJ0d0NhejVhbGlFSUlkTDdlcGRnekpxb0tBZytEaFV6SHlHc0ZUSzJ0amdoeWdwbi93T2lOaUVrYUNTRldQeE4iLCJtYWMiOiI2ZTQ5YzYwZjdhZmY0MjJjZWQ5YjRjNzg3NWY3ZGYzYzE0YTNmZDVkYzRjYjljNmQ2YTQyOTdmYzA1NGRhZjY4IiwidGFnIjoiIn0%3D',
-
-"XSRF-TOKEN=eyJpdiI6Im13T3JBNUo1RGoxT203eW04UkRsaUE9PSIsInZhbHVlIjoiMHJiVDNlV2V6QXVoQllYNlhRZUZ0ajlYTW1CR3dHUUVGU2p6QWhFSm15bkNUdnQwcnlnSDJPc0RYTUtWT0daM2UrMStObTIrWi9oME5rUy9KcStGc3pzQWVwZWVNSW50V0dPaDN2aU1wY0swMTNpUTEzVUZxMmNTNXczOXMwaGsiLCJtYWMiOiJlOTc4OGQ2NDc3ZjM5YzUyNTg4OTcwODMxNjExNDBiNDlkODdmMTM5ZGU3MmQ0MTcxNmQxMGRhOGM4ZTIxYzM5IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6InNYbVNHZW5TMmxpemVHekNYU3NZZHc9PSIsInZhbHVlIjoiREpzS001eWFnbVMwY2RJUVEvQlFsQVA3eTVCTVFsbEZmK0pkZ2p3N0ZFY2VvckE5Z1NMNXhaOVVFL1N1cFZkU2xianc2UHNpaTB5clZFd0N0MjNrNXo5dlpxT2c0dW9JY0dWUjJna1hmNHlxZDMvRnI4NkM2RkNzTElWb0dxSkQiLCJtYWMiOiIyMjAyNGI0ZTczZmRkYmQ1NDM0OGE0NjU3NzNiZjA2NDViNzI3YmEzMzdmZTMxZjhiZjE2OWQ1YzdjMmJjODY2IiwidGFnIjoiIn0%3D",
-
-'XSRF-TOKEN=eyJpdiI6InlpT3lIVGt0RXIyR3o0U1JxWmk3a0E9PSIsInZhbHVlIjoiVXJ5dTFPK3RLOGZabHZpaGNDejFoTmM0czhRMEE2cm1tc0pnUks1SThFZDEyN2hzc3QyVktabzNHNlJ4Mm8zTUQyK2h1L2YwN1l0S1hQcFMrdGVUdzJydEZucDNWQlF5ODF0bGZlNkw1eW1yR3U2QzB5MzBSVWJJVW41NnYxTGciLCJtYWMiOiJhZjRjZThlMjhjZTY4ZDE3MzExZmEyMWM5OWE5MmE4OTk0MDMxM2I2MmM5NWY1ODFjYzdjNGQxYTZjNWYwZDU4IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IkVVMmIrMmNpT1piRUMyNnBWRjFRbUE9PSIsInZhbHVlIjoiTUVGTTR6SllPd3cxcTJsL3MxYVp0OEVxZmxmT1BDU2xQNnZBR0dNamwvcXJ4UVU0Zk8xZ1UwRTlONkFlVnRKNk9oY0x0Nmo0QmZpeVF4K3BRZGViMDRHMGI1QlVRaTU0cHY2UFYyYlhnZEhBUFc1dnVLYStNZU9FSm9QM2I4L3IiLCJtYWMiOiJlM2EzNzM5NzY0ZmZjOGUxM2U3NzVhZmEyYTNkYWNmMDQxMTgzMTAxYmM5YWQ1NTZmNDJhMWMxNmI3OTFlMjhlIiwidGFnIjoiIn0%3D',
-
-'XSRF-TOKEN=eyJpdiI6IlNaclhnYU9MbzEwVGdaUjUzQ3hRUmc9PSIsInZhbHVlIjoiMUdndXRzYmFBRUIrSTRQZ1l6NEZWUVJFUDNHR2hzTC9wYTgxUFFvdEtuMlVQUThvSWhmUjRhVk8vN0VZamgxbFVRQjJiYXNSaWc4VjVFNk1qZkRSZ3FoTWRZb3BDZExlblE5WGVWZTVrcGN0c3Ayd1NJSnhZRHc2T3daMTB0WWQiLCJtYWMiOiIyOWQ4OGIyNDNmMTI0N2U0M2M4ZTg4ZTk4Mjg0ZjgwMmE0ODQwZDhjOWEyYTY2YmQ1ZDAyOWE1MTJkODRjNjVlIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6InlGVFFIc1lUQUVlM0dLYkc2RzBxK0E9PSIsInZhbHVlIjoiRGVMV2hZZkloV1k5NjFDQzRRWWZOQ0t4elR2TnF6UmxPazRMeHM1bTBaajFvY05Yd2FZeHJ6bi9LYys1Y3N0dnVwNUJoMXJpL0JWMEJLZU1Db1FPb1B5ektOYVg4NDN6YkpINnVONi9seC94YmszTjk4d1Q5NWlOZTMvSjB1T3IiLCJtYWMiOiJjODgzYzhiNWY2ZjE1NjI5YzZlOTVlODY3NmVjOTg1YzllMWVhZjdmNDE3OGE3ODI4YTI4M2FjMDJhODYwZjlhIiwidGFnIjoiIn0%3D',
-
-'XSRF-TOKEN=eyJpdiI6IlAyc0xjWlRXbU8ycmJzQ1VvVEJCYkE9PSIsInZhbHVlIjoiWTRvODNkN0JWbk1ueDNjZnN2alRrSlpISzl1b2tHOG5KME4wL3htandZWUNqdERzWTQya3FKYTA1YnJrMG5mTm0vbmtDeFliRFFWTDQ0TkZtVXdmNFpneHZNZCtIa2dQaHRBVzRFaC92aTNrbGY2L0g5c3RPZ3dGai80UVNENU4iLCJtYWMiOiJlZmExN2ZlODQ1YWU4YTMzYzQyYzYyYTdhODY0ZTc0ZWQ1ZWQ1OThkNmViN2QxNzJhMGYxMmQzZmUzZWM5YmQ2IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IlN2OHg4a0szS2FEa$MAX_SCORE5a1NIUDJZakE9PSIsInZhbHVlIjoiTjJONCtHWmYvd0NFMDUwaGNqUFpiQXlaWTBKamt1NXA1aWVGYVlWbCszd1ZVcXJzelJVTlNVODJ4TXdJOW0zWncrRkxUSmNOUDgrV005RVZZZ0VnYVJUdS8rdEFCc2hlL0cyVGVKTUpEQW5hNFF6ZVBvYzF0ZzBQQVhhcDdNTEMiLCJtYWMiOiI4NjgzOWFiZWQ5MDVmOGFkZmRmMGVmZDFjNWUyYzc3NGFlYjllOGNiNWM2MzBmYzg5NDNmY2NkMjgwNjQ4ZDc1IiwidGFnIjoiIn0%3D',
- ];
-
-//  foreach ($cookiez as $cookie){
-// $ii++;
-
-  // if($ii>1){
-   //sleep(rand(20,60));   
-  // }
-system('clear');
-// echo "\n$ii cookie sent \n";
-         $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
-        
-        //echo "Cookie; $cookie";
+        $cookie = 'XSRF-TOKEN=eyJpdiI6ImppSHBvYzRiNWl1dFdjTDBOd0tkMXc9PSIsInZhbHVlIjoiMGs0Uko2cVlFNzJyUGsrUkt1RlBCV25HUFRScTFON0hueFJjRjBTOWdpTVhWRnlqd1dDSnlIQmsvZE5XWnlrSFV2TjN2VnBxS0FiQ1htOW5UdVBRMFgrRzc1aGFiZkl5STJycE9FbTlkWlhKMjhZckQxSklKYUJHd1I3R3VEVUIiLCJtYWMiOiJmZTg4MWJlOGYzOTAxZDVhNzI3YjM4NWVmZDJjNGZiZGFlYzljMmU2ODlkNjI0ODEwYmUzYTU5NzdhMzYzODRiIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IitiTkdCMjEyTzVoMmJGdEtEczV2VlE9PSIsInZhbHVlIjoiNkxGTGZoaytMWUt0M0FFN1pLcVYxZkozN0d4b29qZ2dmSnBhZzRvdmFNTWdCWHZHQnNJclhQWU9qVm5mMmRkcWN6NU1jeXZmUTk1eGMrSEYzc2lzaDNndDRrditseWxlMCs1bllvNTR3RW9NYXlWODM5YWhScTFmcFh6RllBYlYiLCJtYWMiOiJiYzcxZTlmMzEzZDkwYTUwNGUyNGI3MWFlZDczNGQ2ZDE5YTE1ZTRiOWYzMzgwYWU3YjA5MGZjZDk2MWExMzU1IiwidGFnIjoiIn0%3D';
+       
         $pos = GetPosition ($cookie);
 
         $ch = curl_init();
@@ -88,11 +53,12 @@ system('clear');
         $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
         $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
-       // echo "<br>Uniquie_id: $unique_id<hr>";
-        //echo "<br>Game_id: $game_id<hr>";
-        if (empty($unique_id)){
-                die();
-            }
+      
+            if (empty($unique_id)){
+              "Cookie expired/not valid, please update.\n";
+                 return;
+             }
+
 
        
         ###################
@@ -129,73 +95,71 @@ system('clear');
         
         
         $x_power = X_Power($header);
-          echo "\n<br> X-Powered-Version: $x_power\n";
+        echo "\n<br> X-Powered-Version: $x_power\n";
 
        
-$testSom = GetTargetScore($pos);
-$MAX_SCORE = 1000;
-$range = 1000;
-if ($pos <= 3 || $pos == 0) {
-    $score = rand(3000,4000);
-    
-} else {
- 
-   $multiplier = floor($number3 / $range);
 
-    $min = $range * $multiplier + 1;
-    $max = $range * ($multiplier + 1);
+// Adjustable score range for leaderboard placement
+$scoreStart = 49679; // lowest score to consider
+$scoreEnd   = 49690; // highest score to consider
 
-    $score = rand($min, $max);
+// Skip if this cookie already holds a top 10 position
+// Refresh position to ensure it's up to date
+$pos = GetPosition($cookie);
+if ($pos > 0 && $pos <= 1) {
+    echo "\nAlready in top 10 at position $pos, skipping request.";
+  sleep(rand(120,340));
+    exit;
+}
 
-    echo "\n Our score and range $min - $max := $score";
+$success = false;
+$currentScore = null;
+$beforecurrentScore = GetTargetScore($pos);
 
-    while ($score < $number3) {
-       $score += rand(1,10);
-      }
-   
-        }
-
-       while ($score > 4000) {
-       $score -= 1;
-      }
+// Build and shuffle the score list so each score is attempted once in random order
+// $max = 33642;
+// $count = 10;
+// $min = $max - ($count - 1);
+// $scores = range($max, $min);
+// shuffle($scores);
 
 
+$max = 3330;
+$count = 10;
+$step = 1;
 
-echo "\n Our score = $score";
- 
+// calculate minimum based on max, step, and count
+$min = $max - ($count - 1) * $step;
 
-$increment = 1;
- $score = round($score, -1);
-// Number of attempts made to push the score to the leaderboard
-$attempts = 0;
+$scores = range($max, $min, -$step); 
 
-// Keep resending the score until it shows on the leaderboard
-do {
+shuffle($scores);
+shuffle($scores);
+foreach ($scores as $score) {
+
+ if (isScoreInTop10($score)) {
+    echo "Already in use $score\n";
+   continue;
+} 
+
+    echo "\nTrying score => $score\n";
+    $increment = 1;
     $uA = RandomUa();
     $memory = validate_request($x_power, $score);
-    // capture the new X-Powered-Version returned by the request sequence
     $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-
-
-     // wait before checking again
-
-    sleep(rand(30,50)); // wait before checking again
-    //$pos = GetPosition ($cookie);
+    $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
-    echo "\nLeaderboard value: $currentScore (expected $score)";
+    echo "\nLeaderboard value: $currentScore at pos $pos";
+    if ($currentScore !== $beforecurrentScore && $pos > 0 && $pos <= 6) {
+    $success = true;
+    break;
+   }
+    echo "\nScore $score failed to update.";
+ 
+}
 
-    if ($currentScore != $score) {
-        $attempts++;
-
-        // If we have tried twice without the leaderboard updating and the
-        // player is outside the top 10, fallback to one of the top scores
-        if ($attempts >= 2 && $pos >= 7) {
-            $choice = rand(1, 2);
-            $score = GetTargetScore($choice); // use exact top score
-            $attempts = 0; // reset attempts for the new target score
-            echo "\nSwitching to score from position $choice: $score";
-        }
-    }
-} while ($currentScore != $score);
-
-echo "\nLeaderboard updated with score: $currentScore";
+if ($success) {
+    echo "\nLeaderboard updated with score: $currentScore";
+} else {
+    echo "\nFailed to update leaderboard";
+}
