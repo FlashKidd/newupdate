@@ -344,7 +344,7 @@ curl_close($ch);
 
 function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
 $min = 10;
-$max = 3000;
+$max = 1000;
 $null = 1;
 
 if($null = 1){
@@ -557,4 +557,57 @@ $defaultPlayer2Score = "10000";
 $player1Score = $player1ScoreNode->length > 0 ? trim(str_replace("Score:", "", $player1ScoreNode->item(0)->nodeValue)) : $defaultPlayer1Score;
 $player2Score = $player2ScoreNode->length > 0 ? trim(str_replace("Score:", "", $player2ScoreNode->item(0)->nodeValue)) : $defaultPlayer2Score;
 return $player1Score;
+}
+function isScoreInTop10(int $myScore): bool {
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+    ]);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, __DIR__.'/cookie.txt');
+    curl_setopt($ch, CURLOPT_COOKIEJAR, __DIR__.'/cookie.txt');
+
+    $html = curl_exec($ch);
+    curl_close($ch);
+
+    if (!$html) return false;
+
+    libxml_use_internal_errors(true);
+    $dom = new DOMDocument();
+    @$dom->loadHTML($html);
+    libxml_clear_errors();
+
+    $xpath = new DOMXPath($dom);
+
+    for ($i = 1; $i <= 10; $i++) {
+
+        // ORIGINAL logic (rank cards – works for top 3)
+        $query = "//div[contains(concat(' ', normalize-space(@class), ' '), ' rank-$i ')]//p[contains(., 'Score')]";
+        $nodes = $xpath->query($query);
+
+        if ($nodes->length > 0) {
+            $rawScore = trim($nodes->item(0)->textContent);
+            $score = (int) preg_replace('/[^0-9]/', '', $rawScore);
+
+            if ($score === $myScore) return true;
+            continue;
+        }
+
+        // 🔧 MINIMAL FIX: fallback to leaderboard table (ranks 4–10)
+        $tableQuery = "(//div[contains(@class,'leader-table')]//tbody/tr)[$i]/td[4]";
+        $td = $xpath->query($tableQuery);
+
+        if ($td->length > 0) {
+            $score = (int) preg_replace('/[^0-9]/', '', trim($td->item(0)->textContent));
+            if ($score === $myScore) return true;
+        }
+    }
+
+    return false;
 }
