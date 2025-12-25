@@ -355,7 +355,7 @@ foreach ($scores as $score) {
     $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore at pos $pos";
-    if ($currentScore != $b4Score && $pos > 0 && $pos <= 6) {
+    if ($currentScore !== $b4Score && $pos > 0 && $pos <= 6) {
         $success = true;
         break;
     }
