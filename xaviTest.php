@@ -146,6 +146,7 @@ function refreshCookieFromOtp($currentCookie){
     $token = extract_csrf_token($html);
     if (!$token) {
         echo "\nCould not extract OTP token.";
+     file_put_contents('debug.html', $html);
         @unlink($tmpCookie);
         return null;
     }
