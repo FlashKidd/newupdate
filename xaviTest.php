@@ -1,112 +1,280 @@
-<?php
+ <?php
+date_default_timezone_set('Africa/Johannesburg');
+// $current_time = new DateTime();
+// $check_time = new DateTime('04:00'); 
+// $check_tim = new DateTime('12:00');
 
-
-while (true) {
-    date_default_timezone_set('Africa/Johannesburg');
-    $current_time = new DateTime();
-    //Business of the day
-    require_once('Tools.php');
-    system('clear');
-    $scoreTarget = TargetScore();
-    $number3 = GetTargetScore(1);
-
-
-    echo "\nOur target at num3 is: $number3";
-    $ii = 0;
-
-    $c_values =[
-  
-        //    i never changed lel lel weee clipboard uses you but aight
-        "XSRF-TOKEN=eyJpdiI6Ilh4Skw3K044blVrbEdqUHh2cVJXeUE9PSIsInZhbHVlIjoiSDZGd1IyWkNGVkd2RVBqZ05xOTE1QzlPZUMvQWF2V2NGRUlIVUlQdnNkY3hsV0FSQysvYmtZNXdOWE5lK2FCSGg3bitxdGFkSnBXY2x5S1Y0eXFCbDZRVGY1RVVHenBMU2pxRGgydVpaVlZFK0ltYjBEb2xzWnBGV3krbHJ3am0iLCJtYWMiOiI4OTQ4N2EwY2NhODI0ODc5NTdlYTgzNDA1Y2Q2ODM3NjNmYmRkZTZlNTQ2NTVmZDRiYWI2MWU4ZmMxNjJlN2RhIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6Ik5pUlJWNFhoSllmWGlOZHZtcXBQb2c9PSIsInZhbHVlIjoidW9vYXFHczdoeE9KNmVNaWR4WFBHaGdWMW5jSjFKU0pMUnZORjdBalNOZHFUQVE0azRxUkdrTTNlMyt6YnJBOWFVdkZHTHRyczNReEJKck5DSHgxTllVVXorSkFpZHBQVFN0WU9SVkxLVGFtKzI3QjhaQTd1UFhSZHJRMWtxOTgiLCJtYWMiOiIyMTgxMTNiNzcwOWYyMmQ2MTQxZDU5ZTQwMmY1OTljOGY0ZTdkYzI5Y2EwYjlmYTMwMjNiYjMxMTczZmIzZGU5IiwidGFnIjoiIn0%3D",
-        
-        "XSRF-TOKEN=eyJpdiI6IkN6cjhaUDExaTNWY0V6YVBQVFVYR1E9PSIsInZhbHVlIjoiR0NhKzJmVDdXVnJucDBPUkVvM0NYVGVyNXN0S01GaTc2ZCtWdnAxZTZZaEV5T28wbzl0VHZBSEtQQ1JQbTBKTjQwaFJqNzNHdFhNdW5WOGJHVlBNZ2ZqUkNkNFdSZlplVDQ3bVZ4QWFUbm5BbTJkRmcvdzhBaXZUNG1RL0pzZEMiLCJtYWMiOiJiZmVmMzU3OWVkNTY0NTBjZDVlN2U2NjAzMGU4Y2M5MjQwMTg0MzkyNjA4ZmMwNGI4NDJjNGViYzRlMzExY2IwIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImFZNDl4dkN1YXFQUmVUNWkwaUNqc3c9PSIsInZhbHVlIjoiRnQ0dDM4L1labno5TzYvbE9ncnN3Tkt5cXR2WEsyRG9vbGthZ09kWm8zdzJIM3ZrNWo4STNUaVQ0c2MvaW1obGVWMzRkYnVhZHJzdXZnZ2oyTEtpV3Y1MWFxQ1BsQVZTZms3V0c5aW9idFlUdDFvZmxhRmZITWUrT1pBNUFuai8iLCJtYWMiOiJhMzA2NWNkNjVkMGNlM2QyMGU5OWFlMGMwMjI3ZjhlMGEzZTYxMWExNTJjOTQ4ZTY2MTY2ZWY2MjZjN2NiMDdhIiwidGFnIjoiIn0%3D",
-        
-        '_gcl_au=1.1.634627808.1748969476; _ga=GA1.1.827229217.1748969477; _ga_47GFPLWSMZ=GS2.1.s1748969476$o1$g1$t1748969504$j32$l0$h0; _ga_JV5MK09THB=GS2.1.s1748969476$o1$g1$t1748969504$j32$l0$h0; XSRF-TOKEN=eyJpdiI6IlA3K2tBeEZqRDA0b3ZWd01NUWVvK2c9PSIsInZhbHVlIjoib0MyU3RNZFZSNDBkR3dHYlA2bGhQWWZBalhLL055eFRKOU5JQzBEV3hBanFjN2QvcmFOQUxTSzl4ajVFajhhV3J4ZWVQY1JuaXpkbVVXc05jSFVLVkptQ2J6aHoyNXA4UHBDZ3ZFQVFvRUpDcGEya0RyZkMzS0JqcE5MNXlveG4iLCJtYWMiOiI2OTNkOWZhY2IxMTA1N2UyZGJhNDQ0NGRmMGNlM2RmOTc3MmMxYzhhMTY5OGEzN2EyNGFjYWI5ZDc1MmUyZTEzIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImVxd0RpcUtDdWFZSU96TjdLdE90RFE9PSIsInZhbHVlIjoiZlluaEt1UGV6RWI1ek9FWXUwZG9mR3h0R20zcDlMcTZ2cjhzd2NXQmt2T1Z4bXR6VUZxNmx0SHdmSDNoenJxRi9PV2R6YldOTy9JdUJCdERtT0lIT1FuRDNMa2VWVVZqU3h2ZnZPTFIrdndjNHBwT3hYRXM3Nk5mbkFBcm1vYmQiLCJtYWMiOiIzNWJkNmU2NGQyOGQ3YWYwZGMzN2JkNmIzNTYxZDRjMzYyOTY3ODExYmNlZjRhYWY1ODFjYjFmNmRjMjRjMzc0IiwidGFnIjoiIn0%3D',
-        
-         "XSRF-TOKEN=eyJpdiI6Ik5Bc2FsVHpja2VMbUxEVk8vTXpsSWc9PSIsInZhbHVlIjoiRWNxcU9wMGFVRWt0RjZGV2VVUUwwcFhsQndTdFFYK2MrMER4VmlwY1F0RjA2MThjcnZaTjIvZlBua2lHcEpoaUNFN0VqUGxpb3hNMnFRaXNHVXVOanR5RWJ6VU5OVjNlTFVTMTgxZ0pJN3ZwRWNHN1NWVXNaWElNb1NiSkFDR1MiLCJtYWMiOiJjYTgzOTZjZDcyNTY1MDk0OGJiZmIzMTAyMmY0OThiMGQ1ODE4ZjE0YWRmYmRmMWZhNGE3ZjE3Y2VlZjBjZDc4IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6Inp5VURQUGdxRHJHL2pMRUZvWFNHUUE9PSIsInZhbHVlIjoidFlDRGo4TlRDbWN0d3k1U1RETjRCcnZieVRxd0tGVHRWTlpNbDhrR0tkUDhtdnlpS3FmZzN5OWZGeDhyYVNyOW12MldmcWV1TU1hL0JBZ2Zhb1JTdEhEc2JEdVZSVjl0K2dSYTdHSFBraFkvaGhVakVCTDdDK09LcXZsVUpZOVQiLCJtYWMiOiIzZjA2MDA5YzQ3OTlhYmMyOGZjOWRkMGExYzliOWRiOGMwNDcwNjQ3N2E5ZmRiMDcyZDVmMmExODY4ZWQ5NjEyIiwidGFnIjoiIn0%3D",
-        
-        "XSRF-TOKEN=eyJpdiI6IkRlWUhDaGhEb2hxUitubnE4WWh6Qnc9PSIsInZhbHVlIjoiR0kzWE9CbnhOajdKbDVqQlpFOU9Hc1grZ0JjUFlaSm9mM2w1dHN5bXpoMTllNS9SYlhFMzhOK3dYNXVVR1FhMzhTcGRhZFdiUUVRM2dRQkc2WGViTk0wSDgwaDFuZnRSd3lKcld5WWh2QWVFY3B6THF5azlnVTlIVmJ2dFd4a0siLCJtYWMiOiI4NmQ3MDE4YjhlNjQyNGU0NjliM2YzNThkZDRiNTkzZTJhNmQ0ZjgyNTgwNzM0MzQ0ODE3MGMzN2QxNjJlNWY0IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IkwzaXlHQzBjUXQxQ0pRNkFFS0pyZFE9PSIsInZhbHVlIjoiSThyT3dKNFVHRldOR0NOTUxtVVpEblpmZ0UrbkRmeW8xWTQ5ZlY1dTlKRWk4bitFeWw3NTBmSUNTUGo5NmRGeUVpdWRhb09HZGpsZUN3dTc0S3F0ZGlpWjFpRTFtWnAydmtheUZsZWpiVTYxVktxRUczT3MyeC9aWEQ5ZEJuSHQiLCJtYWMiOiI2N2E0YmVlZGI2MGEyMmY0YWQzNjVjZGRiNzc3OThhNmIyMzU3ZTQ0NzNhMGFmNDVhOTlkOTM4NGU0NDdlZTU5IiwidGFnIjoiIn0%3D",
-
-        "XSRF-TOKEN=eyJpdiI6IlhJRnFzZnFRMkpwSG1OWlNtNzk0TVE9PSIsInZhbHVlIjoiWXhIaWNYWlFFU3VNcHlCUWdPZW5oMEZaMFErREFVUFZLMEV2ZTZ6VUtpWVR0WlRHL0d5T2pvdTdMWHhsK0E3UVk3UW1rUHY5Q28zR3Z4bmk0Q2dZeWhROUg5Y3IwZEhKZlQ5NkJkSjZYbEtWT1VvSnRydlRoUzY4TVNUM1paOCsiLCJtYWMiOiJhZWZmODQ5NTYwYjUwZTZjMTJkNGFmMjVmZTI0MWM1YjczZTQzOTQ4NWZmYmM0MGFmZGJhYmQ2ZTI0ZTU0NmZjIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImR6eEdqYU4yUE5EaWJkUXhDYVJZRmc9PSIsInZhbHVlIjoieDZCb0IyWm8yUEpObUJSNlVDc3lNUEJmaGJJRFM5Q3dySlRKNU56M1lGamFmblFwY3ZWN2xMaXUyMXRFWFRjL0xMSEJIU3V3bzZEdlVvWVBhRHU1ZUI0S2N2RzE3eXU4OVBlbmlRZWZRNzZQaUFZQVpaZFRDMWRUZDA2a2pBZkwiLCJtYWMiOiJmM2E3MWJjZGEzNzM4Y2VjM2Q0OWM0NzUyZmU4YzZjOTk1M2E4MDg3ZTA3MzgwYWNmNzU4NTJiZmIyZjBkZWZkIiwidGFnIjoiIn0%3D",
-
-
-        "XSRF-TOKEN=eyJpdiI6IjBCeEk2SytWci92RUFBZ2NneGhyR0E9PSIsInZhbHVlIjoid1NjTDlheGFnblhqdHV3NkJoSTIxY01BSlNleHFTNmV3VWY3dVYzd0NmcHZCYTZBcHEvVktGcFZMY2t3V1VTcEFzdG0vMzdtWi9tbHkwZG9zOVBiVGlNQXhlbDljd2F0KzhiOVlsclh4blpyaWY2VVA4d1dhcGNpcWVseUNhcWYiLCJtYWMiOiIwNDE3YzA5NWQ2YWIwZDJmNWIxZjY3MmUzMmFlMjM3MTJjNmQyMTlhNmFmOWU2YjcyMzA5ZjQxNGI2M2IzMDJlIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImMzcFcyUzJodzBuSDRPekEzdTJPK2c9PSIsInZhbHVlIjoiQ0prTHFKMWhZY1JjYy9CaHpFVm5zTFAwTmhTSXhMaFNOZ1FpNytybXdBcndHOVNFS2x0UGczTWU1Yk53N2pHRC9mZTJEU3pHUHpBalFoakJMcEVGa3daTDZ1dkx1elNLVlR6UzJXZjJVbk1qamVWK0VnSUU2aURxVk5qSUsrWnIiLCJtYWMiOiIwODI1YmVlMjRhNDI2ZWFiYzM2NTIyYTU4YmY5ZWEwMTkxNmU0Y2NjNzgzNTQyYTFjNWMyNmRhMzUwODQ4NThiIiwidGFnIjoiIn0%3D",
-
-
-        "XSRF-TOKEN=eyJpdiI6Ilp1SjNaeWoyLzJNVzk0TGMyU0pOVHc9PSIsInZhbHVlIjoid1FmNFRsd2wrUitZS0VlNXYzb29SRkduSVJnMjFpeVR6emRPbU1RNlNRbWxVdTduRGVJd2Q2R0ZMS1ZHMk9MQUNkMy9WL1ZwbHV4RUxQc0NhVURhRUVFVnB6NWVoTUNqbWNOSjJrTVd1d1BTK1NoalFpY29LZTVqRkppcS8yNzIiLCJtYWMiOiJkMjg1NzMyMmI2ZThhZTc5YjUyYjFkNzhlOGU5OWVlODcxZGI3ODg5MDY4NzEyOTE3NTU0OWNiNDliYmMwN2Q1IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6Im9Kb0xhOUZ3Y05SWVNYT0JNYVk4OGc9PSIsInZhbHVlIjoiVHF5cm5JdDZmSVBYekdQSUlNR3NzTzkvRjQydWYvTmVqTjNHZG5BWitwWXF5a0Z1eWpwNWJjWTFucExsZ0cyWjJUZ0lONFRvMktMZ3RYSXNMVXBSdThkbGdzUjdCMlVMWmM4NHZqWEJqNW0xRzVvRzdpdmZMRXlNQmNpMDNZL2IiLCJtYWMiOiJjZjdjY2JkMGIxMTRhYTJlMmM0ZjgxMjI4NmZlMDZiNmI4ZGExZTM5NTUzY2U5OGJiMjRjZTg4OTYzOTNjYWVjIiwidGFnIjoiIn0%3D",
-
-        "XSRF-TOKEN=eyJpdiI6IlQ2NS9adGVvbjdXcTJWVUE1Z1FzZ2c9PSIsInZhbHVlIjoiMVdnSWljQkR6QjBMejVyajh2V09hN0tZKzAxSGVMOWZtZlNpM3lwQllWUnEyenZ2NlZhaVRCOWo4OTBXbFN2cVRHV2J6L0tvaTRLZGZJckJhamJhOWNRS3o2c2lyMFpWSE9XRG1Rdm1KUXlCRUZTTVA1N3FhbjR4a1BxK3N0dlciLCJtYWMiOiJkMzMyMGY2OWM5MjdmMTQwZDI2ZGE1ZDljMzE2MmI2Zjg1NDU2MzBkNGExMDBhMjE2YTY1MzFkOGY2MzIwMTBkIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6ImpablRyUGM5d05ZVWR3Y08zbHVZZkE9PSIsInZhbHVlIjoia2RTRmpmQjd3ay82aVRVTVA0bHNJWTFzYncycHdhanhvVkRoajdlTm9yK09lWGRvL1RVQktxdHNuRjNrUERKbkYzelpiSDZkOW5LUUVZb05PeTZQVm1mdmNtNEtMWXpZOWdqSEpwSjMwd1BUV1BiTEFEakJwZTdidml4YWpVWGQiLCJtYWMiOiI1ZGY0NTJmNDAzY2FlOGEzYjdkMWJjYTI0ZDc1MjcxNTRjOTk4MGI3ODVhZGQyNjk3ZmE0NGMwYjQzYzYyYmQzIiwidGFnIjoiIn0%3D",
-
-        "XSRF-TOKEN=eyJpdiI6ImVsWUFOcUNNSExVZDhnK0ZobFB2SWc9PSIsInZhbHVlIjoiRUEvMzY2a1UyTW43ejhCVUNhS01IangwWmVYN0l4YlN3R3B2KzhqdWl6dXl6SXN4MHJhSEFDMHBPK09lRGZodC9vaVRHNU5TQUVkUUhBMmZkNktOSUFvV2Z4WFpwUUV5VEMwajlGZ04yS1I1Q0tFRGRFTkdqNnN4RTA2aDIwZlMiLCJtYWMiOiIyNzIxZjg4MjEwYmEzZjQyMGQzMDczMmE5YWIxMDRmOTcxMWFhYWEwNTI4Mzc5MDdjZDBiZDBlZjQ1ZTU0ZjI2IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6InJ2WGJscXE3alA2bnRwRXdnSzYrM2c9PSIsInZhbHVlIjoiRS9oU3JIVlVhc0FUNXU1dnlmYmhrUk1ScWs4aVpJZ3ZUYzJEOXNWRDhLN1N4T3FNU0NlZFJxYys3b1VrQmJvZzRhdVZaVDVXcDlBRm4zRC91UkV2eEFERXU5VGczOWxnYU1HQWcrYWI3WWlmTkdpd1dzKzViV1d4d2twZU80dVkiLCJtYWMiOiJmNmVlM2FiYzAwZTc2ZjljMDI2NmE1N2UxMzA5YzcxYWY4ZDA4YTBjOGMwZjI5NzU5Y2VlY2ExMGZiZGM1NGI5IiwidGFnIjoiIn0%3D",
-
-        "XSRF-TOKEN=eyJpdiI6IlNRbGdYT1pXMC9zTkJRU1IyRzRvL1E9PSIsInZhbHVlIjoiUm5hZXpFN2xiYmtJNHI4V08reE1YcVN1NnNQdnpVZjR4c0o1K1JmdG4rV0Y4djRBVlVEZ0R3YnlXQnpnOU1XMHlzQkgwTXpuRERIOXhLTWpUS3JaZDAzM29VTkVCQ1B4RDRkRlYxWGNScUtMKzduRlJKRjFFVnFFNUNTNGFPT0YiLCJtYWMiOiJjODM0ODQ0MTVhMTEwODNlNTQxZGJhNDVmMWMzYTI5NjQ1MzAwNTc1ZTFkNzIyYzVhMTZhN2EzMWZhMDBjZjdmIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IjcwSkJSTVJPMXVudEVJeUtneGJ2ZXc9PSIsInZhbHVlIjoicCszdGJSeGxCY1owRnRYeXRxQ2xoV1hmMUMwOWhjWlRaOFl5eVdpTm8xOWdqN2xjdmxpb2NZKzc3dElzZGFqSVcvM3h6ZHFHUGZ0NFI1YVc3TFBqQnBLZXZGMStWdDkzOHhyYnVuWk5md3RUZmpmWDdoa2FBZ0JIL3dXVkNkUEciLCJtYWMiOiJlYWU4MTM5YWQ4YmM3ZGVlNjVmOWNjNmJkYmQ2OTgxOGUxY2U0NmZkNGM5ZDZhOWQ5MmI5YzEzM2ZmOTczOTMxIiwidGFnIjoiIn0%3D",
-
-        "XSRF-TOKEN=eyJpdiI6IjVpMXdvZ3Rrb0g1ZUg0MzI1ZENJY3c9PSIsInZhbHVlIjoib28zV1VTWHRDRlZnNm83Y0t5c1o1NDAwL2VPTUVPMUdXVENsMFh6M09ZVkNMMGNCL2h0cjR0akJNMGdRN0Zka3hjRHhNeGZqWE1jYm5sd3NOWGZUUzVaYTE2aVlJQnc1MVE3cHZ3SWpQbzNDWlJZN1FFbE5ZWnVnNWpDdmJJcFYiLCJtYWMiOiIyMTYyOWM1NGNhZWZmOTIzOWNkZDIzNDA5ZTljODkyNTUyNTc3MTBlODZjNmEyNjg1Mzk2NGIyOGY1ZGMzZjIwIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IlduWVJycG43a3dra05VKzRESmhVN2c9PSIsInZhbHVlIjoidDUxSDNxTW9SQmNLNVFuR0ZreFpNVmN3N3JkNUJqZXN0Uys2TTh6a3oxdTlOR1oyV2JWMFV2dFFGOXM5MzNnVmdwWEdReGt1dHJlNGhxWUQyU3lBM0RGb3R3UWV5TWxXczF4K0FLLzYyS2ZVenpwVmFsenE5dWZNcnl6TVlMT0EiLCJtYWMiOiJkMTBlMTUyNzBjMjEzYjQwMzU3Nzc3NWQwNTc5MTE0N2YxYzA3OGYzY2EyZmM2OWExNmJmYzMwZThjMjI0NWQ5IiwidGFnIjoiIn0%3D"
-
-
-        ];
-    foreach ($cookiez as $cookie) {
-        $ii++;
-
-        if ($ii > 1) {
-            sleep(rand(0, 30));
+function parse_cookiejar($path){
+    $out = [];
+    if (!file_exists($path)) return $out;
+    $fh = fopen($path, 'r');
+    if (!$fh) return $out;
+    while (($ln = fgets($fh)) !== false){
+        $ln = rtrim($ln, "\r\n");
+        if ($ln === '') continue;
+        if (strpos($ln, '#HttpOnly_') === 0) { $ln = substr($ln, 1); }
+        elseif ($ln[0] === '#') { continue; }
+        $cols = explode("\t", $ln);
+        if (count($cols) < 7) { $cols = preg_split('/\s+/', $ln); }
+        if (count($cols) >= 7){
+            $name = $cols[count($cols)-2];
+            $value = $cols[count($cols)-1];
+            $out[$name] = $value;
         }
-        system('clear');
-        echo "\n$ii cookie sent \n";
-        //  $cookie = isset($_GET['c']) ? trim($_GET['c']) : '';
+    }
+    fclose($fh);
+    return $out;
+}
 
-        //echo "Cookie; $cookie";
-        $pos = GetPosition($cookie);
+function normalize_msisdn($input){
+    $digits = preg_replace('/\D+/', '', $input ?? '');
+    if (preg_match('/^0\d{9}$/', $digits)) return '27' . substr($digits, 1);
+    if (preg_match('/^27\d{9}$/', $digits)) return $digits;
+    if (preg_match('/^\d{9}$/', $digits)) return '27' . $digits;
+    return null;
+}
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/play-now');
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-        $headers = array(
-            'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'Accept-Language: en-US,en;q=0.9',
-            'Cache-Control: no-cache',
-            'Connection: keep-alive',
-            'Cookie: ' . $cookie,
-            'Pragma: no-cache',
-            'Referer: https://gameplay.mzansigames.club/',
-            'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
-            'Sec-CH-UA-Mobile: ?1',
-            'Sec-CH-UA-Platform: \"iOS\"',
-            'Sec-Fetch-Dest: empty',
-            'Sec-Fetch-Mode: navigate',
-            'Sec-Fetch-Site: same-origin',
-            'Upgrade-Insecure-Requests: 1',
-            'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
-        );
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-        $curl = curl_exec($ch);
-        $redirectedUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+function extract_csrf_token($html){
+    if (preg_match('/name=\"_token\"\s+value=\"([^\"]+)\"/i', $html, $m)) {
+        return trim($m[1]);
+    }
+    return '';
+}
 
+function fetchPlaySession($cookie, $uA) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    $headers = array(
+        'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'Accept-Language: en-US,en;q=0.9',
+        'Cache-Control: no-cache',
+        'Connection: keep-alive',
+        'Cookie: '.$cookie,
+        'Pragma: no-cache',
+        'Host: www.yellorush.co.za',
+        'Referer: https://yellorush.co.za/',
+        'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
+        'Sec-CH-UA-Mobile: ?1',
+        'Sec-CH-UA-Platform: \"iOS\"',
+        'Sec-Fetch-Dest: empty',
+        'Sec-Fetch-Mode: navigate',
+        'Sec-Fetch-Site: same-origin',
+        'Upgrade-Insecure-Requests: 1',
+        'User-Agent: '.$uA
+    );
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    $curl = curl_exec($ch);
+    $redirectedUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+                
+    curl_close($ch);
+    $query_str = parse_url($redirectedUrl, PHP_URL_QUERY);
+    parse_str($query_str, $query_params);
+    return [
+        'url' => $redirectedUrl,
+        'unique_id' => isset($query_params['unique_id']) ? $query_params['unique_id'] : '',
+        'game_id' => isset($query_params['game_id']) ? $query_params['game_id'] : '',
+        'sigv1' => isset($query_params['sigv1']) ? $query_params['sigv1'] : '',
+    ];
+}
+
+function refreshCookieFromOtp($currentCookie){
+    $cookieFilePath = __DIR__ . '/cookies-mtn.json';
+    $mobileUA = 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36';
+    if (!file_exists($cookieFilePath)) {
+        echo "\nCookie file not found for OTP refresh.";
+        return null;
+    }
+
+    $fp = fopen($cookieFilePath, 'c+');
+    if (!$fp) return null;
+    if (!flock($fp, LOCK_EX)) { fclose($fp); return null; }
+    $list = json_decode(stream_get_contents($fp), true);
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    if (!is_array($list)) return null;
+
+    $matchIndex = null;
+    $entry = null;
+    foreach ($list as $idx => $row) {
+        $storedCookie = isset($row['value']) ? $row['value'] : (isset($row['cookie']) ? $row['cookie'] : '');
+        if ($storedCookie === $currentCookie) {
+            $matchIndex = $idx;
+            $entry = $row;
+            break;
+        }
+    }
+
+    if ($entry === null) {
+        echo "\nNo matching entry found for OTP refresh.";
+        return null;
+    }
+
+    $otp = isset($entry['OTP']) ? $entry['OTP'] : (isset($entry['otp']) ? $entry['otp'] : null);
+    $numberRaw = isset($entry['phone']) ? $entry['phone'] : (isset($entry['number']) ? $entry['number'] : null);
+    $number = normalize_msisdn($numberRaw);
+    if (!$otp || !$number) {
+        echo "\nMissing OTP/number for refresh.";
+        return null;
+    }
+
+    $tmpCookie = tempnam(sys_get_temp_dir(), 'otp_cookie_');
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/otp/' . $number);
+    curl_setopt($ch, CURLOPT_USERAGENT, $mobileUA);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, $tmpCookie);
+    curl_setopt($ch, CURLOPT_COOKIEJAR, $tmpCookie);
+    $html = curl_exec($ch);
+    if (curl_errno($ch)) {
+        echo "\nOTP token fetch failed: " . curl_error($ch);
         curl_close($ch);
-        $query_str = parse_url($redirectedUrl, PHP_URL_QUERY);
-        parse_str($query_str, $query_params);
-        $unique_id = isset($query_params['unique_id']) ? $query_params['unique_id'] : '';
-        $game_id = isset($query_params['game_id']) ? $query_params['game_id'] : '';
-        $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
+        @unlink($tmpCookie);
+        return null;
+    }
+    curl_close($ch);
 
-        // echo "<br>Uniquie_id: $unique_id<hr>";
-        //echo "<br>Game_id: $game_id<hr>";
-        if (empty($unique_id)) {
-            die();
+    $token = extract_csrf_token($html);
+    if (!$token) {
+        echo "\nCould not extract OTP token.";
+        @unlink($tmpCookie);
+        return null;
+    }
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/submitotp');
+    curl_setopt($ch, CURLOPT_USERAGENT, $mobileUA);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, $tmpCookie);
+    curl_setopt($ch, CURLOPT_COOKIEJAR, $tmpCookie);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+        '_token' => $token,
+        'email' => $number,
+        'password' => $otp
+    ]));
+    curl_exec($ch);
+    if (curl_errno($ch)) {
+        echo "\nOTP submit failed: " . curl_error($ch);
+        curl_close($ch);
+        @unlink($tmpCookie);
+        return null;
+    }
+    curl_close($ch);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/play-now');
+    curl_setopt($ch, CURLOPT_USERAGENT, $mobileUA);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, $tmpCookie);
+    curl_setopt($ch, CURLOPT_COOKIEJAR, $tmpCookie);
+    curl_exec($ch);
+    curl_close($ch);
+
+    $jar = parse_cookiejar($tmpCookie);
+    @unlink($tmpCookie);
+    $xsrf = null; $sessionName = null; $sessionVal = null;
+    foreach ($jar as $k=>$v){
+        if ($xsrf === null && stripos($k, 'xsrf') !== false) { $xsrf = $v; }
+        if ($sessionVal === null && stripos($k, 'session') !== false) { $sessionName=$k; $sessionVal=$v; }
+    }
+    if (!$xsrf || !$sessionVal) {
+        echo "\nFailed to refresh cookie via OTP.";
+        return null;
+    }
+
+    $newCookie = "XSRF-TOKEN={$xsrf};{$sessionName}={$sessionVal}";
+
+    $fp = fopen($cookieFilePath, 'c+');
+    if ($fp && flock($fp, LOCK_EX)) {
+        $existing = json_decode(stream_get_contents($fp), true);
+        if (!is_array($existing)) { $existing = []; }
+        $updated = false;
+        foreach ($existing as $idx => $row) {
+            $storedCookie = isset($row['value']) ? $row['value'] : (isset($row['cookie']) ? $row['cookie'] : '');
+            if ($storedCookie === $currentCookie || ($numberRaw && isset($row['phone']) && $row['phone'] === $numberRaw)) {
+                $existing[$idx]['value'] = $newCookie;
+                if (isset($existing[$idx]['cookie'])) {
+                    $existing[$idx]['cookie'] = $newCookie;
+                }
+                $updated = true;
+                break;
+            }
         }
+        if ($updated) {
+            ftruncate($fp, 0);
+            rewind($fp);
+            fwrite($fp, json_encode($existing, JSON_PRETTY_PRINT));
+        }
+        flock($fp, LOCK_UN);
+        fclose($fp);
+    }
 
+    echo "\nCookie refreshed via OTP flow.";
+    return $newCookie;
+}
+
+
+require_once('Tools-mtn-v2.php');
+system('clear');
+
+$uA = RandomUa();
+$scoreTarget = TargetScore();
+$number3 = GetTargetScore(1);
+
+$cookie = "XSRF-TOKEN=eyJpdiI6Ik53ODZVYmQ4RTlyT2pTay9HTWVwMkE9PSIsInZhbHVlIjoiR0Vra2NSai9jajFmbHE1Nndkb0JFSzgzQWFjd0k0b3hmQXF1K1ZYZnVCbWxTWGxTNktTKzJIOXhSNG9rR1JxOThEa3R3ejlHTzhBSFZvNFduRDJKRXIwVklWUCtQOW1ScDVCNDZFYXFwMGxlYXgrRFRaMDh3R21QaGc4THdJZU4iLCJtYWMiOiIwMjdmMGE5YzA4YjRjNDhlYjYzZGIxY2ZmMDdkNjhmODBjZWJkNzMzZDQ3N2FjN2Q3ZTViODVkNDFkNTQ1NzFhIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjUwT1p2eWkvS1VXSjFHOGsrUGdaMUE9PSIsInZhbHVlIjoiUGt6S0dFbzU5R0Z2VnQrdkM3TXRIYlFMMk4vc0xQQmxoT0NPUTBOQmRGb21HUkxBN294NkV3bGo5NWVmMFhtQlBSc3UzWUxxTmR3MFgzUTVPZzEzNE1lbFN2K1lSamN3VVlWbVFsTHA0UEp5bmdzRlZUMGh0SW5rUkFWZXo0UlEiLCJtYWMiOiI4OGZhMzU1MGQwNWY1YzViODUxOWQwOTAzZjY2YjFmYTBjNGFkODYwZDMxNmZiYmY5NmQyNDE2M2UzZmQ0Mzk5IiwidGFnIjoiIn0%3D";
+        
+
+
+$pos = GetPosition ($cookie);
+$b4Score = GetTargetScore($pos);
+
+echo "\nScore at position 1 is $number3, while our position is $pos(0 for not yet)\n";
+        $playData = fetchPlaySession($cookie, $uA);
+        $redirectedUrl = $playData['url'];
+        $unique_id = $playData['unique_id'];
+        $game_id = $playData['game_id'];
+        $sigv1 = $playData['sigv1'];
+
+             if (empty($unique_id)){
+              $refreshed = refreshCookieFromOtp($cookie);
+              if ($refreshed) {
+                $cookie = $refreshed;
+                $playData = fetchPlaySession($cookie, $uA);
+                $redirectedUrl = $playData['url'];
+                $unique_id = $playData['unique_id'];
+                $game_id = $playData['game_id'];
+                $sigv1 = $playData['sigv1'];
+              }
+              if (empty($unique_id)){
+                "Cookie expired/not valid, please update.\n";
+                 return;
+              }
+             }
 
         ###################
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://gameplay.mzansigames.club/new-game-check-user-status/' . $unique_id . '/' . $sigv1 . '');
+        curl_setopt($ch, CURLOPT_URL, 'https://yellorush.co.za/new-game-check-user-status/'.$unique_id.'/'.$sigv1.'');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         $headers = array(
-            'Referer:' . $redirectedUrl,
+            'Host: www.yellorush.co.za',
+            'Referer:'.$redirectedUrl,
             'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
             'Sec-CH-UA-Mobile: ?1',
             'Sec-CH-UA-Platform: \"iOS\"',
@@ -114,6 +282,7 @@ while (true) {
             'Sec-Fetch-Mode: navigate',
             'Sec-Fetch-Site: same-origin',
             'Upgrade-Insecure-Requests: 1',
+            'User-Agent: '.$uA,
         );
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -121,59 +290,80 @@ while (true) {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
         $curl = curl_exec($ch);
-
-        // Separate headers and body
         $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($curl, 0, $header_size);
         $body = substr($curl, $header_size);
         curl_close($ch);
 
-
-
+        
+        
         $x_power = X_Power($header);
         echo "\n<br> X-Powered-Version: $x_power\n";
 
-        $testSom = GetTargetScore($pos);
-        $MAX_SCORE = 6000;
-        $range = 10000;
-        if ($pos <= 3 || $pos == 0) {
-            $score = rand(7000, 10000);
-
-        } else {
-
-            $multiplier = floor($number3 / $range);
-
-            $min = $range * $multiplier + 1;
-            $max = $range * ($multiplier + 1);
-
-            $score = rand($min, $max);
-
-            echo "\n Our score and range $min - $max := $score";
-
-            while ($score < $number3) {
-                $score += rand(1, 10);
-            }
-
-        }
-
-        while ($score > 50000) {
-            $score -= 1;
-        }
 
 
+// Adjustable score range for leaderboard placement
+$scoreStart = 49679; // lowest score to consider
+$scoreEnd   = 49690; // highest score to consider
 
-        echo "\n Our score = $score";
+// Skip if this cookie already holds a top 10 position
+// Refresh position to ensure it's up to date
+$pos = GetPosition($cookie);
+if ($pos > 0 && $pos <= 1) {
+    echo "\nAlready in top 10 at position $pos, skipping request.";
+  sleep(rand(120,340));
+    exit;
+}
+
+$success = false;
+$currentScore = null;
+
+// Build and shuffle the score list so each score is attempted once in random order
+// $max = 33642;
+// $count = 10;
+// $min = $max - ($count - 1);
+// $scores = range($max, $min);
+// shuffle($scores);
 
 
-        $increment = 1;
+$max = 9842;
+$count = 10;
+$step = 1;
 
-        $uA = RandomUa();
-        $score = round($score, -1);
-        $memory = validate_request($x_power, $score);
-        $OnePieceIsReal = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
-        sleep(rand(30,50));
+// calculate minimum based on max, step, and count
+$min = $max - ($count - 1) * $step;
+
+$scores = range($max, $min, -$step); 
+
+shuffle($scores);
+shuffle($scores);
+foreach ($scores as $score) {
+
+ if (isScoreInTop10($score)) {
+    echo "Already in use $score\n";
+   continue;
+} 
+
+    echo "\nTrying score => $score\n";
+    $increment = 1;
+    $uA = RandomUa();
+    $memory = validate_request($x_power, $score);
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+    $pos = GetPosition($cookie);
+    $currentScore = GetTargetScore($pos);
+    echo "\nLeaderboard value: $currentScore at pos $pos";
+    if ($currentScore == $score && $pos > 0 && $pos <= 6) {
+        $success = true;
+        break;
     }
+    echo "\nScore $score failed to update.";
+ 
+}
+
+if ($success) {
+    echo "\nLeaderboard updated with score: $currentScore";
+} else {
+    echo "\nFailed to update leaderboard";
 }
