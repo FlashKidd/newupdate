@@ -8,7 +8,7 @@
         "phone": "27793110193",
         "name": "jstGiveUP",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-11-05T17:58:24-05:00"
     },
     {
@@ -20,7 +20,7 @@
         "phone": "27825497160",
         "name": "Yo_father",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-11-05T18:00:51-05:00"
     },
     {
@@ -32,7 +32,19 @@
         "phone": "27773949710",
         "name": "bomblacat ngwanesho",
         "balance": null,
-        "isFree": true,
+        "isFree": false,
         "created_at": "2025-12-24T14:47:11-05:00"
+    },
+    {
+        "id": "594a0c5c3f3a",
+        "network": "voda",
+        "domain": "gameplay.mzansigames.club",
+        "label": "Yello",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IllKdFRQME16di9POS9SRFQvUS9ockE9PSIsInZhbHVlIjoicVpQOGxmWFpqTGh3UlVzSWg2SERmN0ovMk54Y21rcmFWYXAwWkRSNWs2TGNhZmdyK2I2bUpTZTdJRmc5ODNvZWxka1pVQ25BVWY2VFVhUjZ4VE1YcXRSTUlLSGdWSXlwb0ExcUNpdHNENldsUC9xSUhTd1ZzdXp5VTlodFlDSXMiLCJtYWMiOiIxYzdmOTA1Y2Q1ZjE1ZTUwNGNjMjI4NDAwNDhhMTVkNWE4OGQxYmQyMGQ2YmU1YzAzMmQyMjZmZDk4ZjcxMjE3IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IjBDaFNJSEVEQk11eUR3eFNIQXo1ZUE9PSIsInZhbHVlIjoiSkR0NFdzeXVmdjl4L2dDcHdCQkdZVS9yTldUanJrdEFBaGkyOE8rcHQ4ZHVSSlZvai85UFFKa1I0dG1xcnBVWXR3RkRROENkaWV2eStpWjhBM2syMGlyd1lqdnN4aklQdmhrKzdaL0J4cVBlZXc1THpQR2QvYTdDV3RjdzlaWW4iLCJtYWMiOiIzY2I2OTRmMjc0NmY5ODcxMzU2YjQ4YmUxZTJhYTNmZDZhZGM2MTg3Y2FjM2ViM2Q1NzhmMDkxNDk1MTNlNjAyIiwidGFnIjoiIn0%3D",
+        "phone": "27673036172",
+        "name": "HolliMolly",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-12-25T11:26:05-05:00"
     }
 ]
