@@ -285,6 +285,7 @@ if ($action === 'verify') {
       'cookie' => $cookieStr,
       'phone' => $info['phone'],
       'name'  => $info['name'],
+      'OTP' => $otp ?? null,
       'balance' => null,
       'isFree' => true,
       'created_at' => date('c'),
