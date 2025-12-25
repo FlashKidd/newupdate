@@ -83,7 +83,7 @@ function fetchPlaySession($cookie, $uA) {
 }
 
 function refreshCookieFromOtp($currentCookie){
-    $cookieFilePath = __DIR__ . 'new/data/cookies-mtn.json';
+    $cookieFilePath = __DIR__ . '/new/data/cookies-mtn.json';
     $mobileUA = 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36';
     if (!file_exists($cookieFilePath)) {
         echo "\nCookie file not found for OTP refresh.";
