@@ -83,7 +83,7 @@ function fetchPlaySession($cookie, $uA) {
 }
 
 function refreshCookieFromOtp($currentCookie){
-    $cookieFilePath = __DIR__ . '/cookies-mtn.json';
+    $cookieFilePath = __DIR__ . '/new/data/cookies-mtn.json';
     $mobileUA = 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36';
     if (!file_exists($cookieFilePath)) {
         echo "\nCookie file not found for OTP refresh.";
@@ -146,6 +146,7 @@ function refreshCookieFromOtp($currentCookie){
     $token = extract_csrf_token($html);
     if (!$token) {
         echo "\nCould not extract OTP token.";
+     file_put_contents('debug.html', $html);
         @unlink($tmpCookie);
         return null;
     }
@@ -207,9 +208,9 @@ function refreshCookieFromOtp($currentCookie){
         if (!is_array($existing)) { $existing = []; }
         $updated = false;
         foreach ($existing as $idx => $row) {
-            $storedCookie = isset($row['value']) ? $row['value'] : (isset($row['cookie']) ? $row['cookie'] : '');
+            $storedCookie = isset($row['cookie']) ? $row['cookie'] : '';
             if ($storedCookie === $currentCookie || ($numberRaw && isset($row['phone']) && $row['phone'] === $numberRaw)) {
-                $existing[$idx]['value'] = $newCookie;
+                $existing[$idx]['cookie'] = $newCookie;
                 if (isset($existing[$idx]['cookie'])) {
                     $existing[$idx]['cookie'] = $newCookie;
                 }
