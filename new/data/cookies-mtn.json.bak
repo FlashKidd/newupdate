@@ -24,19 +24,6 @@
         "created_at": "2025-12-22T12:14:18-05:00"
     },
     {
-        "id": "105fa23cc972",
-        "network": "MTN",
-        "domain": "www.yellorush.co.za",
-        "label": "flash",
-        "cookie": "XSRF-TOKEN=eyJpdiI6Ik53ODZVYmQ4RTlyT2pTay9HTWVwMkE9PSIsInZhbHVlIjoiR0Vra2NSai9jajFmbHE1Nndkb0JFSzgzQWFjd0k0b3hmQXF1K1ZYZnVCbWxTWGxTNktTKzJIOXhSNG9rR1JxOThEa3R3ejlHTzhBSFZvNFduRDJKRXIwVklWUCtQOW1ScDVCNDZFYXFwMGxlYXgrRFRaMDh3R21QaGc4THdJZU4iLCJtYWMiOiIwMjdmMGE5YzA4YjRjNDhlYjYzZGIxY2ZmMDdkNjhmODBjZWJkNzMzZDQ3N2FjN2Q3ZTViODVkNDFkNTQ1NzFhIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjUwT1p2eWkvS1VXSjFHOGsrUGdaMUE9PSIsInZhbHVlIjoiUGt6S0dFbzU5R0Z2VnQrdkM3TXRIYlFMMk4vc0xQQmxoT0NPUTBOQmRGb21HUkxBN294NkV3bGo5NWVmMFhtQlBSc3UzWUxxTmR3MFgzUTVPZzEzNE1lbFN2K1lSamN3VVlWbVFsTHA0UEp5bmdzRlZUMGh0SW5rUkFWZXo0UlEiLCJtYWMiOiI4OGZhMzU1MGQwNWY1YzViODUxOWQwOTAzZjY2YjFmYTBjNGFkODYwZDMxNmZiYmY5NmQyNDE2M2UzZmQ0Mzk5IiwidGFnIjoiIn0%3D",
-        "phone": "27785658022",
-        "name": "Skibidi",
-        "balance": null,
-        "OTP": 7810,
-        "isFree": true,
-        "created_at": "2025-12-22T12:14:53-05:00"
-    },
-    {
         "id": "ccc81e442c02",
         "network": "MTN",
         "domain": "www.yellorush.co.za",
@@ -80,8 +67,21 @@
         "cookie": "XSRF-TOKEN=eyJpdiI6IisxMHFxcFMzVXdDckdST1dhek9mYnc9PSIsInZhbHVlIjoienpTY0xkZllwL2JCOFRZQThRQWltOXRFL3o5N1F4SGlsUm00M3ZsTUtJU3RhMXJFd201VUErbnZRZHdYRTMvakpreGVXNFhvOHFnVDhkU3l3YnVFV0ZvbUEweTFSaTFHVE10bE5Ea09BTnhKZ0E0d0JsbGdDNFpsTmVKaFVuRHUiLCJtYWMiOiI3ZjhmMmE4NzdmODYzNmRmMmRiZmVmZTRmODc1YTUyNDBiMjZhMzRkNjBhNmQwMGIxZjY2NTBmN2Q4OGEyNmNlIiwidGFnIjoiIn0%3D;yello_rush_session=eyJpdiI6InJza0RhZU5taDhTUEF6OGhpNlFiMUE9PSIsInZhbHVlIjoiVElHa29Xc1lrU1gwV2dQNEVua1lZeXQ2ajI5ZEIwVGdLZk41ZmI1S3ZRSklIT1o2RjhMNjRySzdVT2pZL2xHZ2diNEltL1BRZWorYkpWbEFJcmdxYVpJOU5JOHBDZnV3M2U5aFJ5VjB2M0JLOWc0ZXJ1Q3lNY0thRk4wcXAzTS8iLCJtYWMiOiJmNjI2NjgzMzYzMTVkMWU4N2QzOGViN2JjMjg5MTFiODE1OTdhNzlhNDg3ZWVmNmJhNGU5ZDVlNDhhNGVkYTcwIiwidGFnIjoiIn0%3D",
         "phone": "27731959841",
         "name": "Alex Jomo",
-        "balance": null,
+        "balance": 0,
         "isFree": true,
         "created_at": "2025-12-22T15:04:02-05:00"
+    },
+    {
+        "id": "aa41207a406b",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Skibidi",
+        "cookie": "XSRF-TOKEN=eyJpdiI6Ik53ODZVYmQ4RTlyT2pTay9HTWVwMkE9PSIsInZhbHVlIjoiR0Vra2NSai9jajFmbHE1Nndkb0JFSzgzQWFjd0k0b3hmQXF1K1ZYZnVCbWxTWGxTNktTKzJIOXhSNG9rR1JxOThEa3R3ejlHTzhBSFZvNFduRDJKRXIwVklWUCtQOW1ScDVCNDZFYXFwMGxlYXgrRFRaMDh3R21QaGc4THdJZU4iLCJtYWMiOiIwMjdmMGE5YzA4YjRjNDhlYjYzZGIxY2ZmMDdkNjhmODBjZWJkNzMzZDQ3N2FjN2Q3ZTViODVkNDFkNTQ1NzFhIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjUwT1p2eWkvS1VXSjFHOGsrUGdaMUE9PSIsInZhbHVlIjoiUGt6S0dFbzU5R0Z2VnQrdkM3TXRIYlFMMk4vc0xQQmxoT0NPUTBOQmRGb21HUkxBN294NkV3bGo5NWVmMFhtQlBSc3UzWUxxTmR3MFgzUTVPZzEzNE1lbFN2K1lSamN3VVlWbVFsTHA0UEp5bmdzRlZUMGh0SW5rUkFWZXo0UlEiLCJtYWMiOiI4OGZhMzU1MGQwNWY1YzViODUxOWQwOTAzZjY2YjFmYTBjNGFkODYwZDMxNmZiYmY5NmQyNDE2M2UzZmQ0Mzk5IiwidGFnIjoiIn0%3D",
+        "phone": "27785658022",
+        "name": "Skibidi",
+        "OTP": "7896",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2025-12-25T08:02:54-05:00"
     }
 ]
