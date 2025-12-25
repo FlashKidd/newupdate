@@ -208,9 +208,9 @@ function refreshCookieFromOtp($currentCookie){
         if (!is_array($existing)) { $existing = []; }
         $updated = false;
         foreach ($existing as $idx => $row) {
-            $storedCookie = isset($row['value']) ? $row['value'] : (isset($row['cookie']) ? $row['cookie'] : '');
+            $storedCookie = isset($row['cookie']) ? $row['cookie'] : '';
             if ($storedCookie === $currentCookie || ($numberRaw && isset($row['phone']) && $row['phone'] === $numberRaw)) {
-                $existing[$idx]['value'] = $newCookie;
+                $existing[$idx]['cookie'] = $newCookie;
                 if (isset($existing[$idx]['cookie'])) {
                     $existing[$idx]['cookie'] = $newCookie;
                 }
