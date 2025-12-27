@@ -143,7 +143,7 @@ $currentScore = null;
 $beforecurrentScore = GetTargetScore($pos);
 
 // ===== Band 1 (your original score list) =====
-$max = 3330;
+$max = 3460;
 $count = 10;
 $step = 1;
 $min = $max - ($count - 1) * $step;
