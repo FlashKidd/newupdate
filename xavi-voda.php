@@ -98,7 +98,7 @@ function refreshGameSession(string $cookie): array {
 }
 
 // ===== Helper: attempt a score (keeps your original calls) =====
-function attemptScore(array &$sess, string $cookie, int $score, int &$linkTryCount): void {
+function attemptScore(array &$sess, string $cookie, int $score, int &$linkTryCount,$gameScore = 100): void {
     // refresh link if it has been used too many times
     if ($linkTryCount >= LINK_MAX_TRIES) {
         $sess = refreshGameSession($cookie);
@@ -115,7 +115,8 @@ function attemptScore(array &$sess, string $cookie, int $score, int &$linkTryCou
         $sess['x_power'],
         $memory,
         $increment,
-        $uA
+        $uA,
+        $gameScore
     );
 
     $linkTryCount++;
@@ -143,7 +144,8 @@ $currentScore = null;
 $beforecurrentScore = GetTargetScore($pos);
 
 // ===== Band 1 (your original score list) =====
-$max = 3460;
+$max = 100;
+$gameScore = 1088;
 $count = 10;
 $step = 1;
 $min = $max - ($count - 1) * $step;
@@ -166,7 +168,7 @@ $fallbackAnchors = array_values(array_unique($fallbackAnchors));
 // If no leaderboard anchors exist, use our own fallback bands
 if (empty($fallbackAnchors)) {
     // Choose your own levels (example ladder)
-    $fallbackAnchors = [2500, 2000, 1500, 1000, 500];
+    $fallbackAnchors = [600, 400, 300, 200, 100];
 }
 
 // ===== Build bands: [primary list] then [anchor+1 list] per anchor =====
@@ -229,7 +231,7 @@ foreach ($bands as $bandIndex => $band) {
 
         echo "\nTrying score => $score\n";
 
-        attemptScore($sess, $cookie, $score, $linkTryCount);
+        attemptScore($sess, $cookie, $score, $linkTryCount,$gameScore);
         $triesInBand++;
 
         $pos = GetPosition($cookie);
