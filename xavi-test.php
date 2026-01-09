@@ -330,6 +330,7 @@ $currentScore = null;
 
 
 $max = 9842;
+$gameScore = 100;
 $count = 10;
 $step = 1;
 
@@ -351,7 +352,7 @@ foreach ($scores as $score) {
     $increment = 1;
     $uA = RandomUa();
     $memory = validate_request($x_power, $score);
-    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA);
+    $x_power = generateRandomDivisionData($score, $redirectedUrl, $x_power, $memory, $increment, $uA,$gameScore);
     $pos = GetPosition($cookie);
     $currentScore = GetTargetScore($pos);
     echo "\nLeaderboard value: $currentScore at pos $pos";
