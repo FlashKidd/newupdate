@@ -342,7 +342,7 @@ curl_close($ch);
 }
 
 
-function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) {
+function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA,$gameScore = 1000) {
 // $min = 10;
 // $max = 1000;
 // $null = 1;
@@ -481,7 +481,7 @@ function generateRandomDivisionData($number,$url,$power,$memory,$increment,$uA) 
 
 
 $min = 10;
-$max = 1000;
+$max = $gameScore;
 
 // Step/precision follows $max: 2000->2000, 100->100, 15->15
 $step = max(1, (int)$max);
