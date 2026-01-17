@@ -2,13 +2,13 @@
     {
         "id": "c3bb9873aa72",
         "network": "Telkom-MTN70",
-        "domain": "rush-games-telkom.yellorush.co.za",
+        "domain": "staging.yellorush.co.za",
         "label": "Pikoktfb",
         "cookie": "XSRF-TOKEN=eyJpdiI6IjM2SUkrN25ZMVhTMmFIcWEwbkJKT1E9PSIsInZhbHVlIjoiblZxWEpnLzM3NFZXYTdIY09pTlp5S1FhUTVMVEZ0TklEMHpoT040YVZ2VDg1ck56VXZPVWtyT1B0NWkyTFgzMUlhdEtPWEpDQU1tREQ1NGdqMVhGWTZ5aDd3MWxmNFU4eGxwb1RaYk5sVWpjYndobXJ0eHZoZWFHLzZKZTJEajEiLCJtYWMiOiI1ODhlNDE3MmVjZTUzMjNmMTVjOGRmNDFjNjQ0ZTFhNzhmNWQwZmRkYTEyMTg5Y2NmZWZhMTQ2MmVkNDM2NWM5IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjJ6WElHMVlWMEl1WmlCdzB3cmxVc0E9PSIsInZhbHVlIjoidEpaUjlSK1lLK25uMmQ4NGYrb242b0tGMkZaYjJPSG15M29HQmFFN1V6Sy9Gdk1hR2Z4LzI5SFRIcFNVOTJ1L0VCZ2hwQXczRVd0MXdFWEtYazFWZHVORHphdkd1NVJtaDdubERFVnB5OHpZVk5tNVdmSFdYUjJiY2czZ3pBUHgiLCJtYWMiOiJmNWIzNGEyZWU2NjBkNDM5MDdiMjM1NzE1MDg2ODk5NzljYjY2ZjE1Njg3ZDkzZTNhYzJjNGNlZDA2ZDMxYzQxIiwidGFnIjoiIn0%3D",
         "phone": " 27737618806",
         "name": "Pikoktfb",
         "balance": null,
-        "isFree": false,
+        "isFree": true,
         "created_at": "2025-08-11T19:17:45+00:00"
     }
 ]
