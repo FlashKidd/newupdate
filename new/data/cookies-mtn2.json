@@ -46,5 +46,29 @@
         "balance": null,
         "isFree": true,
         "created_at": "2026-01-17T10:44:43-05:00"
+    },
+    {
+        "id": "142eff4c0fde",
+        "network": "mtn2",
+        "domain": "staging.yellorush.co.za",
+        "label": "Yello",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IlhzYXk1Uld1VkhYeURNN2gxTmhBT0E9PSIsInZhbHVlIjoidkkxRTVWYlB5bXU1b1FNUU5ja1JVT0R0ZDUyYWdVUURlRzBGbWFkUGx2RWRoN05rdWpmY2FHYmRYN3E0RXJWZGhNQVFhWmtXZ0NtNTFhVyt4OTlIay9iRUpPZVJtbEJDb1kvSHd5RXNoVXlna0ZwNTI3cXNPVHhWM0JYK1gybTkiLCJtYWMiOiJmYmU1NTU5YmUyMjExMjJjNTcyMjI2MTllYTBlZmU2Y2FlODRmZDI4OTBmZjZlZjhiN2E5MDBjMWE5ZGVmOTkxIiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6InNQSnk4cU50QWVUNDNUTTIrSzNBbnc9PSIsInZhbHVlIjoiMVJpVlo5aEx6MDZYMlBUQ2dsZ0JiZkNMek9KdlM2aGFqRG81cnFCZ0NONGFqVGMydXVXSmRUMmdJUFpQR2xReEVjTmFDb0dNNmJWS2lEVkhNNEtKSGVRYk9Nc01hR3ZPNVRsZHdwS3gzY3lpZERTOEVMa2dtY29BVnVZZkFEWmQiLCJtYWMiOiI5OTA5NDcyNjM2ZWUwZDFjMDAxMzI4NmFhNWEwZjcyNzM5MGQ2ODM2MGFmMjljNDVjNDY4ZjhlZmE5MjMxMjk0IiwidGFnIjoiIn0%3D",
+        "phone": "27785658022",
+        "name": "coxstel",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2026-01-17T11:23:14-05:00"
+    },
+    {
+        "id": "63932cf1965e",
+        "network": "mtn2",
+        "domain": "staging.yellorush.co.za",
+        "label": "Yello",
+        "cookie": "XSRF-TOKEN=eyJpdiI6Ii83M1dhck5Rc2Q5MEZqY0pCQXZDQVE9PSIsInZhbHVlIjoicVEvSUk4RC9rd1Nxa0tZSXIweGwyYm1tdXF4OVJJRXo2WGJhZkloMUdITzROVHhrbEhJZXdmY3VIUG5xRit3Ny9xRUwyQnNieFErS0ZYSEZ4dEorMGRtWGNMS0RsRGtxWUp4M3l2bXY2THk0VjRxbVBhSS80TEFESzlxWnNQVHciLCJtYWMiOiJkY2U1ZmVkNDM1MWZiNWMzZWM2ZTk5NDc1OTBjYjkwNGM3ZGRlZjczNGViOTcwYTM4MzBmYjc4ZjAyZmU2M2Q3IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IlhMRDlrd1hMWHZMcEp4LzRUekZuZGc9PSIsInZhbHVlIjoiQThoUEQzOWJTVFI5MTBKdDMwd1lRdzZZUkZYQnBVWURWbVR2dWRQUEtzN0l1blBqM3FjRVBkT2pjZUVWOWpPYWZOS0szbnlHODhBK3BiR3NIY0dBczdwKzJZeENOMWpxY1JRTkI4QW4wQzdjYThjcGRrd25PdEszOEdYVng0anYiLCJtYWMiOiJiMjhlMDNhOWQwOGU2ZTA1ZDkxMzYzOTBiMDJiZGE2Yzk5MjQ5ZTgyOTgwM2QzNzhiYjg1ZTA0NDAzYzc3NTI1IiwidGFnIjoiIn0%3D",
+        "phone": "27780073561",
+        "name": "raymondNyathi",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2026-01-17T11:31:11-05:00"
     }
 ]
