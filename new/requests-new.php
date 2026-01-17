@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../Tools-mtn-v2.php');
+require_once(__DIR__ . '/../Tools-new.php');
 $scoreTarget = TargetScore();
 system('sudo rm -rf cache');
 require_once '/var/www/html/newupdate/Zebra_cURL.php';
@@ -12,7 +12,7 @@ $curl->option(CURLOPT_TIMEOUT, 2400);
 
 $starttime = microtime(true);
 
-$cookieFile = __DIR__ . '/data/cookies-mtn.json';
+$cookieFile = __DIR__ . '/data/cookies-mtn2.json';
 $maxConcurrent = rand(2,4);
 $selectedIndexes = [];
 $urls_ar = [];
@@ -44,7 +44,7 @@ $serverIP = trim(gethostbyname(gethostname()));
 echo "\nIP ADDR: $serverIP";
 $urls = [];
 foreach ($urls_ar as $c) {
-    $urls[] = 'http://' . $serverIP . '/newupdate/xavi-test.php?c=' . urlencode($c);
+    $urls[] = 'http://' . $serverIP . '/newupdate/xavi-newgame.php?c=' . urlencode($c);
 }
 
 $curl->get($urls, function($result) {
