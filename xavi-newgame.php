@@ -139,7 +139,7 @@ while (true) {
 
     echo "\nTrying score $score in range $min - $max";
     if ($score > ($MAX_SCORE * 2 + 1)) {
-        sleep(rand(15, 45));
+        sleep(rand(15, 20));
     }
 
     $increment = 1;
