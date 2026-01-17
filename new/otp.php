@@ -239,6 +239,7 @@ if ($action === 'verify') {
   curl_setopt($ch, CURLOPT_COOKIEJAR, $cookieFile);
   curl_exec($ch);
   $redirectedUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+  echo "<br> uri: $redirectedUrl<br>";
   curl_close($ch);
 
   // Extract cookies from jar
