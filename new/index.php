@@ -88,7 +88,7 @@ if (empty($_SESSION['user'])) {
                 <option value="">Choose…</option>
                 <option value="www.yellorush.co.za">yellorush.co.za</option>
                 <option value="gameplay.mzansigames.club">gameplay.mzansigames.club</option>
-                <option value="rush-games-telkom.yellorush.co.za">rush-games-telkom.yellorush.co.za</option>
+                <option value="staging.yellorush.co.za">staging.yellorush.co.za</option>
               </select>
             </div>
           </div>
@@ -120,7 +120,7 @@ if (empty($_SESSION['user'])) {
                 <option value="">Choose…</option>
                 <option value="mtn">MTN (yellorush.co.za)</option>
                 <option value="voda">Vodacom (gameplay.mzansigames.club)</option>
-                <option value="mtn2">Telkom-Rush (rush-games-telkom.yellorush.co.za)</option>
+                <option value="mtn2">Telkom-Rush (staging.yellorush.co.za)</option>
               </select>
             </div>
             <div class="f">
