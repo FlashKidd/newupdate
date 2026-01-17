@@ -2,7 +2,7 @@
 function GetTargetScore($position_)
 {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://rush-games-telkom.yellorush.co.za/');
+    curl_setopt($ch, CURLOPT_URL, 'https://staging.yellorush.co.za/');
     //curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
     $headers = array(
@@ -11,8 +11,8 @@ function GetTargetScore($position_)
         'Cache-Control: no-cache',
         'Connection: keep-alive',
         'Pragma: no-cache',
-        'Host: rush-games-telkom.yellorush.co.za',
-        'Referer: https:/rush-games-telkom.yellorush.co.za/',
+        'Host: staging.yellorush.co.za',
+        'Referer: https://staging.yellorush.co.za/',
         'Sec-Ch-Ua: "Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
         'Sec-Ch-Ua-Mobile: ?1',
         'Sec-Ch-Ua-Platform: "Android"',
@@ -63,7 +63,7 @@ function GetTargetScore($position_)
 function GetPosition($cookie)
 {
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://rush-games-telkom.yellorush.co.za/');
+    curl_setopt($ch, CURLOPT_URL, 'https://staging.yellorush.co.za/');
     //curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
     $headers = array(
@@ -73,7 +73,7 @@ function GetPosition($cookie)
         'Connection: keep-alive',
         'Cookie: ' . $cookie,
         'Pragma: no-cache',
-        'Referer: https:/rush-games-telkom.yellorush.co.za/',
+        'Referer: https://staging.yellorush.co.za/',
         'Sec-Ch-Ua: "Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
         'Sec-Ch-Ua-Mobile: ?1',
         'Sec-Ch-Ua-Platform: "Android"',
@@ -167,15 +167,15 @@ function AttackLast($url, $xavi, $score, $power, $memory, $increment, $uA, $arra
     echo "\nArray Data: $jsonData";
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://rush-games-telkom.yellorush.co.za/aakado-mokalavo/{$game_id}/{$unique_id}");
+    curl_setopt($ch, CURLOPT_URL, "https://staging.yellorush.co.za/aakado-mokalavo/{$game_id}/{$unique_id}");
     curl_setopt($ch, CURLOPT_POST, 1);
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "Accept: */*",
         "Connection: keep-alive",
-        "Host: rush-games-telkom.yellorush.co.za",
+        "Host: staging.yellorush.co.za",
         "Content-Type: application/json;charset=UTF-8; {$memory}",
-        "Origin: https://rush-games-telkom.yellorush.co.za",
+        "Origin: https://staging.yellorush.co.za",
         "Referer: {$url}",
         "X-Chavi: {$xavi}",
         "X-Sign: {$sigv1}",
@@ -274,14 +274,14 @@ function Attack($url, $score, $power, $memory, $increment, $uA)
     // echo "<br><hr>Xavi: $content\nArray: b4 $jsonData";
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://rush-games-telkom.yellorush.co.za/aakado-mokalavo/{$game_id}/{$unique_id}");
+    curl_setopt($ch, CURLOPT_URL, "https://staging.yellorush.co.za/aakado-mokalavo/{$game_id}/{$unique_id}");
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "Accept: */*",
         "Connection: keep-alive",
-        "Host: rush-games-telkom.yellorush.co.za",
+        "Host: staging.yellorush.co.za",
         "Content-Type: application/json;charset=UTF-8; {$memory}",
-        "Origin: https://rush-games-telkom.yellorush.co.za",
+        "Origin: https://staging.yellorush.co.za",
         "Referer: {$url}",
         "X-Chavi: {$content}",
         "X-Sign: {$sigv1}",
@@ -344,7 +344,7 @@ function generateRandomDivisionData($number, $url, $power, $memory, $increment, 
 //  $max = 100;
 
     $min = 10;
-    $max = 1000;
+    $max = 100;
 
     if ($number <= $max) {
         // If number is $max or less, output only 0.
@@ -490,7 +490,7 @@ function TargetScore()
 {
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://rush-games-telkom.yellorush.co.za/');
+    curl_setopt($ch, CURLOPT_URL, 'https://staging.yellorush.co.za/');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
     $headers = array();
     $headers[] = 'User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36';
