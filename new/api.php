@@ -29,7 +29,7 @@ function storeFileForDomain($domain)
   $dir = __DIR__ . '/data';
   if ($domain === 'yellorush.co.za' || ($domain === 'www.yellorush.co.za'))
     return $dir . '/cookies-mtn.json';
-  if ($domain === 'rush-games-telkom.yellorush.co.za')
+  if ($domain === 'staging.yellorush.co.za')
     return $dir . '/cookies-mtn2.json';
   return $dir . '/cookies.json'; // Vodacom or others
 }
