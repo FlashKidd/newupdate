@@ -103,7 +103,7 @@ $otp      = $input['otp']      ?? '';
 $map = [
   'mtn'  => 'https://www.yellorush.co.za',
   'voda' => 'https://gameplay.mzansigames.club',
-  'mtn2' => 'https://rush-games-telkom.yellorush.co.za',
+  'mtn2' => 'https://staging.yellorush.co.za',
 ];
 if (!isset($map[$provider])) {
   echo json_encode(['error'=>true,'message'=>'Unknown provider']); exit;
