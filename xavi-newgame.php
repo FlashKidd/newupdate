@@ -32,7 +32,7 @@ echo "\nOur target score is: $number3 at pos $pos";
 $scoreBefore = GetTargetScore($pos);
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://rush-games-telkom.yellorush.co.za/play-now');
+curl_setopt($ch, CURLOPT_URL, 'https://staging.yellorush.co.za/play-now');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 $headers = array(
     'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -41,8 +41,8 @@ $headers = array(
     'Connection: keep-alive',
     'Cookie: ' . $cookie,
     'Pragma: no-cache',
-    'Host: rush-games-telkom.yellorush.co.za',
-    'Referer: https://rush-games-telkom.yellorush.co.za/',
+    'Host: staging.yellorush.co.za',
+    'Referer: https://staging.yellorush.co.za/',
     'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
     'Sec-CH-UA-Mobile: ?1',
     'Sec-CH-UA-Platform: \"iOS\"',
@@ -72,10 +72,10 @@ $sigv1 = isset($query_params['sigv1']) ? $query_params['sigv1'] : '';
 
 ###################
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://rush-games-telkom.yellorush.co.za/new-game-check-user-status/' . $unique_id . '/' . $sigv1 . '');
+curl_setopt($ch, CURLOPT_URL, 'https://staging.yellorush.co.za/new-game-check-user-status/' . $unique_id . '/' . $sigv1 . '');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 $headers = array(
-    'Host: rush-games-telkom.yellorush.co.za',
+    'Host: staging.yellorush.co.za',
     'Referer:' . $redirectedUrl,
     'Sec-CH-UA: \"Safari\";v=\"15\", \"AppleWebKit\";v=\"605\"',
     'Sec-CH-UA-Mobile: ?1',
