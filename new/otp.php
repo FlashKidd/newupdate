@@ -101,7 +101,7 @@ $otp      = $input['otp']      ?? '';
 
 // ---- Provider → base URL map ----
 $map = [
-  'mtn'  => 'https://staging.yellorush.co.za',
+  'mtn'  => 'https://www.yellorush.co.za',
   'voda' => 'https://gameplay.mzansigames.club',
   'mtn2' => 'https://staging.yellorush.co.za',
 ];
@@ -119,8 +119,10 @@ $fileMap = [
 $storeFile = $fileMap[$provider];
 if (!file_exists($storeFile)) { file_put_contents($storeFile, json_encode([], JSON_PRETTY_PRINT)); }
 
-$cookieFile = __DIR__ . '/useless/otp_cookie_' . session_id() . '_' . bin2hex(random_bytes(4)) . '.txt';
-@unlink($cookieFile);
+// ✅ FIX: Persistent cookie jar per session + provider
+$cookieDir = __DIR__ . '/useless';
+if (!is_dir($cookieDir)) { @mkdir($cookieDir, 0777, true); }
+$cookieFile = $cookieDir . '/otp_cookie_' . session_id() . '_' . $provider . '.txt';
 
 // ---- Actions ----
 if ($action === 'send') {
@@ -128,6 +130,8 @@ if ($action === 'send') {
   if ($core === null) {
     echo json_encode(['error'=>true,'message'=>'Invalid SA number. Use 0XXXXXXXXX or 27XXXXXXXXX.']); exit;
   }
+
+  // ✅ Keep format consistent across send + verify
   $msisdn = '0' . $core;
 
   // 1) GET login (CSRF)
@@ -147,6 +151,7 @@ if ($action === 'send') {
     echo json_encode(['error'=>true,'message'=>'Token fetch error: '.$err]); exit;
   }
   curl_close($ch);
+
   $token = trim(strip_tags(get_between($html, 'name="_token" value="', '"')));
   if (!$token) {
     echo json_encode(['error'=>true,'message'=>'Could not get CSRF token']); exit;
@@ -171,7 +176,14 @@ if ($action === 'send') {
   }
   curl_close($ch);
 
-  echo json_encode(['error'=>false,'next'=>'otp','message'=>"OTP sent to {$msisdn}",'parsed'=>$core,'provider'=>$provider]); exit;
+  echo json_encode([
+    'error'=>false,
+    'next'=>'otp',
+    'message'=>"OTP sent to {$msisdn}",
+    'parsed'=>$core,
+    'provider'=>$provider
+  ]);
+  exit;
 }
 
 if ($action === 'verify') {
@@ -179,7 +191,9 @@ if ($action === 'verify') {
   if (!preg_match('/^\d{9}$/', $core)) {
     echo json_encode(['error'=>true,'message'=>'Missing/invalid parsed msisdn']); exit;
   }
-  $msisdn27 = '27' . $core;
+
+  // ✅ Keep same format as send
+  $msisdn = '0' . $core;
 
   // 1) GET login (CSRF)
   $ch = curl_init();
@@ -198,6 +212,7 @@ if ($action === 'verify') {
     echo json_encode(['error'=>true,'message'=>'Token fetch error: '.$err]); exit;
   }
   curl_close($ch);
+
   $token = trim(strip_tags(get_between($html, 'name="_token" value="', '"')));
   if (!$token) {
     echo json_encode(['error'=>true,'message'=>'Could not get CSRF token']); exit;
@@ -216,7 +231,7 @@ if ($action === 'verify') {
   curl_setopt($ch, CURLOPT_COOKIEJAR, $cookieFile);
   curl_setopt($ch, CURLOPT_POSTFIELDS,
     '_token=' . urlencode($token) .
-    '&email=' . urlencode($msisdn27) .
+    '&email=' . urlencode($msisdn) .
     '&password=' . urlencode($otp)
   );
   curl_exec($ch);
@@ -245,22 +260,33 @@ if ($action === 'verify') {
   $rawJar = @file_get_contents($cookieFile) ?: '';
   @file_put_contents($dataDir . '/last_cookiejar.txt', $rawJar);
   $jar = parse_cookiejar($cookieFile);
-  $xsrf = null; $sessionName = null; $sessionVal = null;
-  foreach ($jar as $k=>$v){
-    if ($xsrf === null && stripos($k, 'xsrf') !== false) { $xsrf = $v; }
-    if ($sessionVal === null && stripos($k, 'session') !== false) { $sessionName=$k; $sessionVal=$v; }
+
+  // ✅ FIX: Explicit cookie names (staging uses yello_rush_session)
+  $xsrf = $jar['XSRF-TOKEN'] ?? null;
+
+  $sessionCandidates = ['yello_rush_session','laravel_session','yellorush_session','PHPSESSID'];
+  $sessionName = null;
+  $sessionVal  = null;
+  foreach ($sessionCandidates as $cand){
+    if (isset($jar[$cand])) { $sessionName = $cand; $sessionVal = $jar[$cand]; break; }
   }
+
   if (!$xsrf || !$sessionVal){
-    @unlink($cookieFile);
-    echo json_encode(['error'=>true,'message'=>'Could not extract session/XSRF cookies','jar_keys'=>array_keys($jar),'raw'=>substr($rawJar,0,4000)]); exit;
+    echo json_encode([
+      'error'=>true,
+      'message'=>'Could not extract session/XSRF cookies',
+      'jar_keys'=>array_keys($jar),
+      'raw'=>substr($rawJar,0,4000)
+    ]);
+    exit;
   }
-  $cookieStr = "XSRF-TOKEN={$xsrf};{$sessionName}={$sessionVal}";
+
+  $cookieStr = "XSRF-TOKEN={$xsrf}; {$sessionName}={$sessionVal}";
 
   // Attach profile info
   $info = fetchInfo($cookieStr, $base, $MOBILE_UA);
   if (!$info['name'] || !$info['phone']){
-    @unlink($cookieFile);
-    echo json_encode(['error'=>true,'message'=>'Login ok but could not read profile (name/phone)']); exit;
+    echo json_encode(['error'=>true,'message'=>'Login ok but could not read profile (name/phone)','url'=>$redirectedUrl]); exit;
   }
 
   // Save to store file (avoid duplicates by cookie OR phone in same domain)
@@ -274,8 +300,8 @@ if ($action === 'verify') {
       }
     }
   }
+
   if (!$dup){
-    @unlink($cookieFile);
     $network = ($provider==='mtn' ? 'MTN' : ($provider==='voda' ? 'Vodacom' : 'Telkom-MTN70'));
     $list[] = [
       'id' => bin2hex(random_bytes(6)),
@@ -293,7 +319,10 @@ if ($action === 'verify') {
     saveCookies($storeFile, $list);
   }
 
+  // ✅ Optional: delete cookie jar after successful verify (keeps things clean)
+  // If you want to support multiple OTPs without issues, you can keep it instead.
   @unlink($cookieFile);
+
   echo json_encode([
     'error'=>false,
     'next'=>'done',
@@ -303,7 +332,8 @@ if ($action === 'verify') {
     'name'=>$info['name'],
     'phone'=>$info['phone'],
     'domain'=>$domain
-  ]); exit;
+  ]);
+  exit;
 }
 
 // Bad request fallback
