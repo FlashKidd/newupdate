@@ -330,7 +330,7 @@ $currentScore = null;
 
 
 $max = 1251;
-$gameScore = 300;
+$gameScore = 500;
 $count = 10;
 $step = 1;
 
