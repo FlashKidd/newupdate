@@ -341,8 +341,6 @@ if($number3>$max){
 $min = $max - ($count - 1) * $step;
 
 $scores = range($max, $min, -$step); 
-
-shuffle($scores);
 shuffle($scores);
 foreach ($scores as $score) {
 
