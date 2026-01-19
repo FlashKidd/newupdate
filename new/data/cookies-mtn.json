@@ -114,5 +114,19 @@
         "balance": null,
         "isFree": true,
         "created_at": "2026-01-19T08:40:10-05:00"
+    },
+    {
+        "id": "dd40381f620a",
+        "network": "MTN",
+        "domain": "www.yellorush.co.za",
+        "label": "Alex Jomo",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IkFYK0tDYTdnU3RFZy9FMUg5SlZkUmc9PSIsInZhbHVlIjoicE1VWVNweVlwL2tjQmZUWXEvbDkwdmFrV2NpZU9IRFJuTFJxMDlFc0hOWGkyREYxbGloTTRuekg1RWU0Z0ErVUp2SDhpY1orOWpmMWkvZFhPTUdnc1ZkNzRSenRnRjFhclJaUU44ZFpRczh4WUs3SHp5ZXl3MU00MVJPakJTSmwiLCJtYWMiOiI4YmRmNGY3OWI0OTM4NjRlZjE5N2IzNTY2ZWEwNGIwNjJlYWJhZjc4ZDE5NDZhYmNiOWZiNDEyNjYxNWExNDE1IiwidGFnIjoiIn0%3D; yello_rush_session=eyJpdiI6IjM5MzZFbmZjdmVrYXVBeFNPaUhZQ2c9PSIsInZhbHVlIjoiTFZuMjBvWjEwaEcydVM0YVRZUkl3WlA0dHVETE0xVnlZNEFNdXF3UGJPamIreHpqL1huV2ljVnNZMHBhOHU1WmJKWjc5Y09PU1UrOWZMY0lkMlFvMWpHa3RxS2NTZXdTYkhGcU9rbURaMFlOTFBGdENWeXM5c1hVeTVFZ1hicjMiLCJtYWMiOiJiZGJlMjVkOGUyOWY4Y2Y0MDJkNjNlMTY4Y2VkMmVkNzUxMzMzZjFiM2M2ZjA4OWVjYmY1Zjg2ZGZhMTRlNGM4IiwidGFnIjoiIn0%3D",
+        "phone": "5932",
+        "name": "Alex Jomo",
+        "OTP": "5932",
+        "balance": null,
+        "isFree": true,
+        "created_at": "2026-01-19T10:26:29-05:00"
     }
+]
 ]
