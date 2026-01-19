@@ -329,7 +329,7 @@ $currentScore = null;
 // shuffle($scores);
 
 
-$max = 1088;
+$max = 1251;
 $gameScore = 100;
 $count = 10;
 $step = 1;
