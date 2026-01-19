@@ -330,12 +330,11 @@ $currentScore = null;
 
 
 $max = 1251;
-$gameScore = 100;
+$gameScore = 300;
 $count = 10;
 $step = 1;
 
 if($number3>$max){
-
  $max = $number3;
 }
 // calculate minimum based on max, step, and count
