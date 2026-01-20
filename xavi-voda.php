@@ -144,8 +144,12 @@ $currentScore = null;
 $beforecurrentScore = GetTargetScore($pos);
 
 // ===== Band 1 (your original score list) =====
-$max = 100;
-$gameScore = 1088;
+$max = 500;
+$gameScore = 1251;
+if ($number3>$max){
+
+    $max = $number3;
+}
 $count = 10;
 $step = 1;
 $min = $max - ($count - 1) * $step;
