@@ -1,50 +1,54 @@
 [
     {
-        "id": "cdb1dc31a505",
+        "id": "b6fb6f8bfbf3",
         "network": "Vodacom",
         "domain": "gameplay.mzansigames.club",
         "label": "jstGiveUP",
-        "cookie": "XSRF-TOKEN=eyJpdiI6IjF2SEpKUlBxZkFqNWpmZFYwZllOVFE9PSIsInZhbHVlIjoiSmY4QmhPK3BuS0lBenBCLzcyR3RJclMrTnhnc2thM0VvZ3VsWWNzRnA3U1poendQWTBjVE5LMkxoTDJTZlc3WEU4RmpIUW03dGZXYzk4aVJ4YjNwR1gyLzdxUWQ4eEJRQmVBMHExZVVISEFaRHNRdWdXakM0VDVyRytvcGhMcEsiLCJtYWMiOiI2NTJlYTkyNzhiMWNkZjQwYmJkMzViZTUyMjU2MjEyZTc3NjcwYzM1MGQ2Njc4YzQyYzljZjdmNmMzYTkyMjIxIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IlFaQlczaWdFUDlrYitLWFpkV1NNRVE9PSIsInZhbHVlIjoiZUFtWjRjVGJwUzBEU3l5czlDQjVyeHlDQjN0OTZlNm5tYlRsdGFoeWpCeWpuYjNQRjZ5R1hzMjc5a1QyNWU0RkJzckFiVDNFdzUzOFJKdEYxdURUdTNyUXlpM1J1bzI1bnEwdmtqNE1oNnFLQ2lvT2V4bXBRaldTSUNwNmd4Yk4iLCJtYWMiOiI0NTE3MWZjNzZiMDI4YWM0ZGM5ZmVjOWU1MTc1YzUxYTFhNmZlYWFjNzIyODA3NDkxNTQ3NDllMDMxOTFkZTQxIiwidGFnIjoiIn0%3D",
+        "cookie": "XSRF-TOKEN=eyJpdiI6InQ1NU5LWlJsWHRMSVNsSHlkR29lbHc9PSIsInZhbHVlIjoiWFYwTnBCdHhBNGFObUVZMDBKQ0ZTNlFTVkNFNUZ4ckhMT1FUdC8rcmk1QmdoS01XSWx0T1pjNUpSSlVTNlhFSEFFaFZOTVN6WmZ6OWMvLzN5eFFZTGR3WlhvcnN2N1U5UGRuUDJ0U3VKYVNRNmR0UFBCUjRsR2NrdUpqdmFBbjYiLCJtYWMiOiI1ZjYwM2FjODlkZGY3ZDhhZmNmNzNlOWYxNDFkY2RjNDA5N2RhMGJiNWI3NWI2ZDY3M2QzNWVjNDM5ZDRkOWIyIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6IkNOaExiYUJpb1VPWEpFQ3ViZG1zRnc9PSIsInZhbHVlIjoiYkdXOEJYaTB0elhnVEcrQTl0VUxLaytjaURQMVp3NWxLUnBSZGp1ZmZ2eTZta1JWTnBYRC9LZ0t2U2phMXpqeTBJdWZxYUg4aVpNdnljTjI2blpwSUJSQkd6ODJXdmxEd1cwWTdtTGVhaVdVL0FXcTkvTUxuTGp2bFdMREpiSU4iLCJtYWMiOiJjZTVkOGZjMTQ4OTdkYzg4Njc4MmVkOWJkOTZhZjljODlkYzE2ZmFiMGM5MjFlZWFhMTUyZGY2NmMwMWQyN2Y0IiwidGFnIjoiIn0%3D",
         "phone": "27793110193",
         "name": "jstGiveUP",
+        "OTP": "1987",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-11-05T17:58:24-05:00"
+        "created_at": "2026-01-20T17:22:34-05:00"
     },
     {
-        "id": "fdba013a7b59",
+        "id": "a4df0a63e7f2",
         "network": "Vodacom",
         "domain": "gameplay.mzansigames.club",
         "label": "Yo_father",
-        "cookie": "XSRF-TOKEN=eyJpdiI6ImdHVi92cWRqcUh5Z3E3cExlNG1TTnc9PSIsInZhbHVlIjoiSFg0RG5FTVZMVWdEV0pjai9ZQzZTY1pjTHcwR2hMOVZST2VFdHFtSC9UTEd1QXQ0RUd5V3pnUUY3ZklLU2xObFRiaCtlZlptSjJOZjk5Y1Nrc2ZUVXppRDBtd05mcHNUV2p1VkY5d29ZRE9DZXdPZGhnTFo2TnVRWlAwT0VsazgiLCJtYWMiOiI5OTUwZmFjZDZmMjI0NjI2ZWZhZDkzZTMxOWRjZjc1ZTVjYzc4ZjQ0ODA3OTU1MGU0Yzg4N2IxYmIxZDQ5N2U1IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6Ikg5L2lveFkrQmU3N1BsL2h2RWlvc0E9PSIsInZhbHVlIjoiblF3U3lVVnc2dUhsQWlhYmIxeTQ5WFNNNEdtM1V5SmtOcU5qVVovbHNGcGpLQlVFcm1jd2txUHNZRDhSck9jb28zVHllNHp3K2FuSitJNklRYkVTVzltNGFzeXFkNEEyK0M1eTV6MXBreXB2UzUzNE5nSWdkUzF2dERYbjlvQmMiLCJtYWMiOiI1OTQxNWQ5NWUxN2FjNGM2NjBiYWRkMGMzODc5ZGU5Yjg2ZTljYjE5MDE2Mzc3MGQ3Y2Y4MDgwYjA4MjlhYzc1IiwidGFnIjoiIn0%3D",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjFQb0c2Nk9XelJubkdQcGx0Tkwzcmc9PSIsInZhbHVlIjoiRTdNa2Y1M1BQM0c0N1dxNDNycElMeHVnOTdJN2lsc0M2Tmg2OGZld2xTc2oxTldrcVE1bEhuRTlJVzFyQVZOdnBWUGFxNDZVMTQxUnV4VmZ0bjMrSUJjeEdtQTJxUmYyK0dsSkUybjI4M00rcU1mTEVCNFNKK0NNb3RBZm9iYVIiLCJtYWMiOiIwY2Q3NGNmYTliMDM5NmM2YTllNzM2YTlkMGE4ZjA2MjhjY2MzNGViNmRkMDgwYThhZjMzMjk1ZjI4YThlYTdjIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6Img1K0RVMXI3UDRKTklEbEk1UzBxdEE9PSIsInZhbHVlIjoibXNlVlVTdXdXcFJhQ3NsanF5Ryt0azJCSC9NYXhjTEdualdLZU5ycEU3WWVhSmRKVGRhVGpmM3o1NExjMGM4THVEdlEvY0RDWndScEh0c0pqVzhCMlJVVVptTWlSc3kwVHlZWGNXSzdEQnZLd2hld1lPMVRxd2VXb1FuSHUwNEgiLCJtYWMiOiJhODg4MmU4ZjMzMjAzYzYzMWUxZjZmYTgyNTMxOTEyYjI1ZTIzNTVjMDhiMDE3NmEwMjNhYmQwY2IzNjZjYzY2IiwidGFnIjoiIn0%3D",
         "phone": "27825497160",
         "name": "Yo_father",
+        "OTP": "6583",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-11-05T18:00:51-05:00"
+        "created_at": "2026-01-20T17:25:19-05:00"
     },
     {
-        "id": "3b4f814bedf0",
-        "network": "voda",
+        "id": "ffff7a8e059e",
+        "network": "Vodacom",
         "domain": "gameplay.mzansigames.club",
-        "label": "Yello",
-        "cookie": "XSRF-TOKEN=eyJpdiI6ImppSHBvYzRiNWl1dFdjTDBOd0tkMXc9PSIsInZhbHVlIjoiMGs0Uko2cVlFNzJyUGsrUkt1RlBCV25HUFRScTFON0hueFJjRjBTOWdpTVhWRnlqd1dDSnlIQmsvZE5XWnlrSFV2TjN2VnBxS0FiQ1htOW5UdVBRMFgrRzc1aGFiZkl5STJycE9FbTlkWlhKMjhZckQxSklKYUJHd1I3R3VEVUIiLCJtYWMiOiJmZTg4MWJlOGYzOTAxZDVhNzI3YjM4NWVmZDJjNGZiZGFlYzljMmU2ODlkNjI0ODEwYmUzYTU5NzdhMzYzODRiIiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IitiTkdCMjEyTzVoMmJGdEtEczV2VlE9PSIsInZhbHVlIjoiNkxGTGZoaytMWUt0M0FFN1pLcVYxZkozN0d4b29qZ2dmSnBhZzRvdmFNTWdCWHZHQnNJclhQWU9qVm5mMmRkcWN6NU1jeXZmUTk1eGMrSEYzc2lzaDNndDRrditseWxlMCs1bllvNTR3RW9NYXlWODM5YWhScTFmcFh6RllBYlYiLCJtYWMiOiJiYzcxZTlmMzEzZDkwYTUwNGUyNGI3MWFlZDczNGQ2ZDE5YTE1ZTRiOWYzMzgwYWU3YjA5MGZjZDk2MWExMzU1IiwidGFnIjoiIn0%3D",
+        "label": "bomblacat ngwanesho",
+        "cookie": "XSRF-TOKEN=eyJpdiI6IjY2eXNjN1lQb0pVdVpETk1FeHZOeFE9PSIsInZhbHVlIjoiN0VQb2t6MVpLOFdabldHL1FBejRVczB6MlhRM29KR0dZV1dqMElBMXl2NGYwM0psdksvaERtZjF1MllzVGY0d2JEanlxZy9uenFRVmFTL2gvTkpmWXJIWDFpUnFuMzdGMHhjTkRjUVlPQnp0c3kwMXhTdjA0NE5WeG5GaFd2bVMiLCJtYWMiOiI3YTNkMGQyZWIzMjg4MGE5M2IyYTc3NjNiMjNkYjcyMjQ3NGMwNTBjZmU4OWU0MWE3MmNhZjJiMDExNjAwYzlkIiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6Im5UUFp3WXpPN1RTZU5VZnRsNjRFRFE9PSIsInZhbHVlIjoiekF2bCt4c3ljZGNyVzVDZzgwU0E1b01IUnRTaGJOL3VldlBCRGVraE9RK3A3M0xGbVRvZFppZ242UWd0eE9rSHczNnBudVJVWUxZdVM1bHAzNkEyc0UySEZBbGxlVzJkTVJYSEFaK1NDN0FaRkRIY1VLeHFiVlFVS09jRWgwbUMiLCJtYWMiOiIxOTVhOTQ3MmYwMzBmZTgzYTNmMmE2ZjM3ZTFlMjg5ODY2NDMzZWQ1OTY4ZmFjYzQ0MWViOWZjZmE5ZGFiYmFjIiwidGFnIjoiIn0%3D",
         "phone": "27773949710",
         "name": "bomblacat ngwanesho",
+        "OTP": "0327",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-12-24T14:47:11-05:00"
+        "created_at": "2026-01-20T17:27:21-05:00"
     },
     {
-        "id": "594a0c5c3f3a",
-        "network": "voda",
+        "id": "e89c00d2cded",
+        "network": "Vodacom",
         "domain": "gameplay.mzansigames.club",
-        "label": "Yello",
-        "cookie": "XSRF-TOKEN=eyJpdiI6IllKdFRQME16di9POS9SRFQvUS9ockE9PSIsInZhbHVlIjoicVpQOGxmWFpqTGh3UlVzSWg2SERmN0ovMk54Y21rcmFWYXAwWkRSNWs2TGNhZmdyK2I2bUpTZTdJRmc5ODNvZWxka1pVQ25BVWY2VFVhUjZ4VE1YcXRSTUlLSGdWSXlwb0ExcUNpdHNENldsUC9xSUhTd1ZzdXp5VTlodFlDSXMiLCJtYWMiOiIxYzdmOTA1Y2Q1ZjE1ZTUwNGNjMjI4NDAwNDhhMTVkNWE4OGQxYmQyMGQ2YmU1YzAzMmQyMjZmZDk4ZjcxMjE3IiwidGFnIjoiIn0%3D; vodacom_mzansi_games_session=eyJpdiI6IjBDaFNJSEVEQk11eUR3eFNIQXo1ZUE9PSIsInZhbHVlIjoiSkR0NFdzeXVmdjl4L2dDcHdCQkdZVS9yTldUanJrdEFBaGkyOE8rcHQ4ZHVSSlZvai85UFFKa1I0dG1xcnBVWXR3RkRROENkaWV2eStpWjhBM2syMGlyd1lqdnN4aklQdmhrKzdaL0J4cVBlZXc1THpQR2QvYTdDV3RjdzlaWW4iLCJtYWMiOiIzY2I2OTRmMjc0NmY5ODcxMzU2YjQ4YmUxZTJhYTNmZDZhZGM2MTg3Y2FjM2ViM2Q1NzhmMDkxNDk1MTNlNjAyIiwidGFnIjoiIn0%3D",
+        "label": "HolliMolly",
+        "cookie": "XSRF-TOKEN=eyJpdiI6InVCY3Y3MUJNZS94QndOZzZ2RUpJV1E9PSIsInZhbHVlIjoiS00rS2tiaGczK3pRcnBxbEtpQmtoRlE4ZkkvbkxOdmE0TDF2WmZQMUY2MTRiOWpNV2FkbUxoZ2E5VThzME1sMU5TQ284cWFNYjgzeW43ZmdCYnNuSGJha3VjRnd3UDdpYmNIUktyWGQvZlJrMHEvY3F2dWFhaHFjYWdhbGNSb0EiLCJtYWMiOiJhZmIwZDBkYzdkYWViMTdlYTQwNmMxMDdkYTA1YjRlNDZkZTIyMzY2NjgxYzQ3MjY1YTcyYWQ4YmI3MmFjMTA0IiwidGFnIjoiIn0%3D;vodacom_mzansi_games_session=eyJpdiI6Inl2NmIrV0JxK3NtdjNhNUxlSlhJQnc9PSIsInZhbHVlIjoiQlRhcUtQNllLUGRQdVJhNHVTL3VyUk9vQU1MUDR4UTdibGZIQ09BS0lTV09Uek1Zak45NXFLTzQzanY0cW5zUG9zQktDUENxYW1OYVFBM0dsMDc1clRoQVpUT3NvU2NacEQ4aHJwNGc4VXZudHNxSS9wSDNkVTU3WUNFWHRXblQiLCJtYWMiOiJlNDVjZTFkMTFmNjcxYTYwMzJjY2Q5NTE3MmU4NjUxYjJhNjZjNDE5ODBlMWEwNmRhMmVmOWFiN2Q4NWFjMzdiIiwidGFnIjoiIn0%3D",
         "phone": "27673036172",
         "name": "HolliMolly",
+        "OTP": "2385",
         "balance": null,
         "isFree": true,
-        "created_at": "2025-12-25T11:26:05-05:00"
+        "created_at": "2026-01-20T17:29:30-05:00"
     }
 ]
